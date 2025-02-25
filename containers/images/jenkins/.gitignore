@@ -1,0 +1,5 @@
+jenkins-support
+jenkins.sh
+jenkins-plugin-cli.sh
+jenkins-data/*
+conf.sh

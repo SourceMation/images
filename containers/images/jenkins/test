@@ -1,0 +1,19 @@
+echo "Do not run! I'm here as short docs for manual testing."
+exit 1
+# docker
+
+sudo rm -rf ./jenkins-data
+bash init.sh
+docker build -t jenkins-local .
+mkdir jenkins-data
+sudo chown 1000:1000 jenkins-data
+docker run -p 8080:8080 -p 50000:50000 --restart=on-failure -v ./jenkins-data/:/var/jenkins_home jenkins-local
+
+
+# podman
+sudo rm -rf ./jenkins-data
+bash init.sh
+podman build -t jenkins-local .
+mkdir jenkins-data
+sudo chown 1000:1000 jenkins-data
+podman run -p 8080:8080 -p 50000:50000 --restart=on-failure -v ./jenkins-data/:/var/jenkins_home jenkins-local
