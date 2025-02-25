@@ -21,12 +21,10 @@ on:
         required: false
         type: boolean
 
-
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "greet"
-  build_container:
+  build_container_amd64:
+    name: Build container (amd64)
+    runs-on: ubuntu-24.04
     env:
       QUAY_USER: ${{ secrets.QUAY_USER }}
       QUAY_PASS: ${{ secrets.QUAY_PASS }}
@@ -35,13 +33,10 @@ jobs:
       PUSH_IMAGE: ${{ inputs.push_image }}
       TEST_IMAGE: ${{ inputs.test_image }}
       APIKEY__QUAY_IO: ${{ secrets.QUAY_API }}
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
     steps:
-    # LOL - this is required to use files from the repository
-    - uses: actions/checkout@v4
-    - name: Install prerequisites - docker
-      run: |
+      - uses: actions/checkout@v4
+      - name: Install prerequisites - docker
+        run: |
           sudo apt-get update
           sudo apt-get install ca-certificates curl
           sudo install -m 0755 -d /etc/apt/keyrings
@@ -49,12 +44,43 @@ jobs:
           sudo chmod a+r /etc/apt/keyrings/docker.asc
           echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
           sudo apt-get update
+          sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin dnf
+          sudo usermod -aG docker $USER
+          sudo systemctl enable --now docker
+      - name: Build the container, test, push and push readme
+        run: |
+          pwd
+          cd containers
+          bash build-container.sh ${{ inputs.container_name }}
+
+  build_container_arm64:
+    name: Build container (arm64)
+    needs: build_container_amd64 # Ensure amd64 build finishes first
+    runs-on: ubuntu-24.04-arm64
+    env:
+      QUAY_USER: ${{ secrets.QUAY_USER }}
+      QUAY_PASS: ${{ secrets.QUAY_PASS }}
+      DOCKER_USER: ${{ secrets.DOCKER_USER }}
+      DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
+      PUSH_IMAGE: ${{ inputs.push_image }}
+      TEST_IMAGE: ${{ inputs.test_image }}
+      APIKEY__QUAY_IO: ${{ secrets.QUAY_API }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install prerequisites - docker
+        run: |
+          sudo apt-get update
+          sudo apt-get install ca-certificates curl
+          sudo install -m 0755 -d /etc/apt/keyrings
+          sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+          sudo chmod a+r /etc/apt/keyrings/docker.asc
+          echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
           sudo apt-get update
           sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin dnf
           sudo usermod -aG docker $USER
           sudo systemctl enable --now docker
-    # run container build script that is located in the repository
-    - name: Build the container, test, push and push readme
-      run: |
-        pwd
-        bash build-container.sh ${{ inputs.container_name }}
+      - name: Build the container, test, push and push readme
+        run: |
+          pwd
+          cd containers
+          bash build-container.sh ${{ inputs.container_name }}
