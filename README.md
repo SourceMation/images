@@ -5,7 +5,6 @@ This repository contains the images delivered/tested and scored by the
 SourceMation platform. The aim is to provide a central location for the images
 you can test, use and deploy in your projects and solutions.
 
-
 ## Issues and PRs
 
 Your contributions are welcome. If you have an idea for a new image or
@@ -14,7 +13,13 @@ request. Our team is monitoring the repository and will respond to your
 requests.
 
 
+We have provided a template for the issues and pull requests for your
+convenience. Please use it, but do not feel limited by it. If you have a
+different need, you can always create a blank issue or PR—it’s up to you
+:octocat:.
+
 ## Repository structure
+
 Each type of image is stored in a separate directory. The directory name
 corresponds to the image type. Most of them should contain a README.md file or
 similar documentation that describes the image and how to use it.
