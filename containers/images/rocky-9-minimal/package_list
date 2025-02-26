@@ -1,0 +1,9 @@
+bash
+coreutils-single
+curl-minimal
+rocky-release
+glibc-minimal-langpack
+libcurl-minimal
+libusbx
+microdnf
+rootfiles
