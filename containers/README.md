@@ -17,3 +17,12 @@ the container.
 - Then, the container is built, and we support aarch64 (arm64) and amd64
   (x86_64) architectures.
 - The container is pushed to the Docker Hub and Quay.io.
+
+## Extra notes
+
+When adding the new container, the following steps should be taken:
+
+- Add the container to the `containers` list the github workflow file.
+- Build the container locally to ensure that it works.
+- Add the tests for the container to the `tests` directory.
+

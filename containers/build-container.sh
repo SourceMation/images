@@ -8,7 +8,7 @@
 # - Jarosław Mazurkiewicz <jaroslaw.mazurkiewicz@linuxpolska.pl>
 # - Kamil Halat <kh@euro-linux.com>
 # - Marek Janosz <marek.janosz@linuxpolska.pl>
-# - Radosław Kolba <radoslaw.kolba@linuxpolska.pl>
+# - Radosław Kolba <rk@euro-linux.com>
 
 # Be more strict with errors
 set -euo pipefail
@@ -82,8 +82,10 @@ read_configs(){
         echo "Look into Dockerfile"
         # find the line, then get only value between "..", then  remove "
         # LABEL name="init" -> "init" -> init
+        print_info "Trying to get image name from Dockerfile"
         image_name=$(grep "LABEL name=" Dockerfile | grep -o '".*"' | tr -d '"' )
         # version="3.9.18" -> "3.9.18" -> 3.9.18
+        print_info "Trying to get image version from Dockerfile"
         image_version=$(grep "  version=" Dockerfile | grep -o '".*"' | tr -d '"')
     else
         echo "There is no Dockerfile in this directory!"
@@ -144,6 +146,31 @@ test_container(){
     CONTAINER_RUN_PARAMETERS=""
     CONTAINER_RUN_COMMAND="/bin/bash"
     case ${DOCKER_TAG_NAME} in
+        "apache-activemq")
+            CONTAINER_RUN_COMMAND=""
+            ;;
+        "camel-k")
+            CONTAINER_RUN_COMMAND=""
+            ;;
+        "camel-karavan")
+            CONTAINER_RUN_COMMAND=""
+            CONTAINER_RUN_PARAMETERS="-v /var/run/docker.sock:/var/run/docker.sock"
+            ;;
+        "helidon")
+            CONTAINER_RUN_COMMAND=""
+            ;;
+        "kafka")
+            CONTAINER_RUN_COMMAND=""
+            ;;
+        "kong")
+            CONTAINER_RUN_COMMAND=""
+            ;;
+        "micronaut")
+            CONTAINER_RUN_COMMAND=""
+            ;;
+        "mosquitto")
+            CONTAINER_RUN_COMMAND=""
+            ;;
         "postgresql")
             CONTAINER_RUN_COMMAND=""
             CONTAINER_RUN_PARAMETERS="-e POSTGRES_HOST_AUTH_METHOD=trust"
@@ -154,19 +181,51 @@ test_container(){
         "rabbitmq")
             CONTAINER_RUN_COMMAND=""
             ;;
+        "quarkus")
+            CONTAINER_RUN_COMMAND=""
+            ;;
         *)
             :
             ;;
     esac
 
     print_info "Running Docker Container from Image: ${CONTAINER_FULL_NAME}"
-    # shellcheck disable=SC2086
-    docker run -d -it --name my_container ${CONTAINER_RUN_PARAMETERS} ${CONTAINER_FULL_NAME} ${CONTAINER_RUN_COMMAND}
+    if [ ${DOCKER_TAG_NAME} == "kong" ]; then
+        docker network create kong-net
+        docker run -d --name kong-database --network=kong-net -p 5432:5432 -e "POSTGRES_USER=kong" -e "POSTGRES_DB=kong" -e "POSTGRES_PASSWORD=kongpass" postgres:13
+        docker run --rm --network=kong-net -e "KONG_DATABASE=postgres" -e "KONG_PG_HOST=kong-database" -e "KONG_PG_PASSWORD=kongpass" -e "KONG_PASSWORD=test" ${CONTAINER_FULL_NAME} kong migrations bootstrap
+        docker run -d --name my_container \
+        --network=kong-net \
+        -e "KONG_DATABASE=postgres" \
+        -e "KONG_PG_HOST=kong-database" \
+        -e "KONG_PG_USER=kong" \
+        -e "KONG_PG_PASSWORD=kongpass" \
+        -e "KONG_PROXY_ACCESS_LOG=/dev/stdout" \
+        -e "KONG_ADMIN_ACCESS_LOG=/dev/stdout" \
+        -e "KONG_PROXY_ERROR_LOG=/dev/stderr" \
+        -e "KONG_ADMIN_ERROR_LOG=/dev/stderr" \
+        -e "KONG_ADMIN_LISTEN=0.0.0.0:8001" \
+        -e "KONG_ADMIN_GUI_URL=http://localhost:8002" \
+        -e KONG_LICENSE_DATA \
+        -p 8000:8000 \
+        -p 8443:8443 \
+        -p 8001:8001 \
+        -p 8444:8444 \
+        -p 8002:8002 \
+        -p 8445:8445 \
+        -p 8003:8003 \
+        -p 8004:8004 \
+        ${CONTAINER_FULL_NAME}
+    else
+        print_info "Running Docker Container from Image: ${CONTAINER_FULL_NAME}"
+        docker run -d -it --name my_container ${CONTAINER_RUN_PARAMETERS} ${CONTAINER_FULL_NAME} ${CONTAINER_RUN_COMMAND}
+    fi
+
 
     print_info "Waiting for the container to fully boot..."
-    sleep ""${CONTAINER_STARTUP_TIMEOUT}
+    sleep ${CONTAINER_STARTUP_TIMEOUT}
 
-    if [ "$(docker inspect -f '{{.State.Running}}' my_container)" != 'true' ]; then
+    if [ $(docker inspect -f '{{.State.Running}}' my_container) != 'true' ]; then
         print_fail "Timeout of ${CONTAINER_STARTUP_TIMEOUT} seconds reached when waiting for my_container to start - aborting."
     fi
 
@@ -174,7 +233,7 @@ test_container(){
     docker cp tests my_container:/tmp
 
     print_info 'Installing Python and PyTest in the Container'
-    docker exec -u 0 my_container dnf install -y python3-pip
+    docker exec -u 0 my_container dnf install -y python3-pip procps || docker exec -u 0 my_container microdnf install -y python3-pip procps
     docker exec -u 0 my_container pip3 install pytest requests psycopg2-binary redis pymongo pika
 
     print_info 'Executing PyTest Scripts'
@@ -182,6 +241,11 @@ test_container(){
 
     docker stop my_container
     docker rm my_container
+    if [ ${DOCKER_TAG_NAME} == "kong" ]; then
+        docker stop kong-database
+        docker rm kong-database
+        docker network rm kong-net
+    fi
     set +x
 }
 
@@ -260,8 +324,8 @@ print_info "Checking prerequisites"
 check_command_available "docker"
 check_file_exists "$container_file"
 check_file_exists "$container_dir/README.md"
-[ "$PUSH_IMAGE" != "true" ] || login_to_quayio
-[ "$PUSH_IMAGE" != "true" ] || login_to_dockerhub
+login_to_quayio
+login_to_dockerhub
 prepare_build # Run init.sh if it exists
 read_configs
 build_container
@@ -269,3 +333,4 @@ build_container
 [ "$PUSH_IMAGE" != "true" ] || push_container_image
 [ "$PUSH_IMAGE" != "true" ] || push_readme
 cleanup
+
