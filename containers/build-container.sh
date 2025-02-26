@@ -324,8 +324,8 @@ print_info "Checking prerequisites"
 check_command_available "docker"
 check_file_exists "$container_file"
 check_file_exists "$container_dir/README.md"
-login_to_quayio
-login_to_dockerhub
+[ "$PUSH_IMAGE" != "true" ] || login_to_quayio
+[ "$PUSH_IMAGE" != "true" ] || login_to_dockerhub
 prepare_build # Run init.sh if it exists
 read_configs
 build_container
