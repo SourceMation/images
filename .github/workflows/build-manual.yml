@@ -7,9 +7,33 @@ on:
     inputs:
       container_name:
         description: 'Name of the container to build'
-        default: 'jenkins'
         required: true
-        type: string
+        type: choice
+        options:
+          - activemq
+          - angular
+          - apicast
+          - camel-k
+          - camel-karavan
+          - helidon
+          - html.tmp
+          - java
+          - jenkins
+          - kafka
+          - karaf
+          - kong
+          - micronaut
+          - mongodb
+          - mosquitto
+          - nodejs
+          - openapi-generator-cli
+          - postgresql
+          - python
+          - quarkus
+          - rabbitmq
+          - redis
+          - ruby
+          - servicemix
       push_image:
         description: 'Push the image to the registries'
         default: true
