@@ -16,7 +16,6 @@ on:
           - camel-k
           - camel-karavan
           - helidon
-          - html.tmp
           - java
           - jenkins
           - kafka
