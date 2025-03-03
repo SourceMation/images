@@ -1,13 +1,13 @@
 # Build stage
 FROM rockylinux/rockylinux:9 AS builder
 
-ENV CAMEL_K_VER="v2.3.3"
-RUN yum install maven-openjdk17 go git gcc make cmake -y
+ENV CAMEL_K_VER="v2.5.1"
+RUN yum install maven-openjdk17 go git gcc make cmake which -y
 # THE MAKEFILE targets are taken from the camel-k Makefile and `images:` without final image build
 # REMOVE ./pkg/cmd/source/util_test.go as they make everything to hang out or fail
-RUN mkdir /build && cd /build && git clone -b ${CAMEL_K_VER} https://github.com/apache/camel-k.git &&\
+RUN mkdir /build && cd /build && git clone --depth 1 -b ${CAMEL_K_VER} https://github.com/apache/camel-k.git &&\
     cd camel-k && rm -fv ./pkg/cmd/source/util_test.go &&\
-    NOTEST=1 make build maven-overlay bundle-kamelets build-kamel-platform
+    NOTEST=1 make build maven-overlay build-kamel-platform
 RUN echo "Creating empty _maven_output - same as in the images make rule" && mkdir -v /build/camel-k/build/_maven_output
 
 
@@ -21,7 +21,7 @@ LABEL name="camel-k" \
       architecture="$(uname -m)" \
       summary="Apache Camel-K on EL9 Container" \
       description="Provides Camel-K on Rocky Linux 9 Container" \
-      version="2.3.3" \
+      version="2.5.1" \
       io.k8s.display-name="Apache Camel-K on EL9 Container" \
       io.k8s.description="Provides Camel-K on Rocky Linux 9 Container" \
       io.openshift.tags="camel-k rockylinux"
@@ -64,13 +64,10 @@ ENV MAVEN_OPTS="${MAVEN_OPTS} -Dlogback.configurationFile=${MAVEN_HOME}/conf/log
 COPY --from=builder /build/camel-k/build/_maven_output ${MVN_REPO}
 # Fix https://github.com/moby/moby/issues/37965
 RUN true
-COPY --from=builder /build/camel-k/build/_kamelets /kamelets
 
 RUN chgrp -R 0 ${MVN_REPO} \
     && chown -R 1001:0 ${MVN_REPO} \
     && chmod -R 775 ${MVN_REPO} \
-    && chgrp -R 0 /kamelets \
-    && chmod -R g=u /kamelets \
     && chgrp -R 0 ${MAVEN_HOME} \
     && chown -R 1001:0 ${MAVEN_HOME} \
     && chmod -R 775 ${MAVEN_HOME}

@@ -1,4 +1,4 @@
-FROM rockylinux/rockylinux:9
+FROM sourcemation/rocky-9
 
 LABEL name="micronaut" \
       vendor="SourceMation" \
@@ -8,7 +8,7 @@ LABEL name="micronaut" \
       architecture="$(uname -m)" \
       summary="Micronaut CLI, Java-21 GraalVM and SDKMAN with GCC on EL9 Container" \
       description="Provides Micronaut CLI, Java-21 GraalVM and SDKMAN with GCC Rocky Linux 9 Container" \
-      version="4.5.1" \
+      version="4.7.6" \
       io.k8s.display-name="Micronaut CLI, Java-21 GraalVM and SDKMAN with GCC on EL9 Container" \
       io.k8s.description="Provides Micronaut CLI, Java-21 GraalVM and SDKMAN with GCC on Rocky Linux 9 Container" \
       io.openshift.tags="micronaut java-21 sdkman gcc rockylinux"
@@ -31,5 +31,5 @@ RUN curl -s "https://get.sdkman.io" -o sdkman.sh &&\
     sha256sum --check <( echo "f1893baeb6f240611acef7ec3c277153b65ac2cd925099ec85b6076f232ddc9d sdkman.sh") && \
     bash sdkman.sh && \
     source "/home/micronaut/.sdkman/bin/sdkman-init.sh" && \
-    sdk install micronaut 4.5.1 && \
+    sdk install micronaut 4.7.6 && \
     sdk install java 21.0.4-graal

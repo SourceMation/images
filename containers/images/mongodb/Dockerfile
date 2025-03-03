@@ -10,7 +10,7 @@ LABEL name="mongodb" \
       architecture="$(uname -m)" \
       summary="MongoDB on EL9 Container" \
       description="Provides MongoDB on Rocky Linux 9 Container" \
-      version="8.0.1" \
+      version="8.0.5" \
       io.k8s.display-name="MongoDB on EL9 Container" \
       io.k8s.description="Provides MongoDB on Rocky Linux 9 Container" \
       io.openshift.tags="mongodb rockylinux"
@@ -40,7 +40,7 @@ COPY additions/start.sh /home/mongodb/start.sh
 RUN chmod +x /home/mongodb/start.sh
 RUN chmod +x /opt/one_time_script.sh
 
-ENV APP_VERSION="8.0.1" \
+ENV APP_VERSION="8.0.5" \
     APP_NAME="mongodb"
 
 EXPOSE 27017

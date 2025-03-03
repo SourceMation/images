@@ -13,7 +13,7 @@ IMG=$(head -1 Dockerfile | awk '{print $2}')
 # of the application
 echo "Checking the latest available version of the app"
 VERSION=$(docker run --rm ${IMG} /bin/bash -c \
-	"dnf check-update --refresh > /dev/null; dnf info --available ${APP}.${ARCH} | grep Version | awk '{print \$3}'")
+	"dnf install -y epel-release &>/dev/null; dnf check-update --refresh > /dev/null; dnf info --available ${APP}.${ARCH} | grep Version | awk '{print \$3}'")
  
 # Exit with an error if the returned version contains anything other
 # than digits and dots

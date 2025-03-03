@@ -8,7 +8,7 @@ LABEL name="postgresql" \
       architecture="$(uname -m)" \
       summary="PostgreSQL on EL9 Container" \
       description="Provides PostgreSQL on Rocky Linux 9 Container" \
-      version="14.13" \
+      version="14.17" \
       io.k8s.display-name="PostgreSQL on EL9 Container" \
       io.k8s.description="Provides PostgreSQL on Rocky Linux 9 Container" \
       io.openshift.tags="postgresql rockylinux"
@@ -24,12 +24,12 @@ RUN set -eux; \
 # make the "en_US.UTF-8" locale so postgres will be utf-8 enabled by default
 ENV LANG=pl_PL.utf8 \
     PG_MAJOR=14 \
-    PG_VERSION="14.13" \
+    PG_VERSION="14.17" \
     LC_ALL=pl_PL.utf8 \
     PATH="$PATH:/usr/pgsql-14/bin" \
     PGDATA="/var/lib/postgresql/pg-data" 
 
-ENV APP_VERSION="14.13" \
+ENV APP_VERSION="14.17" \
     APP_NAME="postgresql"
 
 RUN mkdir /docker-entrypoint-initdb.d
@@ -118,4 +118,3 @@ STOPSIGNAL SIGINT
 EXPOSE 5432
 
 CMD ["postgres"]
-

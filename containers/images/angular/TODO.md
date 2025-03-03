@@ -1,0 +1,1 @@
+- [] Create init.sh, so version in Docker label can be set automatically

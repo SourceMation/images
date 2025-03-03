@@ -3,8 +3,9 @@
 An open source purely object-oriented programming language with a focus on
 simplicity and readability.
 
-This Ruby distribution is provided by the downstream Rocky Linux 9
-packaging team in the version respective to that system (3.0.7).
+This Ruby distribution is provided by the downstream Rocky Linux 9 packaging
+team in the version respective to that system (3.3.5). The container is using
+the lastest dnf-based module for Ruby.
 
 ## Usage
 
@@ -29,13 +30,13 @@ This image uses the following environment variables:
 
 ```
 PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-APP_VERSION="3.0.7"
+APP_VERSION="3.3.5"
 APP_NAME="ruby"
 ```
 
 This image exposes the following ports: 
 
-- 8000 : the default Rails server port
+- 3000 : the default Rails server port
 
 Please note that the ports need to be either manually forwarded with the
 `-p` option or let Docker choose some for you with the `-P` option.
@@ -75,4 +76,3 @@ License](https://www.ruby-lang.org/en/about/license.txt). The licenses
 for each component shipped as part of this image can be found on [the
 image's appropriate SourceMation
 entry](https://www.sourcemation.com/products/cceb8a81-f637-401f-9d6c-83584df8c517/deployments).
-

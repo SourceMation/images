@@ -1,7 +1,7 @@
 FROM rockylinux/rockylinux:9
 
 # YOU MUST CHANGE IT MANUALLY HERE AND IN THE LABEL!
-ARG QUARKUS_VERSION=3.13.2
+ARG QUARKUS_VERSION=3.19.1
 
 LABEL name="quarkus" \
       vendor="SourceMation" \
@@ -11,7 +11,7 @@ LABEL name="quarkus" \
       architecture="$(uname -m)" \
       summary="Quarkus development container on RL9" \
       description="Provides Quarkus development container on Rocky Linux 9" \
-      version="3.13.2" \
+      version="3.19.1" \
       io.k8s.display-name="Quarkus on EL9 Container" \
       io.k8s.description="Provides Quarkus on Rocky Linux 9" \
       io.openshift.tags="quarkus rockylinux"
@@ -24,7 +24,7 @@ WORKDIR /home/quarkus
 # Install Quarkus with JBang - Bang bang!
 # install jbang
 RUN curl -sL https://sh.jbang.dev -o jbang.sh && \
-    sha256sum --check <( echo "bae58bd807ac8e18b5d5f8dfae650a4a318a27fb87a31d91a4594863538a95cb jbang.sh" ) && \
+    sha256sum --check <( echo "bd5418d6a8dbe2649cf41fab8547209d61837e5f0b22d24dc8b41ddb07c69599 jbang.sh" ) && \
     cat jbang.sh | bash -s - app setup
 
 # modify the PATH to include jbang

@@ -10,13 +10,13 @@ LABEL name="mosquitto" \
       architecture="$(uname -m)" \
       summary="Mosquitto from EPEL on EL9 Container" \
       description="Provides Mosquitto" \
-      version="2.0.18.1" \
+      version="2.0.18" \
       io.k8s.display-name="Mosquitto on EL9 Container" \
       io.k8s.description="Provides Mosquitto on Rocky Linux 9 Container" \
       io.openshift.tags="mosquitto rockylinux"
 
 
-ENV APP_VERSION="2.0.18.1" \
+ENV APP_VERSION="2.0.18" \
     APP_NAME="mosquitto"
 
 # Install required system packages and dependencies

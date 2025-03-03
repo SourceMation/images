@@ -8,13 +8,13 @@ LABEL name="redis" \
       architecture="$(uname -m)" \
       summary="Redis on EL9 Container" \
       description="Provides Redis on Rocky Linux 9 Container" \
-      version="6.2.7" \
+      version="7.2.7" \
       io.k8s.display-name="Redis on EL9 Container" \
       io.k8s.description="Provides Redis on Rocky Linux 9 Container" \
       io.openshift.tags="redis rockylinux"
 
 RUN set -eux; \
-    dnf update -y && \
+    dnf update -y && dnf module enable redis:7 -y &&\
     dnf install -y hostname redis && \
 	redis-cli --version && \
 	redis-server --version && \
@@ -33,7 +33,7 @@ RUN chown 998:0 /usr/bin/entrypoint.sh /usr/bin/setupMasterSlave.sh /usr/bin/hea
     chmod -R g+rw /data && \
     chmod -R g+rw /node-conf
 
-ENV APP_VERSION="6.2.7" \
+ENV APP_VERSION="7.2.7" \
     APP_NAME="redis"
 
 VOLUME ["/data"]
