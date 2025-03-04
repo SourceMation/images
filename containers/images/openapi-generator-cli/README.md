@@ -61,7 +61,7 @@ This image uses the following environment variables:
 
 ```
 PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-GENERATOR_VERSION="7.7.0"
+GENERATOR_VERSION="XXX - set during build"
 ```
 
 ## Contributing and Issues

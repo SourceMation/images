@@ -26,7 +26,7 @@ This image uses the following environment variables:
 ```
 PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 HOME="/home/mongodb"
-APP_VERSION="8.0.1"
+APP_VERSION="XXX - MongoDB version set during build"
 APP_NAME="mongodb"
 ```
 

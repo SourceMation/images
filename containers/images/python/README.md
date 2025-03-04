@@ -38,7 +38,7 @@ This image uses the following environment variables:
 
 ```
 PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-APP_VERSION="3.9.18"
+APP_VERSION="3.9.X - set during build"
 APP_NAME="python"
 ```
 

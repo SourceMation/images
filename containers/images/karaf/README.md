@@ -25,7 +25,7 @@ PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/apache-k
 KARAF_INSTALL_PATH="/opt"
 KARAF_HOME="/opt/apache-karaf"
 KARAF_EXEC="exec"
-KARAF_VERSION="4.4.6"
+KARAF_VERSION="XXX - set during build"
 ```
 
 Please note that this image does **not** have the `JAVA_HOME` variable

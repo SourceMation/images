@@ -126,7 +126,7 @@ This image uses the following environment variables:
 
 ```
 PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-APP_VERSION="2.0.18.1"
+APP_VERSION="XXX - set during build"
 APP_NAME="mosquitto"
 ```
 

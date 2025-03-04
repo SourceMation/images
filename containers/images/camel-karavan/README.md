@@ -26,7 +26,7 @@ JAVA_OPTS="-Dquarkus.http.host=0.0.0.0 -Djava.util.logging.manager=org.jboss.log
 LANG="en_US.UTF-8"
 LANGUAGE="en_US:en"
 LC_ALL="en_US.UTF-8"
-KARAVAN_VERSION="4.7.0"
+KARAVAN_VERSION="XXX - set during build"
 ```
 
 This image exposes the following ports: 

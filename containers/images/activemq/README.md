@@ -26,7 +26,7 @@ ACTIVEMQ_CONF="/opt/apache-activemq/conf"
 ACTIVEMQ_OPTS_MEMORY="-Xms64M -Xmx1G"
 ACTIVEMQ_EXEC="exec"
 ACTIVEMQ_OPTS="-Xms64M -Xmx1G -Djava.util.logging.config.file=logging.properties -Djava.security.auth.login.config=/opt/apache-activemq/conf/login.config -Djetty.host=0.0.0.0"
-ACTIVEMQ_VERSION="6.1.2"
+ACTIVEMQ_VERSION="XXX - set during build"
 JAVA_HOME="/usr/lib/jvm/jre-17-openjdk"
 ```
 

@@ -37,11 +37,11 @@ This image uses the following environment variables:
 ```
 LANG="pl_PL.utf8"
 PG_MAJOR="14"
-PG_VERSION="14.13"
+PG_VERSION="XXX - set during build"
 LC_ALL="pl_PL.utf8"
 PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/pgsql-14/bin"
 PGDATA="/var/lib/postgresql/pg-data"
-APP_VERSION="14.13"
+APP_VERSION="XXX - set during build"
 APP_NAME="postgresql"
 ```
 

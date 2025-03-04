@@ -24,7 +24,7 @@ LANGUAGE="C.UTF-8"
 LC_ALL="C.UTF-8"
 RABBITMQ_LOGS="-"
 RABBITMQ_DATA_DIR="/var/lib/rabbitmq"
-APP_VERSION="3.11.10"
+APP_VERSION="XXX - set during build"
 APP_NAME="rabbitmq"
 ```
 
