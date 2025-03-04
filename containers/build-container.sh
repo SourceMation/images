@@ -272,7 +272,7 @@ push_container_image(){
             echo "Creating x86_64 manifest"
             docker manifest create "docker.io/sourcemation/${DOCKER_TAG_NAME}:latest" --amend "docker.io/sourcemation/${DOCKER_TAG_NAME}:latest-${latest_arch}"
             docker manifest create "quay.io/sourcemation/${DOCKER_TAG_NAME}:latest" --amend "quay.io/sourcemation/${DOCKER_TAG_NAME}:latest-${latest_arch}"
-        else
+        elif [ "$BASE_ARCH" == "aarch64" ]; then
             echo "Creating arm64 manifest"
             # Look this might look stupid I get that, but the thing is that in previous pipeline we had single
             # host that was pushing the manifests, so x86_64 manifest was present before arm64, and had x86_64 image as well
@@ -280,6 +280,8 @@ push_container_image(){
             
             docker manifest create "docker.io/sourcemation/${DOCKER_TAG_NAME}:latest" --amend "docker.io/sourcemation/${DOCKER_TAG_NAME}:latest-${latest_arch}" --amend "docker.io/sourcemation/${DOCKER_TAG_NAME}:latest-amd64"
             docker manifest create "quay.io/sourcemation/${DOCKER_TAG_NAME}:latest" --amend "quay.io/sourcemation/${DOCKER_TAG_NAME}:latest-${latest_arch}" --amend "quay.io/sourcemation/${DOCKER_TAG_NAME}:latest-amd64"
+
+        # In future we might want to add more archs
         fi
         docker manifest push "docker.io/sourcemation/${DOCKER_TAG_NAME}:latest"
         docker manifest push "quay.io/sourcemation/${DOCKER_TAG_NAME}:latest"
