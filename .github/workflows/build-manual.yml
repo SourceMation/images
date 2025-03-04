@@ -81,7 +81,7 @@ jobs:
   build_container_arm64:
     name: Build container (arm64)
     needs: build_container_amd64 # Ensure amd64 build finishes first
-    runs-on: ubuntu-24.04-arm64
+    runs-on: ubuntu-24.04-arm
     env:
       QUAY_USER: ${{ secrets.QUAY_USER }}
       QUAY_PASS: ${{ secrets.QUAY_PASS }}
