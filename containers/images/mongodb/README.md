@@ -26,7 +26,7 @@ This image uses the following environment variables:
 ```
 PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 HOME="/home/mongodb"
-APP_VERSION="8.0.1"
+APP_VERSION="XXX - MongoDB version set during build"
 APP_NAME="mongodb"
 ```
 
@@ -44,16 +44,16 @@ We’d love for you to contribute! You can request new features by
 creating an issue or submitting a pull request with your contribution to
 this image on the SourceMation GitHub repository.
 
-[Creating issues](https://github.com/SourceMation/containers/issues/new)
-[Creating pull
-requests](https://github.com/SourceMation/containers/compare)
+[Creating issues and images requests](https://github.com/SourceMation/images/issues/new/choose)
+[Creating pull requests](https://github.com/SourceMation/images/compare)
+
+
+## Extra notes
 
 **Disclaimer:** The `sourcemation/mongodb` image is not affiliated with
 MongoDB, Inc. The respective entities own the trademarks mentioned in
 the offering. The `sourcemation/mongodb` image is a separate project and
 is maintained by [SourceMation](https://sourcemation.com).
-
-## Extra notes
 
 ### Image and its components Risk Analysis report
 

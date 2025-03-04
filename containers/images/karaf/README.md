@@ -25,7 +25,7 @@ PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/apache-k
 KARAF_INSTALL_PATH="/opt"
 KARAF_HOME="/opt/apache-karaf"
 KARAF_EXEC="exec"
-KARAF_VERSION="4.4.6"
+KARAF_VERSION="XXX - set during build"
 ```
 
 Please note that this image does **not** have the `JAVA_HOME` variable
@@ -50,9 +50,8 @@ We’d love for you to contribute! You can request new features by
 creating an issue or submitting a pull request with your contribution to
 this image on the SourceMation GitHub repository.
 
-[Creating issues](https://github.com/SourceMation/containers/issues/new)
-[Creating pull
-requests](https://github.com/SourceMation/containers/compare)
+[Creating issues and images requests](https://github.com/SourceMation/images/issues/new/choose)
+[Creating pull requests](https://github.com/SourceMation/images/compare)
 
 **Disclaimer:** The `sourcemation/karaf` image is not affiliated with
 the Apache Software Foundation (ASF). The respective companies and

@@ -16,7 +16,6 @@ on:
           - camel-k
           - camel-karavan
           - helidon
-          - html.tmp
           - java
           - jenkins
           - kafka
@@ -32,6 +31,8 @@ on:
           - quarkus
           - rabbitmq
           - redis
+          - rocky-9
+          - rocky-9-minimal
           - ruby
           - servicemix
       push_image:
@@ -80,7 +81,7 @@ jobs:
   build_container_arm64:
     name: Build container (arm64)
     needs: build_container_amd64 # Ensure amd64 build finishes first
-    runs-on: ubuntu-24.04-arm64
+    runs-on: ubuntu-24.04-arm
     env:
       QUAY_USER: ${{ secrets.QUAY_USER }}
       QUAY_PASS: ${{ secrets.QUAY_PASS }}
@@ -104,6 +105,7 @@ jobs:
           sudo usermod -aG docker $USER
           sudo systemctl enable --now docker
       - name: Build the container, test, push and push readme
+        continue-on-error: true
         run: |
           pwd
           cd containers

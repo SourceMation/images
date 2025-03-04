@@ -1,4 +1,4 @@
-FROM rockylinux/rockylinux:9
+FROM sourcemation/rocky-9:latest
 
 LABEL name="apache-activemq" \
       vendor="Linux Polska" \
@@ -8,7 +8,7 @@ LABEL name="apache-activemq" \
       architecture="$(uname -m)" \
       summary="Apache ActiveMQ on EL9 Container" \
       description="Provides Apache ActiveMQ on Rocky Linux 9 Container" \
-      version="6.1.4" \
+      version="6.1.5" \
       io.k8s.display-name="Apache ActiveMQ on EL9 Container" \
       io.k8s.description="Provides Apache ActiveMQ on Rocky Linux 9 Container" \
       io.openshift.tags="activemq rockylinux"
@@ -27,7 +27,7 @@ ENV PATH $PATH:$ACTIVEMQ_HOME/bin
 # Make the Web console accesible from outside the container
 ENV ACTIVEMQ_OPTS $ACTIVEMQ_OPTS_MEMORY -Djava.util.logging.config.file=logging.properties -Djava.security.auth.login.config=$ACTIVEMQ_CONF/login.config -Djetty.host=0.0.0.0
 #WORKDIR $ACTIVEMQ_HOME
-ENV ACTIVEMQ_VERSION=6.1.4
+ENV ACTIVEMQ_VERSION=6.1.5
 ENV JAVA_HOME=/usr/lib/jvm/jre-17-openjdk
 
 

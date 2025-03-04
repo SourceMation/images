@@ -1,6 +1,4 @@
-FROM rockylinux/rockylinux:9
-
-COPY kong-x86_64.rpm /tmp/kong.rpm
+FROM sourcemation/rocky-9:latest
 
 LABEL name="kong" \
       vendor="SourceMation" \
@@ -10,14 +8,14 @@ LABEL name="kong" \
       architecture="$(uname -m)" \
       summary="Kong Gateway on EL9 Container" \
       description="Provides Kong Gateway Community Edition on Rocky Linux 9 Container" \
-      version="3.7.1" \
+      version="3.9.0" \
       io.k8s.display-name="Kong Gateway on EL9 Container" \
       io.k8s.description="Provides Kong Gateway Community Edition on Rocky Linux 9 Container" \
       io.openshift.tags="kong gateway rockylinux"
 
 RUN set -ex; \
-    yum install -y /tmp/kong.rpm \
-    && rm /tmp/kong.rpm \
+    curl -1sLf 'https://packages.konghq.com/public/gateway-39/config.rpm.txt?distro=el&codename=9' > /etc/yum.repos.d/kong-gateway-39.repo \
+    && yum install -y kong \
     && chown kong:0 /usr/local/bin/kong \
     && chown -R kong:0 /usr/local/kong \
     && ln -s /usr/local/openresty/luajit/bin/luajit /usr/local/bin/luajit \

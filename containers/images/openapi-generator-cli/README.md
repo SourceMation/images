@@ -61,7 +61,7 @@ This image uses the following environment variables:
 
 ```
 PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-GENERATOR_VERSION="7.7.0"
+GENERATOR_VERSION="XXX - set during build"
 ```
 
 ## Contributing and Issues
@@ -70,9 +70,8 @@ We’d love for you to contribute! You can request new features by
 creating an issue or submitting a pull request with your contribution to
 this image on the SourceMation GitHub repository.
 
-[Creating issues](https://github.com/SourceMation/containers/issues/new)
-[Creating pull
-requests](https://github.com/SourceMation/containers/compare)
+[Creating issues and images requests](https://github.com/SourceMation/images/issues/new/choose)
+[Creating pull requests](https://github.com/SourceMation/images/compare)
 
 **Disclaimer:** The `sourcemation/openapi-generator-cli` image is not
 affiliated with the [OpenAPI Generator core

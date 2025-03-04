@@ -26,7 +26,7 @@ JAVA_OPTS="-Dquarkus.http.host=0.0.0.0 -Djava.util.logging.manager=org.jboss.log
 LANG="en_US.UTF-8"
 LANGUAGE="en_US:en"
 LC_ALL="en_US.UTF-8"
-KARAVAN_VERSION="4.7.0"
+KARAVAN_VERSION="XXX - set during build"
 ```
 
 This image exposes the following ports: 
@@ -42,9 +42,8 @@ We’d love for you to contribute! You can request new features by
 creating an issue or submitting a pull request with your contribution to
 this image on the SourceMation GitHub repository.
 
-[Creating issues](https://github.com/SourceMation/containers/issues/new)
-[Creating pull
-requests](https://github.com/SourceMation/containers/compare)
+[Creating issues and images requests](https://github.com/SourceMation/images/issues/new/choose)
+[Creating pull requests](https://github.com/SourceMation/images/compare)
 
 **Disclaimer:** The `sourcemation/camel-karavan` image is not affiliated with
 the Apache Software Foundation (ASF). The respective companies and

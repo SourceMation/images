@@ -1,4 +1,4 @@
-FROM rockylinux/rockylinux:9
+FROM sourcemation/rocky-9:latest
 
 LABEL name="openapi-generator-cli" \
       vendor="SourceMation" \
@@ -8,12 +8,12 @@ LABEL name="openapi-generator-cli" \
       architecture="$(uname -m)" \
       summary="Openapi Generators with CLI, Java-21, Maven 3.8" \
       description="Provides Openapi Generators with CLI, Java-21, Maven 3.8 on Rocky Linux 9 Container" \
-      version="7.10.0" \
+      version="7.12.0" \
       io.k8s.display-name="Openapi Generators with CLI, Java-21, Maven 3.8 on EL9 Container" \
       io.k8s.description="Provides Openapi Generators with CLI, Java-21, Maven 3.8 on Rocky Linux 9 Container" \
       io.openshift.tags="openapi-generator java-21 maven-3.8 rockylinux"
 
-ENV GENERATOR_VERSION=7.10.0
+ENV GENERATOR_VERSION=7.12.0
 
 # Install dependencies
 RUN dnf module enable -y maven:3.8 && \

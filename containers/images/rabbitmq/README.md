@@ -24,7 +24,7 @@ LANGUAGE="C.UTF-8"
 LC_ALL="C.UTF-8"
 RABBITMQ_LOGS="-"
 RABBITMQ_DATA_DIR="/var/lib/rabbitmq"
-APP_VERSION="3.11.10"
+APP_VERSION="XXX - set during build"
 APP_NAME="rabbitmq"
 ```
 
@@ -48,9 +48,8 @@ We’d love for you to contribute! You can request new features by
 creating an issue or submitting a pull request with your contribution to
 this image on the SourceMation GitHub repository.
 
-[Creating issues](https://github.com/SourceMation/containers/issues/new)
-[Creating pull
-requests](https://github.com/SourceMation/containers/compare)
+[Creating issues and images requests](https://github.com/SourceMation/images/issues/new/choose)
+[Creating pull requests](https://github.com/SourceMation/images/compare)
 
 **Disclaimer:** The `sourcemation/rabbitmq` image is not affiliated with
 Broadcom, Inc. The respective companies and organisations own the trademarks

@@ -1,4 +1,4 @@
-FROM rockylinux/rockylinux:9
+FROM sourcemation/rocky-9:latest
 
 LABEL name="apache-karaf" \
       vendor="Linux Polska" \
@@ -8,7 +8,7 @@ LABEL name="apache-karaf" \
       architecture="$(uname -m)" \
       summary="Apache Karaf on EL9 Container" \
       description="Provides Apache Karaf on Rocky Linux 9 Container" \
-      version="4.4.X" \
+      version="4.4.7" \
       io.k8s.display-name="Apache Karaf on EL9 Container" \
       io.k8s.description="Provides Apache Karaf on Rocky Linux 9 Container" \
       io.openshift.tags="karaf rockylinux"
@@ -23,7 +23,7 @@ ENV KARAF_HOME $KARAF_INSTALL_PATH/apache-karaf
 ENV KARAF_EXEC exec
 ENV PATH $PATH:$KARAF_HOME/bin
 
-ENV KARAF_VERSION=4.4.6
+ENV KARAF_VERSION=4.4.7
 
 RUN cd /opt; \
 	curl -LO https://dlcdn.apache.org/karaf/${KARAF_VERSION}/apache-karaf-${KARAF_VERSION}.tar.gz && \

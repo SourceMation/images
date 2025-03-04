@@ -1,6 +1,6 @@
-FROM rockylinux/rockylinux:9
+FROM sourcemation/rocky-9:latest
 
-ARG JENKINS_VERSION=2.479.2
+ARG JENKINS_VERSION=2.492.1
 
 # Install basic requirements
 RUN dnf update -y &&  \
@@ -40,7 +40,7 @@ LABEL name="jenkins-lts" \
       io.openshift.tags="jenkins rockylinux"
 
 # Changed by init.sh
-ARG JENKINS_SHA=177c2c033f0d3ae4148e601d0fdada60112d83f250521f3a0a0fd97cbb138dbd
+ARG JENKINS_SHA=c0534f9daf9025ae4054ec30518b1b89fc5d97b32fafdb556b9b3a60e9ffffc8
 # Can be used to customize where jenkins.war get downloaded from
 ARG JENKINS_URL=https://repo.jenkins-ci.org/public/org/jenkins-ci/main/jenkins-war/${JENKINS_VERSION}/jenkins-war-${JENKINS_VERSION}.war
 
@@ -87,7 +87,6 @@ RUN curl -fsSL ${JENKINS_URL} -o /usr/share/jenkins/jenkins.war \
 ENV JENKINS_UC https://updates.jenkins.io
 ENV JENKINS_UC_EXPERIMENTAL=https://updates.jenkins.io/experimental
 ENV JENKINS_INCREMENTALS_REPO_MIRROR=https://repo.jenkins-ci.org/incrementals
-RUN chown -R ${user} "$JENKINS_HOME" "$REF"
 
 ARG PLUGIN_CLI_VERSION=2.12.15
 ARG PLUGIN_CLI_URL=https://github.com/jenkinsci/plugin-installation-manager-tool/releases/download/${PLUGIN_CLI_VERSION}/jenkins-plugin-manager-${PLUGIN_CLI_VERSION}.jar
@@ -110,6 +109,7 @@ COPY jenkins.sh /usr/local/bin/jenkins.sh
 COPY jenkins-plugin-cli.sh /bin/jenkins-plugin-cli
 RUN version=$(jenkins.sh --version | grep -oP "\d+\.\d+\.\d+") &&\
     echo "jenkins: $version"  >> /var/tmp/sourcemation.yml
+RUN chown -R ${user} "$JENKINS_HOME" "$REF"
 
 
 USER ${user}

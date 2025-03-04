@@ -1,4 +1,4 @@
-FROM rockylinux/rockylinux:9
+FROM sourcemation/rocky-9:latest
 
 LABEL name="servicemix" \
       vendor="SourceMation" \

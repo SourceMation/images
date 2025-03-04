@@ -1,4 +1,4 @@
-FROM rockylinux/rockylinux:9
+FROM sourcemation/rocky-9:latest
 
 LABEL name="helidon" \
       vendor="SourceMation" \
@@ -8,7 +8,7 @@ LABEL name="helidon" \
       architecture="$(uname -m)" \
       summary="Helidon with OpenJDK 21 and Maven 3.8 on EL9 Container" \
       description="Provides Helidon with OpenJDK 21 and Maven 3.8 on Rocky Linux 9 Container" \
-      version="3.0.6" \
+      version="4.1.6" \
       io.k8s.display-name="Helidon with OpenJDK 21 and Maven 3.8 on EL9 Container" \
       io.k8s.description="Provides Helidon with OpenJDK 21 and Maven 3.8 on Rocky Linux 9 Container" \
       io.openshift.tags="helidon java maven rockylinux"

@@ -37,11 +37,11 @@ This image uses the following environment variables:
 ```
 LANG="pl_PL.utf8"
 PG_MAJOR="14"
-PG_VERSION="14.13"
+PG_VERSION="XXX - set during build"
 LC_ALL="pl_PL.utf8"
 PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/pgsql-14/bin"
 PGDATA="/var/lib/postgresql/pg-data"
-APP_VERSION="14.13"
+APP_VERSION="XXX - set during build"
 APP_NAME="postgresql"
 ```
 
@@ -54,13 +54,12 @@ Please note that the ports need to be either manually forwarded with the
 
 ## Contributing and Issues
 
-We’d love for you to contribute! You can request new features by
+We’d love for you to contribute! You can request new features or images by
 creating an issue or submitting a pull request with your contribution to
 this image on the SourceMation GitHub repository.
 
-[Creating issues](https://github.com/SourceMation/containers/issues/new)
-[Creating pull
-requests](https://github.com/SourceMation/containers/compare)
+[Creating issues and images requests](https://github.com/SourceMation/images/issues/new/choose)
+[Creating pull requests](https://github.com/SourceMation/images/compare)
 
 **Disclaimer:** The `sourcemation/postgresql` image is not affiliated with The
 PostgreSQL Global Development Group. The respective companies and organisations

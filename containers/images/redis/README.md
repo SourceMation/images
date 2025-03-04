@@ -4,7 +4,7 @@ Redis is a performant in-memory key-value database. Its simplicity, accompanied
 by optimal data structures, contribute to the high operational speed.
 
 This Redis distribution is provided by the downstream Rocky Linux 9 packaging
-team in the version respective to that system (6.2.7). Due to licensing
+team in the version respective to that system (7.2.7). Due to licensing
 changes, an up-to-date release will be provided as a separate product.
 
 ## Usage
@@ -22,7 +22,7 @@ This image uses the following environment variables:
 
 ```
 PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-APP_VERSION="6.2.7"
+APP_VERSION="XXX - set during build"
 APP_NAME="redis"
 ```
 
@@ -39,9 +39,8 @@ We’d love for you to contribute! You can request new features by
 creating an issue or submitting a pull request with your contribution to
 this image on the SourceMation GitHub repository.
 
-[Creating issues](https://github.com/SourceMation/containers/issues/new)
-[Creating pull
-requests](https://github.com/SourceMation/containers/compare)
+[Creating issues and images requests](https://github.com/SourceMation/images/issues/new/choose)
+[Creating pull requests](https://github.com/SourceMation/images/compare)
 
 **Disclaimer:** The `sourcemation/redis` image is not affiliated with Redis
 Ltd. The respective companies and organisations own the trademarks mentioned in
@@ -55,7 +54,7 @@ GID 996.
 
 As of March 20, 2024, [Redis has changed their
 licensing](https://redis.io/blog/redis-adopts-dual-source-available-licensing/),
-starting with Redis 7.4. This image ships version 6.2.7, which is unaffected by
+starting with Redis 7.4. This image ships version 7.2.7, which is unaffected by
 this change. Newer releases will be provided as separate products.
 
 ### Image and its components Risk Analysis report
@@ -69,7 +68,7 @@ Redis](https://redis.io/about/) page.
 
 ### Licenses
 
-The base license for the solution (Redis version 6.2.7) is BSD/MIT. The
+The base license for the solution (Redis version 7.2.7) is BSD/MIT. The
 licenses for each component shipped as part of this image can be found on [the
 image's appropriate SourceMation
 entry](https://www.sourcemation.com/products/7e370e6a-baad-4b48-8e85-bdc7504cf06d/deployments).

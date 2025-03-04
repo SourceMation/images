@@ -26,7 +26,7 @@ ACTIVEMQ_CONF="/opt/apache-activemq/conf"
 ACTIVEMQ_OPTS_MEMORY="-Xms64M -Xmx1G"
 ACTIVEMQ_EXEC="exec"
 ACTIVEMQ_OPTS="-Xms64M -Xmx1G -Djava.util.logging.config.file=logging.properties -Djava.security.auth.login.config=/opt/apache-activemq/conf/login.config -Djetty.host=0.0.0.0"
-ACTIVEMQ_VERSION="6.1.2"
+ACTIVEMQ_VERSION="XXX - set during build"
 JAVA_HOME="/usr/lib/jvm/jre-17-openjdk"
 ```
 
@@ -49,9 +49,8 @@ We’d love for you to contribute! You can request new features by
 creating an issue or submitting a pull request with your contribution to
 this image on the SourceMation GitHub repository.
 
-[Creating issues](https://github.com/SourceMation/containers/issues/new)
-[Creating pull
-requests](https://github.com/SourceMation/containers/compare)
+[Creating issues and images requests](https://github.com/SourceMation/images/issues/new/choose)
+[Creating pull requests](https://github.com/SourceMation/images/compare)
 
 **Disclaimer:** The `sourcemation/activemq` image is not affiliated with the
 Apache Software Foundation. The respective companies and organisations own the

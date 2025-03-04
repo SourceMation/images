@@ -126,7 +126,7 @@ This image uses the following environment variables:
 
 ```
 PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-APP_VERSION="2.0.18.1"
+APP_VERSION="XXX - set during build"
 APP_NAME="mosquitto"
 ```
 
@@ -144,9 +144,8 @@ We’d love for you to contribute! You can request new features by
 creating an issue or submitting a pull request with your contribution to
 this image on the SourceMation GitHub repository.
 
-[Creating issues](https://github.com/SourceMation/containers/issues/new)
-[Creating pull
-requests](https://github.com/SourceMation/containers/compare)
+[Creating issues and images requests](https://github.com/SourceMation/images/issues/new/choose)
+[Creating pull requests](https://github.com/SourceMation/images/compare)
 
 **Disclaimer:** The `sourcemation/mosquitto` image is not affiliated with the
 The Eclipse Foundation. The respective companies and organisations own the

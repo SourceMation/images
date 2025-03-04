@@ -1,4 +1,4 @@
-FROM rockylinux/rockylinux:9
+FROM sourcemation/rocky-9:latest
 
 LABEL name="rabbitmq" \
       vendor="LinuxPolska" \
@@ -8,7 +8,7 @@ LABEL name="rabbitmq" \
       architecture="$(uname -m)" \
       summary="Rabbitmq on EL9 Container" \
       description="Provides Rabbitmq on Rocky Linux 9 Container" \
-      version="4.0.5" \
+      version="4.0.7" \
       io.k8s.display-name="Rabbitmq on EL9 Container" \
       io.k8s.description="Provides Rabbitmq on Rocky Linux 9 Container" \
       io.openshift.tags="rabbitmq rockylinux"
@@ -32,7 +32,7 @@ ENV PATH=/usr/sbin:$PATH \
 # set home so that any `--user` knows where to put the erlang cookie
 ENV RABBITMQ_DATA_DIR=/var/lib/rabbitmq
 
-ENV APP_VERSION="4.0.5" \
+ENV APP_VERSION="4.0.7" \
     APP_NAME="rabbitmq"
 
 # Hint that the data (a.k.a. home dir) dir should be separate volume
