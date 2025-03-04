@@ -15,5 +15,7 @@ LABEL name="angular" \
 
 RUN npm install -g @angular/cli
 
+EXPOSE 3000
+
 RUN version=$(ng --version) && echo "angular: $version" >> /var/tmp/sourcemation.yml
 CMD [ "/bin/bash" ]
