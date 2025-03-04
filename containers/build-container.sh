@@ -263,25 +263,24 @@ push_container_image(){
         docker push "quay.io/sourcemation/${DOCKER_TAG_NAME}:${DOCKER_TAG_NAME}-${DOCKER_TAG_RELEASE}-${latest_arch}"
         # Note the x86_64 MUST BE the first build
         if [ "$BASE_ARCH" == "x86_64" ]; then
-            echo "Removing the latest tag for multiarch"
-            docker manifest rm "docker.io/sourcemation/${DOCKER_TAG_NAME}:latest" || true
-            docker manifest rm "quay.io/sourcemation/${DOCKER_TAG_NAME}:latest" || true
-        fi
-        # Now we have to play with manifest file
-        if [ "$BASE_ARCH" == "x86_64" ]; then
-            echo "Creating x86_64 manifest"
-            docker manifest create "docker.io/sourcemation/${DOCKER_TAG_NAME}:latest" --amend "docker.io/sourcemation/${DOCKER_TAG_NAME}:latest-${latest_arch}"
-            docker manifest create "quay.io/sourcemation/${DOCKER_TAG_NAME}:latest" --amend "quay.io/sourcemation/${DOCKER_TAG_NAME}:latest-${latest_arch}"
+            echo "Removing the latest tag for to setup multiarch - x86_64 must be the first build"
+            for container_registry in "docker.io" "quay.io"; do
+                echo "Removing latest manifest for ${container_registry} with amd64"
+                docker manifest rm "${container_registry}/sourcemation/${DOCKER_TAG_NAME}:latest" || true
+                echo "Creating latest manifest for ${container_registry}"
+                docker manifest create "${container_registry}/sourcemation/${DOCKER_TAG_NAME}:latest" --amend "${container_registry}/sourcemation/${DOCKER_TAG_NAME}:latest-${latest_arch}"
+            done
         elif [ "$BASE_ARCH" == "aarch64" ]; then
             echo "Creating arm64 manifest"
-            # Look this might look stupid I get that, but the thing is that in previous pipeline we had single
-            # host that was pushing the manifests, so x86_64 manifest was present before arm64, and had x86_64 image as well
+            # This may look stupid, I get that, but the thing is that in the
+            # previous pipeline, we had a single host that was pushing the
+            # manifests, so the x86_64 manifest was present before the arm64, and
+            # had host had the x86_64 image saved.
             docker pull "sourcemation/${DOCKER_TAG_NAME}:latest-amd64"
-            
-            docker manifest create "docker.io/sourcemation/${DOCKER_TAG_NAME}:latest" --amend "docker.io/sourcemation/${DOCKER_TAG_NAME}:latest-${latest_arch}" --amend "docker.io/sourcemation/${DOCKER_TAG_NAME}:latest-amd64"
-            docker manifest create "quay.io/sourcemation/${DOCKER_TAG_NAME}:latest" --amend "quay.io/sourcemation/${DOCKER_TAG_NAME}:latest-${latest_arch}" --amend "quay.io/sourcemation/${DOCKER_TAG_NAME}:latest-amd64"
-
-        # In future we might want to add more archs
+            for container_registry in "docker.io" "quay.io"; do
+                echo "Creating latest manifest for ${container_registry} with arm64 and amd64"
+                docker manifest create "${container_registry}/sourcemation/${DOCKER_TAG_NAME}:latest" --amend "${container_registry}/sourcemation/${DOCKER_TAG_NAME}:latest-${latest_arch}" --amend "${container_registry}/sourcemation/${DOCKER_TAG_NAME}:latest-amd64"
+            done
         fi
         docker manifest push "docker.io/sourcemation/${DOCKER_TAG_NAME}:latest"
         docker manifest push "quay.io/sourcemation/${DOCKER_TAG_NAME}:latest"
