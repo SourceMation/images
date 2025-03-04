@@ -266,9 +266,18 @@ push_container_image(){
             docker manifest rm "docker.io/sourcemation/${DOCKER_TAG_NAME}:latest" || true
             docker manifest rm "quay.io/sourcemation/${DOCKER_TAG_NAME}:latest" || true
         fi
-        docker manifest create "docker.io/sourcemation/${DOCKER_TAG_NAME}:latest" --amend "docker.io/sourcemation/${DOCKER_TAG_NAME}:latest-${latest_arch}"
+        docker manifest push "docker.io/sourcemation/${DOCKER_TAG_NAME}:latest-${latest_arch}"
+        docker manifest push "quay.io/sourcemation/${DOCKER_TAG_NAME}:latest-${latest_arch}"
+        # Now we have to play with manifest file
+        if [ "$BASE_ARCH" == "x86_64" ]; then
+            docker manifest create "docker.io/sourcemation/${DOCKER_TAG_NAME}:latest" --amend "docker.io/sourcemation/${DOCKER_TAG_NAME}:latest-${latest_arch}"
+            docker manifest create "quay.io/sourcemation/${DOCKER_TAG_NAME}:latest" --amend "quay.io/sourcemation/${DOCKER_TAG_NAME}:latest-${latest_arch}"
+        else
+            docker pull "sourcemation/${DOCKER_TAG_NAME}:latest"
+            docker manifest create "docker.io/sourcemation/${DOCKER_TAG_NAME}:latest" --amend "docker.io/sourcemation/${DOCKER_TAG_NAME}:latest-${latest_arch}"
+            docker manifest create "quay.io/sourcemation/${DOCKER_TAG_NAME}:latest" --amend "quay.io/sourcemation/${DOCKER_TAG_NAME}:latest-${latest_arch}"
+        fi
         docker manifest push "docker.io/sourcemation/${DOCKER_TAG_NAME}:latest"
-        docker manifest create "quay.io/sourcemation/${DOCKER_TAG_NAME}:latest" --amend "quay.io/sourcemation/${DOCKER_TAG_NAME}:latest-${latest_arch}"
         docker manifest push "quay.io/sourcemation/${DOCKER_TAG_NAME}:latest"
 }
 
