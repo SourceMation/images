@@ -275,7 +275,6 @@ push_container_image(){
         else
             echo "Creating arm64 manifest"
             # Note to self -> if not working then just add static arm64 and amd64 to amend
-            docker pull "sourcemation/${DOCKER_TAG_NAME}:latest"
             docker manifest create "docker.io/sourcemation/${DOCKER_TAG_NAME}:latest" --amend "docker.io/sourcemation/${DOCKER_TAG_NAME}:latest-${latest_arch}"
             docker manifest create "quay.io/sourcemation/${DOCKER_TAG_NAME}:latest" --amend "quay.io/sourcemation/${DOCKER_TAG_NAME}:latest-${latest_arch}"
         fi
