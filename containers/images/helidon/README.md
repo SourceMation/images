@@ -57,6 +57,11 @@ PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 JAVA_HOME="/usr/lib/jvm/java-21"
 ```
 
+By default, the image exposes the following ports:
+
+- 8080 - Default development port for Helidon development
+
+
 ## Contributing and Issues
 
 We’d love for you to contribute! You can request new features by
