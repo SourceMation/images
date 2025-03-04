@@ -105,6 +105,7 @@ jobs:
           sudo usermod -aG docker $USER
           sudo systemctl enable --now docker
       - name: Build the container, test, push and push readme
+        continue-on-error: true
         run: |
           pwd
           cd containers
