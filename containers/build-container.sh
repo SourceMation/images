@@ -263,14 +263,18 @@ push_container_image(){
         docker push "quay.io/sourcemation/${DOCKER_TAG_NAME}:${DOCKER_TAG_NAME}-${DOCKER_TAG_RELEASE}-${latest_arch}"
         # Note the x86_64 MUST BE the first build
         if [ "$BASE_ARCH" == "x86_64" ]; then
+            echo "Removing the latest tag for multiarch"
             docker manifest rm "docker.io/sourcemation/${DOCKER_TAG_NAME}:latest" || true
             docker manifest rm "quay.io/sourcemation/${DOCKER_TAG_NAME}:latest" || true
         fi
         # Now we have to play with manifest file
         if [ "$BASE_ARCH" == "x86_64" ]; then
+            echo "Creating x86_64 manifest"
             docker manifest create "docker.io/sourcemation/${DOCKER_TAG_NAME}:latest" --amend "docker.io/sourcemation/${DOCKER_TAG_NAME}:latest-${latest_arch}"
             docker manifest create "quay.io/sourcemation/${DOCKER_TAG_NAME}:latest" --amend "quay.io/sourcemation/${DOCKER_TAG_NAME}:latest-${latest_arch}"
         else
+            echo "Creating arm64 manifest"
+            # Note to self -> if not working then just add static arm64 and amd64 to amend
             docker pull "sourcemation/${DOCKER_TAG_NAME}:latest"
             docker manifest create "docker.io/sourcemation/${DOCKER_TAG_NAME}:latest" --amend "docker.io/sourcemation/${DOCKER_TAG_NAME}:latest-${latest_arch}"
             docker manifest create "quay.io/sourcemation/${DOCKER_TAG_NAME}:latest" --amend "quay.io/sourcemation/${DOCKER_TAG_NAME}:latest-${latest_arch}"
