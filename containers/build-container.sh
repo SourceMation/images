@@ -261,16 +261,15 @@ push_container_image(){
         docker push "sourcemation/${DOCKER_TAG_NAME}:${DOCKER_TAG_NAME}-${DOCKER_TAG_RELEASE}-${latest_arch}"
         docker push "quay.io/sourcemation/${DOCKER_TAG_NAME}:latest-${latest_arch}"
         docker push "quay.io/sourcemation/${DOCKER_TAG_NAME}:${DOCKER_TAG_NAME}-${DOCKER_TAG_RELEASE}-${latest_arch}"
-        # Note in the future must start with aarch64 and other builds then push
-        # x86_64. We do not have podman farm or similar solution
-        if [ "$BASE_ARCH" == "x86_64" ];then
+        # Note the x86_64 MUST BE the first build
+        if [ "$BASE_ARCH" == "x86_64" ]; then
             docker manifest rm "docker.io/sourcemation/${DOCKER_TAG_NAME}:latest" || true
-            docker manifest create "docker.io/sourcemation/${DOCKER_TAG_NAME}:latest" --amend "docker.io/sourcemation/${DOCKER_TAG_NAME}:latest-amd64"
-            docker manifest push "docker.io/sourcemation/${DOCKER_TAG_NAME}:latest"
             docker manifest rm "quay.io/sourcemation/${DOCKER_TAG_NAME}:latest" || true
-            docker manifest create "quay.io/sourcemation/${DOCKER_TAG_NAME}:latest" --amend "quay.io/sourcemation/${DOCKER_TAG_NAME}:latest-amd64"
-            docker manifest push "quay.io/sourcemation/${DOCKER_TAG_NAME}:latest"
         fi
+        docker manifest create "docker.io/sourcemation/${DOCKER_TAG_NAME}:latest" --amend "docker.io/sourcemation/${DOCKER_TAG_NAME}:latest-${latest_arch}"
+        docker manifest push "docker.io/sourcemation/${DOCKER_TAG_NAME}:latest"
+        docker manifest create "quay.io/sourcemation/${DOCKER_TAG_NAME}:latest" --amend "quay.io/sourcemation/${DOCKER_TAG_NAME}:latest-${latest_arch}"
+        docker manifest push "quay.io/sourcemation/${DOCKER_TAG_NAME}:latest"
 }
 
 push_readme(){
