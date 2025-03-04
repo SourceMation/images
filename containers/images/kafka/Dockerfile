@@ -1,4 +1,4 @@
-FROM rockylinux/rockylinux:9 AS jsa-builder
+FROM sourcemation/rocky-9:latest AS jsa-builder
 
 ENV kafka_url=https://downloads.apache.org/kafka/3.9.0/kafka_2.13-3.9.0.tgz
 
@@ -17,7 +17,7 @@ RUN dnf install -y --setopt=install_weak_deps=0 --setopt=tsflags=nodocs gpg host
 # Generate jsa files using dynamic CDS for kafka server start command and kafka storage format command
 RUN /etc/kafka/docker/jsa_launch
 
-FROM rockylinux/rockylinux:9
+FROM sourcemation/rocky-9:latest
 
 LABEL name="kafka" \
       vendor="SourceMation" \

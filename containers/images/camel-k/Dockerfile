@@ -1,5 +1,5 @@
 # Build stage
-FROM rockylinux/rockylinux:9 AS builder
+FROM sourcemation/rocky-9:latest AS builder
 
 ENV CAMEL_K_VER="v2.5.1"
 RUN yum install maven-openjdk17 go git gcc make cmake which -y
@@ -11,7 +11,7 @@ RUN mkdir /build && cd /build && git clone --depth 1 -b ${CAMEL_K_VER} https://g
 RUN echo "Creating empty _maven_output - same as in the images make rule" && mkdir -v /build/camel-k/build/_maven_output
 
 
-FROM rockylinux/rockylinux:9
+FROM sourcemation/rocky-9:latest
 
 LABEL name="camel-k" \
       vendor="Linux Polska" \

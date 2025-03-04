@@ -1,9 +1,9 @@
 # IF YOU HAVE TO BUILD THINGS, USE ANOTHER CONTAINER
-# FROM rockylinux/rockylinux:9 as builder
+# FROM sourcemation/rocky-9:latest as builder
 # BUILD
 
 # END BUILD
-FROM rockylinux/rockylinux:9
+FROM sourcemation/rocky-9:latest
 
 # Architecture (amd64 / arm64) is passed with --platform="linux/$latest_arch" option during build cmd.
 # We can use this in the dockerfile. Generally ${TARGETARCH} == amd64.

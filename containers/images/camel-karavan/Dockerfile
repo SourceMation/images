@@ -1,5 +1,5 @@
 # Build stage
-FROM rockylinux/rockylinux:9 AS builder
+FROM sourcemation/rocky-9:latest AS builder
 
 ADD ee10ba76e3be503a07b7550b09e4d19f8fd25848.asc /
 ENV KARAVAN_VERSION="4.8.0"
@@ -19,7 +19,7 @@ RUN gpg --import ee10ba76e3be503a07b7550b09e4d19f8fd25848.asc &&\
 
 RUN echo "Checking if there is proper jar" && ls -lh "/build/camel-karavan-${KARAVAN_VERSION}/karavan-app/target/karavan-${KARAVAN_VERSION}-runner.jar"
 
-FROM rockylinux/rockylinux:9
+FROM sourcemation/rocky-9:latest
 
 LABEL name="camel-karavan" \
       vendor="Linux Polska" \

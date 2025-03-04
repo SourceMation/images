@@ -1,4 +1,4 @@
-FROM rockylinux/rockylinux:9
+FROM sourcemation/rocky-9:latest
 
 # YOU MUST CHANGE IT MANUALLY HERE AND IN THE LABEL!
 ARG QUARKUS_VERSION=3.19.1
