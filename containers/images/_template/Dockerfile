@@ -12,7 +12,7 @@ ARG TARGETARCH
 LABEL name="..." \
   vendor="Linux Polska" \
   url="https://sourcemation.com"\
-  source="https://github.com/SourceMation/containers/issues"\
+  source="https://github.com/SourceMation/images/issues"\
   licenses="GPLv2" \
   created="$(date +%Y%m%d)" \
   architecture="$(uname -m)" \
