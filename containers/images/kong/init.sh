@@ -6,7 +6,7 @@
 # ---------------------------------------------------
 
 APP="kong"
-ARCH="x86_64"
+ARCH="$(arch)"
 IMG=$(head -1 Dockerfile | awk '{print $2}')
 
 # Updating repository metadata and downloading the latest available version

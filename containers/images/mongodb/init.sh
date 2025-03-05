@@ -6,7 +6,7 @@
 # ----------------------------------------------------
 
 APP="mongodb-org"
-ARCH="x86_64"
+ARCH="$(arch)"
 IMG=$(head -1 Dockerfile | awk '{print $2}')
 SPATH=$(dirname "$0")
 
