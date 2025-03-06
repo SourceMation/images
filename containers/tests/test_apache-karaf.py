@@ -37,8 +37,6 @@ def test_karaf_start():
                                     stderr=subprocess.PIPE)
     time.sleep(2)
     ps_result = subprocess.run(["ps", "auxww"], capture_output=True, text=True)
-    print("ps_result")
-    print(ps_result.stdout)
     assert "karaf" in ps_result.stdout, "Karaf process not found after starting."
     try:
         karaf_server.kill()
