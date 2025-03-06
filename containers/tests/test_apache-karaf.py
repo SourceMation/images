@@ -1,6 +1,7 @@
 import os
 import subprocess
 import pytest
+import time
 
 @pytest.fixture(scope="module", autouse=True)
 def setup_environment():
@@ -15,13 +16,6 @@ def test_karaf_version():
     assert result.returncode == 0, "Karaf command failed. Ensure Karaf is installed and accessible."
     assert "Apache Karaf" in result.stdout, "Karaf version output is incorrect."
 
-def test_karaf_start():
-    """Start Karaf and verify it is running."""
-    result = subprocess.run(["karaf", "start"], capture_output=True, text=True)
-    assert result.returncode == 0, "Failed to start Karaf."
-
-    ps_result = subprocess.run(["ps", "aux"], capture_output=True, text=True)
-    assert "karaf" in ps_result.stdout, "Karaf process not found after starting."
 
 def test_karaf_client():
     """Test Karaf client interaction."""
@@ -30,3 +24,23 @@ def test_karaf_client():
         assert "karaf@root()" in result.stdout, "Karaf client output is incorrect."
     except subprocess.TimeoutExpired:
         pytest.fail("Karaf client command timed out.")
+
+
+def test_karaf_start():
+    """Start Karaf and verify it is running."""
+    result = subprocess.run(["karaf", "start"], capture_output=True, text=True)
+    assert result.returncode == 0, "Failed to start Karaf with karaf start"
+    # Wait for Karaf to start
+    # NOW start karaf as server that is detached so we can run the test case
+    karaf_server = subprocess.Popen(["karaf", "server"],
+                                    stdout=subprocess.PIPE,
+                                    stderr=subprocess.PIPE)
+    time.sleep(2)
+    ps_result = subprocess.run(["ps", "auxww"], capture_output=True, text=True)
+    print("ps_result")
+    print(ps_result.stdout)
+    assert "karaf" in ps_result.stdout, "Karaf process not found after starting."
+    try:
+        karaf_server.kill()
+    except:
+        pass
