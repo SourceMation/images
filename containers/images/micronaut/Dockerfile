@@ -28,7 +28,7 @@ EXPOSE 8080
 
 # Install the SDKMAN, grallvm and micronaut
 RUN curl -s "https://get.sdkman.io" -o sdkman.sh &&\
-    sha256sum --check <( echo "4cd75e4e8b1d3e1be5c50a4260db6fbe6b8f1a11afcb942481cb17ab8ba475db sdkman.sh") && \
+    sha256sum --check <( echo "6641ce61cc3f3337b34c13304a7db20268ac17d3a1c6fe5c4864ec5fffe217dd sdkman.sh") && \
     bash sdkman.sh && \
     source "/home/micronaut/.sdkman/bin/sdkman-init.sh" && \
     sdk install micronaut 4.7.6 && \
