@@ -1,5 +1,6 @@
 FROM sourcemation/rocky-9:latest AS jsa-builder
 
+# UPDATE init.sh to include new scripts
 ENV kafka_url=https://downloads.apache.org/kafka/3.9.0/kafka_2.13-3.9.0.tgz
 
 COPY jsa_launch /etc/kafka/docker/jsa_launch
