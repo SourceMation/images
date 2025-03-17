@@ -133,6 +133,7 @@ build_container(){
 }
 
 test_container(){
+    print_info "Testing container $DOCKER_TAG_NAME"
     set -x
     CONTAINER_FULL_NAME="sourcemation/${DOCKER_TAG_NAME}:${DOCKER_TAG_NAME}-${DOCKER_TAG_RELEASE}-${latest_arch}"
     CONTAINER_STARTUP_TIMEOUT=10
@@ -190,10 +191,10 @@ test_container(){
     esac
 
     print_info "Running Docker Container from Image: ${CONTAINER_FULL_NAME}"
-    if [ ${DOCKER_TAG_NAME} == "kong" ]; then
+    if [ "${DOCKER_TAG_NAME}" == "kong" ]; then
         docker network create kong-net
         docker run -d --name kong-database --network=kong-net -p 5432:5432 -e "POSTGRES_USER=kong" -e "POSTGRES_DB=kong" -e "POSTGRES_PASSWORD=kongpass" postgres:13
-        docker run --rm --network=kong-net -e "KONG_DATABASE=postgres" -e "KONG_PG_HOST=kong-database" -e "KONG_PG_PASSWORD=kongpass" -e "KONG_PASSWORD=test" ${CONTAINER_FULL_NAME} kong migrations bootstrap
+        docker run --rm --network=kong-net -e "KONG_DATABASE=postgres" -e "KONG_PG_HOST=kong-database" -e "KONG_PG_PASSWORD=kongpass" -e "KONG_PASSWORD=test" "${CONTAINER_FULL_NAME}" kong migrations bootstrap
         docker run -d --name my_container \
         --network=kong-net \
         -e "KONG_DATABASE=postgres" \
@@ -215,17 +216,18 @@ test_container(){
         -p 8445:8445 \
         -p 8003:8003 \
         -p 8004:8004 \
-        ${CONTAINER_FULL_NAME}
+        "${CONTAINER_FULL_NAME}"
     else
         print_info "Running Docker Container from Image: ${CONTAINER_FULL_NAME}"
-        docker run -d -it --name my_container ${CONTAINER_RUN_PARAMETERS} ${CONTAINER_FULL_NAME} ${CONTAINER_RUN_COMMAND}
+        # shellcheck disable=SC2086
+        docker run -d -it --name my_container ${CONTAINER_RUN_PARAMETERS} "${CONTAINER_FULL_NAME}" ${CONTAINER_RUN_COMMAND}
     fi
 
 
     print_info "Waiting for the container to fully boot..."
     sleep ${CONTAINER_STARTUP_TIMEOUT}
 
-    if [ $(docker inspect -f '{{.State.Running}}' my_container) != 'true' ]; then
+    if [ "$(docker inspect -f '{{.State.Running}}' my_container)" != 'true' ]; then
         print_fail "Timeout of ${CONTAINER_STARTUP_TIMEOUT} seconds reached when waiting for my_container to start - aborting."
     fi
 
@@ -233,15 +235,15 @@ test_container(){
     docker cp tests my_container:/tmp
 
     print_info 'Installing Python and PyTest in the Container'
-    docker exec -u 0 my_container dnf install -y python3-pip procps || docker exec -u 0 my_container microdnf install -y python3-pip procps
-    docker exec -u 0 my_container pip3 install pytest requests psycopg2-binary redis pymongo pika
+    docker exec -u 0 my_container dnf install -y python3-pip procps || docker exec -u 0 my_container microdnf install -y python3-pip procps || docker exec -u 0 my_container bash -c 'apt-get update && apt-get install -y python3-pip'
+    docker exec -u 0 my_container pip3 install pytest requests psycopg2-binary redis pymongo pika || docker exec -u 0 my_container pip3 install pytest requests psycopg2-binary redis pymongo pika --break-system-packages
 
     print_info 'Executing PyTest Scripts'
     docker exec -u 0 my_container /bin/bash -c "cd /tmp/tests && python3 -m pytest -vv ${CONTAINER_TEST_FILES}" || print_fail "PyTest execution failed"
 
     docker stop my_container
     docker rm my_container
-    if [ ${DOCKER_TAG_NAME} == "kong" ]; then
+    if [ "${DOCKER_TAG_NAME}" == "kong" ]; then
         docker stop kong-database
         docker rm kong-database
         docker network rm kong-net
