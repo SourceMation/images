@@ -15,6 +15,7 @@ on:
           - apicast
           - camel-k
           - camel-karavan
+          - debian-12-slim
           - helidon
           - java
           - jenkins
