@@ -7,12 +7,13 @@
 # Allowing us to reproduce the image without having to rely on the dockerhub image
 
 set -euo pipefail
+BASEDIR="$(dirname $(readlink -f "$0"))"
 
-[ -d debuerreotype ] && sudo rm -rf debuerreotype && sudo rm -f rootfs.tar.gz
+[ -d debuerreotype ] && sudo rm -rf "$BASEDIR/debuerreotype" && sudo rm -f "$BASEDIR/rootfs.tar.gz"
 git clone https://github.com/debuerreotype/debuerreotype.git
 
-cd debuerreotype
+pushd debuerreotype
 ./docker-run.sh sh -euxc "debuerreotype-init rootfs bookworm $(date); debuerreotype-minimizing-config rootfs; debuerreotype-debian-sources-list rootfs bookworm; debuerreotype-slimify rootfs; debuerreotype-tar rootfs rootfs.tar.gz"
-mv -f rootfs.tar.gz ../
-cd ..
-sudo rm -rf debuerreotype
+mv -f rootfs.tar.gz "$BASEDIR"
+popd
+sudo rm -rf "$BASEDIR/debuerreotype"
