@@ -13,16 +13,21 @@ user convenience, the pip package manager is shipped as well.
 Run a temporary container with the Python REPL (don't forget the `-it`
 argument).
 
-```
+```bash
 docker run --rm -it sourcemation/python:latest
 ```
 
+To run the shell in the container, use the following command:
+
+```bash
+docker run --rm -it sourcemation/python:latest
+```
 ### Advanced usage examples
 
 Serve the contents of the current directory with Python's builtin HTTP
 server with the port 8000 forwarded:
 
-```
+```bash
 docker run --rm -p 8000:8000 -v "${PWD}:/your-project" -w "/your-project" -it sourcemation/python:latest python3 -m http.server 8000
 ```
 
@@ -42,7 +47,7 @@ APP_VERSION="3.9.X - set during build"
 APP_NAME="python"
 ```
 
-This image exposes the following ports: 
+This image exposes the following ports:
 
 - 8000 : the default Python's http.server port
 
@@ -72,7 +77,7 @@ A detailed risk analysis report of the image and its components can be
 found on the [SourceMation
 platform](https://www.sourcemation.com/products/b9c4054f-f7f7-4e2e-83ea-f764e723cea2/report).
 
-For more information, check out the [overview of
+For more information, check out the [overview on the
 Python](https://www.python.org/doc/essays/blurb/) page.
 
 ### Licenses
