@@ -14,7 +14,7 @@ LABEL name="python-3.11" \
       architecture="$(uname -m)" \
       summary="Python 3.11 on Debian Slim Container" \
       description="Provides Python 3.11 on Debian Slim Container" \
-      version="3.11.X" \
+      version="3.11.11" \
       io.k8s.display-name="Python 3.11 on Debian Slim Container" \
       io.k8s.description="Provides Python 3.11 on Debian Slim Container" \
       io.openshift.tags="python-3.11 debian-slim"
@@ -23,9 +23,9 @@ ENV PATH=/usr/local/bin:$PATH
 # For Python < 3.13 lang should be set
 ENV LANG=C.UTF-8
 # GPG
-ENV GPG_KEY=A035C8C19219BA821ECEA86B64E628F8D684696D
-ENV PYTHON_VERSION=3.11.11
-ENV PYTHON_SHA256=2a9920c7a0cd236de33644ed980a13cbbc21058bfdc528febb6081575ed73be3
+ENV GPG_KEY="A035C8C19219BA821ECEA86B64E628F8D684696D"
+ENV PYTHON_VERSION="3.11.11"
+ENV PYTHON_SHA256="2a9920c7a0cd236de33644ed980a13cbbc21058bfdc528febb6081575ed73be3"
 
 # runtime dependencies
 RUN set -eux; \
