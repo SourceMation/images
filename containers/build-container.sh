@@ -151,6 +151,9 @@ test_container(){
       CONTAINER_TEST_FILES="test_linux.py test_python.py"
     fi
 
+    if [[ "${DOCKER_TAG_NAME}" =~ golang-1 ]]; then
+      CONTAINER_TEST_FILES="test_linux.py test_golang.py"
+    fi
 
     CONTAINER_RUN_PARAMETERS=""
     CONTAINER_RUN_COMMAND="/bin/bash"
