@@ -1,5 +1,16 @@
 #!/usr/bin/env python3
 
+# Author: Alex Baranowski <aleksander.baranowski@linuxpolska.pl>
+# License: MIT
+# Description: This script is used to determine the order of building Docker
+# images based on the `FROM` command in the Dockerfile. The script will search
+# for Dockerfiles and then create a graph of the images that need to be built
+
+# TODO LIST:
+# 1. Add support for invoking the automatic github workflow/action to build the
+# images
+
+
 import argparse
 import dataclasses
 import os
@@ -13,6 +24,7 @@ class DockerfileNode:
 
     def __str__(self):
         return f"{self.path}"
+
 
 class GraphNode:
     def __init__(self, value):
@@ -61,6 +73,7 @@ def get_all_base_images_from_dockerfile(dockerfile):
 def get_container_name_from_path(path):
     return path.split('/')[-2]
 
+
 def parse_from_dockerfile(from_line):
     """
     :param from_line:
@@ -80,12 +93,19 @@ def parse_from_dockerfile(from_line):
     return org, image, image_tag
 
 
-
 def create_build_tree(dockerfiles_nodes, org_name):
-
-    build_order = dict() # Yeah, this is simple dictionary with image org+/image name as the keys
-
-
+    """
+    The dictionary is used to store the graph nodes. We are working with trees
+    like structure, meaning acyclic graphs. The root of the tree is the image
+    that is based on `FROM scratch`, but because we can also use third-party
+    images or images that are not in the build order we need to add the isRoot
+    flag :). The isRoot flag is used to determine if the image is the root of
+    the tree or not. The edges are used to store the dependencies between the
+    images. If the image is based on another image then we add the edge to the
+    image that is the base image.
+    """
+    build_order = dict()  # Yeah, this is simple dictionary with image org+/image name as the keys
+    
     # Remove all images that do not have any base_image, print them and then remove
     no_base_images = [dn for dn in dockerfiles_nodes if not dn.base_images]
     for dn in no_base_images:
@@ -101,15 +121,16 @@ def create_build_tree(dockerfiles_nodes, org_name):
             build_order[f"{org_name}/{c_name}"] = GraphNode(dn)
             dn.processed = True
 
-    dockerfiles_nodes = [dn for dn in dockerfiles_nodes if dn.processed == False]
+    dockerfiles_nodes = [dn for dn in dockerfiles_nodes if dn.processed is False]
     # Now let's add all the images to the build_order without checking!
     for dn in dockerfiles_nodes:
         c_name = get_container_name_from_path(dn.path)
         build_order[f"{org_name}/{c_name}"] = GraphNode(dn)
+
     """
     1. Deduplicate list of base_images
-    2. Check if the image is in the build order 
-    3. If it's in the build_order then add it to the edges of the graphNode and unset the is root
+    2. Check if the image is in the build order
+    3. If it's in the build_order then add it to the edges of the graphNode and unset the isRoot
     4. If it's not in the build order then do not do that :)
     """
 
@@ -131,17 +152,21 @@ def create_build_tree(dockerfiles_nodes, org_name):
 
 
 def print_in_order(node: GraphNode, visited_nodes):
+    """
+    Note this is not real IN ORDER traversal but rather DFS traversal.
+    The name might be confusing, but it's about BUILD ORDER.
+    """
     my_name = get_container_name_from_path(node.value.path)
     visited_nodes = visited_nodes + [my_name]
     print("->".join(visited_nodes))
     for edge in node.edges:
         print_in_order(edge, visited_nodes)
 
+
 def print_graph(nodes):
     for node in nodes.values():
         if node.isRoot:
             print_in_order(node, [])
-
 
 
 def main():
@@ -161,6 +186,7 @@ def main():
 
     build_order = create_build_tree(dockerfiles_nodes, args.org_name)
     print_graph(build_order)
+
 
 if __name__ == '__main__':
     main()
