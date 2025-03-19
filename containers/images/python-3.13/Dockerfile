@@ -1,5 +1,10 @@
 FROM sourcemation/debian-12-slim
 
+# This Dockerfile originates from the official Docker Hub image. We have made modifications
+# to improve readability and maintainability. Importantly, our images are automatically
+# rebuilt and updated.
+# License: MIT
+
 LABEL name="python-3.13" \
       vendor="SourceMation" \
       url="https://SourceMation.com/"\
@@ -8,13 +13,16 @@ LABEL name="python-3.13" \
       architecture="$(uname -m)" \
       summary="Python 3.13 on Debian Slim Container" \
       description="Provides Python 3.13 on Debian Slim Container" \
-      version="3.13.X" \
+      version="3.13.2" \
       io.k8s.display-name="Python 3.13 on Debian Slim Container" \
       io.k8s.description="Provides Python 3.13 on Debian Slim Container" \
       io.openshift.tags="python-3.13 debian-slim"
 
 # ensure local python is preferred over distribution python
 ENV PATH /usr/local/bin:$PATH
+ENV GPG_KEY="7169605F62C751356D054A26A821E680E5FA6305"
+ENV PYTHON_VERSION="3.13.2"
+ENV PYTHON_SHA256="d984bcc57cd67caab26f7def42e523b1c015bbc5dc07836cf4f0b63fa159eb56"
 
 # runtime dependencies
 RUN set -eux; \
@@ -26,86 +34,61 @@ RUN set -eux; \
 	; \
 	rm -rf /var/lib/apt/lists/*
 
-ENV GPG_KEY 7169605F62C751356D054A26A821E680E5FA6305
-ENV PYTHON_VERSION 3.13.2
-ENV PYTHON_SHA256 d984bcc57cd67caab26f7def42e523b1c015bbc5dc07836cf4f0b63fa159eb56
 
 RUN set -eux; \
 	\
 	savedAptMark="$(apt-mark showmanual)"; \
 	apt-get update; \
 	apt-get install -y --no-install-recommends \
-		dpkg-dev \
-		gcc \
-		gnupg \
-		libbluetooth-dev \
-		libbz2-dev \
-		libc6-dev \
-		libdb-dev \
-		libffi-dev \
-		libgdbm-dev \
-		liblzma-dev \
-		libncursesw5-dev \
-		libreadline-dev \
-		libsqlite3-dev \
-		libssl-dev \
-		make \
-		tk-dev \
-		uuid-dev \
-		wget \
-		xz-utils \
-		zlib1g-dev \
-	; \
-	\
-	wget -O python.tar.xz "https://www.python.org/ftp/python/${PYTHON_VERSION%%[a-z]*}/Python-$PYTHON_VERSION.tar.xz"; \
-	echo "$PYTHON_SHA256 *python.tar.xz" | sha256sum -c -; \
-	wget -O python.tar.xz.asc "https://www.python.org/ftp/python/${PYTHON_VERSION%%[a-z]*}/Python-$PYTHON_VERSION.tar.xz.asc"; \
-	GNUPGHOME="$(mktemp -d)"; export GNUPGHOME; \
-	gpg --batch --keyserver hkps://keys.openpgp.org --recv-keys "$GPG_KEY"; \
-	gpg --batch --verify python.tar.xz.asc python.tar.xz; \
-	gpgconf --kill all; \
-	rm -rf "$GNUPGHOME" python.tar.xz.asc; \
-	mkdir -p /usr/src/python; \
-	tar --extract --directory /usr/src/python --strip-components=1 --file python.tar.xz; \
-	rm python.tar.xz; \
-	\
-	cd /usr/src/python; \
-	gnuArch="$(dpkg-architecture --query DEB_BUILD_GNU_TYPE)"; \
-	./configure \
-		--build="$gnuArch" \
-		--enable-loadable-sqlite-extensions \
-		--enable-optimizations \
-		--enable-option-checking=fatal \
-		--enable-shared \
-		--with-lto \
-		--with-ensurepip \
-	; \
-	nproc="$(nproc)"; \
-	EXTRA_CFLAGS="$(dpkg-buildflags --get CFLAGS)"; \
-	LDFLAGS="$(dpkg-buildflags --get LDFLAGS)"; \
-	LDFLAGS="${LDFLAGS:--Wl},--strip-all"; \
-		arch="$(dpkg --print-architecture)"; arch="${arch##*-}"; \
+                dpkg-dev gcc gnupg libbluetooth-dev libbz2-dev libc6-dev \
+                libdb-dev libffi-dev libgdbm-dev liblzma-dev libncursesw5-dev \
+                libreadline-dev libsqlite3-dev libssl-dev make tk-dev uuid-dev \
+                wget xz-utils zlib1g-dev; \
+    wget -O python.tar.xz "https://www.python.org/ftp/python/$PYTHON_VERSION/Python-$PYTHON_VERSION.tar.xz"; \
+    echo "Checking the Python Checksum"; \
+    echo "$PYTHON_SHA256 *python.tar.xz" | sha256sum -c -; \
+    wget -O python.tar.xz.asc "https://www.python.org/ftp/python/$PYTHON_VERSION/Python-$PYTHON_VERSION.tar.xz.asc"; \
+    GNUPGHOME="$(mktemp -d)"; export GNUPGHOME; \
+    gpg --batch --keyserver hkps://keys.openpgp.org --recv-keys "$GPG_KEY"; \
+    gpg --batch --verify python.tar.xz.asc python.tar.xz; \
+    gpgconf --kill all; \
+    rm -rf "$GNUPGHOME" python.tar.xz.asc; \
+    mkdir -p /usr/src/python; \
+    tar --extract --directory /usr/src/python --strip-components=1 --file python.tar.xz; \
+    rm python.tar.xz; \
+    \
+    cd /usr/src/python; \
+    gnuArch="$(dpkg-architecture --query DEB_BUILD_GNU_TYPE)"; \
+    ./configure \
+            --build="$gnuArch" \
+            --enable-loadable-sqlite-extensions \
+            --enable-optimizations \
+            --enable-option-checking=fatal \
+            --enable-shared \
+            --with-lto \
+            --with-ensurepip \
+    ; \
+    nproc="$(nproc)"; \
+    EXTRA_CFLAGS="$(dpkg-buildflags --get CFLAGS)"; \
+    LDFLAGS="$(dpkg-buildflags --get LDFLAGS)"; \
+    LDFLAGS="${LDFLAGS:--Wl},--strip-all"; \
+            arch="$(dpkg --print-architecture)"; arch="${arch##*-}"; \
 # https://docs.python.org/3.12/howto/perf_profiling.html
 # https://github.com/docker-library/python/pull/1000#issuecomment-2597021615
-		case "$arch" in \
-			amd64|arm64) \
-				# only add "-mno-omit-leaf" on arches that support it
-				# https://gcc.gnu.org/onlinedocs/gcc-14.2.0/gcc/x86-Options.html#index-momit-leaf-frame-pointer-2
-				# https://gcc.gnu.org/onlinedocs/gcc-14.2.0/gcc/AArch64-Options.html#index-momit-leaf-frame-pointer
-				EXTRA_CFLAGS="${EXTRA_CFLAGS:-} -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer"; \
-				;; \
-			i386) \
-				# don't enable frame-pointers on 32bit x86 due to performance drop.
-				;; \
-			*) \
-				# other arches don't support "-mno-omit-leaf"
-				EXTRA_CFLAGS="${EXTRA_CFLAGS:-} -fno-omit-frame-pointer"; \
-				;; \
-		esac; \
-	make -j "$nproc" \
-		"EXTRA_CFLAGS=${EXTRA_CFLAGS:-}" \
-		"LDFLAGS=${LDFLAGS:-}" \
-	; \
+            case "$arch" in \
+                    amd64|arm64) \
+                            # only add "-mno-omit-leaf" on arches that support it
+                            EXTRA_CFLAGS="${EXTRA_CFLAGS:-} -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer"; \
+                            ;; \
+                    *) \
+                            # other arches don't support "-mno-omit-leaf"
+                            EXTRA_CFLAGS="${EXTRA_CFLAGS:-} -fno-omit-frame-pointer"; \
+                            ;; \
+            esac; \
+    make -j "$nproc" \
+            "EXTRA_CFLAGS=${EXTRA_CFLAGS:-}" \
+            "LDFLAGS=${LDFLAGS:-}" \
+    ; \
 # https://github.com/docker-library/python/issues/784
 # prevent accidental usage of a system installed libpython of the same version
 	rm python; \
@@ -130,6 +113,9 @@ RUN set -eux; \
 	\
 	apt-mark auto '.*' > /dev/null; \
 	apt-mark manual $savedAptMark; \
+    # Basically, we're making sure crucial libraries don't get accidentally nuked.
+    # 'ldd' tells us what's what, 'dpkg-query' figures out the package names,
+    # and 'apt-mark' locks 'em down so they stick around.
 	find /usr/local -type f -executable -not \( -name '*tkinter*' \) -exec ldd '{}' ';' \
 		| awk '/=>/ { so = $(NF-1); if (index(so, "/usr/local/") == 1) { next }; gsub("^/(usr/)?", "", so); printf "*%s\n", so }' \
 		| sort -u \
@@ -145,11 +131,11 @@ RUN set -eux; \
 	python3 --version; \
 	pip3 --version
 
-# make some useful symlinks that are expected to exist ("/usr/local/bin/python" and friends)
+# make extra symlinks without 3
 RUN set -eux; \
-	for src in idle3 pip3 pydoc3 python3 python3-config; do \
-	    dst="$(echo "$src" | tr -d 3)"; \
-            [ -s "/usr/local/bin/$src" ] && ln -svTn "$src" "/usr/local/bin/$dst" || true;\
-	done
+    for src in idle3 pip3 pydoc3 python3 python3-config; do \
+        dst="$(echo "$src" | tr -d 3)"; \
+        [ -s "/usr/local/bin/$src" ] && ln -svTn "$src" "/usr/local/bin/$dst" || true ; \
+    done
 
 CMD ["python3"]

@@ -146,6 +146,12 @@ test_container(){
       CONTAINER_TEST_FILES="test_linux.py"
     fi
 
+    # Python do not like the the modules with - in name so we have to fix it here
+    if [[ "${DOCKER_TAG_NAME}" =~ python-3. ]]; then
+      CONTAINER_TEST_FILES="test_linux.py test_python.py"
+    fi
+
+
     CONTAINER_RUN_PARAMETERS=""
     CONTAINER_RUN_COMMAND="/bin/bash"
     case ${DOCKER_TAG_NAME} in

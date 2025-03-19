@@ -1,10 +1,9 @@
 FROM sourcemation/debian-12-slim
 
-# This Dockerfile was based on the official docker hub image the modifications
-# were made to make it easier to read and maintains also our images are rebuild
-# automatically
+# This Dockerfile originates from the official Docker Hub image. We have made modifications
+# to improve readability and maintainability. Importantly, our images are automatically
+# rebuilt and updated.
 # License: MIT
-
 
 LABEL name="python-3.11" \
       vendor="SourceMation" \
@@ -18,11 +17,12 @@ LABEL name="python-3.11" \
       io.k8s.display-name="Python 3.11 on Debian Slim Container" \
       io.k8s.description="Provides Python 3.11 on Debian Slim Container" \
       io.openshift.tags="python-3.11 debian-slim"
-# New python is symlinked to /usr/local/bin
+
+# New python is installed in /usr/local/bin
 ENV PATH=/usr/local/bin:$PATH
 # For Python < 3.13 lang should be set
 ENV LANG=C.UTF-8
-# GPG
+# Build vars
 ENV GPG_KEY="A035C8C19219BA821ECEA86B64E628F8D684696D"
 ENV PYTHON_VERSION="3.11.11"
 ENV PYTHON_SHA256="2a9920c7a0cd236de33644ed980a13cbbc21058bfdc528febb6081575ed73be3"
@@ -61,7 +61,6 @@ RUN set -eux; \
     mkdir -p /usr/src/python; \
     tar --extract --directory /usr/src/python --strip-components=1 --file python.tar.xz; \
     rm python.tar.xz; \
-    \
     cd /usr/src/python; \
     gnuArch="$(dpkg-architecture --query DEB_BUILD_GNU_TYPE)"; \
     ./configure \
@@ -81,8 +80,6 @@ RUN set -eux; \
             "EXTRA_CFLAGS=${EXTRA_CFLAGS:-}" \
             "LDFLAGS=${LDFLAGS:-}" \
     ; \
-    # https://github.com/docker-library/python/issues/784 \
-    # prevent accidental usage of a system installed libpython of the same version \
     rm python; \
     make -j "$nproc" \
         "EXTRA_CFLAGS=${EXTRA_CFLAGS:-}" \
@@ -104,9 +101,9 @@ RUN set -eux; \
     ldconfig; \
     apt-mark auto '.*' > /dev/null; \
     apt-mark manual $savedAptMark; \
-    #This looks like magic, but it's checking the runtime libraries required \
-    # with ldd, then use dpkg-query and apt-mark to set the package \
-    # as manual so it won't uninstalled/purged in next step\
+    # Basically, we're making sure crucial libraries don't get accidentally nuked.
+    # 'ldd' tells us what's what, 'dpkg-query' figures out the package names,
+    # and 'apt-mark' locks 'em down so they stick around.
     find /usr/local -type f -executable -not \( -name '*tkinter*' \) -exec ldd '{}' ';' \
             | awk '/=>/ { so = $(NF-1); if (index(so, "/usr/local/") == 1) { next }; gsub("^/(usr/)?", "", so); printf "*%s\n", so }' \
             | sort -u \
@@ -134,7 +131,7 @@ RUN set -eux; \
 RUN set -eux; \
     for src in idle3 pip3 pydoc3 python3 python3-config; do \
         dst="$(echo "$src" | tr -d 3)"; \
-        [ -s "/usr/local/bin/$src" ] && ln -svTn "$src" "/usr/local/bin/$dst" || true \
+        [ -s "/usr/local/bin/$src" ] && ln -svTn "$src" "/usr/local/bin/$dst" || true ; \
     done
 
 CMD ["python3"]
