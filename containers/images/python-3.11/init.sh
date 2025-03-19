@@ -23,6 +23,5 @@ SHA256_SUM=$(curl -s "https://www.python.org/ftp/python/$VERSION/Python-$VERSION
 sed -i "s/version=\"[^\"]*\"/version=\"$VERSION\"/" Dockerfile || exit 1
 sed -i "s/PYTHON_VERSION=\"[^\"]*\"/PYTHON_VERSION=\"$VERSION\"/" Dockerfile || exit 1
 sed -i "s/PYTHON_SHA256=\"[^\"]*\"/PYTHON_SHA256=\"$SHA256_SUM\"/" Dockerfile || exit 1
-echo "Building the $APP $VERSION image"
 
-
+echo "Finished setting up the $APP $VERSION image"
