@@ -17,6 +17,8 @@ set -euo pipefail
 
 BASE=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 BASE_ARCH=$(arch)
+# create unique name
+CONTAINER_NAME="container-$(date +%s)"
 
 # Functions
 
@@ -137,11 +139,20 @@ test_container(){
     set -x
     CONTAINER_FULL_NAME="sourcemation/${DOCKER_TAG_NAME}:${DOCKER_TAG_NAME}-${DOCKER_TAG_RELEASE}-${latest_arch}"
     CONTAINER_STARTUP_TIMEOUT=10
-
+    # default test
+    CONTAINER_TEST_FILES="test_linux.py"
+    # Extra tests
     if [ -f "tests/test_${DOCKER_TAG_NAME}.py" ]; then
-      CONTAINER_TEST_FILES="test_linux.py test_${DOCKER_TAG_NAME}.py"
-    else
-      CONTAINER_TEST_FILES="test_linux.py"
+      CONTAINER_TEST_FILES+=" test_${DOCKER_TAG_NAME}.py"
+    fi
+
+    # Python do not like the modules with '.' in the name so we have to fix it
+    if [[ "${DOCKER_TAG_NAME}" =~ python-3. ]]; then
+      CONTAINER_TEST_FILES+=" test_python.py"
+    fi
+    # same for golang
+    if [[ "${DOCKER_TAG_NAME}" =~ golang-1 ]]; then
+      CONTAINER_TEST_FILES+=" test_golang.py"
     fi
 
     CONTAINER_RUN_PARAMETERS=""
@@ -195,7 +206,8 @@ test_container(){
         docker network create kong-net
         docker run -d --name kong-database --network=kong-net -p 5432:5432 -e "POSTGRES_USER=kong" -e "POSTGRES_DB=kong" -e "POSTGRES_PASSWORD=kongpass" postgres:13
         docker run --rm --network=kong-net -e "KONG_DATABASE=postgres" -e "KONG_PG_HOST=kong-database" -e "KONG_PG_PASSWORD=kongpass" -e "KONG_PASSWORD=test" "${CONTAINER_FULL_NAME}" kong migrations bootstrap
-        docker run -d --name my_container \
+
+        docker run -d --name $CONTAINER_NAME \
         --network=kong-net \
         -e "KONG_DATABASE=postgres" \
         -e "KONG_PG_HOST=kong-database" \
@@ -220,29 +232,29 @@ test_container(){
     else
         print_info "Running Docker Container from Image: ${CONTAINER_FULL_NAME}"
         # shellcheck disable=SC2086
-        docker run -d -it --name my_container ${CONTAINER_RUN_PARAMETERS} "${CONTAINER_FULL_NAME}" ${CONTAINER_RUN_COMMAND}
+        docker run -d -it --name $CONTAINER_NAME ${CONTAINER_RUN_PARAMETERS} "${CONTAINER_FULL_NAME}" ${CONTAINER_RUN_COMMAND}
     fi
 
 
     print_info "Waiting for the container to fully boot..."
     sleep ${CONTAINER_STARTUP_TIMEOUT}
 
-    if [ "$(docker inspect -f '{{.State.Running}}' my_container)" != 'true' ]; then
-        print_fail "Timeout of ${CONTAINER_STARTUP_TIMEOUT} seconds reached when waiting for my_container to start - aborting."
+    if [ "$(docker inspect -f '{{.State.Running}}' $CONTAINER_NAME)" != 'true' ]; then
+        print_fail "Timeout of ${CONTAINER_STARTUP_TIMEOUT} seconds reached when waiting for $CONTAINER_NAME to start - aborting."
     fi
 
     print_info 'Copying PyTest Scripts to Docker Container'
-    docker cp tests my_container:/tmp
+    docker cp tests $CONTAINER_NAME:/tmp
 
     print_info 'Installing Python and PyTest in the Container'
-    docker exec -u 0 my_container dnf install -y python3-pip procps || docker exec -u 0 my_container microdnf install -y python3-pip procps || docker exec -u 0 my_container bash -c 'apt-get update && apt-get install -y python3-pip procps'
-    docker exec -u 0 my_container pip3 install pytest requests psycopg2-binary redis pymongo pika || docker exec -u 0 my_container pip3 install pytest requests psycopg2-binary redis pymongo pika --break-system-packages
+    docker exec -u 0 $CONTAINER_NAME dnf install -y python3-pip procps || docker exec -u 0 $CONTAINER_NAME microdnf install -y python3-pip procps || docker exec -u 0 $CONTAINER_NAME bash -c 'apt-get update && apt-get install -y python3-pip procps'
+    docker exec -u 0 $CONTAINER_NAME pip3 install pytest requests psycopg2-binary redis pymongo pika || docker exec -u 0 $CONTAINER_NAME pip3 install pytest requests psycopg2-binary redis pymongo pika --break-system-packages
 
     print_info 'Executing PyTest Scripts'
-    docker exec -u 0 my_container /bin/bash -c "cd /tmp/tests && python3 -m pytest -vv ${CONTAINER_TEST_FILES}" || print_fail "PyTest execution failed"
+    docker exec -u 0 $CONTAINER_NAME /bin/bash -c "cd /tmp/tests && python3 -m pytest -vv ${CONTAINER_TEST_FILES}" || print_fail "PyTest execution failed"
 
-    docker stop my_container
-    docker rm my_container
+    docker stop $CONTAINER_NAME
+    docker rm $CONTAINER_NAME
     if [ "${DOCKER_TAG_NAME}" == "kong" ]; then
         docker stop kong-database
         docker rm kong-database

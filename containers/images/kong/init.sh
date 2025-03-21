@@ -22,5 +22,6 @@ VERSION=$(docker run --rm ${IMG} /bin/bash -c \
 # Replacing the version number in the Dockerfile
 sed -i "s/version=\"[^\"]*\"/version=\"$VERSION\"/" Dockerfile || exit 1
 sed -i "s/APP_VERSION=\"[^\"]*\"/APP_VERSION=\"$VERSION\"/" Dockerfile || exit 1
+sed -i "s/APP_VERSION=\"[^\"]*\"/APP_VERSION=\"$VERSION\"/" Dockerfile || exit 1
 
 echo "Building the $APP $VERSION image"
