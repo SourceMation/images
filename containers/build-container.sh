@@ -154,6 +154,11 @@ test_container(){
     if [[ "${DOCKER_TAG_NAME}" =~ golang-1 ]]; then
       CONTAINER_TEST_FILES+=" test_golang.py"
     fi
+    # cnpg tests should also contain postgresql tests
+    if [[ "${DOCKER_TAG_NAME}" =~ cnpg ]]; then
+      CONTAINER_TEST_FILES+=" test_postgresql.py"
+    fi
+
 
     CONTAINER_RUN_PARAMETERS=""
     CONTAINER_RUN_COMMAND="/bin/bash"
@@ -167,6 +172,10 @@ test_container(){
         "camel-karavan")
             CONTAINER_RUN_COMMAND=""
             CONTAINER_RUN_PARAMETERS="-v /var/run/docker.sock:/var/run/docker.sock"
+            ;;
+        cnpg-*)
+            CONTAINER_RUN_COMMAND=""
+            CONTAINER_RUN_PARAMETERS="-e POSTGRES_HOST_AUTH_METHOD=trust"
             ;;
         "helidon")
             CONTAINER_RUN_COMMAND=""
