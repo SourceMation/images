@@ -187,6 +187,10 @@ test_container(){
             CONTAINER_RUN_COMMAND=""
             CONTAINER_RUN_PARAMETERS="-e POSTGRES_HOST_AUTH_METHOD=trust"
             ;;
+        postgres-*)
+            CONTAINER_RUN_COMMAND=""
+            CONTAINER_RUN_PARAMETERS="-e POSTGRES_HOST_AUTH_METHOD=trust"
+            ;;
         "redis")
             CONTAINER_RUN_COMMAND=""
             ;;
