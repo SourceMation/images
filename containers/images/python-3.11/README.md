@@ -51,7 +51,7 @@ This image uses the following environment variables:
 
 ```
 PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-PYTHON_VERSION=3.11.X # example: 3.13.2
+PYTHON_VERSION=3.11.X # example: 3.11.11
 ```
 
 ## Ports

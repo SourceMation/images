@@ -42,7 +42,7 @@ RUN set -eux; \
 	[ "$SOURCE_DATE_EPOCH" -lt "$now" ]; \
 	\
 # ideally at this point, we would just "COPY --link ... /usr/local/go/ /usr/local/go/" but BuildKit insists on creating the parent directories (perhaps related to https://github.com/opencontainers/image-spec/pull/970), and does so with unreproducible timestamps, so we instead create a whole new "directory tree" that we can "COPY --link" to accomplish what we want
-	mkdir /target /target/usr /target/usr/local; \
+	mkdir -p /target/usr/local; \
 	mv -vT /usr/local/go /target/usr/local/go; \
 	ln -svfT /target/usr/local/go /usr/local/go; \
 	touch -t "$touchy" /target/usr/local /target/usr /target; \
@@ -58,12 +58,12 @@ RUN set -eux; \
 FROM sourcemation/debian-12-slim:latest
 
 LABEL name="golang-1.24" \
-      vendor="LinuxPolska" \
-      url="https://linuxpolska.com/en/"\
+      vendor="SourceMation" \
+      url="https://sourcemation.com"\
       licenses="BSD 3-Clause \"New\" or \"Revised\" License" \
       created="$(date +%Y%m%d)" \
       architecture="$(uname -m)" \
-      summary="Golang on docker-slim container" \
+      summary="Golang on debian-12-slim container" \
       description="Provides golang on Debian 12 Slim Container" \
       version="1.24.1" \
       io.k8s.display-name="Golang on Debian 12 Slim Container" \

@@ -17,7 +17,7 @@ set -euo pipefail
 
 BASE=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 BASE_ARCH=$(arch)
-# create randomized name
+# create unique name
 CONTAINER_NAME="container-$(date +%s)"
 
 # Functions
@@ -139,20 +139,20 @@ test_container(){
     set -x
     CONTAINER_FULL_NAME="sourcemation/${DOCKER_TAG_NAME}:${DOCKER_TAG_NAME}-${DOCKER_TAG_RELEASE}-${latest_arch}"
     CONTAINER_STARTUP_TIMEOUT=10
-
+    # default test
+    CONTAINER_TEST_FILES="test_linux.py"
+    # Extra tests
     if [ -f "tests/test_${DOCKER_TAG_NAME}.py" ]; then
-      CONTAINER_TEST_FILES="test_linux.py test_${DOCKER_TAG_NAME}.py"
-    else
-      CONTAINER_TEST_FILES="test_linux.py"
+      CONTAINER_TEST_FILES+=" test_${DOCKER_TAG_NAME}.py"
     fi
 
-    # Python do not like the the modules with - in name so we have to fix it here
+    # Python do not like the modules with '.' in the name so we have to fix it
     if [[ "${DOCKER_TAG_NAME}" =~ python-3. ]]; then
-      CONTAINER_TEST_FILES="test_linux.py test_python.py"
+      CONTAINER_TEST_FILES+=" test_python.py"
     fi
-
+    # same for golang
     if [[ "${DOCKER_TAG_NAME}" =~ golang-1 ]]; then
-      CONTAINER_TEST_FILES="test_linux.py test_golang.py"
+      CONTAINER_TEST_FILES+=" test_golang.py"
     fi
 
     CONTAINER_RUN_PARAMETERS=""

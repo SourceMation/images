@@ -14,6 +14,7 @@
 import argparse
 import dataclasses
 import os
+from typing import Optional
 
 
 @dataclasses.dataclass
@@ -70,17 +71,26 @@ def get_all_base_images_from_dockerfile(dockerfile):
     return base_images
 
 
-def get_container_name_from_path(path):
+def get_container_name_from_path(path) -> str:
+    """
+    IMPORTANT: The path is in the format of /path/to/CONTAINER_NAME/Dockerfile
+    :param path:
+    :return: str
+    Fragile as hell, but it's a simple script
+    """
     return path.split('/')[-2]
 
 
-def parse_from_dockerfile(from_line):
+def parse_from_dockerfile(from_line) -> tuple[Optional[str], Optional[str], Optional[str]]:
     """
     :param from_line:
-    :return: str
+    :return: tuple[Optional[str], Optional[str], Optional[str]
     the FROM command contains `ORG/IMAGE:TAG` format
-    The ORG and tar are optional
+    The ORG and TAG are optional
+    :raises: ValueError when there is @ in the image
     """
+    if '@' in from_line:
+        raise ValueError(f"Invalid image format: {from_line} we do not images with @ (digest)")
     org, image, image_tag = None, None, None
 
     if '/' in from_line:
@@ -105,7 +115,7 @@ def create_build_tree(dockerfiles_nodes, org_name):
     image that is the base image.
     """
     build_order = dict()  # Yeah, this is simple dictionary with image org+/image name as the keys
-    
+
     # Remove all images that do not have any base_image, print them and then remove
     no_base_images = [dn for dn in dockerfiles_nodes if not dn.base_images]
     for dn in no_base_images:

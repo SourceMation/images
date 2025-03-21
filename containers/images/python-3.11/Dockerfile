@@ -11,12 +11,12 @@ LABEL name="python-3.11" \
       licenses="PSF License Version 2" \
       created="$(date +%Y%m%d)" \
       architecture="$(uname -m)" \
-      summary="Python 3.11 on Debian Slim Container" \
-      description="Provides Python 3.11 on Debian Slim Container" \
+      summary="Python 3.11 on Debian 12 Slim Container" \
+      description="Provides Python 3.11 on Debian 12 Slim Container" \
       version="3.11.11" \
-      io.k8s.display-name="Python 3.11 on Debian Slim Container" \
-      io.k8s.description="Provides Python 3.11 on Debian Slim Container" \
-      io.openshift.tags="python-3.11 debian-slim"
+      io.k8s.display-name="Python 3.11 on Debian 12 Slim Container" \
+      io.k8s.description="Provides Python 3.11 on Debian 12 Slim Container" \
+      io.openshift.tags="python-3.11 debian-12-slim"
 
 # New python is installed in /usr/local/bin
 ENV PATH=/usr/local/bin:$PATH
