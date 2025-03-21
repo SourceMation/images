@@ -6,12 +6,12 @@ LABEL name="postgres-17" \
       licenses="GPLv2" \
       created="$(date +%Y%m%d)" \
       architecture="$(uname -m)" \
-      summary="PostgreSQL 17 on Debian Slim Container" \
+      summary="PostgreSQL 17 on Debian 12 Slim Container" \
       description="Provides PostgreSQL 17 on Debian Slim Container" \
       version="17.4.1" \
-      io.k8s.display-name="PostgreSQL 17 on Debian Slim Container" \
-      io.k8s.description="Provides PostgreSQL 17 on Debian Slim Container" \
-      io.openshift.tags="postgresql debian slim"
+      io.k8s.display-name="PostgreSQL 17 on Debian 12 Slim Container" \
+      io.k8s.description="Provides PostgreSQL 17 on Debian 12 Slim Container" \
+      io.openshift.tags="postgresql debian-12-slim"
 
 # Setup the environment variables
 ENV LANG en_US.utf8

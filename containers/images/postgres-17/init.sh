@@ -7,16 +7,18 @@
 
 set -euo pipefail
 
-# First we have to find the newest version of the PostgreSQL avaialble for us.
+# First we have to find the newest version of the PostgreSQL available for us.
 IMG_NAME=sourcemation/debian-12-slim
 
 
-docker rm -f temp || true
-docker run -d --name temp $IMG_NAME sleep infinity
-docker cp prepare-continer-to-get-version.sh temp:/prepare-continer-to-get-version.sh
-docker exec temp /prepare-continer-to-get-version.sh
-version=$(docker exec temp cat /version)
-docker stop temp
+# Unique container name
+container_name="temp-$(date +%s)"
+
+docker run -d --name $container_name $IMG_NAME sleep 180
+docker cp prepare-continer-to-get-version.sh $container_name:/prepare-continer-to-get-version.sh
+docker exec $container_name /prepare-continer-to-get-version.sh
+version=$(docker exec $container_name cat /version)
+docker rm -f $container_name
 echo "Found version: $version"
 
 # Extract versions :)
