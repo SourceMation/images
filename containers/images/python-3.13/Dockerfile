@@ -11,12 +11,12 @@ LABEL name="python-3.13" \
       licenses="PSF License Version 2" \
       created="$(date +%Y%m%d)" \
       architecture="$(uname -m)" \
-      summary="Python 3.13 on Debian Slim Container" \
-      description="Provides Python 3.13 on Debian Slim Container" \
+      summary="Python 3.13 on Debian 12 Slim Container" \
+      description="Provides Python 3.13 on Debian 12 Slim Container" \
       version="3.13.2" \
-      io.k8s.display-name="Python 3.13 on Debian Slim Container" \
-      io.k8s.description="Provides Python 3.13 on Debian Slim Container" \
-      io.openshift.tags="python-3.13 debian-slim"
+      io.k8s.display-name="Python 3.13 on Debian 12 Slim Container" \
+      io.k8s.description="Provides Python 3.13 on Debian 12 Slim Container" \
+      io.openshift.tags="python-3.13 debian-12-slim"
 
 # ensure local python is preferred over distribution python
 ENV PATH /usr/local/bin:$PATH
