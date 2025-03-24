@@ -38,6 +38,12 @@ print_fail(){
     exit 1
 }
 
+check_variables_set(){
+    print_info "TEST_IMAGE is set ${TEST_IMAGE}"
+    print_info "PUSH_IMAGE is set ${PUSH_IMAGE}"
+    print_info "PUSH_README is set ${PUSH_README}"
+}
+
 check_command_available(){
     if hash "$1" 2>/dev/null; then
         print_info "[OK] Command $1 is available"
@@ -220,7 +226,7 @@ test_container(){
         docker run -d --name kong-database --network=kong-net -p 5432:5432 -e "POSTGRES_USER=kong" -e "POSTGRES_DB=kong" -e "POSTGRES_PASSWORD=kongpass" postgres:13
         docker run --rm --network=kong-net -e "KONG_DATABASE=postgres" -e "KONG_PG_HOST=kong-database" -e "KONG_PG_PASSWORD=kongpass" -e "KONG_PASSWORD=test" "${CONTAINER_FULL_NAME}" kong migrations bootstrap
 
-        docker run -d --name $CONTAINER_NAME \
+        docker run -d --name "$CONTAINER_NAME" \
         --network=kong-net \
         -e "KONG_DATABASE=postgres" \
         -e "KONG_PG_HOST=kong-database" \
@@ -245,7 +251,7 @@ test_container(){
     else
         print_info "Running Docker Container from Image: ${CONTAINER_FULL_NAME}"
         # shellcheck disable=SC2086
-        docker run -d -it --name $CONTAINER_NAME ${CONTAINER_RUN_PARAMETERS} "${CONTAINER_FULL_NAME}" ${CONTAINER_RUN_COMMAND}
+        docker run -d -it --name "$CONTAINER_NAME" ${CONTAINER_RUN_PARAMETERS} "${CONTAINER_FULL_NAME}" ${CONTAINER_RUN_COMMAND}
     fi
 
 
@@ -361,6 +367,7 @@ print_info "Build information for container $container_name"
 print_info "-> Container directory: $container_dir"
 
 print_info "Checking prerequisites"
+check_variables_set
 check_command_available "docker"
 check_file_exists "$container_file"
 check_file_exists "$container_dir/README.md"
@@ -371,6 +378,6 @@ read_configs
 build_container
 [ "$TEST_IMAGE" != "true" ] || test_container
 [ "$PUSH_IMAGE" != "true" ] || push_container_image
-[ "$PUSH_IMAGE" != "true" ] || push_readme
+[[ "$PUSH_README" != "true" && "$PUSH_IMAGE" != "true" ]] || push_readme
 cleanup
 

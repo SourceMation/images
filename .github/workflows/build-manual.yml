@@ -53,6 +53,11 @@ on:
         default: true
         required: false
         type: boolean
+      push_readme:
+        description: 'Push image readme. You can disable test_image and push_image to only push the readme. Pushing image OVERWRITES the readme - ALWAYS!'
+        default: true
+        required: false
+        type: boolean
 
 jobs:
   build_container_amd64:
@@ -65,6 +70,7 @@ jobs:
       DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
       PUSH_IMAGE: ${{ inputs.push_image }}
       TEST_IMAGE: ${{ inputs.test_image }}
+      PUSH_README: ${{ inputs.push_readme }}
       APIKEY__QUAY_IO: ${{ secrets.QUAY_API }}
     steps:
       - uses: actions/checkout@v4
