@@ -54,7 +54,11 @@ on:
         required: false
         type: boolean
       push_readme:
-        description: 'Push image readme. You can disable test_image and push_image to only push the readme. Pushing image OVERWRITES the readme - ALWAYS!'
+        description: 'Push image readme. You can disable test_image and
+          push_image to only push the readme. Pushing image OVERWRITES the
+          readme - ALWAYS! If test_image and push_image are disabled, and the
+          push_readme is enable the container is not built, tested or pushed,
+          only the readme is pushed.'
         default: true
         required: false
         type: boolean

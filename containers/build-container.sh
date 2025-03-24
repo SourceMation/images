@@ -20,6 +20,9 @@ BASE_ARCH=$(arch)
 # create unique name
 CONTAINER_NAME="container-$(date +%s)"
 
+# set to false in the check variables if push_readme is set to true, and everything else is false
+BUILD_CONTAINER="true"
+
 # Functions
 
 print_help(){
@@ -38,10 +41,15 @@ print_fail(){
     exit 1
 }
 
-check_variables_set(){
+check_variables_set_build_container(){
     print_info "TEST_IMAGE is set ${TEST_IMAGE}"
     print_info "PUSH_IMAGE is set ${PUSH_IMAGE}"
     print_info "PUSH_README is set ${PUSH_README}"
+    # It's nasty :)
+    if [[ "$TEST_IMAGE" == "false" && "$PUSH_IMAGE" == "false" && "$PUSH_README" == "true" ]]; then
+        BUILD_CONTAINER="false"
+    fi
+
 }
 
 check_command_available(){
@@ -367,15 +375,15 @@ print_info "Build information for container $container_name"
 print_info "-> Container directory: $container_dir"
 
 print_info "Checking prerequisites"
-check_variables_set
+check_variables_set_build_container
 check_command_available "docker"
 check_file_exists "$container_file"
 check_file_exists "$container_dir/README.md"
-[ "$PUSH_IMAGE" != "true" ] || login_to_quayio
-[ "$PUSH_IMAGE" != "true" ] || login_to_dockerhub
-prepare_build # Run init.sh if it exists
-read_configs
-build_container
+[[ "$PUSH_README" != "true" && "$PUSH_IMAGE" != "true" ]] || login_to_quayio
+[[ "$PUSH_README" != "true" && "$PUSH_IMAGE" != "true" ]] || login_to_dockerhub
+[ "$BUILD_CONTAINER" != "true" ] || prepare_build # Run init.sh if it exists
+[ "$BUILD_CONTAINER" != "true" ] || read_configs
+[ "$BUILD_CONTAINER" != "true" ] || build_container
 [ "$TEST_IMAGE" != "true" ] || test_container
 [ "$PUSH_IMAGE" != "true" ] || push_container_image
 [[ "$PUSH_README" != "true" && "$PUSH_IMAGE" != "true" ]] || push_readme
