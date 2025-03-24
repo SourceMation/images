@@ -382,7 +382,7 @@ check_file_exists "$container_dir/README.md"
 [[ "$PUSH_README" != "true" && "$PUSH_IMAGE" != "true" ]] || login_to_quayio
 [[ "$PUSH_README" != "true" && "$PUSH_IMAGE" != "true" ]] || login_to_dockerhub
 [ "$BUILD_CONTAINER" != "true" ] || prepare_build # Run init.sh if it exists
-[ "$BUILD_CONTAINER" != "true" ] || read_configs
+read_configs # This is always needed
 [ "$BUILD_CONTAINER" != "true" ] || build_container
 [ "$TEST_IMAGE" != "true" ] || test_container
 [ "$PUSH_IMAGE" != "true" ] || push_container_image
