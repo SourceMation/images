@@ -107,6 +107,7 @@ jobs:
       DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
       PUSH_IMAGE: ${{ inputs.push_image }}
       TEST_IMAGE: ${{ inputs.test_image }}
+      PUSH_README: ${{ inputs.push_readme }}
       APIKEY__QUAY_IO: ${{ secrets.QUAY_API }}
     steps:
       - uses: actions/checkout@v4
