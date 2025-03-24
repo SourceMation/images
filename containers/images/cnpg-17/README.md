@@ -1,6 +1,6 @@
-# Cloud Native PostgreSQL 17 on Debian Slim packaged by SourceMation (pgng-17)
+# Cloud Native PostgreSQL 17 on Debian Slim packaged by SourceMation (cnpg-17)
 
-This image, `sourcemation/pgng-17`, is built upon `sourcemation/postgres-17`
+This image, `sourcemation/cnpg-17`, is built upon `sourcemation/postgres-17`
 and extends it to provide a PostgreSQL 17 environment optimized for Cloud
 Native PostgreSQL (CNPG) deployments. It includes essential extensions and
 configurations for CNPG, such as `pgaudit`, `pgvector`, and
@@ -31,7 +31,7 @@ Since this image is based on `sourcemation/postgres-17`, you can use it in the s
 **Example for local testing (not recommended for production use):**
 
 ```bash
-docker run --rm -e POSTGRES_PASSWORD=mysecretpassword -p 5432:5432 sourcemation/pgng-17:latest
+docker run --rm -e POSTGRES_PASSWORD=mysecretpassword -p 5432:5432 sourcemation/cnpg-17:latest
 ```
 
 **Using with Cloud Native PostgreSQL:**
@@ -45,7 +45,7 @@ This image sets the default locale to `pl_PL.UTF-8`. If you need to change the l
 **Example of changing the locale to `en_US.UTF-8` in a child Dockerfile:**
 
 ```dockerfile
-FROM sourcemation/pgng-17
+FROM sourcemation/cnpg-17
 
 # Change locale to en_US.UTF-8
 RUN localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8; \
@@ -84,10 +84,10 @@ SourceMation GitHub repository.
 [Creating issues and images requests](https://github.com/SourceMation/images/issues/new/choose)
 [Creating pull requests](https://github.com/SourceMation/images/compare)
 
-**Disclaimer:** The `sourcemation/pgng-17` image is not directly affiliated
+**Disclaimer:** The `sourcemation/cnpg-17` image is not directly affiliated
 with the PostgreSQL Global Development Group. The respective companies and
 organisations own the trademarks mentioned in the offering. The
-`sourcemation/pgng-17` image is a separate project and is maintained by
+`sourcemation/cnpg-17` image is a separate project and is maintained by
 [SourceMation](https://sourcemation.com).
 
 ## Extra notes
