@@ -15,7 +15,10 @@ on:
           - apicast
           - camel-k
           - camel-karavan
+          - cnpg-17
           - debian-12-slim
+          - golang-1.23
+          - golang-1.24
           - helidon
           - java
           - jenkins
@@ -27,8 +30,12 @@ on:
           - mosquitto
           - nodejs
           - openapi-generator-cli
+          - postgres-17
           - postgresql
           - python
+          - python-3.11
+          - python-3.12
+          - python-3.13
           - quarkus
           - rabbitmq
           - redis
