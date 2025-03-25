@@ -3,7 +3,7 @@
 # Author: Alex Baranowski
 # License: MIT
 #
-# Description: This script is used to build rootfs.tar.gz for the debian-12-slim image
+# Description: This script is used to build rootfs.tar.gz for the debian-11-slim image
 # Allowing us to reproduce the image without having to rely on the dockerhub image
 
 set -euo pipefail
