@@ -16,6 +16,7 @@ on:
           - camel-k
           - camel-karavan
           - cnpg-17
+          - debian-11-slim
           - debian-12-slim
           - golang-1.23
           - golang-1.24
