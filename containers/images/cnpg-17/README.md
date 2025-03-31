@@ -102,8 +102,6 @@ software components or have any questions, please contact us.
 
 ### Licenses
 
-### Licenses
-
 The base license for the solution (PostgreSQL) is the [PostgreSQL
 License](https://www.postgresql.org/about/licence/).
 
