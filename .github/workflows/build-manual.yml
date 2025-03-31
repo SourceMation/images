@@ -34,6 +34,7 @@ on:
           - openapi-generator-cli
           - postgres-17
           - postgres-16
+          - postgres-16-bullseye
           - postgresql
           - python
           - python-3.11
