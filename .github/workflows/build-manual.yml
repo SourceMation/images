@@ -17,6 +17,7 @@ on:
           - camel-karavan
           - cnpg-17
           - cnpg-16
+          - cnpg-16-oneshot
           - debian-11-slim
           - debian-12-slim
           - golang-1.23
@@ -35,6 +36,7 @@ on:
           - postgres-17
           - postgres-16
           - postgres-16-bullseye
+          - postgres-16-bullseye-oneshot
           - postgresql
           - python
           - python-3.11
