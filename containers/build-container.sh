@@ -144,7 +144,7 @@ build_container(){
     fi
     # get epoch time
     epoch_time=$(date +%s)
-    DOCKER_TAG_LATEST="${IMAGE_NAME}:latest-${latest_arch}"
+    DOCKER_TAG_LATEST="${IMAGE_NAME}:latest-${latest_arch}${DOCKER_TAG_SUFFIX}"
     DOCKER_TAG_VERSION="${IMAGE_NAME}:${IMAGE_VERSION}${DOCKER_TAG_SUFFIX}"
     DOCKER_TAG_BUILD="${IMAGE_NAME}:${IMAGE_VERSION}-${epoch_time}${DOCKER_TAG_SUFFIX}"
 
