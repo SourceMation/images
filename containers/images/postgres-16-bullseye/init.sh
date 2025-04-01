@@ -27,7 +27,6 @@ debian_revision=$(echo "$version" | cut -d '-' -f 2 | cut -d '.' -f 1)
 version_label="${upstream_version}.${debian_revision}"
 # Just rename for clarity
 package_version="$version"
-package_version="16.2-1.pgdg110+2"
 
 sed -i "s/version=\"[^\"]*\"/version=\"$version_label\"/" Dockerfile || exit 1
 sed -i "s/PG_VERSION=\"[^\"]*\"/PG_VERSION=\"$package_version\"/" Dockerfile || exit 1
