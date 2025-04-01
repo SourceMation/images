@@ -1,5 +1,4 @@
-FROM sourcemation/postgres-16:16.2.1-debian-11
-
+FROM sourcemation/postgres-16:16.2.1-1743548180-debian-11
 # Do not split the description, otherwise we will see a blank space in the labels
 LABEL name="cnpg-16" \
       vendor="SourceMation" \
@@ -29,21 +28,18 @@ RUN set -xeu; \
     rm -rf /var/lib/apt/lists/*;
 
 # Install barman-cloud
-RUN set -xeu; \
-    apt-get update; \
-    apt-get install -y --no-install-recommends \
-            # We require build-essential and python3-dev to build lz4 on arm64 since there isn't a pre-compiled wheel available
-            build-essential python3-dev \
-            python3-pip \
-            python3-psycopg2 \
-            python3-setuptools \
-    ; \
-    pip3 install --break-system-packages --upgrade pip; \
-    # TODO: Remove --no-deps once https://github.com/pypa/pip/issues/9644 is solved
-    # THIS issue is not resolved for about 4 years so yeah, we need to keep this flag...
-    pip3 install --break-system-packages --no-deps -r requirements.txt; \
-    apt-get remove -y --purge --autoremove build-essential python3-dev; \
-    rm -rf /var/lib/apt/lists/*;
+# Install barman-cloud
+RUN set -xe; \
+	apt-get update; \
+	apt-get install -y --no-install-recommends \
+		python3-pip \
+		python3-psycopg2 \
+		python3-setuptools \
+	; \
+	pip3 install --upgrade pip; \
+# TODO: Remove --no-deps once https://github.com/pypa/pip/issues/9644 is solved
+	pip3 install --no-deps -r requirements.txt; \
+	rm -rf /var/lib/apt/lists/*;
 
 #Set PL locate
 RUN localedef -i pl_PL -c -f UTF-8 -A /usr/share/locale/locale.alias pl_PL.UTF-8; \
