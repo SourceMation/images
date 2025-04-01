@@ -112,7 +112,7 @@ read_configs(){
         . ./conf.sh
     fi
 
-    DOCKER_TAG_NAME="${image_name}"
+    IMAGE_NAME="${image_name}"
     IMAGE_VERSION="${image_version}"
 
     print_info "Checking if DOCKER_TAG_SUFFIX for multipe tag build is set"
@@ -121,17 +121,19 @@ read_configs(){
         DOCKER_TAG_SUFFIX=""
     else
         print_info "DOCKER_TAG_SUFFIX is set to $DOCKER_TAG_SUFFIX -> we won't push that latest tag!"
+        # Add - in front of docker suffix so it's easier to use when setting tags. That's why there is no '-' in front of it
+        DOCKER_TAG_SUFFIX="-${DOCKER_TAG_SUFFIX}"
     fi
 
-    print_info "DOCKER_TAG_NAME $DOCKER_TAG_NAME"
+    print_info "IMAGE_NAME $IMAGE_NAME"
     print_info "IMAGE_VERSION $IMAGE_VERSION"
-    export DOCKER_TAG_NAME IMAGE_VERSION
+    export IMAGE_NAME IMAGE_VERSION
     popd
 }
 
 build_container(){
     pushd "$container_dir"
-    print_info "Building container $DOCKER_TAG_NAME"
+    print_info "Building container $IMAGE_NAME"
     mkdir /tmp/docker-build-push/ || sudo rm -rf /tmp/docker-build-push/*
     if [ "$BASE_ARCH" == "x86_64" ]; then
         latest_arch="amd64"
@@ -142,26 +144,17 @@ build_container(){
     fi
     # get epoch time
     epoch_time=$(date +%s)
-    DOCKER_TAG_RELEASE="${IMAGE_VERSION}-${epoch_time}"
-
-    # to support multiple tags
-    if [ "$DOCKER_TAG_SUFFIX" == "" ]; then
-        DOCKER_TAG_1="sourcemation/${DOCKER_TAG_NAME}:latest-${latest_arch}"
-        DOCKER_TAG_2="sourcemation/${DOCKER_TAG_NAME}:${DOCKER_TAG_NAME}-${DOCKER_TAG_RELEASE}-${latest_arch}"
-        QUAY_IO_TAG_1="quay.io/sourcemation/${DOCKER_TAG_NAME}:latest-${latest_arch}"
-        QUAY_IO_TAG_2="quay.io/sourcemation/${DOCKER_TAG_NAME}:${DOCKER_TAG_NAME}-${DOCKER_TAG_RELEASE}-${latest_arch}"
-    else
-        DOCKER_TAG_1="sourcemation/${DOCKER_TAG_NAME}:latest-${latest_arch}-$DOCKER_TAG_SUFFIX"
-        DOCKER_TAG_2="sourcemation/${DOCKER_TAG_NAME}:${DOCKER_TAG_NAME}-${DOCKER_TAG_RELEASE}-${latest_arch}-$DOCKER_TAG_SUFFIX"
-        QUAY_IO_TAG_1="quay.io/sourcemation/${DOCKER_TAG_NAME}:latest-${latest_arch}-$DOCKER_TAG_SUFFIX"
-        QUAY_IO_TAG_2="quay.io/sourcemation/${DOCKER_TAG_NAME}:${DOCKER_TAG_NAME}-${DOCKER_TAG_RELEASE}-${latest_arch}-$DOCKER_TAG_SUFFIX"
-    fi
+    DOCKER_TAG_LATEST="${IMAGE_NAME}:latest-${latest_arch}"
+    DOCKER_TAG_VERSION="${IMAGE_NAME}:${IMAGE_VERSION}${DOCKER_TAG_SUFFIX}"
+    DOCKER_TAG_BUILD="${IMAGE_NAME}:${IMAGE_VERSION}-${epoch_time}${DOCKER_TAG_SUFFIX}"
 
     docker buildx build \
-        --tag ${DOCKER_TAG_1} \
-        --tag ${DOCKER_TAG_2} \
-        --tag ${QUAY_IO_TAG_1} \
-        --tag ${QUAY_IO_TAG_2} \
+        --tag "sourcemation/$DOCKER_TAG_LATEST" \
+        --tag "sourcemation/$DOCKER_TAG_VERSION" \
+        --tag "sourcemation/$DOCKER_TAG_BUILD" \
+        --tag "quay.io/sourcemation/$DOCKER_TAG_LATEST" \
+        --tag "quay.io/sourcemation/$DOCKER_TAG_VERSION" \
+        --tag "quay.io/sourcemation/$DOCKER_TAG_BUILD" \
         --iidfile /tmp/docker-build-push/iidfile \
         --platform="linux/$latest_arch" \
         --file "./Dockerfile" --no-cache ./
@@ -170,38 +163,34 @@ build_container(){
 }
 
 test_container(){
-    print_info "Testing container $DOCKER_TAG_NAME"
+    print_info "Testing container $IMAGE_NAME"
     set -x
-    if [ $DOCKER_TAG_SUFFIX != "" ]; then
-        CONTAINER_FULL_NAME="sourcemation/${DOCKER_TAG_NAME}:${DOCKER_TAG_NAME}-${DOCKER_TAG_RELEASE}-${latest_arch}-${DOCKER_TAG_SUFFIX}"
-    else
-        CONTAINER_FULL_NAME="sourcemation/${DOCKER_TAG_NAME}:${DOCKER_TAG_NAME}-${DOCKER_TAG_RELEASE}-${latest_arch}"
-    fi
+    CONTAINER_FULL_NAME="sourcemation/$DOCKER_TAG_BUILD"
     CONTAINER_STARTUP_TIMEOUT=10
     # default test
     CONTAINER_TEST_FILES="test_linux.py"
     # Extra tests
-    if [ -f "tests/test_${DOCKER_TAG_NAME}.py" ]; then
-        CONTAINER_TEST_FILES+=" test_${DOCKER_TAG_NAME}.py"
+    if [ -f "tests/test_${IMAGE_NAME}.py" ]; then
+        CONTAINER_TEST_FILES+=" test_${IMAGE_NAME}.py"
     fi
 
     # Python do not like the modules with '.' in the name so we have to fix it
-    if [[ "${DOCKER_TAG_NAME}" =~ python-3. ]]; then
+    if [[ "${IMAGE_NAME}" =~ python-3. ]]; then
         CONTAINER_TEST_FILES+=" test_python.py"
     fi
     # same for golang
-    if [[ "${DOCKER_TAG_NAME}" =~ golang-1 ]]; then
+    if [[ "${IMAGE_NAME}" =~ golang-1 ]]; then
         CONTAINER_TEST_FILES+=" test_golang.py"
     fi
     # cnpg tests should also contain postgresql tests
-    if [[ "${DOCKER_TAG_NAME}" =~ cnpg ]]; then
+    if [[ "${IMAGE_NAME}" =~ cnpg ]]; then
         CONTAINER_TEST_FILES+=" test_postgresql.py"
     fi
 
 
     CONTAINER_RUN_PARAMETERS=""
     CONTAINER_RUN_COMMAND="/bin/bash"
-    case ${DOCKER_TAG_NAME} in
+    case ${IMAGE_NAME} in
         "apache-activemq")
             CONTAINER_RUN_COMMAND=""
             ;;
@@ -254,7 +243,7 @@ test_container(){
     esac
 
     print_info "Running Docker Container from Image: ${CONTAINER_FULL_NAME}"
-    if [ "${DOCKER_TAG_NAME}" == "kong" ]; then
+    if [ "${IMAGE_NAME}" == "kong" ]; then
         docker network create kong-net
         docker run -d --name kong-database --network=kong-net -p 5432:5432 -e "POSTGRES_USER=kong" -e "POSTGRES_DB=kong" -e "POSTGRES_PASSWORD=kongpass" postgres:13
         docker run --rm --network=kong-net -e "KONG_DATABASE=postgres" -e "KONG_PG_HOST=kong-database" -e "KONG_PG_PASSWORD=kongpass" -e "KONG_PASSWORD=test" "${CONTAINER_FULL_NAME}" kong migrations bootstrap
@@ -307,7 +296,7 @@ test_container(){
 
     docker stop $CONTAINER_NAME
     docker rm $CONTAINER_NAME
-    if [ "${DOCKER_TAG_NAME}" == "kong" ]; then
+    if [ "${IMAGE_NAME}" == "kong" ]; then
         docker stop kong-database
         docker rm kong-database
         docker network rm kong-net
@@ -318,16 +307,15 @@ test_container(){
 push_container_image(){
     # to support multiarch
     # https://stackoverflow.com/questions/74816159/how-can-i-pull-push-the-docker-image-for-all-os-arch-into-dockerhub
-    if [ "$BASE_ARCH" == "x86_64" ];then
-        latest_arch="amd64"
-    elif [ "$BASE_ARCH" == "aarch64" ]; then
-        latest_arch="arm64"
-    fi
-    docker push $DOCKER_TAG_1
-    docker push $DOCKER_TAG_2
-    docker push $QUAY_IO_TAG_1
-    docker push $QUAY_IO_TAG_2
-    
+    # latest_arch is set in the build_container function
+    docker push "sourcemation/$DOCKER_TAG_LATEST"
+    docker push "sourcemation/$DOCKER_TAG_VERSION"
+    docker push "sourcemation/$DOCKER_TAG_BUILD"
+    docker push "quay.io/sourcemation/$DOCKER_TAG_LATEST"
+    docker push "quay.io/sourcemation/$DOCKER_TAG_VERSION"
+    docker push "quay.io/sourcemation/$DOCKER_TAG_BUILD"
+
+
     # The latest tag is special case, do absolutely nothing if there is suffix
     if [ "$DOCKER_TAG_SUFFIX" != "" ]; then
         return
@@ -338,9 +326,9 @@ push_container_image(){
         echo "Removing the latest tag for to setup multiarch - x86_64 must be the first build"
         for container_registry in "docker.io" "quay.io"; do
             echo "Removing latest manifest for ${container_registry} with amd64"
-            docker manifest rm "${container_registry}/sourcemation/${DOCKER_TAG_NAME}:latest" || true
+            docker manifest rm "${container_registry}/sourcemation/${IMAGE_NAME}:latest" || true
             echo "Creating latest manifest for ${container_registry}"
-            docker manifest create "${container_registry}/sourcemation/${DOCKER_TAG_NAME}:latest" --amend "${container_registry}/sourcemation/${DOCKER_TAG_NAME}:latest-${latest_arch}"
+            docker manifest create "${container_registry}/sourcemation/${IMAGE_NAME}:latest" --amend "${container_registry}/sourcemation/${IMAGE_NAME}:latest-${latest_arch}"
         done
     elif [ "$BASE_ARCH" == "aarch64" ]; then
         echo "Creating arm64 manifest"
@@ -348,14 +336,14 @@ push_container_image(){
         # previous pipeline, we had a single host that was pushing the
         # manifests, so the x86_64 manifest was present before the arm64, and
         # had host had the x86_64 image saved.
-        docker pull "sourcemation/${DOCKER_TAG_NAME}:latest-amd64"
+        docker pull "sourcemation/${IMAGE_NAME}:latest-amd64"
         for container_registry in "docker.io" "quay.io"; do
             echo "Creating latest manifest for ${container_registry} with arm64 and amd64"
-            docker manifest create "${container_registry}/sourcemation/${DOCKER_TAG_NAME}:latest" --amend "${container_registry}/sourcemation/${DOCKER_TAG_NAME}:latest-${latest_arch}" --amend "${container_registry}/sourcemation/${DOCKER_TAG_NAME}:latest-amd64"
+            docker manifest create "${container_registry}/sourcemation/${IMAGE_NAME}:latest" --amend "${container_registry}/sourcemation/${IMAGE_NAME}:latest-${latest_arch}" --amend "${container_registry}/sourcemation/${IMAGE_NAME}:latest-amd64"
         done
     fi
-    docker manifest push "docker.io/sourcemation/${DOCKER_TAG_NAME}:latest"
-    docker manifest push "quay.io/sourcemation/${DOCKER_TAG_NAME}:latest"
+    docker manifest push "docker.io/sourcemation/${IMAGE_NAME}:latest"
+    docker manifest push "quay.io/sourcemation/${IMAGE_NAME}:latest"
 }
 
 push_readme(){
@@ -379,10 +367,10 @@ push_readme(){
     # push the README.md
     pushd "$container_dir"
     print_info "Pushing README.md to dockerhub"
-    docker pushrm "docker.io/sourcemation/${DOCKER_TAG_NAME}"
+    docker pushrm "docker.io/sourcemation/${IMAGE_NAME}"
 
     print_info "Pushing README.md to quay.io"
-    docker pushrm "quay.io/sourcemation/${DOCKER_TAG_NAME}"
+    docker pushrm "quay.io/sourcemation/${IMAGE_NAME}"
 
     popd
 }
