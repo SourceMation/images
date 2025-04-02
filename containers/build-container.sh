@@ -346,8 +346,8 @@ push_container_image(){
             docker manifest create "${container_registry}/sourcemation/$DOCKER_TAG_VERSION" --amend "${container_registry}/sourcemation/$DOCKER_TAG_BUILD" --amend "$(echo ${container_registry}/sourcemation/$DOCKER_TAG_BUILD | sed 's/-arm64/-amd64/g' )"
         done
     fi
-    docker manifest push "${container_registry}/sourcemation/$DOCKER_TAG_VERSION"
-    docker manifest push "${container_registry}/sourcemation/$DOCKER_TAG_VERSION"
+    docker manifest push "docker.io/sourcemation/${IMAGE_NAME}:$DOCKER_TAG_VERSION"
+    docker manifest push "quay.io/sourcemation/${IMAGE_NAME}:$DOCKER_TAG_VERSION"
 
     # The latest tag is special case, do absolutely nothing if there is suffix
     if [ "$DOCKER_TAG_SUFFIX" != "" ]; then
