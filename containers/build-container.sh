@@ -335,7 +335,7 @@ push_container_image(){
             docker manifest create "${container_registry}/sourcemation/$DOCKER_TAG_VERSION" --amend "${container_registry}/sourcemation/$DOCKER_TAG_BUILD"
         done
     elif [ "$BASE_ARCH" == "aarch64" ]; then
-        echo "Creating arm64 manifest for ${container_registry} and $DOCKER_TAG_VERSION"
+        echo "Creating arm64 manifest for $DOCKER_TAG_VERSION"
         # This may look stupid, I get that, but the thing is that in the
         # previous pipeline, we had a single host that was pushing the
         # manifests, so the x86_64 manifest was present before the arm64, and
