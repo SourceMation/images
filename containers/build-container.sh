@@ -313,6 +313,7 @@ test_container(){
 }
 
 push_container_image(){
+    set -x
     # to support multiarch
     # https://stackoverflow.com/questions/74816159/how-can-i-pull-push-the-docker-image-for-all-os-arch-into-dockerhub
     # latest_arch is set in the build_container function
