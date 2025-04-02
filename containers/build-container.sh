@@ -288,12 +288,12 @@ test_container(){
     print_info "Waiting for the container to fully boot..."
     sleep ${CONTAINER_STARTUP_TIMEOUT}
 
-    if [ "$(docker inspect -f '{{.State.Running}}' $CONTAINER_NAME)" != 'true' ]; then
+    if [ "$(docker inspect -f '{{.State.Running}}' "$CONTAINER_NAME")" != 'true' ]; then
         print_fail "Timeout of ${CONTAINER_STARTUP_TIMEOUT} seconds reached when waiting for $CONTAINER_NAME to start - aborting."
     fi
 
     print_info 'Copying PyTest Scripts to Docker Container'
-    docker cp tests $CONTAINER_NAME:/tmp
+    docker cp tests "$CONTAINER_NAME:/tmp"
 
     print_info 'Installing Python and PyTest in the Container'
     docker exec -u 0 $CONTAINER_NAME dnf install -y python3-pip procps || docker exec -u 0 $CONTAINER_NAME microdnf install -y python3-pip procps || docker exec -u 0 $CONTAINER_NAME bash -c 'apt-get update && apt-get install -y python3-pip procps'
@@ -343,7 +343,7 @@ push_container_image(){
         docker pull "sourcemation/$DOCKER_TAG_VERSION"
         for container_registry in "docker.io" "quay.io"; do
             echo "Creating latest manifest for ${container_registry} with arm64 and amd64"
-            docker manifest create "${container_registry}/sourcemation/$DOCKER_TAG_VERSION" --amend "${container_registry}/sourcemation/$DOCKER_TAG_BUILD" --amend "$(echo {container_registry}/sourcemation/$DOCKER_TAG_BUILD" | sed s/-arm64/-amd64/g')"
+            docker manifest create "${container_registry}/sourcemation/$DOCKER_TAG_VERSION" --amend "${container_registry}/sourcemation/$DOCKER_TAG_BUILD" --amend "$(echo ${container_registry}/sourcemation/$DOCKER_TAG_BUILD | sed 's/-arm64/-amd64/g' )"
         done
     fi
     docker manifest push "${container_registry}/sourcemation/$DOCKER_TAG_VERSION"
@@ -380,7 +380,7 @@ push_container_image(){
 }
 
 push_readme(){
-    
+
     # We do not push readme for suffixes
     if [ "$DOCKER_TAG_SUFFIX" != "" ]; then
         return
