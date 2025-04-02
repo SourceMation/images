@@ -142,11 +142,19 @@ build_container(){
     else
         print_fail "Unsupported architecture $BASE_ARCH ..."
     fi
-    # get epoch time
-    epoch_time=$(date +%s)
+
+    current_time=$(date +%s)
+    midnight=$(date -d "tomorrow 00:00:00" +%s)
+    if (( midnight - current_time < 1800 )); then
+        print_fail "Less than 30 minutes to midnight, refusing to build to avoid tag issues."
+    fi
+
+    # This might be problematic when the date switches to the next day!
+    B_DATE=$(date +%Y%m%d)
+
     DOCKER_TAG_LATEST="${IMAGE_NAME}:latest-${latest_arch}${DOCKER_TAG_SUFFIX}"
     DOCKER_TAG_VERSION="${IMAGE_NAME}:${IMAGE_VERSION}${DOCKER_TAG_SUFFIX}"
-    DOCKER_TAG_BUILD="${IMAGE_NAME}:${IMAGE_VERSION}-${epoch_time}${DOCKER_TAG_SUFFIX}"
+    DOCKER_TAG_BUILD="${IMAGE_NAME}:${IMAGE_VERSION}-${B_DATE}${DOCKER_TAG_SUFFIX}-${latest_arch}"
 
     docker buildx build \
         --tag "sourcemation/$DOCKER_TAG_LATEST" \
@@ -315,6 +323,31 @@ push_container_image(){
     docker push "quay.io/sourcemation/$DOCKER_TAG_VERSION"
     docker push "quay.io/sourcemation/$DOCKER_TAG_BUILD"
 
+    # The TAG_BUILD should be always connected to TAG_VERSION
+
+    # Note the x86_64 MUST BE the first build
+    if [ "$BASE_ARCH" == "x86_64" ]; then
+        echo "Removing the latest tag for to setup multiarch - x86_64 must be the first build"
+        for container_registry in "docker.io" "quay.io"; do
+            echo "Removing latest manifest for ${container_registry} with amd64 ${container_registry} and $DOCKER_TAG_VERSION"
+            docker manifest rm "${container_registry}/sourcemation/$DOCKER_TAG_VERSION" || true
+            echo "Creating latest manifest for ${container_registry} with amd64 ${container_registry} and $DOCKER_TAG_VERSION"
+            docker manifest create "${container_registry}/sourcemation/$DOCKER_TAG_VERSION" --amend "${container_registry}/sourcemation/$DOCKER_TAG_BUILD"
+        done
+    elif [ "$BASE_ARCH" == "aarch64" ]; then
+        echo "Creating arm64 manifest for ${container_registry} and $DOCKER_TAG_VERSION"
+        # This may look stupid, I get that, but the thing is that in the
+        # previous pipeline, we had a single host that was pushing the
+        # manifests, so the x86_64 manifest was present before the arm64, and
+        # had host had the x86_64 image saved.
+        docker pull "sourcemation/$DOCKER_TAG_VERSION"
+        for container_registry in "docker.io" "quay.io"; do
+            echo "Creating latest manifest for ${container_registry} with arm64 and amd64"
+            docker manifest create "${container_registry}/sourcemation/$DOCKER_TAG_VERSION" --amend "${container_registry}/sourcemation/$DOCKER_TAG_BUILD" --amend "$(echo {container_registry}/sourcemation/$DOCKER_TAG_BUILD" | sed s/-arm64/-amd64/g')"
+        done
+    fi
+    docker manifest push "${container_registry}/sourcemation/$DOCKER_TAG_VERSION"
+    docker manifest push "${container_registry}/sourcemation/$DOCKER_TAG_VERSION"
 
     # The latest tag is special case, do absolutely nothing if there is suffix
     if [ "$DOCKER_TAG_SUFFIX" != "" ]; then
@@ -356,8 +389,9 @@ push_readme(){
     # preapre the binary
     if [ "$BASE_ARCH" == "x86_64" ];then
         bin_arch="amd64"
-    elif [ "$BASE_ARCH" == "aarch64" ]; then
-        bin_arch="arm64"
+    else
+    # README.md is same for all images, we do not need to push it for each
+        return
     fi
     binary_url="https://github.com/christian-korneck/docker-pushrm/releases/download/v1.9.0/docker-pushrm_linux_${bin_arch}"
     mkdir -p ~/.docker/cli-plugins
