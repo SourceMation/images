@@ -317,10 +317,10 @@ push_container_image(){
     # https://stackoverflow.com/questions/74816159/how-can-i-pull-push-the-docker-image-for-all-os-arch-into-dockerhub
     # latest_arch is set in the build_container function
     docker push "sourcemation/$DOCKER_TAG_LATEST"
-    docker push "sourcemation/$DOCKER_TAG_VERSION"
+#    docker push "sourcemation/$DOCKER_TAG_VERSION"
     docker push "sourcemation/$DOCKER_TAG_BUILD"
     docker push "quay.io/sourcemation/$DOCKER_TAG_LATEST"
-    docker push "quay.io/sourcemation/$DOCKER_TAG_VERSION"
+#    docker push "quay.io/sourcemation/$DOCKER_TAG_VERSION"
     docker push "quay.io/sourcemation/$DOCKER_TAG_BUILD"
 
     # The TAG_BUILD should be always connected to TAG_VERSION
