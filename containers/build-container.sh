@@ -296,14 +296,14 @@ test_container(){
     docker cp tests "$CONTAINER_NAME:/tmp"
 
     print_info 'Installing Python and PyTest in the Container'
-    docker exec -u 0 $CONTAINER_NAME dnf install -y python3-pip procps || docker exec -u 0 $CONTAINER_NAME microdnf install -y python3-pip procps || docker exec -u 0 $CONTAINER_NAME bash -c 'apt-get update && apt-get install -y python3-pip procps'
-    docker exec -u 0 $CONTAINER_NAME pip3 install pytest requests psycopg2-binary redis pymongo pika || docker exec -u 0 $CONTAINER_NAME pip3 install pytest requests psycopg2-binary redis pymongo pika --break-system-packages
+    docker exec -u 0 "$CONTAINER_NAME" dnf install -y python3-pip procps || docker exec -u 0 "$CONTAINER_NAME" microdnf install -y python3-pip procps || docker exec -u 0 "$CONTAINER_NAME" bash -c 'apt-get update && apt-get install -y python3-pip procps'
+    docker exec -u 0 "$CONTAINER_NAME" pip3 install pytest requests psycopg2-binary redis pymongo pika || docker exec -u 0 "$CONTAINER_NAME" pip3 install pytest requests psycopg2-binary redis pymongo pika --break-system-packages
 
     print_info 'Executing PyTest Scripts'
-    docker exec -u 0 $CONTAINER_NAME /bin/bash -c "cd /tmp/tests && python3 -m pytest -vv ${CONTAINER_TEST_FILES}" || print_fail "PyTest execution failed"
+    docker exec -u 0 "$CONTAINER_NAME" /bin/bash -c "cd /tmp/tests && python3 -m pytest -vv ${CONTAINER_TEST_FILES}" || print_fail "PyTest execution failed"
 
-    docker stop $CONTAINER_NAME
-    docker rm $CONTAINER_NAME
+    docker stop "$CONTAINER_NAME"
+    docker rm "$CONTAINER_NAME"
     if [ "${IMAGE_NAME}" == "kong" ]; then
         docker stop kong-database
         docker rm kong-database
@@ -341,10 +341,10 @@ push_container_image(){
         # previous pipeline, we had a single host that was pushing the
         # manifests, so the x86_64 manifest was present before the arm64, and
         # had host had the x86_64 image saved.
-        docker pull "sourcemation/$DOCKER_TAG_VERSION"
+#        docker pull "sourcemation/$DOCKER_TAG_VERSION" || true
         for container_registry in "docker.io" "quay.io"; do
             echo "Creating latest manifest for ${container_registry} with arm64 and amd64"
-            docker manifest create "${container_registry}/sourcemation/$DOCKER_TAG_VERSION" --amend "${container_registry}/sourcemation/$DOCKER_TAG_BUILD" --amend "$(echo ${container_registry}/sourcemation/$DOCKER_TAG_BUILD | sed 's/-arm64/-amd64/g' )"
+            docker manifest create "${container_registry}/sourcemation/$DOCKER_TAG_VERSION" --amend "${container_registry}/sourcemation/$DOCKER_TAG_BUILD" --amend "$(echo ${container_registry}/sourcemation/"$DOCKER_TAG_BUILD" | sed 's/-arm64/-amd64/g' )"
         done
     fi
     docker manifest push "docker.io/sourcemation/$DOCKER_TAG_VERSION"
