@@ -17,7 +17,6 @@ on:
           - camel-karavan
           - cnpg-17
           - cnpg-16
-          - cnpg-16-oneshot
           - debian-11-slim
           - debian-12-slim
           - golang-1.23
@@ -35,8 +34,6 @@ on:
           - openapi-generator-cli
           - postgres-17
           - postgres-16
-          - postgres-16-bullseye
-          - postgres-16-bullseye-oneshot
           - postgresql
           - python
           - python-3.11
@@ -49,6 +46,8 @@ on:
           - rocky-9-minimal
           - ruby
           - servicemix
+#          - postgres-16-bullseye-oneshot
+#          - cnpg-16-oneshot
       push_image:
         description: 'Push the image to the registries'
         default: true
