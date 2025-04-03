@@ -161,22 +161,32 @@ def create_build_tree(dockerfiles_nodes, org_name):
     return build_order
 
 
-def print_in_order(node: GraphNode, visited_nodes):
+def print_in_order(node: GraphNode, visited_nodes, saved_output):
     """
     Note this is not real IN ORDER traversal but rather DFS traversal.
     The name might be confusing, but it's about BUILD ORDER.
     """
     my_name = get_container_name_from_path(node.value.path)
     visited_nodes = visited_nodes + [my_name]
-    print("->".join(visited_nodes))
+    build_path_str = "->".join(visited_nodes)
+    print(build_path_str)
+    saved_output.append(build_path_str)
     for edge in node.edges:
-        print_in_order(edge, visited_nodes)
+        print_in_order(edge, visited_nodes, saved_output)
 
 
-def print_graph(nodes):
+def print_graph(nodes, filename=None):
+    saved_output = []
     for node in nodes.values():
         if node.isRoot:
-            print_in_order(node, [])
+            print_in_order(node, [], saved_output)
+    if not filename:
+        return
+    saved_output.sort()
+    with open(filename, 'w') as f:
+        for line in saved_output:
+            f.write(line + '\n')
+    print (f"Graph saved to file: {filename}")
 
 
 def main():
@@ -195,7 +205,7 @@ def main():
         print(f'Found: {node.path}: {node.base_images}')
 
     build_order = create_build_tree(dockerfiles_nodes, args.org_name)
-    print_graph(build_order)
+    print_graph(build_order, "build_order.txt")
 
 
 if __name__ == '__main__':
