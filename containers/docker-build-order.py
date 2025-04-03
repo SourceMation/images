@@ -176,6 +176,24 @@ def print_in_order(node: GraphNode, visited_nodes, saved_output):
 
 
 def print_graph(nodes, filename=None):
+    """
+    Prints the build order of Docker images in a graph structure and optionally saves it to a file.
+
+    The build order is printed in the format:
+    container_name->container_name2->container_name3
+
+    If a filename is provided, the build order is saved to the file in the format:
+    container_name
+    container_name2
+    container_name3
+
+    Args:
+        nodes (dict): A dictionary of GraphNode objects representing the Docker images.
+        filename (str, optional): The name of the file to save the build order. If not provided, only the graph is printed.
+
+    Returns:
+        None
+    """
     saved_output = []
     for node in nodes.values():
         if node.isRoot:
@@ -183,10 +201,15 @@ def print_graph(nodes, filename=None):
     if not filename:
         return
     saved_output.sort()
+    build_order = []
+    for line in saved_output:
+        build_order.append(line.split('->')[-1])
+
+
     with open(filename, 'w') as f:
-        for line in saved_output:
+        for line in build_order:
             f.write(line + '\n')
-    print (f"Graph saved to file: {filename}")
+    print (f"Build order: {filename}")
 
 
 def main():
