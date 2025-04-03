@@ -166,21 +166,21 @@ build_container(){
         --iidfile /tmp/docker-build-push/iidfile \
         --platform="linux/$latest_arch" \
         --file "./Dockerfile" --no-cache ./
-    print_info "Build done"
-    popd
-}
+            print_info "Build done"
+            popd
+        }
 
-test_container(){
-    print_info "Testing container $IMAGE_NAME"
-    set -x
-    CONTAINER_FULL_NAME="sourcemation/$DOCKER_TAG_BUILD"
-    CONTAINER_STARTUP_TIMEOUT=10
-    # default test
-    CONTAINER_TEST_FILES="test_linux.py"
-    # Extra tests
-    if [ -f "tests/test_${IMAGE_NAME}.py" ]; then
-        CONTAINER_TEST_FILES+=" test_${IMAGE_NAME}.py"
-    fi
+        test_container(){
+            print_info "Testing container $IMAGE_NAME"
+            set -x
+            CONTAINER_FULL_NAME="sourcemation/$DOCKER_TAG_BUILD"
+            CONTAINER_STARTUP_TIMEOUT=10
+            # default test
+            CONTAINER_TEST_FILES="test_linux.py"
+            # Extra tests
+            if [ -f "tests/test_${IMAGE_NAME}.py" ]; then
+                CONTAINER_TEST_FILES+=" test_${IMAGE_NAME}.py"
+            fi
 
     # Python do not like the modules with '.' in the name so we have to fix it
     if [[ "${IMAGE_NAME}" =~ python-3. ]]; then
@@ -278,10 +278,10 @@ test_container(){
             -p 8003:8003 \
             -p 8004:8004 \
             "${CONTAINER_FULL_NAME}"
-                else
-                    print_info "Running Docker Container from Image: ${CONTAINER_FULL_NAME}"
-                    # shellcheck disable=SC2086
-                    docker run -d -it --name "$CONTAINER_NAME" ${CONTAINER_RUN_PARAMETERS} "${CONTAINER_FULL_NAME}" ${CONTAINER_RUN_COMMAND}
+    else
+        print_info "Running Docker Container from Image: ${CONTAINER_FULL_NAME}"
+        # shellcheck disable=SC2086
+        docker run -d -it --name "$CONTAINER_NAME" ${CONTAINER_RUN_PARAMETERS} "${CONTAINER_FULL_NAME}" ${CONTAINER_RUN_COMMAND}
     fi
 
 
@@ -318,10 +318,10 @@ push_container_image(){
     # https://stackoverflow.com/questions/74816159/how-can-i-pull-push-the-docker-image-for-all-os-arch-into-dockerhub
     # latest_arch is set in the build_container function
     docker push "sourcemation/$DOCKER_TAG_LATEST"
-#    docker push "sourcemation/$DOCKER_TAG_VERSION"
+    #    docker push "sourcemation/$DOCKER_TAG_VERSION"
     docker push "sourcemation/$DOCKER_TAG_BUILD"
     docker push "quay.io/sourcemation/$DOCKER_TAG_LATEST"
-#    docker push "quay.io/sourcemation/$DOCKER_TAG_VERSION"
+    #    docker push "quay.io/sourcemation/$DOCKER_TAG_VERSION"
     docker push "quay.io/sourcemation/$DOCKER_TAG_BUILD"
 
     # The TAG_BUILD should be always connected to TAG_VERSION
@@ -341,7 +341,7 @@ push_container_image(){
         # previous pipeline, we had a single host that was pushing the
         # manifests, so the x86_64 manifest was present before the arm64, and
         # had host had the x86_64 image saved.
-#        docker pull "sourcemation/$DOCKER_TAG_VERSION" || true
+        #        docker pull "sourcemation/$DOCKER_TAG_VERSION" || true
         for container_registry in "docker.io" "quay.io"; do
             echo "Creating latest manifest for ${container_registry} with arm64 and amd64"
             docker manifest create "${container_registry}/sourcemation/$DOCKER_TAG_VERSION" --amend "${container_registry}/sourcemation/$DOCKER_TAG_BUILD" --amend "$(echo ${container_registry}/sourcemation/"$DOCKER_TAG_BUILD" | sed 's/-arm64/-amd64/g' )"
@@ -391,7 +391,8 @@ push_readme(){
     if [ "$BASE_ARCH" == "x86_64" ];then
         bin_arch="amd64"
     else
-    # README.md is same for all images, we do not need to push it for each
+        # README.md is the same for all images; we do not need to push it for
+        # each architecture, it's eating precious compute time/cloud credits
         return
     fi
     binary_url="https://github.com/christian-korneck/docker-pushrm/releases/download/v1.9.0/docker-pushrm_linux_${bin_arch}"
