@@ -175,7 +175,7 @@ def print_in_order(node: GraphNode, visited_nodes, saved_output):
         print_in_order(edge, visited_nodes, saved_output)
 
 
-def print_graph(nodes, filename=None):
+def print_graph_and_save_build_order(nodes, filename=None):
     """
     Prints the build order of Docker images in a graph structure and optionally saves it to a file.
 
@@ -202,9 +202,9 @@ def print_graph(nodes, filename=None):
         return
     saved_output.sort()
     build_order = []
+
     for line in saved_output:
         build_order.append(line.split('->')[-1])
-
 
     with open(filename, 'w') as f:
         for line in build_order:
@@ -228,7 +228,7 @@ def main():
         print(f'Found: {node.path}: {node.base_images}')
 
     build_order = create_build_tree(dockerfiles_nodes, args.org_name)
-    print_graph(build_order, "build_order.txt")
+    print_graph_and_save_build_order(build_order, "build_order.txt")
 
 
 if __name__ == '__main__':
