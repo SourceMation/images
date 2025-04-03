@@ -14,7 +14,7 @@ jobs:
 
       - name: Generate build order
         run: |
-          cd images
+          cd containers
           chmod +x ./docker-build-order.py
           ./docker-build-order.py images/ sourcemation
 
