@@ -42,7 +42,7 @@ versions like `sourcemation/my-super-image:version-debian-11` that should point
 to the same image as latest images (it's manifest list. The manifest list will
 be overwritten with next build!).
 
-The `DOCKER_TAG_SUFFIX` as name suggest is a suffix to the tag and common
+The `DOCKER_TAG_SUFFIX`, as its name suggests, is a suffix to the tag and common
 values for it are/will be `debian-11`, `ubuntu-22.04`, `ubuntu-24.04`,
 `rocky-9`, etc.
 
