@@ -117,7 +117,7 @@ read_configs(){
 
     print_info "Checking if DOCKER_TAG_SUFFIX for multipe tag build is set"
     if [[ ! -v DOCKER_TAG_SUFFIX ]]; then
-        print_info "DOCKER_TAG_SUFFIX is not set set to empty"
+        print_info "DOCKER_TAG_SUFFIX is not set. Setting DOCKER_TAG_SUFFIX as empty string"
         DOCKER_TAG_SUFFIX=""
     else
         print_info "DOCKER_TAG_SUFFIX is set to $DOCKER_TAG_SUFFIX -> we won't push that latest tag!"
