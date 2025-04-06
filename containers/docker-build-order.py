@@ -161,22 +161,55 @@ def create_build_tree(dockerfiles_nodes, org_name):
     return build_order
 
 
-def print_in_order(node: GraphNode, visited_nodes):
+def print_in_order(node: GraphNode, visited_nodes, saved_output):
     """
     Note this is not real IN ORDER traversal but rather DFS traversal.
     The name might be confusing, but it's about BUILD ORDER.
     """
     my_name = get_container_name_from_path(node.value.path)
     visited_nodes = visited_nodes + [my_name]
-    print("->".join(visited_nodes))
+    build_path_str = "->".join(visited_nodes)
+    print(build_path_str)
+    saved_output.append(build_path_str)
     for edge in node.edges:
-        print_in_order(edge, visited_nodes)
+        print_in_order(edge, visited_nodes, saved_output)
 
 
-def print_graph(nodes):
+def print_graph_and_save_build_order(nodes, filename=None):
+    """
+    Prints the build order of Docker images in a graph structure and optionally saves it to a file.
+
+    The build order is printed in the format:
+    container_name->container_name2->container_name3
+
+    If a filename is provided, the build order is saved to the file in the format:
+    container_name
+    container_name2
+    container_name3
+
+    Args:
+        nodes (dict): A dictionary of GraphNode objects representing the Docker images.
+        filename (str, optional): The name of the file to save the build order. If not provided, only the graph is printed.
+
+    Returns:
+        None
+    """
+    saved_output = []
     for node in nodes.values():
         if node.isRoot:
-            print_in_order(node, [])
+            print_in_order(node, [], saved_output)
+    if not filename:
+        return
+    saved_output.sort()
+    build_order = []
+
+    for line in saved_output:
+        build_order.append(line.split('->')[-1])
+
+    with open(filename, 'w') as f:
+        for line in build_order:
+            f.write(line + '\n')
+    print (f"Build order: {filename}")
 
 
 def main():
@@ -195,7 +228,7 @@ def main():
         print(f'Found: {node.path}: {node.base_images}')
 
     build_order = create_build_tree(dockerfiles_nodes, args.org_name)
-    print_graph(build_order)
+    print_graph_and_save_build_order(build_order, "build_order.txt")
 
 
 if __name__ == '__main__':
