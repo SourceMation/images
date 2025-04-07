@@ -144,9 +144,8 @@ jobs:
           bash build-container.sh ${{ inputs.container_name }}
 
   build-containers:
-    needs: generate-build-order
     runs-on: ubuntu-latest
-    if: ${{ inputs.next_containers != '' }}
+    if: always() && ${{ inputs.next_containers != '' }}
     steps:
       - uses: actions/checkout@v4
       - name: Build containers
