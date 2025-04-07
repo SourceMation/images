@@ -3,7 +3,7 @@ run-name: Manual build of ${{ inputs.container_name }} container by @${{ github.
 
 concurrency:
   group: build-container-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 on:
   workflow_dispatch:
