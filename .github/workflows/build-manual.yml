@@ -1,6 +1,10 @@
 name: Build container
 run-name: Manual build of ${{ inputs.container_name }} container by @${{ github.actor }}
 
+concurrency:
+  group: build-container-${{ github.ref }}
+  cancel-in-progress: true
+
 on:
   workflow_dispatch:
     # Inputs the workflow accepts.
