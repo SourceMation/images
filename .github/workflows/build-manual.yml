@@ -105,6 +105,8 @@ jobs:
           sudo systemctl enable --now docker
       - name: Build the container, test, push and push readme
         run: |
+          echo "CONTAINER_NAME: ${{ inputs.container_name }}"
+          echo "CONTAINERS TO BUILD LIST: ${{ inputs.next_containers }}"
           pwd
           cd containers
           bash build-container.sh ${{ inputs.container_name }}
@@ -144,6 +146,7 @@ jobs:
           bash build-container.sh ${{ inputs.container_name }}
 
   build-containers:
+    needs: [build_container_amd64, build_container_arm64]
     runs-on: ubuntu-latest
     if: always() && ${{ inputs.next_containers != '' }}
     steps:
@@ -159,4 +162,9 @@ jobs:
           echo "Container to build: $container"
           echo "Next container to build: $to_build_list"
           echo "Building container: $container"
-          gh workflow run build-manual.yml  --repo SourceMation/images -f container_name=$container  next_containers=$to_build_list
+          # The cut -d',' -f2- won't make empty list for single element ...
+          if [[ $to_build_list == $container ]]; then
+            gh workflow run build-manual.yml  --repo SourceMation/images -f container_name=$container
+          else
+            gh workflow run build-manual.yml  --repo SourceMation/images -f container_name=$container  next_containers=$to_build_list
+          fi
