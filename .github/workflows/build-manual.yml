@@ -71,7 +71,11 @@ on:
         default: true
         required: false
         type: boolean
-
+      next_containers:
+        description: 'Next containers to build. This is a comma separated list of container names. The containers will be built in the order they are listed.'
+        default: ''
+        required: false
+        type: string
 jobs:
   build_container_amd64:
     name: Build container (amd64)
@@ -138,3 +142,22 @@ jobs:
           pwd
           cd containers
           bash build-container.sh ${{ inputs.container_name }}
+
+  build-containers:
+    needs: generate-build-order
+    runs-on: ubuntu-latest
+    if: ${{ inputs.next_containers != '' }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build containers
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          next_containers: ${{ inputs.next_containers }}
+        run: |
+          container=$(echo "$next_containers" | cut -d',' -f1)
+          to_build_list=$(echo "$next_containers" | cut -d',' -f2-)
+
+          echo "Container to build: $first_element"
+          echo "Next container to build: $rest_elements"
+          echo "Building container: $container"
+          gh workflow run build-manual.yml  --repo SourceMation/images -f container_name=$container  next_containers=$to_build_list

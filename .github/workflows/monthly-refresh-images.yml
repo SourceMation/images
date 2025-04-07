@@ -40,7 +40,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          for container in $(cat build_order.txt); do
-            echo "Building container: $container"
-            gh workflow run build-manual.yml -f container_name=$container --repo SourceMation/images
-          done
+          string=$(cat build_order.txt | tr '\n' ',' | sed 's/,$//')
+          container=$(echo "$string" | cut -d',' -f1)
+          to_build_list=$(echo "$string" | cut -d',' -f2-)
+
+          echo "Container to build: $first_element"
+          echo "Next container to build: $rest_elements"
+          echo "Building container: $container"
+          gh workflow run build-manual.yml  --repo SourceMation/images -f container_name=$container  next_containers=$to_build_list
