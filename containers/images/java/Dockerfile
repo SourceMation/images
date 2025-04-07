@@ -16,7 +16,7 @@ LABEL name="java" \
       io.openshift.tags="java rockylinux"
 
 RUN dnf module enable maven:3.8 -y && \
-    dnf install -y --setopt=tsflags=nodocs --setopt=install_weak_deps=0 --nobest --allowerasing ca-certificates curl procps wget java-21-headless maven-openjdk21  && \
+    dnf install -y --setopt=tsflags=nodocs --setopt=install_weak_deps=0 --nobest --allowerasing ca-certificates curl procps wget java-21-headless java-21-openjdk-devel maven-openjdk21 && \
     dnf update -y && \
     dnf clean all
 
