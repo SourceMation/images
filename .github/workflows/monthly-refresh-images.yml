@@ -43,6 +43,8 @@ jobs:
           echo "::set-output name=build_order::$build_order"
 
       - name: Build containers
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           for container in ${{ steps.read-build-order.outputs.build_order }}; do
             echo "Building container: $container"
