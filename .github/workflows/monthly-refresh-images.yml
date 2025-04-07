@@ -47,4 +47,4 @@ jobs:
           echo "Container to build: $container"
           echo "Next container to build: $to_build_list"
           echo "Building container: $container"
-          gh workflow run build-manual.yml  --repo SourceMation/images -f container_name=$container  next_containers=$to_build_list
+          gh workflow run build-manual.yml  --repo SourceMation/images -f container_name=$container  -f next_containers="$to_build_list"
