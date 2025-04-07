@@ -44,9 +44,9 @@ jobs:
 
       - name: Build containers
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           for container in ${{ steps.read-build-order.outputs.build_order }}; do
             echo "Building container: $container"
-            gh workflow run build-manual.yml -f container=$container
+            gh workflow run build-manual.yml -f container=$container --repo SourceMation/images
           done
