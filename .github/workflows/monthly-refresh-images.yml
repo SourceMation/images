@@ -44,7 +44,7 @@ jobs:
           container=$(echo "$string" | cut -d',' -f1)
           to_build_list=$(echo "$string" | cut -d',' -f2-)
 
-          echo "Container to build: $first_element"
-          echo "Next container to build: $rest_elements"
+          echo "Container to build: $container"
+          echo "Next container to build: $to_build_list"
           echo "Building container: $container"
           gh workflow run build-manual.yml  --repo SourceMation/images -f container_name=$container  next_containers=$to_build_list
