@@ -47,8 +47,8 @@ is a separate project and is maintained by
 
 ## Extra notes
 
-This Camel-K distribution is shipped with the OpenJDK 17 and 21 JRE builds
-provided by the downstream Rocky Linux 9 packaging team. OpenJDK 17 is being
+This Camel-K distribution is shipped with the OpenJDK 17 builds
+provided by the downstream Debian packaging team. OpenJDK 17 is being
 used as the default JRE with Maven preconfigured to use it.
 
 The application runs as the unnamed system user UID 1001 belonging to the group
@@ -60,7 +60,7 @@ A detailed risk analysis report of the image and its components can be found on
 the SourceMation platform.
 
 For more information, check out the [Camel-K Introduction page entries on
-apache.org](https://camel.apache.org/camel-k/2.3.x/index.html).
+apache.org](https://camel.apache.org).
 
 ### Licenses
 
