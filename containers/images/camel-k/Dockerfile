@@ -58,15 +58,12 @@ COPY --from=builder /build/camel-k/build/mvnw/mvnw.tar ${MVNW_DIR}
 RUN tar -xC ${MVNW_DIR} -f ${MVNW_DIR}mvnw.tar \
     && rm -v ${MVNW_DIR}mvnw.tar \
     && sed -i "s;distributionUrl=.*;distributionUrl=${MAVEN_DIST_URL};" ${MVNW_DIR}.mvn/wrapper/maven-wrapper.properties
+
 # Used by mvnw to download maven dist into it
 ENV MAVEN_USER_HOME="${MAVEN_HOME}"
-# Install a default mvnw distribution at build time and prepare the config for formatting log
-RUN ${MVNW_DIR}/mvnw --version | grep "Maven home:" | sed 's/Maven home: //' >> ${MVNW_DIR}default \
-    && cp -r /usr/share/maven/lib/. $(cat ${MVNW_DIR}default)/lib \
-    && rm $(cat ${MVNW_DIR}default)/lib/maven-slf4j-provider* \
-    && rm $(cat ${MVNW_DIR}default)/lib/slf4j-api-1.*
 
-ENV MAVEN_OPTS="${MAVEN_OPTS} -Dlogback.configurationFile=${MAVEN_HOME}/conf/logback.xml"
+# Install a default mvnw distribution at build time
+RUN ${MVNW_DIR}/mvnw --version 
 
 # This is build process bug/old code
 #COPY --from=builder /build/camel-k/build/_maven_output ${MVN_REPO}
