@@ -4,7 +4,7 @@ Camel-K is an Integration Toolkit for Apache Camel aimed to increase the
 scope of Camel components and patterns, like Camel DSL, for Kubernetes
 integration scenarios, mainly serverless and microservice-based ones.
 
-This Camel-K distribution is a proprietary compilation provided by the
+This Camel-K distribution is a compilation provided by the
 [SourceMation](https://sourcemation.com) packaging team.
 
 ## Usage
@@ -64,7 +64,7 @@ apache.org](https://camel.apache.org/camel-k/2.3.x/index.html).
 
 ### Licenses
 
-The base license for the solution (Camel-K v2.3.3) is the [Apache License
-Version 2.0](https://github.com/apache/camel-k/blob/v2.3.3/LICENSE). The
+The base license for the solution (Camel-K v2.6.0) is the [Apache License
+Version 2.0](https://github.com/apache/camel-k/blob/main/LICENSE). The
 licenses for each component shipped as part of this image can be found on the
 image's appropriate SourceMation entry.
