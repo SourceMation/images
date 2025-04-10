@@ -3,20 +3,20 @@ FROM sourcemation/debian-12-slim:latest
 # It's based on the Docker Official image for gcc with some tweaks :)
 
 # Do not split the description, otherwise we will see a blank space in the labels
-LABEL name="gcc-13" \
+LABEL name="gcc-14" \
       vendor="SourceMation" \
       url="https://sourcemation.com/"\
       licenses="GPLv3+ with GCC Runtime Library Exception" \
       created="$(date +%Y%m%d)" \
       architecture="$(uname -m)" \
-      summary="GCC 13 on Debian 12 Slim Container" \
-      description="Provides GCC 13 on Debian 12 Slim Container" \
-      version="13.3.0" \
-      io.k8s.display-name="GCC 13 on Debian 12 Slim Container" \
-      io.k8s.description="Provides GCC 13 on Debian 12 Slim Container" \
-      io.openshift.tags="gcc gcc-13 debian-12-slim"
+      summary="GCC 14 on Debian 12 Slim Container" \
+      description="Provides GCC 14 on Debian 12 Slim Container" \
+      version="14.2.0" \
+      io.k8s.display-name="GCC 14 on Debian 12 Slim Container" \
+      io.k8s.description="Provides GCC 14 on Debian 12 Slim Container" \
+      io.openshift.tags="gcc gcc-14 debian-12-slim"
 
-ENV GCC_VERSION="13.3.0"
+ENV GCC_VERSION="14.2.0"
 
 # abigail-tools - abidiff later to verify that it's not breaking the debian packages
 # Most of this packages are from buildpack-deps that is based on old Heroku stack,
