@@ -45,6 +45,7 @@ on:
           - python-3.13
           - quarkus
           - rabbitmq
+          - rabbitmq-4
           - redis
           - rocky-9
           - rocky-9-minimal
