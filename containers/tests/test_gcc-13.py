@@ -5,7 +5,7 @@ import os
 def test_gcc_installed():
     result = subprocess.run(['gcc', '--version'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
     assert result.returncode == 0, "GCC is not installed or not found in system PATH"
-    assert "gcc version" in result.stdout.lower(), "Unexpected output from 'gcc --version'"
+    assert "Free Software Foundation" in result.stdout.lower(), "Unexpected output from 'gcc --version'"
 
 def test_gcc_version():
     result = subprocess.run(['gcc', '--version'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
@@ -20,7 +20,7 @@ def test_gcc_version():
 def test_gpp_installed():
     result = subprocess.run(['g++', '--version'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
     assert result.returncode == 0, "G++ is not installed or not found in system PATH"
-    assert "g++ version" in result.stdout.lower(), "Unexpected output from 'g++ --version'"
+    assert "Free Software Foundation" in result.stdout.lower(), "Unexpected output from 'g++ --version'"
 
 def test_gpp_version():
     result = subprocess.run(['g++', '--version'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
