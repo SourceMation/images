@@ -51,8 +51,8 @@ on:
           - rocky-9-minimal
           - ruby
           - servicemix
+          - cnpg-16-oneshot
 #          - postgres-16-bullseye-oneshot
-#          - cnpg-16-oneshot
       push_image:
         description: 'Push the image to the registries'
         default: true

@@ -40,7 +40,7 @@ def test_pgaudit_package_installed():
 def test_locale_settings():
     try:
         current_locale = locale.getlocale()
-        assert current_locale == ('pl_PL', 'UTF-8'), f"Locale is not pl_PL.UTF-8, but {current_locale}"
+        assert current_locale == ('en_US', 'UTF-8'), f"Locale is not en_US.UTF-8, but {current_locale}"
     except locale.Error as e:
         pytest.fail(f"Locale error: {e}")
 
@@ -58,7 +58,7 @@ def test_postgresql_locale():
         messages = cursor.fetchone()[0]
         cursor.execute("SHOW server_encoding")
         encoding = cursor.fetchone()[0]
-        assert messages == "pl_PL.UTF-8", f"PostgreSQL messages is not pl_PL.UTF-8, but {messages}"
+        assert messages == "en_US.UTF-8", f"PostgreSQL messages is not en_US.UTF-8, but {messages}"
         assert encoding == "UTF8", f"PostgreSQL encoding is not UTF8, but {encoding}"
     finally:
         cursor.close()
