@@ -24,6 +24,7 @@ on:
           - debian-11-slim
           - debian-12-slim
           - gcc-13
+          - gcc-14
           - golang-1.23
           - golang-1.24
           - helidon
