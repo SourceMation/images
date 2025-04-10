@@ -19,10 +19,11 @@ on:
           - apicast
           - camel-k
           - camel-karavan
-          - cnpg-17
           - cnpg-16
+          - cnpg-17
           - debian-11-slim
           - debian-12-slim
+          - gcc-13
           - golang-1.23
           - golang-1.24
           - helidon
@@ -36,8 +37,8 @@ on:
           - mosquitto
           - nodejs
           - openapi-generator-cli
-          - postgres-17
           - postgres-16
+          - postgres-17
           - postgresql
           - python
           - python-3.11
