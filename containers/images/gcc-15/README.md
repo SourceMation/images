@@ -17,7 +17,7 @@ Note that the rust compiler that is experimental requires:
 ```bash
 GCCRS_EXTRA_ARGS="-frust-incomplete-and-experimental-compiler-do-not-use"
 ```
-or 
+or
 ```bash
 gccrs -frust-incomplete-and-experimental-compiler-do-not-use ...
 ```
@@ -103,7 +103,7 @@ and is maintained by SourceMation.
 
 This GCC 15 image is built on a Debian 12 Slim base image, which is a minimal
 consistent compilation environment. This image is loosely based on the Docker
-official image for gcc and is built using a separate, independent SourceMaton
+official image for gcc and is built using a separate, independent SourceMation
 images build chain.
 
 ## Image and its components Risk Analysis report
