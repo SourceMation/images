@@ -12,7 +12,7 @@ Built upon the foundation of the SourceMation Debian 12 Slim image.
 signed! The snapshot is taken from the official GCC Mirror with an HTTPS
 connection but without GPG signature verification, as they are unavailable.
 
-Note that that rust compiler that is experimental requires:
+Note that the rust compiler that is experimental requires:
 
 ```bash
 GCCRS_EXTRA_ARGS="-frust-incomplete-and-experimental-compiler-do-not-use"
