@@ -23,6 +23,7 @@ on:
           - cnpg-16
           - debian-11-slim
           - debian-12-slim
+          - erlang
           - golang-1.23
           - golang-1.24
           - helidon
