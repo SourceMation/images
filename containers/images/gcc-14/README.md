@@ -2,7 +2,7 @@
 
 This container image delivers the GNU Compiler Collection (GCC) version 14,
 providing an immediate environment for compiling projects written in C, C++,
-GO, Ada, D, Fortran, and other supported programming languages.
+GO, Fortran, and other supported programming languages.
 
 Built upon the foundation of the SourceMation Debian 12 Slim image.
 

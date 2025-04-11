@@ -1,7 +1,7 @@
 # GCC 13 packaged by SourceMation
 
 This image provides the GNU Compiler Collection (GCC) version 13. It's ready to
-compile your C, C++, Ada, D, Fortran, and other supported languages right out
+compile your C, C++, Fortran, and other supported languages right out
 of the container.
 
 This image is built on top of SourceMation Debian 12 Slim image:
