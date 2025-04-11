@@ -2,25 +2,12 @@
 
 This container image delivers the GNU Compiler Collection (GCC) version 15,
 supplying an immediate environment for compiling projects written in C, C++,
-GO, D, Fortran, and other supported programming languages. This image is built
+GO, Fortran, and other supported programming languages. This image is built
 upon an unstable snapshot of GCC, as an official 15 release is not yet
 available.
 
 Built upon the foundation of the SourceMation Debian 12 Slim image.
 
-**Security Note**: This image is built from a snapshot of GCC 15, which is not
-signed! The snapshot is taken from the official GCC Mirror with an HTTPS
-connection but without GPG signature verification, as they are unavailable.
-
-Note that the rust compiler that is experimental requires:
-
-```bash
-GCCRS_EXTRA_ARGS="-frust-incomplete-and-experimental-compiler-do-not-use"
-```
-or
-```bash
-gccrs -frust-incomplete-and-experimental-compiler-do-not-use ...
-```
 
 ## Usage
 
@@ -34,7 +21,7 @@ For compiling your source code, you can link your project directory into the
 container:
 
 ```bash
-docker run -v {/path/to/your/project}:/app -w /app sourcemation/gcc-15 gcc main.c -o main
+docker run -v /path/to/your/project:/app -w /app sourcemation/gcc-15 gcc main.c -o main
 ```
 
 Here, the `-v` option establishes a mount between your local directory and

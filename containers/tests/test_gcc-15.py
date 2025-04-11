@@ -104,33 +104,4 @@ def test_compile_go_program():
     os.remove("hello.go")
     os.remove("hellogo")
 
-def test_gccrs_installed():
-    result = subprocess.run(['gccrs', '--version'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-    assert result.returncode == 0, "gccrs is not installed or not found in system PATH"
-    assert "free software foundation" in result.stdout.lower(), "Unexpected output from 'gccrs --version'"
-
-
-# This test do not work, it's hard to make gccrs working... even empty program returns exit code 6...
-empty_test = """# def test_compile_rust_program():
-    # rust_code = '''
-    # fn main() {
-        # return (0);
-    # }
-    # '''
-    # with open("hello.rs", "w") as f:
-        # f.write(rust_code)
-
-    # compile_result = subprocess.run(['gccrs',
-                                     # '-frust-incomplete-and-experimental-compiler-do-not-use',
-                                     # 'hello.rs', '-o', 'hellors'],
-                                    # stdout=subprocess.PIPE,
-                                    # stderr=subprocess.PIPE, text=True)
-    # assert compile_result.returncode == 0, f"Failed to compile Rust program: {compile_result.stderr}"
-    # assert os.path.exists('hellors'), "Compiled executable 'hellors' not found"
-
-    # run_result = subprocess.run(['./hellors'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, check=True)
-    # assert run_result.returncode == 0, "Compiled Rust program did not run successfully - it's empty program"
-
-    # os.remove("hello.rs")
-    # os.remove("hellors")
-    """
+# There were tests for gccrs - rust compiler, but oh boy it's not ready yet: Date: 11 April 2025

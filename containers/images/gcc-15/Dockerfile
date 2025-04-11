@@ -23,12 +23,14 @@ ENV GCC_VERSION="20250406"
 # that now we mimic - how poetic!
 RUN set -eux; \
     apt-get update; \
-    apt-get install -y --no-install-recommends abigail-tools curl ca-certificates wget gcc g++ automake \
+    apt-get install -y --no-install-recommends  \
+        abigail-tools \
         autoconf \
         automake \
         bzip2 \
+        ca-certificates \
+        curl \
         default-libmysqlclient-dev \
-        cargo \
         dpkg-dev \
         file \
         g++ \
@@ -64,6 +66,7 @@ RUN set -eux; \
         make \
         patch \
         unzip \
+        wget \
         xz-utils \
         zlib1g-dev; \
     rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*;
@@ -82,7 +85,7 @@ RUN set -ex; \
     \
     savedAptMark="$(apt-mark showmanual)"; \
     apt-get update; \
-    apt-get install -y --no-install-recommends dpkg-dev flex gnupg; \
+    apt-get install -y --no-install-recommends flex gnupg; \
     rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/* ;\
     \
     curl -fL "https://ftp.gwdg.de/pub/misc/gcc/snapshots/LATEST-15/gcc-15-$GCC_VERSION.tar.xz" -o "gcc.tar.xz"; \
@@ -119,7 +122,7 @@ RUN set -ex; \
     /usr/src/gcc/configure \
         --build="$gnuArch" \
         --disable-multilib \
-        --enable-languages=c,c++,fortran,go,rust \
+        --enable-languages=c,c++,fortran,go \
         $extraConfigureArgs \
     ; \
     make -j "$(nproc)"; \
