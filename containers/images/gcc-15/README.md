@@ -9,10 +9,10 @@ available.
 Built upon the foundation of the SourceMation Debian 12 Slim image.
 
 **Security Note**: This image is built from a snapshot of GCC 15, which is not
-signed! The snapshot is taken from the official GCC Mirror with HTTPS
-connection but without GPG signature verification as they are not available.
+signed! The snapshot is taken from the official GCC Mirror with an HTTPS
+connection but without GPG signature verification, as they are unavailable.
 
-Note that that rust compilier that is experimental required
+Note that that rust compiler that is experimental requires:
 
 ```bash
 GCCRS_EXTRA_ARGS="-frust-incomplete-and-experimental-compiler-do-not-use"
@@ -67,7 +67,7 @@ docker run -it my-gcc-app
 This image, in its standard configuration, does not define any particular
 environment variables, expose any network ports, or necessitate persistent
 volumes. Nevertheless, you retain the flexibility to mount volumes for sharing
-your project files and build artifacts.
+your project files and building artefacts.
 
 The following environment variables are defined within the image:
 
@@ -108,9 +108,10 @@ images build chain.
 
 ## Image and its components Risk Analysis report
 
-A detailed risk analysis report of the images and their components can be found
-on the SourceMation platform. Note that some images might not have them ready,
-you can always create an issue to request it.
+The Sourcemation platform provides a detailed risk analysis report of the
+images and their components. However, some images might not have them ready;
+you can always create an issue to request them.
+
 
 For more information about GCC, visit the [official GCC
 website](https://gcc.gnu.org/).
