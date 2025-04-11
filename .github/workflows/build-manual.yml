@@ -23,6 +23,7 @@ on:
           - cnpg-17
           - debian-11-slim
           - debian-12-slim
+          - erlang
           - gcc-13
           - gcc-14
           - gcc-15
