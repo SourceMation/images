@@ -85,3 +85,37 @@ def test_rabbitmq_delete_queue():
 
     finally:
         connection.close()
+
+def test_rabbitmq_redeclare_queue():
+    credentials = pika.PlainCredentials(RABBITMQ_USER, RABBITMQ_PASSWORD)
+    parameters = pika.ConnectionParameters(host=RABBITMQ_HOST, credentials=credentials)
+
+    connection = pika.BlockingConnection(parameters)
+    channel = connection.channel()
+
+    try:
+        channel.queue_declare(queue='test_queue')
+        with pytest.raises(pika.exceptions.ChannelClosedByBroker):
+            channel.queue_declare(queue='test_queue', durable=True)
+    finally:
+        connection.close()
+
+
+def test_rabbitmq_purge_queue():
+    credentials = pika.PlainCredentials(RABBITMQ_USER, RABBITMQ_PASSWORD)
+    parameters = pika.ConnectionParameters(host=RABBITMQ_HOST, credentials=credentials)
+
+    connection = pika.BlockingConnection(parameters)
+    channel = connection.channel()
+
+    try:
+        channel.queue_declare(queue='test_queue')
+        channel.basic_publish(exchange='', routing_key='test_queue', body='Message to purge')
+        channel.queue_purge(queue='test_queue')
+
+        method_frame, header_frame, body = channel.basic_get(queue='test_queue', auto_ack=True)
+        assert body is None, "Queue was not purged successfully."
+    except Exception as e:
+        pytest.fail(f"Failed to purge queue in RabbitMQ: {str(e)}")
+    finally:
+        connection.close()

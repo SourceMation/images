@@ -243,6 +243,9 @@ test_container(){
         "rabbitmq")
             CONTAINER_RUN_COMMAND=""
             ;;
+        "rabbitmq-4")
+            CONTAINER_RUN_COMMAND=""
+            ;;
         "quarkus")
             CONTAINER_RUN_COMMAND=""
             ;;
