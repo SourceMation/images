@@ -1,4 +1,4 @@
-FROM sourcemation/debian-12-slim:latest as builder
+FROM sourcemation/debian-12-slim:latest AS builder
 
 ARG ERLANG_VERSION=27.3.2
 ARG ERLANG_DOWNLOAD_URL="https://github.com/erlang/otp/releases/download/OTP-${ERLANG_VERSION}/otp_src_${ERLANG_VERSION}.tar.gz"

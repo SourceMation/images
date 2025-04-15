@@ -1,6 +1,6 @@
-FROM sourcemation/erlang:latest as builder
+FROM sourcemation/erlang:latest AS builder
 
-ARG RABBITMQ_VERSION=4.0.8
+ARG RABBITMQ_VERSION=4.0.9
 ARG RABBITMQ_SOURCE_URL="https://github.com/rabbitmq/rabbitmq-server/releases/download/v${RABBITMQ_VERSION}/rabbitmq-server-generic-unix-latest-toolchain-${RABBITMQ_VERSION}.tar.xz"
 ARG RABBITMQ_PGP_KEY_ID=0x0A9AF2115F4687BD29803A206B73A36E6026DFCA
 ARG RABBITMQ_PATH="/usr/local/src/rabbitmq"
@@ -42,7 +42,7 @@ LABEL name="rabbitmq-4" \
       architecture="$(uname -m)" \
       summary="RabbitMQ on Debian 12-slim" \
       description="Provides RabbitMQ on Debian 12-slim" \
-      version="4.0.8" \
+      version="4.0.9" \
       io.k8s.display-name="RabbitMQ on Debian 12-slim Container" \
       io.k8s.description="Provides RabbitMQ Debian 12-slim Container" \
       io.openshift.tags="rabbitmq-4 debian-12-slim"
@@ -87,7 +87,7 @@ ENV HOME=$RABBITMQ_DATA_DIR
 VOLUME $RABBITMQ_DATA_DIR
 
 ENV APP_NAME="rabbitmq" \
-    APP_VERSION="4.0.8" \
+    APP_VERSION="4.0.9" \
     LANG=C.UTF-8 \
     LANGUAGE=C.UTF-8 \
     LC_ALL=C.UTF-8

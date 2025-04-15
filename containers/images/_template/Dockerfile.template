@@ -1,5 +1,5 @@
 # IF YOU HAVE TO BUILD THINGS, USE ANOTHER CONTAINER
-# FROM sourcemation/rocky-9:latest as builder
+# FROM sourcemation/rocky-9:latest AS builder
 # BUILD
 
 # END BUILD
