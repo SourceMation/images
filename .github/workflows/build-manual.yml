@@ -49,6 +49,7 @@ on:
           - python-3.13
           - quarkus
           - rabbitmq
+          - rabbitmq-cluster-operator
           - rabbitmq-4
           - rabbitmq-4-management
           - redis
