@@ -73,7 +73,7 @@ on:
           push_image to only push the readme. Pushing image OVERWRITES the
           readme - ALWAYS! If test_image and push_image are disabled, and the
           push_readme is enable the container is not built, tested or pushed,
-          only the readme is pushed.'	git@github.com:SourceMation/images.git
+          only the readme is pushed.'
         default: true
         required: false
         type: boolean
