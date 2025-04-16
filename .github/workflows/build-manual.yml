@@ -49,8 +49,8 @@ on:
           - python-3.13
           - quarkus
           - rabbitmq
-          - rabbitmq-4-management
           - rabbitmq-4
+          - rabbitmq-4-management
           - redis
           - rocky-9
           - rocky-9-minimal
