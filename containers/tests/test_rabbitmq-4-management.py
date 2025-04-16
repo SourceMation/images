@@ -1,15 +1,20 @@
 import pytest
 import subprocess
 import pika
+import requests
 
+RABBITMQ_ADMIN_PORT = 15672
 RABBITMQ_USER = "guest"
 RABBITMQ_PASSWORD = "guest"
 RABBITMQ_HOST = "localhost"
+RABBITMQ_ADMIN_URL = f"http://{RABBITMQ_HOST}:{RABBITMQ_ADMIN_PORT}"
+
 
 def test_rabbitmq_installed():
     result = subprocess.run(['rabbitmqctl', 'status'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
     assert result.returncode == 0, "RabbitMQ is not installed or 'rabbitmqctl' command is not found."
     assert "Status of node" in result.stdout, "Unexpected output from 'rabbitmqctl status'."
+
 
 def test_rabbitmq_connection():
     credentials = pika.PlainCredentials(RABBITMQ_USER, RABBITMQ_PASSWORD)
@@ -23,6 +28,7 @@ def test_rabbitmq_connection():
     finally:
         if connection.is_open:
             connection.close()
+
 
 def test_rabbitmq_send_message():
     credentials = pika.PlainCredentials(RABBITMQ_USER, RABBITMQ_PASSWORD)
@@ -45,6 +51,7 @@ def test_rabbitmq_send_message():
     finally:
         connection.close()
 
+
 def test_rabbitmq_receive_message():
     credentials = pika.PlainCredentials(RABBITMQ_USER, RABBITMQ_PASSWORD)
     parameters = pika.ConnectionParameters(host=RABBITMQ_HOST, credentials=credentials)
@@ -64,6 +71,7 @@ def test_rabbitmq_receive_message():
 
     finally:
         connection.close()
+
 
 def test_rabbitmq_delete_queue():
     credentials = pika.PlainCredentials(RABBITMQ_USER, RABBITMQ_PASSWORD)
@@ -85,6 +93,7 @@ def test_rabbitmq_delete_queue():
 
     finally:
         connection.close()
+
 
 def test_rabbitmq_redeclare_queue():
     credentials = pika.PlainCredentials(RABBITMQ_USER, RABBITMQ_PASSWORD)
@@ -119,3 +128,16 @@ def test_rabbitmq_purge_queue():
         pytest.fail(f"Failed to purge queue in RabbitMQ: {str(e)}")
     finally:
         connection.close()
+
+
+def test_rabbitmq_admin_interface_accessible():
+    """Tests if the RabbitMQ management interface is accessible."""
+    try:
+        auth = (RABBITMQ_USER, RABBITMQ_PASSWORD)
+        response = requests.get(RABBITMQ_ADMIN_URL, auth=auth)
+        response.raise_for_status()  # Raise an exception for bad status codes (4xx or 5xx)
+        assert "RabbitMQ Management" in response.text, "RabbitMQ Management interface not found in the response."
+    except requests.exceptions.ConnectionError as e:
+        pytest.fail(f"Failed to connect to RabbitMQ Admin Interface at {RABBITMQ_ADMIN_URL}: {str(e)}")
+    except requests.exceptions.RequestException as e:
+        pytest.fail(f"Error accessing RabbitMQ Admin Interface: {str(e)}")

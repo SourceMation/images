@@ -166,21 +166,22 @@ build_container(){
         --iidfile /tmp/docker-build-push/iidfile \
         --platform="linux/$latest_arch" \
         --file "./Dockerfile" --no-cache ./
-            print_info "Build done"
-            popd
-        }
 
-        test_container(){
-            print_info "Testing container $IMAGE_NAME"
-            set -x
-            CONTAINER_FULL_NAME="sourcemation/$DOCKER_TAG_BUILD"
-            CONTAINER_STARTUP_TIMEOUT=10
-            # default test
-            CONTAINER_TEST_FILES="test_linux.py"
-            # Extra tests
-            if [ -f "tests/test_${IMAGE_NAME}.py" ]; then
-                CONTAINER_TEST_FILES+=" test_${IMAGE_NAME}.py"
-            fi
+    print_info "Build done"
+    popd
+}
+
+test_container(){
+    print_info "Testing container $IMAGE_NAME"
+    set -x
+    CONTAINER_FULL_NAME="sourcemation/$DOCKER_TAG_BUILD"
+    CONTAINER_STARTUP_TIMEOUT=10
+    # default test
+    CONTAINER_TEST_FILES="test_linux.py"
+    # Extra tests
+    if [ -f "tests/test_${IMAGE_NAME}.py" ]; then
+        CONTAINER_TEST_FILES+=" test_${IMAGE_NAME}.py"
+    fi
 
     # Python do not like the modules with '.' in the name so we have to fix it
     if [[ "${IMAGE_NAME}" =~ python-3. ]]; then
@@ -240,6 +241,12 @@ build_container(){
             CONTAINER_RUN_COMMAND=""
             ;;
         "rabbitmq")
+            CONTAINER_RUN_COMMAND=""
+            ;;
+        "rabbitmq-4")
+            CONTAINER_RUN_COMMAND=""
+            ;;
+        "rabbitmq-4-management")
             CONTAINER_RUN_COMMAND=""
             ;;
         "quarkus")
