@@ -1,15 +1,15 @@
-# RabbitMQ-4 packaged by SourceMation
+# RabbitMQ-4-Management packaged by SourceMation
 
 RabbitMQ is a high-performant, scalable message broker for AMQP clients.
 
-This image contains RabbitMQ Server version 4 running on Debian 12 Slim. It's built on top of the latest stable Erlang image to ensure compatibility and optimal performance.
+This image contains RabbitMQ Server Management version 4 running on Debian 12 Slim. It's built on top of the latest stable Erlang image to ensure compatibility and optimal performance.
 
 ## Usage
 
-Run a temporary container with the RabbitMQ
+Run a temporary container with the RabbitMQ Management
 
 ```
-docker run --rm -it sourcemation/rabbitmq-4:latest
+docker run --rm -it sourcemation/rabbitmq-4-management:latest
 ```
 
 ## Environment Vars, Ports, Volumes
@@ -17,8 +17,8 @@ docker run --rm -it sourcemation/rabbitmq-4:latest
 This image uses the following environment variables:
 
 ```
-APP_NAME="rabbitmq-4"
-APP_VERSION="4.1.0"
+APP_NAME="rabbitmq-4-management"
+APP_VERSION="4.0.9"
 HOME=/var/lib/rabbitmq
 RABBITMQ_DATA_DIR=/var/lib/rabbitmq
 RABBITMQ_HOME=/opt/rabbitmq
@@ -36,6 +36,8 @@ This image exposes the following ports:
 - 15691 : the Prometheus exporter API port (HTTPS)
 - 15692 : the Prometheus exporter API port (HTTP)
 - 25672 : the Erlang distribution server port
+- 15671 : the RabbitMQ Management UI (HTTPS)
+- 15672 : the RabbitMQ Management UI (HTTP)
 
 Please note that the ports need to be either manually forwarded with the
 `-p` option or let Docker choose some for you with the `-P` option.
@@ -53,10 +55,10 @@ this image on the SourceMation GitHub repository.
 [Creating issues and images requests](https://github.com/SourceMation/images/issues/new/choose)
 [Creating pull requests](https://github.com/SourceMation/images/compare)
 
-**Disclaimer:** The `sourcemation/rabbitmq-4` image is not affiliated with
+**Disclaimer:** The `sourcemation/rabbitmq-4-management` image is not affiliated with
 the Broadcom. The respective companies and
 organisations own the trademarks mentioned in the offering. The
-`sourcemation/rabbitmq-4` image is a separate project and is maintained by
+`sourcemation/rabbitmq-4-management` image is a separate project and is maintained by
 [SourceMation](https://sourcemation.com).
 
 ### Licenses
