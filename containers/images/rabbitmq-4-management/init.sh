@@ -7,7 +7,7 @@
 
 set -eu
 
-RABBITMQ_VERSION=$(docker run --rm -it sourcemation/rabbitmq-4:latest env |grep APP_VERSION |awk -F'=' '{print $2}')
+RABBITMQ_VERSION=$(docker run --rm -it sourcemation/rabbitmq-4:latest env |grep APP_VERSION |awk -F'=' '{print $2}' | tr -d '\r')
 
 if [[ ! "$RABBITMQ_VERSION" =~ ^4\. ]]; then
     echo "Version 4 is no more! Check the EOL status at https://endoflife.date/rabbitmq"
