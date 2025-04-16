@@ -11,7 +11,7 @@ echo "Pulling RabbitMQ 4 image..."
 docker pull sourcemation/rabbitmq-4:latest
 echo "RabbitMQ 4 image pulled successfully. Checking version from the image..."
 
-RABBITMQ_VERSION=$(docker run --rm -it sourcemation/rabbitmq-4:latest env | grep APP_VERSION |awk -F'=' '{print $2}' | tr -d '\r')
+RABBITMQ_VERSION=$(docker run --rm sourcemation/rabbitmq-4:latest env | grep APP_VERSION |awk -F'=' '{print $2}' | tr -d '\r')
 
 echo "Version is '$RABBITMQ_VERSION'"
 
