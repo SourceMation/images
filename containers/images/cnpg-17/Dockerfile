@@ -48,10 +48,10 @@ RUN set -xeu; \
     apt-get remove -y --purge --autoremove build-essential python3-dev; \
     rm -rf /var/lib/apt/lists/*;
 
-#Set PL locate
-RUN localedef -i pl_PL -c -f UTF-8 -A /usr/share/locale/locale.alias pl_PL.UTF-8; \
+# enable optional pl locale for postgres create cluster
+RUN localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8; \
     sed -i -e 's/# pl_PL/pl_PL/g' -e 's/# en_US/en_US/g' /etc/locale.gen && locale-gen
-ENV LANG=pl_PL.UTF-8
+ENV LANG=en_US.UTF-8
 
 # Change the uid of postgres to 26
 RUN usermod -u 26 postgres
