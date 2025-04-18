@@ -60,8 +60,8 @@ ENV LANG=ja_JP.UTF-8
 
 This image uses the following environment variables:
 
-```
-LANG=pl_PL.UTF-8
+```bash
+LANG=en_US.UTF-8
 PG_MAJOR=17
 PATH=$PATH:/usr/lib/postgresql/$PG_MAJOR/bin
 PGDATA=/var/lib/postgresql/data
