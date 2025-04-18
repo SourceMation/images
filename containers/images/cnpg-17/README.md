@@ -40,25 +40,27 @@ Refer to the official Cloud Native PostgreSQL documentation for instructions on 
 
 ## Locale Configuration
 
-This image sets the default locale to `pl_PL.UTF-8`. If you need to change the locale in a child image, you can override the `LANG` environment variable and regenerate the locales.
+The images support the following locales: en_US.UTF-8 (default), pl_PL.UTF-8. To
+and regenerate the locale settings.
 
-**Example of changing the locale to `en_US.UTF-8` in a child Dockerfile:**
+
+**Example Dockerfile snippet for switching to `ja_JP.UTF-8` (Japanese) locale:**
 
 ```dockerfile
 FROM sourcemation/cnpg-17
 
-# Change locale to en_US.UTF-8
-RUN localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8; \
-    sed -i -e 's/pl_PL/en_US/g' /etc/locale.gen && locale-gen
-ENV LANG=en_US.UTF-8
+# Change locale to ja_JP.UTF-8
+RUN localedef -i ja_JP -c -f UTF-8 -A /usr/share/locale/locale.alias ja_JP.UTF-8; \
+    sed -i -e 's/en_US/ja_JP/g' /etc/locale.gen && locale-gen
+ENV LANG=ja_JP.UTF-8
 ```
 
 ## Most important environment variables
 
 This image uses the following environment variables:
 
-```
-LANG=pl_PL.UTF-8
+```bash
+LANG=en_US.UTF-8
 PG_MAJOR=17
 PATH=$PATH:/usr/lib/postgresql/$PG_MAJOR/bin
 PGDATA=/var/lib/postgresql/data

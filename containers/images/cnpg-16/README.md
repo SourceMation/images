@@ -40,18 +40,20 @@ utilizing custom images.
 
 ## Locale Configuration
 
-This image defaults to `pl_PL.UTF-8`. To modify the locale in a child image,
-override the `LANG` environment variable and regenerate the locale settings.
+The images support following locales en_US.UTF-8 (default), pl_PL.UTF-8. To
+modify the locale in a child image, override the `LANG` environment variable
+and regenerate the locale settings.
 
-**Example Dockerfile snippet for switching to `en_US.UTF-8`:**
+
+**Example Dockerfile snippet for switching to `ja_JP.UTF-8` (Japanese) locale:**
 
 ```dockerfile
 FROM sourcemation/cnpg-16
 
-# Change locale to en_US.UTF-8
-RUN localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8; \
-    sed -i -e 's/pl_PL/en_US/g' /etc/locale.gen && locale-gen
-ENV LANG=en_US.UTF-8
+# Change locale to ja_JP.UTF-8
+RUN localedef -i ja_JP -c -f UTF-8 -A /usr/share/locale/locale.alias ja_JP.UTF-8; \
+    sed -i -e 's/en_US/ja_JP/g' /etc/locale.gen && locale-gen
+ENV LANG=ja_JP.UTF-8
 ```
 
 ## Key Environment Variables
@@ -59,7 +61,7 @@ ENV LANG=en_US.UTF-8
 This image utilizes:
 
 ```bash
-LANG=pl_PL.UTF-8
+LANG=en_US.UTF-8
 PG_MAJOR=16
 PATH=$PATH:/usr/lib/postgresql/$PG_MAJOR/bin
 PGDATA=/var/lib/postgresql/data
