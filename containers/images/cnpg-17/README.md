@@ -51,7 +51,7 @@ FROM sourcemation/cnpg-17
 
 # Change locale to ja_JP.UTF-8
 RUN localedef -i ja_JP -c -f UTF-8 -A /usr/share/locale/locale.alias ja_JP.UTF-8; \
-    sed -i -e 's/ja_JP/ja_JP/g' /etc/locale.gen && locale-gen
+    sed -i -e 's/en_US/ja_JP/g' /etc/locale.gen && locale-gen
 ENV LANG=ja_JP.UTF-8
 ```
 
