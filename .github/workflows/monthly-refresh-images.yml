@@ -1,8 +1,8 @@
 name: Monthly Refresh Images
 
 on:
-# schedule:
-#   - cron: '0 8 * * 1' # Runs at 08:00 on the first Monday of the month
+  schedule:
+    - cron: '0 8 * * 1' # Runs at 08:00 on the first Monday of the month
   workflow_dispatch: # Allows manual trigger
 
 jobs:
