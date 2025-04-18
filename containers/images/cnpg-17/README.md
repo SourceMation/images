@@ -40,7 +40,8 @@ Refer to the official Cloud Native PostgreSQL documentation for instructions on 
 
 ## Locale Configuration
 
-The images support the following locales: en_US.UTF-8 (default), pl_PL.UTF-8. To
+The images support following locales en_US.UTF-8 (default), pl_PL.UTF-8. To
+modify the locale in a child image, override the `LANG` environment variable
 and regenerate the locale settings.
 
 
