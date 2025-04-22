@@ -1,0 +1,32 @@
+FROM docker.io/sourcemation/debian-12-slim:latest as builder
+
+ARG TARGETARCH
+
+ARG EXPORTER_URL="https://github.com/oliver006/redis_exporter/releases/download"
+
+ARG REDIS_EXPORTER_VERSION="v1.48.0"
+
+WORKDIR /tmp
+
+RUN apt-get update && apt-get install -y curl ca-certificates; \
+    curl -fL -Lo redis_exporter-${REDIS_EXPORTER_VERSION}.linux-$TARGETARCH.tar.gz \
+    ${EXPORTER_URL}/${REDIS_EXPORTER_VERSION}/redis_exporter-${REDIS_EXPORTER_VERSION}.linux-$TARGETARCH.tar.gz; \
+    tar -xvzf redis_exporter-${REDIS_EXPORTER_VERSION}.linux-$TARGETARCH.tar.gz; \
+    mv redis_exporter-${REDIS_EXPORTER_VERSION}.linux-$TARGETARCH redis_exporter
+
+FROM scratch
+
+ARG TARGETARCH
+
+LABEL maintainer="SourceMation"
+
+LABEL vesrion=1.0 \
+      arch=$TARGETARCH \
+      description="A production grade redis exporter docker image created by SourceMation"
+
+COPY --from=builder /etc/ssl/certs /etc/ssl/certs
+COPY --from=builder /tmp/redis_exporter/redis_exporter /usr/local/bin/redis_exporter
+
+EXPOSE 9121
+
+ENTRYPOINT ["/usr/local/bin/redis_exporter"]

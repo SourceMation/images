@@ -1,0 +1,146 @@
+diff --git a/Dockerfile b/Dockerfile
+index 12dc098..95adef3 100644
+--- a/Dockerfile
++++ b/Dockerfile
+@@ -1,16 +1,16 @@
+-FROM alpine:3.19 as builder
++FROM docker.io/sourcemation/debian-12-slim:latest as builder
+ 
+-LABEL maintainer="Opstree Solutions"
++LABEL maintainer="SourceMation"
+ 
+ ARG TARGETARCH
+ 
+ LABEL version=1.0 \
+       arch=$TARGETARCH \
+-      description="A production grade performance tuned redis docker image created by Opstree Solutions"
++      description="A production grade performance tuned redis docker image created by SourceMation"
+ 
+ ARG REDIS_VERSION="stable"
+ 
+-RUN apk add --no-cache su-exec tzdata make curl build-base linux-headers bash openssl-dev
++RUN apt-get update && apt-get install -y sudo tzdata make curl build-essential libc6-dev bash libssl-dev
+ 
+ WORKDIR /tmp
+ 
+@@ -31,9 +31,9 @@ RUN VERSION=$(echo ${REDIS_VERSION} | sed -e "s/^v//g"); \
+     make -C redis-${VERSION} all; \
+     make -C redis-${VERSION} install
+ 
+-FROM alpine:3.19
++FROM docker.io/sourcemation/debian-12-slim:latest
+ 
+-LABEL maintainer="Opstree Solutions"
++LABEL maintainer="SourceMation"
+ 
+ ARG TARGETARCH
+ 
+@@ -41,15 +41,15 @@ ENV REDIS_PORT=6379
+ 
+ LABEL version=1.0 \
+       arch=$TARGETARCH \
+-      description="A production grade performance tuned redis docker image created by Opstree Solutions"
++      description="A production grade performance tuned redis docker image created by SourceMation"
+ 
+ COPY --from=builder /usr/local/bin/redis-server /usr/local/bin/redis-server
+ COPY --from=builder /usr/local/bin/redis-cli /usr/local/bin/redis-cli
+ 
+-RUN apk update && apk upgrade
++RUN apt-get update && apt-get upgrade -y
+ 
+-RUN addgroup -S -g 1000 redis && adduser -S -G redis -u 1000 redis && \
+-    apk add --no-cache bash
++RUN groupadd -r -g 1000 redis && useradd -r -g redis -u 1000 redis && \
++    apt-get update && apt-get install -y bash libssl3
+ 
+ COPY redis.conf /etc/redis/redis.conf
+ 
+diff --git a/Dockerfile.exporter b/Dockerfile.exporter
+index fa4f5f3..ad4bec7 100644
+--- a/Dockerfile.exporter
++++ b/Dockerfile.exporter
+@@ -1,4 +1,4 @@
+-FROM alpine:3.19 as builder
++FROM docker.io/sourcemation/debian-12-slim:latest as builder
+ 
+ ARG TARGETARCH
+ 
+@@ -8,7 +8,7 @@ ARG REDIS_EXPORTER_VERSION="v1.48.0"
+ 
+ WORKDIR /tmp
+ 
+-RUN apk add --no-cache curl ca-certificates; \
++RUN apt-get update && apt-get install -y curl ca-certificates; \
+     curl -fL -Lo redis_exporter-${REDIS_EXPORTER_VERSION}.linux-$TARGETARCH.tar.gz \
+     ${EXPORTER_URL}/${REDIS_EXPORTER_VERSION}/redis_exporter-${REDIS_EXPORTER_VERSION}.linux-$TARGETARCH.tar.gz; \
+     tar -xvzf redis_exporter-${REDIS_EXPORTER_VERSION}.linux-$TARGETARCH.tar.gz; \
+@@ -18,11 +18,11 @@ FROM scratch
+ 
+ ARG TARGETARCH
+ 
+-LABEL maintainer="Opstree Solutions"
++LABEL maintainer="SourceMation"
+ 
+ LABEL vesrion=1.0 \
+       arch=$TARGETARCH \
+-      description="A production grade redis exporter docker image created by Opstree Solutions"
++      description="A production grade redis exporter docker image created by SourceMation"
+ 
+ COPY --from=builder /etc/ssl/certs /etc/ssl/certs
+ COPY --from=builder /tmp/redis_exporter/redis_exporter /usr/local/bin/redis_exporter
+diff --git a/Dockerfile.sentinel b/Dockerfile.sentinel
+index 06e9c86..38648e8 100644
+--- a/Dockerfile.sentinel
++++ b/Dockerfile.sentinel
+@@ -1,14 +1,16 @@
+-FROM alpine:3.19 as builder
++FROM docker.io/sourcemation/debian-12-slim:latest as builder
++
++LABEL maintainer="SourceMation"
+ 
+ ARG TARGETARCH
+ 
+ LABEL version=1.0 \
+       arch=$TARGETARCH \
+-      description="A production grade performance tuned redis docker image created by Opstree Solutions"
++      description="A production grade performance tuned redis docker image created by SourceMation"
+ 
+ ARG REDIS_SENTINEL_VERSION="stable"
+ 
+-RUN apk add --no-cache su-exec tzdata make curl build-base linux-headers bash openssl-dev
++RUN apt-get update && apt-get install -y sudo tzdata make curl build-essential libc6-dev bash libssl-dev
+ 
+ WORKDIR /tmp
+ 
+@@ -30,7 +32,9 @@ RUN VERSION=$(echo ${REDIS_SENTINEL_VERSION} | sed -e "s/^v//g"); \
+     make -C redis-${VERSION} all; \
+     make -C redis-${VERSION} install
+ 
+-FROM alpine:3.19
++FROM docker.io/sourcemation/debian-12-slim:latest
++
++LABEL maintainer="SourceMation"
+ 
+ ARG TARGETARCH
+ 
+@@ -38,16 +42,16 @@ ENV SENTINEL_PORT=26379
+ 
+ LABEL version=1.0 \
+       arch=$TARGETARCH \
+-      description="A production grade performance tuned redis docker image created by Opstree Solutions"
++      description="A production grade performance tuned redis docker image created by SourceMation"
+ 
+ 
+ COPY --from=builder /usr/local/bin/redis-cli /usr/local/bin/redis-cli
+ COPY --from=builder /usr/local/bin/redis-sentinel /usr/local/bin/redis-sentinel
+ 
+-RUN apk update && apk upgrade
++RUN apt-get update && apt-get upgrade -y
+ 
+-RUN addgroup -S -g 1000 redis && adduser -S -G redis -u 1000 redis && \
+-    apk add --no-cache bash
++RUN groupadd -r -g 1000 redis && useradd -r -g redis -u 1000 redis && \
++    apt-get update && apt-get install -y bash libssl3
+ 
+ COPY sentinel.conf /etc/redis/sentinel.conf
+ 

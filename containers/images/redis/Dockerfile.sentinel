@@ -8,24 +8,25 @@ LABEL version=1.0 \
       arch=$TARGETARCH \
       description="A production grade performance tuned redis docker image created by SourceMation"
 
-ARG REDIS_VERSION="stable"
+ARG REDIS_SENTINEL_VERSION="stable"
 
 RUN apt-get update && apt-get install -y sudo tzdata make curl build-essential libc6-dev bash libssl-dev
 
 WORKDIR /tmp
 
-RUN VERSION=$(echo ${REDIS_VERSION} | sed -e "s/^v//g"); \
+RUN VERSION=$(echo ${REDIS_SENTINEL_VERSION} | sed -e "s/^v//g"); \
     case "${VERSION}" in \
        latest | stable) REDIS_DOWNLOAD_URL="http://download.redis.io/redis-stable.tar.gz" && VERSION="stable";; \
        *) REDIS_DOWNLOAD_URL="http://download.redis.io/releases/redis-${VERSION}.tar.gz";; \
     esac; \
+    \
     curl -fL -Lo redis-${VERSION}.tar.gz ${REDIS_DOWNLOAD_URL}; \
     tar xvzf redis-${VERSION}.tar.gz; \
     \
     arch="$(uname -m)"; \
     extraJemallocConfigureFlags="--with-lg-page=16"; \
     if [ "$arch" = "aarch64" ] || [ "$arch" = "arm64" ]; then \
-        sed -ri 's!cd jemalloc && ./configure !&'"$extraJemallocConfigureFlags"' !' /tmp/redis-${VERSION}/deps/Makefile; \
+      sed -ri 's!cd jemalloc && ./configure !&'"$extraJemallocConfigureFlags"' !' /tmp/redis-${VERSION}/deps/Makefile; \
     fi; \
     export BUILD_TLS=yes; \
     make -C redis-${VERSION} all; \
@@ -37,45 +38,40 @@ LABEL maintainer="SourceMation"
 
 ARG TARGETARCH
 
-ENV REDIS_PORT=6379
+ENV SENTINEL_PORT=26379
 
 LABEL version=1.0 \
       arch=$TARGETARCH \
       description="A production grade performance tuned redis docker image created by SourceMation"
 
-COPY --from=builder /usr/local/bin/redis-server /usr/local/bin/redis-server
+
 COPY --from=builder /usr/local/bin/redis-cli /usr/local/bin/redis-cli
+COPY --from=builder /usr/local/bin/redis-sentinel /usr/local/bin/redis-sentinel
 
 RUN apt-get update && apt-get upgrade -y
 
 RUN groupadd -r -g 1000 redis && useradd -r -g redis -u 1000 redis && \
     apt-get update && apt-get install -y bash libssl3
 
-COPY redis.conf /etc/redis/redis.conf
+COPY sentinel.conf /etc/redis/sentinel.conf
 
-COPY entrypoint.sh /usr/bin/entrypoint.sh
+COPY entrypoint-sentinel.sh /usr/bin/entrypoint-sentinel.sh
 
-COPY setupMasterSlave.sh /usr/bin/setupMasterSlave.sh
-
-COPY healthcheck.sh /usr/bin/healthcheck.sh
+COPY healthcheck-Sentinel.sh /usr/bin/healthcheck.sh
 
 RUN chown -R 1000:0 /etc/redis && \
     chmod -R g+rw /etc/redis && \
-    mkdir /data && \
-    chown -R 1000:0 /data && \
-    chmod -R g+rw /data && \
-    mkdir /node-conf && \
-    chown -R 1000:0 /node-conf && \
-    chmod -R g+rw /node-conf && \
+    mkdir /sentinel-data && \
+    chown -R 1000:0 /sentinel-data && \
+    chmod -R g+rw /sentinel-data && \
     chmod -R g+rw /var/run
 
-VOLUME ["/data"]
-VOLUME ["/node-conf"]
+VOLUME ["/sentinel-data"]
 
-WORKDIR /data
+WORKDIR /sentinel-data
 
-EXPOSE ${REDIS_PORT}
+EXPOSE ${SENTINEL_PORT}
 
 USER 1000
 
-ENTRYPOINT ["/usr/bin/entrypoint.sh"]
+ENTRYPOINT ["/usr/bin/entrypoint-sentinel.sh"]
