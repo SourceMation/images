@@ -4,9 +4,18 @@ LABEL maintainer="SourceMation"
 
 ARG TARGETARCH
 
-LABEL version=1.0 \
-      arch=$TARGETARCH \
-      description="A production grade performance tuned redis docker image created by SourceMation"
+LABEL name="redis" \
+      vendor="LinuxPolska" \
+      url="https://linuxpolska.com/en/"\
+      licenses="GPLv2" \
+      created="$(date +%Y%m%d)" \
+      architecture="$(uname -m)" \
+      summary="Redis on Debian Container" \
+      description="Provides Redis on Rocky Linux 9 Container" \
+      version="1.0.0" \
+      io.k8s.display-name="Redis on Debian Container" \
+      io.k8s.description="Provides Redis on Debian 12 Container" \
+      io.openshift.tags="redis debian"
 
 ARG REDIS_VERSION="stable"
 
@@ -48,7 +57,7 @@ COPY --from=builder /usr/local/bin/redis-cli /usr/local/bin/redis-cli
 
 RUN apt-get update && apt-get upgrade -y
 
-RUN groupadd -r -g 1000 redis && useradd -r -g redis -u 1000 redis && \
+RUN groupadd -r -g 998 redis && useradd -r -g redis -u 998 redis && \
     apt-get update && apt-get install -y bash libssl3
 
 COPY redis.conf /etc/redis/redis.conf
@@ -59,13 +68,13 @@ COPY setupMasterSlave.sh /usr/bin/setupMasterSlave.sh
 
 COPY healthcheck.sh /usr/bin/healthcheck.sh
 
-RUN chown -R 1000:0 /etc/redis && \
+RUN chown -R 998:0 /etc/redis && \
     chmod -R g+rw /etc/redis && \
     mkdir /data && \
-    chown -R 1000:0 /data && \
+    chown -R 998:0 /data && \
     chmod -R g+rw /data && \
     mkdir /node-conf && \
-    chown -R 1000:0 /node-conf && \
+    chown -R 998:0 /node-conf && \
     chmod -R g+rw /node-conf && \
     chmod -R g+rw /var/run
 
@@ -76,6 +85,6 @@ WORKDIR /data
 
 EXPOSE ${REDIS_PORT}
 
-USER 1000
+USER 998
 
 ENTRYPOINT ["/usr/bin/entrypoint.sh"]

@@ -1,8 +1,4 @@
-<p align="left">
-  <img src="./img/redis.png">
-</p>
-
-# Ot-Container-Kit (Redis)
+# Redis
 
 I am a repo which have a production based Redis and Redis Exporter docker image codebase.
 
@@ -35,31 +31,3 @@ The following table shows the compatibility between the Operator Version, Redis 
 That's it
 
 > Note : latest tag would be comptabile with latest operator version.
-
-## Building Image
-
-#### Redis Docker Image
-
-```shell
-make build-redis
-```
-
-#### Redis Exporter Docker Image
-
-```shell
-make build-redis-exporter
-```
-
-## Running Setup
-
-#### For standalone server
-
-```shell
-make setup-standalone-server-compose
-```
-
-#### For cluster setup
-
-```shell
-make setup-cluster-compose
-```

@@ -9,7 +9,7 @@ EXTERNAL_CONFIG_FILE=${EXTERNAL_CONFIG_FILE:-"/etc/redis/external.conf.d/redis-a
 REDIS_MAJOR_VERSION=${REDIS_MAJOR_VERSION:-"v7"}
 
 apply_permissions() {
-    chgrp -R 1000 /etc/redis
+    chgrp -R 998 /etc/redis
     chmod -R g=u /etc/redis
 }
 
