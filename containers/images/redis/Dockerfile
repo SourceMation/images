@@ -1,4 +1,31 @@
-FROM sourcemation/rocky-9:latest
+FROM docker.io/sourcemation/debian-12-slim:latest as builder
+
+ARG TARGETARCH
+
+ARG REDIS_VERSION="stable"
+
+RUN apt-get update && apt-get install -y sudo tzdata make curl build-essential libc6-dev bash libssl-dev
+
+WORKDIR /tmp
+
+RUN VERSION=$(echo ${REDIS_VERSION} | sed -e "s/^v//g"); \
+    case "${VERSION}" in \
+       latest | stable) REDIS_DOWNLOAD_URL="http://download.redis.io/redis-stable.tar.gz" && VERSION="stable";; \
+       *) REDIS_DOWNLOAD_URL="http://download.redis.io/releases/redis-${VERSION}.tar.gz";; \
+    esac; \
+    curl -fL -Lo redis-${VERSION}.tar.gz ${REDIS_DOWNLOAD_URL}; \
+    tar xvzf redis-${VERSION}.tar.gz; \
+    \
+    arch="$(uname -m)"; \
+    extraJemallocConfigureFlags="--with-lg-page=16"; \
+    if [ "$arch" = "aarch64" ] || [ "$arch" = "arm64" ]; then \
+        sed -ri 's!cd jemalloc && ./configure !&'"$extraJemallocConfigureFlags"' !' /tmp/redis-${VERSION}/deps/Makefile; \
+    fi; \
+    export BUILD_TLS=yes; \
+    make -C redis-${VERSION} all; \
+    make -C redis-${VERSION} install
+
+FROM docker.io/sourcemation/debian-12-slim:latest
 
 LABEL name="redis" \
       vendor="LinuxPolska" \
@@ -6,42 +33,51 @@ LABEL name="redis" \
       licenses="GPLv2" \
       created="$(date +%Y%m%d)" \
       architecture="$(uname -m)" \
-      summary="Redis on EL9 Container" \
-      description="Provides Redis on Rocky Linux 9 Container" \
-      version="7.2.7" \
-      io.k8s.display-name="Redis on EL9 Container" \
-      io.k8s.description="Provides Redis on Rocky Linux 9 Container" \
-      io.openshift.tags="redis rockylinux"
+      summary="Redis on Debian Container" \
+      description="Provides Redis on Debian 12 Container" \
+      version="1.0.0" \
+      io.k8s.display-name="Redis on Debian Container" \
+      io.k8s.description="Provides Redis on Debian 12 Container" \
+      io.openshift.tags="redis debian"
 
-RUN set -eux; \
-    dnf update -y && dnf module enable redis:7 -y &&\
-    dnf install -y hostname redis && \
-	redis-cli --version && \
-	redis-server --version && \
-    dnf clean all
+
+ARG TARGETARCH
+
+ENV REDIS_PORT=6379
+
+COPY --from=builder /usr/local/bin/redis-server /usr/local/bin/redis-server
+COPY --from=builder /usr/local/bin/redis-cli /usr/local/bin/redis-cli
+
+RUN apt-get update && apt-get upgrade -y
+
+RUN groupadd -r -g 998 redis && useradd -r -g redis -u 998 redis && \
+    apt-get update && apt-get install -y bash libssl3
 
 COPY redis.conf /etc/redis/redis.conf
 
-COPY entrypoint.sh setupMasterSlave.sh healthcheck.sh /usr/bin/
+COPY entrypoint.sh /usr/bin/entrypoint.sh
 
-RUN chown 998:0 /usr/bin/entrypoint.sh /usr/bin/setupMasterSlave.sh /usr/bin/healthcheck.sh /etc/redis/redis.conf && \
-    chmod 750 /usr/bin/entrypoint.sh /usr/bin/setupMasterSlave.sh /usr/bin/healthcheck.sh /etc/redis/redis.conf && \
+COPY setupMasterSlave.sh /usr/bin/setupMasterSlave.sh
+
+COPY healthcheck.sh /usr/bin/healthcheck.sh
+
+RUN chown -R 998:0 /etc/redis && \
+    chmod -R g+rw /etc/redis && \
     mkdir /data && \
-    mkdir /node-conf && \
     chown -R 998:0 /data && \
-    chown -R 998:0 /node-conf && \
     chmod -R g+rw /data && \
-    chmod -R g+rw /node-conf
-
-ENV APP_VERSION="7.2.7" \
-    APP_NAME="redis"
+    mkdir /node-conf && \
+    chown -R 998:0 /node-conf && \
+    chmod -R g+rw /node-conf && \
+    chmod -R g+rw /var/run
 
 VOLUME ["/data"]
+VOLUME ["/node-conf"]
 
 WORKDIR /data
 
-EXPOSE 6379
+EXPOSE ${REDIS_PORT}
 
 USER 998
 
-CMD ["/usr/bin/entrypoint.sh"]
+ENTRYPOINT ["/usr/bin/entrypoint.sh"]
