@@ -55,11 +55,7 @@ RUN groupadd -r -g 998 redis && useradd -r -g redis -u 998 redis && \
 
 COPY redis.conf /etc/redis/redis.conf
 
-COPY entrypoint.sh /usr/bin/entrypoint.sh
-
-COPY setupMasterSlave.sh /usr/bin/setupMasterSlave.sh
-
-COPY healthcheck.sh /usr/bin/healthcheck.sh
+COPY entrypoint.sh setupMasterSlave.sh healthcheck.sh /usr/bin/
 
 RUN chown -R 998:0 /etc/redis && \
     chmod -R g+rw /etc/redis && \
