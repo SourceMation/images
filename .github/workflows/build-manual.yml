@@ -27,6 +27,7 @@ on:
           - gcc-13
           - gcc-14
           - gcc-15
+          - gcc-16
           - golang-1.23
           - golang-1.24
           - helidon
