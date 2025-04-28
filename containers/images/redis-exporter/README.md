@@ -1,19 +1,35 @@
 # Redis exporter packaged by SourceMation
 
-Redis is a performant in-memory key-value database. Its simplicity, accompanied
-by optimal data structures, contribute to the high operational speed.
-
-This Redis distribution is provided by the downstream Debian 12 packaging
-team in the version respective to that system (7.2.7). Due to licensing
-changes, an up-to-date release will be provided as a separate product.
+Prometheus Exporter for Redis Metrics. Supports Redis 2.x, 3.x, 4.x and 5.x
 
 ## Usage
 
-Run a temporary container with Redis exporter:
+Run a Redis exporter docker image that contains only the exporter binary:
 
 ```
-docker run -p 9121:9121 --rm --ulimit nofile=64000:64000 --ulimit nproc=64000:64000 -it sourcemation/redis-exporter:latest
+docker run -d --name redis_exporter -p 9121:9121 sourcemation/redis-exporter:latest
 ```
+
+If you try to access a Redis instance running on the host node, you'll need to add --network host so the redis_exporter container can access it:
+
+```
+docker run -d --name redis_exporter --network host oliver006/redis_exporter
+```
+
+## What's exported
+Most items from the INFO command are exported, see Redis documentation for details.
+In addition, for every database there are metrics for total keys, expiring keys and the average TTL for keys in the database.
+You can also export values of keys by using the `-check-keys` (or related) flag. The exporter will also export the size (or, depending on the data type, the length) of the key. This can be used to export the number of elements in (sorted) sets, hashes, lists, streams, etc. If a key is in string format and matches with `--check-keys` (or related) then its string value will be exported as a label in the `key_value_as_string` metric.
+
+If you require custom metric collection, you can provide comma separated list of path(s) to Redis Lua script(s) using the `-script` flag. If you pass only one script, you can omit comma.
+
+### The redis_memory_max_bytes metric
+The metric `redis_memory_max_bytes` will show the maximum number of bytes Redis can use.
+It is zero if no memory limit is set for the Redis instance you're scraping (this is the default setting for Redis).
+You can confirm that's the case by checking if the metric `redis_config_maxmemory` is zero or by connecting to the Redis instance via redis-cli and running the command `CONFIG GET MAXMEMORY`.
+
+## Command line flags
+Full list of the flags can be found on [here](https://github.com/oliver006/redis_exporter/blob/master/README.md#command-line-flags).
 
 ## Environment Vars, Ports, Volumes
 
