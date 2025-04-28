@@ -4,7 +4,7 @@ ARG TARGETARCH
 
 ARG EXPORTER_URL="https://github.com/oliver006/redis_exporter/releases/download"
 
-ARG REDIS_EXPORTER_VERSION="v1.48.0"
+ARG REDIS_EXPORTER_VERSION="v1.70.0"
 
 WORKDIR /tmp
 
@@ -26,7 +26,7 @@ LABEL name="redis-exporter" \
       architecture="$(uname -m)" \
       summary="Redis Exporter on Debian Container" \
       description="Provides Redis Exporter on Debian 12 Container" \
-      version="1.0.0" \
+      version="1.70.0" \
       io.k8s.display-name="Redis Exporter on Debian Container" \
       io.k8s.description="Provides Redis Exporter on Debian 12 Container" \
       io.openshift.tags="redis exporter debian"
