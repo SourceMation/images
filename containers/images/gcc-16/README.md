@@ -96,8 +96,7 @@ project and is maintained by [SourceMation](https://sourcemation.com).
 This GCC 16 development snapshot image is built on a Debian 12 Slim base image,
 a minimal consistent compilation environment. This image is loosely
 based on the Docker official image for `gcc` and is built using a separate,
-independent SourceMaton images build chain.
-
+independent SourceMation images build chain.
 ## Image and its components Risk Analysis report
 
 A detailed risk analysis report of the images and their components can be found
