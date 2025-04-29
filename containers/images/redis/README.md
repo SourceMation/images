@@ -6,8 +6,7 @@ by optimal data structures, contribute to the high operational speed.
 Built by SourceMation's automation team, this Redis release undergoes regular
 updates, following the official `stable` release. The foundation is the latest
 `sourcemation/debian-12-slim` image at build time, ensuring a compact, secure,
-and current setup. Cryptographic signatures are employed during the build to
-guarantee source code and package integrity.
+and current setup.
 
 ## Usage
 
