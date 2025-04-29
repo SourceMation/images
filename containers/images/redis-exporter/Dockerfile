@@ -25,12 +25,12 @@ LABEL name="redis-exporter" \
       licenses="GPLv2" \
       created="$(date +%Y%m%d)" \
       architecture="$(uname -m)" \
-      summary="Redis Exporter on Debian Container" \
-      description="Provides Redis Exporter on Debian 12 Container" \
+      summary="Redis Exporter" \
+      description="Provides Redis Exporter" \
       version="1.70.0" \
-      io.k8s.display-name="Redis Exporter on Debian Container" \
-      io.k8s.description="Provides Redis Exporter on Debian 12 Container" \
-      io.openshift.tags="redis exporter debian"
+      io.k8s.display-name="Redis Exporter" \
+      io.k8s.description="Provides Redis Exporter" \
+      io.openshift.tags="redis exporter"
 
 # Not root user -> keep UID/GID in sync with oliver006 image
 
