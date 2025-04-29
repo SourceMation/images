@@ -1,4 +1,4 @@
-FROM docker.io/sourcemation/debian-12-slim:latest as builder
+FROM sourcemation/golang-1.24:latest AS builder
 
 ARG TARGETARCH
 
@@ -8,15 +8,16 @@ ARG REDIS_EXPORTER_VERSION="v1.70.0"
 
 WORKDIR /tmp
 
-RUN apt-get update && apt-get install -y curl ca-certificates; \
-    curl -fL -Lo redis_exporter-${REDIS_EXPORTER_VERSION}.linux-$TARGETARCH.tar.gz \
-    ${EXPORTER_URL}/${REDIS_EXPORTER_VERSION}/redis_exporter-${REDIS_EXPORTER_VERSION}.linux-$TARGETARCH.tar.gz; \
-    tar -xvzf redis_exporter-${REDIS_EXPORTER_VERSION}.linux-$TARGETARCH.tar.gz; \
-    mv redis_exporter-${REDIS_EXPORTER_VERSION}.linux-$TARGETARCH redis_exporter
+RUN apt-get update && apt-get install -y curl ca-certificates git; \
+    git clone --branch ${REDIS_EXPORTER_VERSION} https://github.com/oliver006/redis_exporter.git && \
+    cd redis_exporter && \
+    BUILD_DATE=$(date +%F-%T) CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build -o /redis_exporter \
+    -ldflags  "-s -w -extldflags \"-static\" -X main.BuildVersion=${REDIS_EXPORTER_VERSION} -X main.BuildDate=$BUILD_DATE" 
+
+# Smoke test
+RUN /redis_exporter -version
 
 FROM scratch
-
-ARG TARGETARCH
 
 LABEL name="redis-exporter" \
       vendor="LinuxPolska" \
@@ -31,9 +32,13 @@ LABEL name="redis-exporter" \
       io.k8s.description="Provides Redis Exporter on Debian 12 Container" \
       io.openshift.tags="redis exporter debian"
 
+# Not root user -> keep UID/GID in sync with oliver006 image
+
+USER 59000:59000
+
 COPY --from=builder /etc/ssl/certs /etc/ssl/certs
-COPY --from=builder /tmp/redis_exporter/redis_exporter /usr/local/bin/redis_exporter
+COPY --from=builder /redis_exporter /redis_exporter
 
-EXPOSE 9121
 
-ENTRYPOINT ["/usr/local/bin/redis_exporter"]
+EXPOSE     9121
+ENTRYPOINT ["/redis_exporter"]
