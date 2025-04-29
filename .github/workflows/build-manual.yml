@@ -53,6 +53,7 @@ on:
           - rabbitmq-4
           - rabbitmq-4-management
           - redis
+          - redis-exporter
           - rocky-9
           - rocky-9-minimal
           - ruby
