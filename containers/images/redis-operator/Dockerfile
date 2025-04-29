@@ -1,5 +1,5 @@
 # Build the manager or agent binary
-FROM docker.io/sourcemation/golang-1.24:latest AS builder
+FROM docker.io/sourcemation/golang-1.23:latest AS builder
 ARG BUILDOS
 ARG BUILDPLATFORM
 ARG BUILDARCH
@@ -12,13 +12,19 @@ ARG IMG
 
 WORKDIR /workspace
 # Copy the Go Modules manifests
-COPY go.mod go.sum ./
+COPY go.mod go.mod
+COPY go.sum go.sum
 # cache deps before building and copying source so that we don't need to re-download as much
 # and so that source changes don't invalidate our downloaded layer
+RUN apt-get update && apt-get install -y ca-certificates
 RUN go mod download
 
 # Copy the go source
-COPY api/ cmd/ internal/ mocks/ pkg/ ./
+COPY cmd/ cmd/
+COPY api/ api/
+COPY pkg/ pkg/
+COPY internal/ internal/
+COPY mocks/ mocks/
 
 # Build
 ARG LDFLAGS="-s -w -X github.com/OT-CONTAINER-KIT/redis-operator/internal/image.operatorImage=${IMG}"
