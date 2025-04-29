@@ -10,8 +10,8 @@ WORKDIR /tmp
 
 RUN VERSION=$(echo ${REDIS_VERSION} | sed -e "s/^v//g"); \
     case "${VERSION}" in \
-       latest | stable) REDIS_DOWNLOAD_URL="http://download.redis.io/redis-stable.tar.gz" && VERSION="stable";; \
-       *) REDIS_DOWNLOAD_URL="http://download.redis.io/releases/redis-${VERSION}.tar.gz";; \
+       latest | stable) REDIS_DOWNLOAD_URL="https://download.redis.io/redis-stable.tar.gz" && VERSION="stable";; \
+       *) REDIS_DOWNLOAD_URL="https://download.redis.io/releases/redis-${VERSION}.tar.gz";; \
     esac; \
     curl -fL -Lo redis-${VERSION}.tar.gz ${REDIS_DOWNLOAD_URL}; \
     tar xvzf redis-${VERSION}.tar.gz; \
@@ -35,7 +35,7 @@ LABEL name="redis" \
       architecture="$(uname -m)" \
       summary="Redis on Debian Container" \
       description="Provides Redis on Debian 12 Container" \
-      version="1.0.0" \
+      version="7.4.3" \
       io.k8s.display-name="Redis on Debian Container" \
       io.k8s.description="Provides Redis on Debian 12 Container" \
       io.openshift.tags="redis debian"
@@ -50,20 +50,20 @@ COPY --from=builder /usr/local/bin/redis-cli /usr/local/bin/redis-cli
 
 RUN apt-get update && apt-get upgrade -y
 
-RUN groupadd -r -g 998 redis && useradd -r -g redis -u 998 redis && \
+RUN groupadd -r -g 1000 redis && useradd -r -g redis -u 1000 redis && \
     apt-get update && apt-get install -y bash libssl3
 
 COPY redis.conf /etc/redis/redis.conf
 
 COPY entrypoint.sh setupMasterSlave.sh healthcheck.sh /usr/bin/
 
-RUN chown -R 998:0 /etc/redis && \
+RUN chown -R 1000:0 /etc/redis && \
     chmod -R g+rw /etc/redis && \
     mkdir /data && \
-    chown -R 998:0 /data && \
+    chown -R 1000:0 /data && \
     chmod -R g+rw /data && \
     mkdir /node-conf && \
-    chown -R 998:0 /node-conf && \
+    chown -R 1000:0 /node-conf && \
     chmod -R g+rw /node-conf && \
     chmod -R g+rw /var/run
 
@@ -74,6 +74,6 @@ WORKDIR /data
 
 EXPOSE ${REDIS_PORT}
 
-USER 998
+USER 1000
 
 ENTRYPOINT ["/usr/bin/entrypoint.sh"]
