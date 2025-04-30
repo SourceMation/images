@@ -1,7 +1,10 @@
-# Redis sentinel packaged by SourceMation
+# Redis Sentinel packaged by SourceMation
 
-Redis is a performant in-memory key-value database. Its simplicity, accompanied
-by optimal data structures, contribute to the high operational speed.
+Redis Sentinel is Redis's built-in high availability (HA) solution designed to
+monitor Redis instances, detect failures, and automatically promote a replica
+to master when needed. It handles quorum-based decision making, ensuring a
+majority of Sentinel nodes agree before triggering a failover. Sentinel also 
+provides notifications and helps clients discover the current master.
 
 Built by SourceMation's automation team, this Redis release undergoes regular
 updates, following the official `stable` release. The foundation is the latest
@@ -10,7 +13,7 @@ and current setup.
 
 ## Usage
 
-Run a temporary container with Redis, ready to accept connections from your
+Run a temporary container with Redis Sentinel, ready to accept connections from your
 localhost's `redis-cli`:
 
 ```
