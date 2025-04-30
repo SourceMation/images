@@ -55,6 +55,7 @@ on:
           - redis
           - redis-exporter
           - redis-operator
+          - redis-sentinel
           - rocky-9
           - rocky-9-minimal
           - ruby
