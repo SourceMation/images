@@ -2,8 +2,7 @@
 
 This container image delivers the GNU Compiler Collection (GCC) version 15,
 supplying an immediate environment for compiling projects written in C, C++,
-GO, Fortran, and other supported programming languages. This image became
-stable release on 28/04/2025.
+GO, Fortran, and other supported programming languages.
 
 
 Built upon the foundation of the SourceMation Debian 12 Slim image.
