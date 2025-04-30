@@ -3,9 +3,10 @@
 Redis is a performant in-memory key-value database. Its simplicity, accompanied
 by optimal data structures, contribute to the high operational speed.
 
-This Redis distribution is provided by the downstream Debian 12 packaging
-team in the version respective to that system (7.2.7). Due to licensing
-changes, an up-to-date release will be provided as a separate product.
+Built by SourceMation's automation team, this Redis release undergoes regular
+updates, following the official `stable` release. The foundation is the latest
+`sourcemation/debian-12-slim` image at build time, ensuring a compact, secure,
+and current setup.
 
 ## Usage
 
@@ -22,11 +23,10 @@ This image uses the following environment variables:
 
 ```
 PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-APP_VERSION="XXX - set during build"
-APP_NAME="redis"
+REDIS_PORT=26379
 ```
 
-This image exposes the following ports: 
+This image exposes the following ports:
 
 - 26379 : the default Redis sentinel port for remote connections
 
@@ -49,13 +49,12 @@ maintained by [SourceMation](https://sourcemation.com).
 
 ## Extra notes
 
-The server runs as the system user and group `redis`, them having UID 998 and
-GID 996.
+**The server runs as the system user and group `redis` with UID 1000 and GID
+1000.** Our older images were using UID 998 and GID 998. The new (1000/1000)
+user/group is more compatible with other Redis images.
 
-As of March 20, 2024, [Redis has changed their
-licensing](https://redis.io/blog/redis-adopts-dual-source-available-licensing/),
-starting with Redis 7.4. This image ships version 7.2.7, which is unaffected by
-this change. Newer releases will be provided as separate products.
+As of March 20, 2024, [Redis has changed its
+licensing](https://redis.io/blog/redis-adopts-dual-source-available-licensing/).
 
 ### Image and its components Risk Analysis report
 
@@ -65,10 +64,3 @@ platform](https://www.sourcemation.com/products/7e370e6a-baad-4b48-8e85-bdc7504c
 
 For more information, check out the [overview of
 Redis](https://redis.io/about/) page.
-
-### Licenses
-
-The base license for the solution (Redis version 7.2.7) is BSD/MIT. The
-licenses for each component shipped as part of this image can be found on [the
-image's appropriate SourceMation
-entry](https://www.sourcemation.com/products/7e370e6a-baad-4b48-8e85-bdc7504cf06d/deployments).

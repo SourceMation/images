@@ -10,8 +10,8 @@ WORKDIR /tmp
 
 RUN VERSION=$(echo ${REDIS_SENTINEL_VERSION} | sed -e "s/^v//g"); \
     case "${VERSION}" in \
-       latest | stable) REDIS_DOWNLOAD_URL="http://download.redis.io/redis-stable.tar.gz" && VERSION="stable";; \
-       *) REDIS_DOWNLOAD_URL="http://download.redis.io/releases/redis-${VERSION}.tar.gz";; \
+       latest | stable) REDIS_DOWNLOAD_URL="https://download.redis.io/redis-stable.tar.gz" && VERSION="stable";; \
+       *) REDIS_DOWNLOAD_URL="https://download.redis.io/releases/redis-${VERSION}.tar.gz";; \
     esac; \
     \
     curl -fL -Lo redis-${VERSION}.tar.gz ${REDIS_DOWNLOAD_URL}; \
@@ -40,7 +40,7 @@ LABEL name="redis-sentinel" \
       architecture="$(uname -m)" \
       summary="Redis Sentinel on Debian Container" \
       description="Provides Redis Sentinel on Debian 12 Container" \
-      version="1.0.0" \
+      version="7.4.3" \
       io.k8s.display-name="Redis Sentinel on Debian Container" \
       io.k8s.description="Provides Redis Sentinel on Debian 12 Container" \
       io.openshift.tags="redis sentinel debian"
@@ -50,19 +50,17 @@ COPY --from=builder /usr/local/bin/redis-sentinel /usr/local/bin/redis-sentinel
 
 RUN apt-get update && apt-get upgrade -y
 
-RUN groupadd -r -g 998 redis && useradd -r -g redis -u 998 redis && \
+RUN groupadd -r -g 1000 redis && useradd -r -g redis -u 1000 redis && \
     apt-get update && apt-get install -y bash libssl3
 
 COPY sentinel.conf /etc/redis/sentinel.conf
 
-COPY entrypoint.sh /usr/bin/entrypoint.sh
+COPY entrypoint.sh healthcheck.sh /usr/bin/
 
-COPY healthcheck.sh /usr/bin/healthcheck.sh
-
-RUN chown -R 998:0 /etc/redis && \
+RUN chown -R 1000:0 /etc/redis && \
     chmod -R g+rw /etc/redis && \
     mkdir /sentinel-data && \
-    chown -R 998:0 /sentinel-data && \
+    chown -R 1000:0 /sentinel-data && \
     chmod -R g+rw /sentinel-data && \
     chmod -R g+rw /var/run
 
@@ -72,6 +70,6 @@ WORKDIR /sentinel-data
 
 EXPOSE ${SENTINEL_PORT}
 
-USER 998
+USER 1000
 
 ENTRYPOINT ["/usr/bin/entrypoint.sh"]
