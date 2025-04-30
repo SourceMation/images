@@ -1,0 +1,111 @@
+# GCC 16 (Development Snapshot) packaged by SourceMation
+
+This container image delivers a development snapshot of the GNU Compiler
+Collection (GCC) version 16. It provides an immediate environment for compiling
+projects written in C, C++, GO, Fortran, and other supported programming
+languages. This version is under active development and built from the latest
+source snapshot.
+
+
+Built upon the foundation of the SourceMation Debian 12 Slim image.
+
+## Usage
+
+To initiate a container with GCC 16 and gain shell access:
+
+```bash
+docker run -it sourcemation/gcc-16 /bin/bash
+```
+
+For compiling your source code, you can link your project directory to the
+container:
+
+```bash
+docker run -v /path/to/your/project:/app -w /app sourcemation/gcc-16 gcc main.c -o main
+```
+
+Here, the `-v` option establishes a mount between your local directory and
+`/app` within the container, while `-w` sets `/app` as the active working
+directory.
+
+You also have the option to construct a personalized Dockerfile extending this
+image:
+
+```dockerfile
+FROM sourcemation/gcc-16
+
+# Include your specific files
+COPY . /app
+WORKDIR /app
+RUN gcc main.c -o main
+
+CMD ["./main"]
+```
+
+Subsequently, build and execute your tailored image:
+
+```bash
+docker build -t my-gcc-app .
+docker run -it my-gcc-app
+```
+
+## Environment Vars, Ports, Volumes
+
+This image, in its standard configuration, does not define any particular
+environment variables, expose any network ports, or necessitate persistent
+volumes. Nevertheless, you retain the flexibility to mount volumes for sharing
+your project files and build artifacts.
+
+The following environment variables are defined within the image:
+
+```bash
+GCC_VERSION="20250427" # This may vary based on the precise snapshot version
+GPG_KEYS="B215C1633BCA0477615F1B35A5B3A004745C015A (...)" # A collection of keys for verifying the GPG signature of the GCC tarball
+```
+
+**Security considerations: The development snapshots do not provide
+cryptographic signatures, the GPG_KEYS is not used for checking the signature
+of the tarball.**
+
+
+Furthermore, this image employs `dpkg-divert` to rename the original `gcc` and
+`g++` executables. They are still present within the system.
+
+```
+/usr/bin/gcc.orig
+/usr/bin/g++.orig
+/usr/bin/gfortran.orig
+```
+
+## Contributing and Issues
+
+We’d love for you to contribute! You can request new features/images by
+creating an issue or submitting a pull request with your contribution to this
+image on the SourceMation GitHub repository.
+
+- [Creating issues and image requests](https://github.com/SourceMation/images/issues/new/choose)
+- [Creating pull requests](https://github.com/SourceMation/images/compare)
+
+**Disclaimer:** The `sourcemation/gcc-16` image is not affiliated with the GNU
+Project. The respective companies and organisations own the trademarks
+mentioned in the offering. The `sourcemation/gcc-16` image is a separate
+project and is maintained by [SourceMation](https://sourcemation.com).
+
+## Extra notes
+
+This GCC 16 development snapshot image is built on a Debian 12 Slim base image,
+a minimal consistent compilation environment. This image is loosely
+based on the Docker official image for `gcc` and is built using a separate,
+independent SourceMation images build chain.
+## Image and its components Risk Analysis report
+
+A detailed risk analysis report of the images and their components can be found
+on the [SourceMation platform](https://www.sourcemation.com/).
+
+For more information about GCC, check out the [official GCC
+website](https://gcc.gnu.org/).
+
+## Licenses
+
+The base license for GCC is the GNU General Public License version 3 with [GCC
+Runtime Library Exception](https://www.gnu.org/licenses/gcc-exception-3.1).

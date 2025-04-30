@@ -11,12 +11,12 @@ LABEL name="gcc-15" \
       architecture="$(uname -m)" \
       summary="GCC 15 on Debian 12 Slim Container" \
       description="Provides GCC 15 on Debian 12 Slim Container" \
-      version="20250406" \
+      version="15.1.0" \
       io.k8s.display-name="GCC 15 on Debian 12 Slim Container" \
       io.k8s.description="Provides GCC 15 on Debian 12 Slim Container" \
       io.openshift.tags="gcc gcc-15 debian-12-slim"
 
-ENV GCC_VERSION="20250406"
+ENV GCC_VERSION="15.1.0"
 
 # abigail-tools - abidiff later to verify that it's not breaking the debian packages
 # Most of this packages are from buildpack-deps that is based on old Heroku stack,
@@ -88,15 +88,15 @@ RUN set -ex; \
     apt-get install -y --no-install-recommends flex gnupg; \
     rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/* ;\
     \
-    curl -fL "https://ftp.gwdg.de/pub/misc/gcc/snapshots/LATEST-15/gcc-15-$GCC_VERSION.tar.xz" -o "gcc.tar.xz"; \
-    # THIS IS NOT THE OFFICIAL GCC RELEASE, IT'S A SNAPSHOT IT DOES NOT HAVE A SIGNATURE
-    #export GNUPGHOME="$(mktemp -d)"; \
-    #for key in $GPG_KEYS; do \
-        #gpg --batch --keyserver keyserver.ubuntu.com --recv-keys "$key"; \
-    #done; \
-    #gpg --batch --verify gcc.tar.xz.sig gcc.tar.xz; \
-    #gpgconf --kill all; \
-    #rm -rf "$GNUPGHOME"; \
+    curl -fL "https://mirrors.kernel.org/gnu/gcc/gcc-$GCC_VERSION/gcc-$GCC_VERSION.tar.xz.sig" -o "gcc.tar.xz.sig"; \
+    curl -fL "https://mirrors.kernel.org/gnu/gcc/gcc-$GCC_VERSION/gcc-$GCC_VERSION.tar.xz" -o "gcc.tar.xz"; \
+    export GNUPGHOME="$(mktemp -d)"; \
+    for key in $GPG_KEYS; do \
+        gpg --batch --keyserver keyserver.ubuntu.com --recv-keys "$key"; \
+    done; \
+    gpg --batch --verify gcc.tar.xz.sig gcc.tar.xz; \
+    gpgconf --kill all; \
+    rm -rf "$GNUPGHOME"; \
     mkdir -p /usr/src/gcc; \
     tar -xf gcc.tar.xz -C /usr/src/gcc --strip-components=1; \
     rm gcc.tar.xz*; \
@@ -107,9 +107,12 @@ RUN set -ex; \
     ./contrib/download_prerequisites; \
     { rm *.tar.* || true; }; \
     \
+# download the patched config.guess and config.sub from gist as git savannah.gnu.org is down/flaky consistently...
+    wget -O config.sub "https://gist.githubusercontent.com/AlexBaranowski/187ac45796d6c1702da8c826554ec45a/raw/fcc2ca7b6a4abcebac6e3104572e5b22b54beee5/config.sub" ; \
+    wget -O config.guess "https://gist.githubusercontent.com/AlexBaranowski/9cb5af9049348266afa7220469cb3ac7/raw/09680facc6ddbaa053e9a5652aef5ca1ff764ac2/config.guess"; \
 # explicitly update autoconf config.guess and config.sub so they support more arches/libcs
     for f in config.guess config.sub; do \
-        wget -O "$f" "https://git.savannah.gnu.org/cgit/config.git/plain/$f?id=7d3d27baf8107b630586c962c057e22149653deb"; \
+#   wget -O "$f" "https://git.savannah.gnu.org/cgit/config.git/plain/$f?id=7d3d27baf8107b630586c962c057e22149653deb"; \
 # find any more (shallow) copies of the file we grabbed and update them too
         find -mindepth 2 -name "$f" -exec cp -v "$f" '{}' ';'; \
     done; \
