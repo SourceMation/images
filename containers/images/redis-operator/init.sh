@@ -18,10 +18,7 @@ APP_NAME=redis-operator
 curl -sL -o $APP_NAME.tar.gz $REDIS_OPERATOR_SRC
 mkdir $APP_NAME && tar -xf "$APP_NAME.tar.gz" -C $APP_NAME --strip-components=1
 
-pushd $APP_NAME
-cp -R go.mod go.sum api cmd internal mocks pkg $SPATH
-popd
-rm -rf $APP_NAME.tar.gz $APP_NAME/
+rm -rf $APP_NAME.tar.gz
 
 sed -i "s/version=\"[^\"]*\"/version=\"${VERSION:1}\"/" Dockerfile || exit 1
 

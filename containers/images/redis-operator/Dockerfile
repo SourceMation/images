@@ -12,19 +12,19 @@ ARG IMG
 
 WORKDIR /workspace
 # Copy the Go Modules manifests
-COPY go.mod go.mod
-COPY go.sum go.sum
+COPY redis-operator/go.mod go.mod
+COPY redis-operator/go.sum go.sum
 # cache deps before building and copying source so that we don't need to re-download as much
 # and so that source changes don't invalidate our downloaded layer
 RUN apt-get update && apt-get install -y ca-certificates
 RUN go mod download
 
 # Copy the go source
-COPY cmd/ cmd/
-COPY api/ api/
-COPY pkg/ pkg/
-COPY internal/ internal/
-COPY mocks/ mocks/
+COPY redis-operator/cmd/ cmd/
+COPY redis-operator/api/ api/
+COPY redis-operator/pkg/ pkg/
+COPY redis-operator/internal/ internal/
+COPY redis-operator/mocks/ mocks/
 
 # Build
 ARG LDFLAGS="-s -w -X github.com/OT-CONTAINER-KIT/redis-operator/internal/image.operatorImage=${IMG}"
