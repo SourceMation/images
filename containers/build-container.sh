@@ -182,6 +182,10 @@ test_container(){
     if [ -f "tests/test_${IMAGE_NAME}.py" ]; then
         CONTAINER_TEST_FILES+=" test_${IMAGE_NAME}.py"
     fi
+   
+    if [ "${DOCKER_TAG_SUFFIX}" != "" ] && [ -f "tests/test_${IMAGE_NAME}${DOCKER_TAG_SUFFIX}.py" ]; then
+            CONTAINER_TEST_FILES+=" test_${IMAGE_NAME}${DOCKER_TAG_SUFFIX}.py"
+    fi
 
     # Python do not like the modules with '.' in the name so we have to fix it
     if [[ "${IMAGE_NAME}" =~ python-3. ]]; then
@@ -199,6 +203,7 @@ test_container(){
 
     CONTAINER_RUN_PARAMETERS=""
     CONTAINER_RUN_COMMAND="/bin/bash"
+    echo "IMAGE NAME IS ${IMAGE_NAME}"
     case ${IMAGE_NAME} in
         "apache-activemq")
             CONTAINER_RUN_COMMAND=""
