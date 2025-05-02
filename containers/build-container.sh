@@ -84,7 +84,7 @@ prepare_build(){
     if [ -f "$BASE/$container_dir/init.sh" ]; then
         pushd "$BASE/$container_dir"
         print_info "Running init.sh - preparing the build"
-        ./init.sh
+#        ./init.sh
         print_info "init.sh done"
         popd
     else
@@ -227,6 +227,9 @@ test_container(){
             CONTAINER_RUN_COMMAND=""
             ;;
         "mosquitto")
+            CONTAINER_RUN_COMMAND=""
+            ;;
+        nginx*)
             CONTAINER_RUN_COMMAND=""
             ;;
         "postgresql")
