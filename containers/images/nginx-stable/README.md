@@ -27,7 +27,7 @@ FROM sourcemation/nginx-stable
 COPY nginx.conf /etc/nginx/nginx.conf
 ```
 
-Mounting a local directory `./content)` to the container named `static-website`:
+Mounting a local directory `./content` to the container named `static-website`:
 
 ```bash
 docker run -v ./content:/usr/share/nginx/html:ro --name static-website sourcemation/nginx
