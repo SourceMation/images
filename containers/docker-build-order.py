@@ -92,9 +92,17 @@ def parse_from_dockerfile(from_line) -> tuple[Optional[str], Optional[str], Opti
     if '@' in from_line:
         raise ValueError(f"Invalid image format: {from_line} we do not images with @ (digest)")
     org, image, image_tag = None, None, None
-
+    
     if '/' in from_line:
-        org, from_line = from_line.split('/')
+        if (from_line.count('/') == 1):
+            org, from_line = from_line.split('/')
+        else:
+            # This is a bit fragile, but we need to split the last part of the paths
+            # docker.io/my_org/my_image:tag
+            # whatever.io/whatver/whatever/my_org/my_image:tag
+            org, from_line = from_line.rsplit('/', 1)
+            org = org.split('/')[-1]
+
     if ':' in from_line:
         image, image_tag = from_line.split(':')
     else:
@@ -124,7 +132,11 @@ def create_build_tree(dockerfiles_nodes, org_name):
 
     # Let's start by finding only the `FROM scratch`
     for dn in dockerfiles_nodes:
-        from_image_org, from_image_name, from_image_tag = parse_from_dockerfile(dn.base_images[0])
+        try:
+            from_image_org, from_image_name, from_image_tag = parse_from_dockerfile(dn.base_images[0])
+        except ValueError:
+            print(f"Invalid Image {dn.base_images[0]} in {dn.path}")
+            exit(1)
         c_name = get_container_name_from_path(dn.path)
         if from_image_name == "scratch":
             print("Found the image from scratch adding it to the build order")
