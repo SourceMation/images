@@ -17,7 +17,6 @@ docker run -d --name $container_name $IMG_NAME sleep 180
 docker cp prepare-container-to-get-version.sh $container_name:/prepare-container-to-get-version.sh
 docker exec $container_name /prepare-container-to-get-version.sh
 main_package_version=$(docker exec $container_name cat /version)
-dyn_package_version=$(docker exec $container_name cat /dyn_version)
 otel_version=$(docker exec $container_name cat /otel_version)
 docker rm -f $container_name
 echo "Found version: $main_package_version"
