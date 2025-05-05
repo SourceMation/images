@@ -30,7 +30,7 @@ COPY nginx.conf /etc/nginx/nginx.conf
 Mounting a local directory `./content` to the container named `static-website`:
 
 ```bash
-docker run -v ./content:/usr/share/nginx/html:ro --name static-website sourcemation/nginx
+docker run -v ./content:/usr/share/nginx/html:ro --name static-website sourcemation/nginx-stable
 ```
 
 Or create a custom image with the same content:
