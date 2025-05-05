@@ -1,1 +1,1 @@
-# Nginx packed by Sourcemation
+This file is intentionally left blank.

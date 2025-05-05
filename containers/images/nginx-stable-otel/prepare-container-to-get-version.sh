@@ -17,6 +17,5 @@ echo "$aptRepo" > /etc/apt/sources.list.d/nginx-stable.list
 apt update
 # Main Nginx package version
 apt-cache madison nginx | awk '{print $3}' | head -n 1 > /version
-# Nginx module dynamic version
-apt-cache madison nginx-module-geoip | awk '{print $3}' | head -n 1 >> /dyn_version
+# Otel version
 apt-cache madison nginx-module-otel | awk '{print $3}' | head -n 1 >> /otel_version

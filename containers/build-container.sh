@@ -84,7 +84,7 @@ prepare_build(){
     if [ -f "$BASE/$container_dir/init.sh" ]; then
         pushd "$BASE/$container_dir"
         print_info "Running init.sh - preparing the build"
-#        ./init.sh
+        ./init.sh
         print_info "init.sh done"
         popd
     else
@@ -200,10 +200,9 @@ test_container(){
         CONTAINER_TEST_FILES+=" test_postgresql.py"
     fi
 
-
     CONTAINER_RUN_PARAMETERS=""
     CONTAINER_RUN_COMMAND="/bin/bash"
-    echo "IMAGE NAME IS ${IMAGE_NAME}"
+
     case ${IMAGE_NAME} in
         "apache-activemq")
             CONTAINER_RUN_COMMAND=""

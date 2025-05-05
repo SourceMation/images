@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ---------------------------------------------------
-# Automated build process for the nginx-stable-otl image
+# Automated build process for the nginx-stable-otel image
 # Author: Aleksander Baranowski
 # e-mail: aleksander.baranowski@linuxpolska.pl
 # ---------------------------------------------------
