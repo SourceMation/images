@@ -36,6 +36,7 @@ RUN set -eux; echo "Installing development packages - buildpacks-deps style ;)!"
         file \
         g++ \
         gcc \
+        gpg \
         imagemagick \
         libatomic1 \
         libbz2-dev \
@@ -106,7 +107,7 @@ RUN ARCH= && dpkgArch="$(dpkg --print-architecture)" \
   && ln -s /usr/local/bin/node /usr/local/bin/nodejs \
   && rm -rf /tmp/* \
   && echo "Removing OpenSSL headers to save space" \
-  && cd /usr/local/include/node/openssl/archs -mindepth 1 -maxdepth 1 ! -name "$OPENSSL_ARCH" -exec rm -rfv {} \; 
+  && cd /usr/local/include/node/openssl/archs -mindepth 1 -maxdepth 1 ! -name "$OPENSSL_ARCH" -exec rm -rfv {} \;  \
   echo "OK, installed nodejs $NODE_VERSION"
 
 
@@ -128,7 +129,7 @@ RUN set -ex \
   && ln -s /opt/yarn-v$YARN_VERSION/bin/yarn /usr/local/bin/yarn \
   && ln -s /opt/yarn-v$YARN_VERSION/bin/yarnpkg /usr/local/bin/yarnpkg \
   && rm yarn-v$YARN_VERSION.tar.gz.asc yarn-v$YARN_VERSION.tar.gz \
-  && rm -rf /tmp/*
+  && rm -rf /tmp/* \
   echo "OK, installed yarn $YARN_VERSION"
 
 COPY docker-entrypoint.sh /usr/local/bin/
