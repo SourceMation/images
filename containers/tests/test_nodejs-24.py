@@ -30,7 +30,7 @@ def test_yarn_working():
     # Try to add a package (a lightweight one)
     result_add = subprocess.run(['yarn', 'add', 'lodash'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
     assert result_add.returncode == 0, f"Yarn add failed: {result_add.stderr}"
-    assert 'Saved 1 new dependency' in result_add.stdout or 'Saved 1 new dependency' in result_add.stdout, f"Yarn add output not as expected: {result_add.stdout}"
+    assert 'Saved 1 new dependency' in result_add.stdout, f"Yarn add output not as expected: {result_add.stdout}"
 
     result_list = subprocess.run(['yarn', 'list', '--depth=0'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
     assert result_list.returncode == 0, f"Yarn list failed: {result_list.stderr}"
