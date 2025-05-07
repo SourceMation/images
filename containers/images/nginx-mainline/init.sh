@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ---------------------------------------------------
-# Automated build process for the nginx-stable image
+# Automated build process for the nginx-mainline image
 # Author: Aleksander Baranowski
 # e-mail: aleksander.baranowski@linuxpolska.pl
 # ---------------------------------------------------
@@ -48,11 +48,11 @@ sed -i "s/DYNPKG_RELEASE=\"[^\"]*\"/DYNPKG_RELEASE=\"$DYNPKG_RELEASE\"/" Dockerf
 echo "-> Removing old entrypoints and configs"
 rm -fv 10-listen-on-ipv6-by-default.sh 15-local-resolvers.envsh 20-envsubst-on-templates.sh 30-tune-worker-processes.sh docker-entrypoint.sh
 echo "-> Downloading new entrypoints and configs"
-wget https://raw.githubusercontent.com/nginx/docker-nginx/refs/heads/master/stable/debian/10-listen-on-ipv6-by-default.sh
-wget https://raw.githubusercontent.com/nginx/docker-nginx/refs/heads/master/stable/debian/15-local-resolvers.envsh
-wget https://raw.githubusercontent.com/nginx/docker-nginx/refs/heads/master/stable/debian/20-envsubst-on-templates.sh
-wget https://raw.githubusercontent.com/nginx/docker-nginx/refs/heads/master/stable/debian/30-tune-worker-processes.sh
-wget https://raw.githubusercontent.com/nginx/docker-nginx/refs/heads/master/stable/debian/docker-entrypoint.sh
+wget https://raw.githubusercontent.com/nginx/docker-nginx/refs/heads/master/mainline/debian/10-listen-on-ipv6-by-default.sh
+wget https://raw.githubusercontent.com/nginx/docker-nginx/refs/heads/master/mainline/debian/15-local-resolvers.envsh
+wget https://raw.githubusercontent.com/nginx/docker-nginx/refs/heads/master/mainline/debian/20-envsubst-on-templates.sh
+wget https://raw.githubusercontent.com/nginx/docker-nginx/refs/heads/master/mainline/debian/30-tune-worker-processes.sh
+wget https://raw.githubusercontent.com/nginx/docker-nginx/refs/heads/master/mainline/debian/docker-entrypoint.sh
 chmod +x 10-listen-on-ipv6-by-default.sh 15-local-resolvers.envsh 20-envsubst-on-templates.sh 30-tune-worker-processes.sh docker-entrypoint.sh
 
 

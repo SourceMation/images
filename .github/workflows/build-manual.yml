@@ -39,6 +39,9 @@ on:
           - micronaut
           - mongodb
           - mosquitto
+          - nginx-mainline
+          - nginx-mainline-otel
+          - nginx-mainline-perl
           - nginx-stable
           - nginx-stable-otel
           - nginx-stable-perl

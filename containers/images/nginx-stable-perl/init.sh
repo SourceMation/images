@@ -25,9 +25,9 @@ echo "Found version: $main_package_version"
 NGINX_VERSION=$(echo "$main_package_version" | cut -d '-' -f 1)
 DYNPKG_RELEASE=$(echo "$dyn_package_version" | cut -d '-' -f 2 | cut -d '.' -f 1)
 
-echo "Found versions:\n
-NGINX_VERSION: $NGINX_VERSION\n
-DYNPKG_RELEASE: $DYNPKG_RELEASE\n
+echo "Found versions:
+NGINX_VERSION: $NGINX_VERSION
+DYNPKG_RELEASE: $DYNPKG_RELEASE
 "
 
 sed -i "s/version=\"[^\"]*\"/version=\"$NGINX_VERSION\"/" Dockerfile || exit 1
