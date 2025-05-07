@@ -29,7 +29,7 @@ NJS_RELEASE=$(echo "$njs_package_version" | cut -d '-' -f 2)
 NJS_VERSION=$(echo "$njs_package_version" | cut -d '-' -f 1 | cut -d '+' -f 2) 
 DYNPKG_RELEASE=$(echo "$dyn_package_version" | cut -d '-' -f 2 | cut -d '.' -f 1)
 
-echo e "Found versions:\n
+echo "Found versions:\n
 NGINX_VERSION: $NGINX_VERSION\n
 PKG_RELEASE: $PKG_RELEASE\n
 NJS_VERSION: $NJS_VERSION\n

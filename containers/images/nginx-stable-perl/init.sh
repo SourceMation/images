@@ -25,7 +25,7 @@ echo "Found version: $main_package_version"
 NGINX_VERSION=$(echo "$main_package_version" | cut -d '-' -f 1)
 DYNPKG_RELEASE=$(echo "$dyn_package_version" | cut -d '-' -f 2 | cut -d '.' -f 1)
 
-echo e "Found versions:\n
+echo "Found versions:\n
 NGINX_VERSION: $NGINX_VERSION\n
 DYNPKG_RELEASE: $DYNPKG_RELEASE\n
 "

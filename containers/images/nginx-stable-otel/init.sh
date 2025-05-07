@@ -26,7 +26,7 @@ NGINX_VERSION=$(echo "$main_package_version" | cut -d '-' -f 1) # NGINX_VERSION
 PKG_RELEASE=$(echo "$main_package_version" | cut -d '-' -f 2 | cut -d '.' -f 1) # PKG_RELEASE
 OTEL_VERSION=$(echo "$otel_version" | cut -d '-' -f 1 | cut -d '+' -f 2) # OTEL_VERSION
 
-echo e "Found versions:\n
+echo "Found versions:\n
 NGINX_VERSION: $NGINX_VERSION\n
 PKG_RELEASE: $PKG_RELEASE\n
 OTEL_VERSION: $OTEL_VERSION\n

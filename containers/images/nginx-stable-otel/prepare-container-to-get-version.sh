@@ -18,4 +18,4 @@ apt update
 # Main Nginx package version
 apt-cache madison nginx | awk '{print $3}' | head -n 1 > /version
 # Otel version
-apt-cache madison nginx-module-otel | awk '{print $3}' | head -n 1 >> /otel_version
+apt-cache madison nginx-module-otel | awk '{print $3}' | head -n 1 > /otel_version
