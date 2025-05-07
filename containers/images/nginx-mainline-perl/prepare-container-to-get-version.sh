@@ -19,6 +19,3 @@ apt update
 apt-cache madison nginx | awk '{print $3}' | head -n 1 > /version
 # Nginx module dynamic version
 apt-cache madison nginx-module-geoip | awk '{print $3}' | head -n 1 > /dyn_version
-# njs version
-apt-cache madison nginx-module-njs | awk '{print $3}' | head -n 1 > /njs_version
-

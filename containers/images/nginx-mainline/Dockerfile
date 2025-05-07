@@ -9,14 +9,14 @@ LABEL name="nginx-mainline" \
       architecture="$(uname -m)" \
       summary="Nginx Mainline on Debian 12 Slim Container" \
       description="Provides Nginx Mainline on Debian 12 Slim Container" \
-      version="1.28.0" \
+      version="1.27.5" \
       io.k8s.display-name="Nginx Mainline on Debian 12 Slim Container" \
       io.k8s.description="Provides Nginx Mainline on Debian 12 Slim Container" \
       io.openshift.tags="nginx debian-12-slim"
 
-ENV NGINX_VERSION="1.28.0"
+ENV NGINX_VERSION="1.27.5"
 ENV PKG_RELEASE="1~bookworm"
-ENV NJS_VERSION="0.8.10"
+ENV NJS_VERSION="0.9.0"
 ENV NJS_RELEASE="1~bookworm"
 ENV DYNPKG_RELEASE="1~bookworm"
 
