@@ -1,17 +1,17 @@
 #!/usr/bin/env bash
 # ---------------------------------------------------
-# Automated build process for the NodeJS 22 image
+# Automated build process for the NodeJS 24 image
 # Author: Aleksander Baranowski
 # e-mail: aleksander.baranowski@linuxpolska.pl
 # ---------------------------------------------------
 
 set -euo pipefail
 
-APP="NodeJS 22"
+APP="NodeJS 24"
 
 echo "Checking the latest version of $APP"
 
-NODE_VERSION=$(git ls-remote --tags https://github.com/nodejs/node.git | grep  -o 'v22.[.0-9]*$'  | tr -d 'v' | sort --version-sort --reverse | head -1)
+NODE_VERSION=$(git ls-remote --tags https://github.com/nodejs/node.git | grep  -o 'v24.[.0-9]*$'  | tr -d 'v' | sort --version-sort --reverse | head -1)
 
 # Exit with an error if the returned version contains anything other
 # than digits and dots
@@ -38,7 +38,7 @@ echo "Latest version of $APP is $YARN_VERSION"
 sed -i "s/YARN_VERSION=\"[^\"]*\"/YARN_VERSION=\"$YARN_VERSION\"/" Dockerfile || exit 1
 
 echo "Downloading entrypoint script"
-curl -LO https://github.com/nodejs/docker-node/raw/refs/heads/main/22/bookworm-slim/docker-entrypoint.sh
+curl -LO https://github.com/nodejs/docker-node/raw/refs/heads/main/24/bookworm-slim/docker-entrypoint.sh
 chmod +x docker-entrypoint.sh
 
 echo "Init script completed successfully"

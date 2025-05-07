@@ -1,23 +1,23 @@
 FROM sourcemation/debian-12-slim:latest
 
-LABEL name="nodejs-22" \
+LABEL name="nodejs-24" \
       vendor="SourceMation" \
       url="https://sourcemation.com/"\
       licenses="Multiple licenses" \
       created="$(date +%Y%m%d)" \
       architecture="$(uname -m)" \
-      summary="NodeJS 22 on Debian 12 Slim Container" \
-      description="Provides NodeJS 22 on Debian 12 Slim Container" \
-      version="22.15.0" \
-      io.k8s.display-name="NodeJS 22 on Debian 12 Slim Container" \
-      io.k8s.description="Provides NodeJS 22  on Debian 12 Slim Container" \
-      io.openshift.tags="nodejs nodejs-22 debian-12-slim"
+      summary="NodeJS 24 on Debian 12 Slim Container" \
+      description="Provides NodeJS 24 on Debian 12 Slim Container" \
+      version="24.0.0" \
+      io.k8s.display-name="NodeJS 24 on Debian 12 Slim Container" \
+      io.k8s.description="Provides NodeJS 24 on Debian 12 Slim Container" \
+      io.openshift.tags="nodejs nodejs-24 debian-12-slim"
 
 
 RUN groupadd --gid 1000 node \
   && useradd --uid 1000 --gid node --shell /bin/bash --create-home node
 
-ENV NODE_VERSION="22.15.0"
+ENV NODE_VERSION="24.0.0"
 ENV YARN_VERSION="1.22.22"
 
 # Most of this packages are from buildpack-deps that is based on old Heroku
