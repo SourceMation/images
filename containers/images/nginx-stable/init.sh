@@ -29,12 +29,12 @@ NJS_RELEASE=$(echo "$njs_package_version" | cut -d '-' -f 2)
 NJS_VERSION=$(echo "$njs_package_version" | cut -d '-' -f 1 | cut -d '+' -f 2) 
 DYNPKG_RELEASE=$(echo "$dyn_package_version" | cut -d '-' -f 2 | cut -d '.' -f 1)
 
-echo "Found versions:\n
-NGINX_VERSION: $NGINX_VERSION\n
-PKG_RELEASE: $PKG_RELEASE\n
-NJS_VERSION: $NJS_VERSION\n
-NJS_RELEASE: $NJS_RELEASE\n
-DYNPKG_RELEASE: $DYNPKG_RELEASE\n
+echo "Found versions:
+NGINX_VERSION: $NGINX_VERSION
+PKG_RELEASE: $PKG_RELEASE
+NJS_VERSION: $NJS_VERSION
+NJS_RELEASE: $NJS_RELEASE
+DYNPKG_RELEASE: $DYNPKG_RELEASE
 "
 
 sed -i "s/version=\"[^\"]*\"/version=\"$NGINX_VERSION\"/" Dockerfile || exit 1
