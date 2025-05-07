@@ -39,6 +39,9 @@ on:
           - micronaut
           - mongodb
           - mosquitto
+          - nginx-stable
+          - nginx-stable-otel
+          - nginx-stable-perl
           - nodejs
           - openapi-generator-cli
           - postgres-16
@@ -50,9 +53,9 @@ on:
           - python-3.13
           - quarkus
           - rabbitmq
-          - rabbitmq-cluster-operator
           - rabbitmq-4
           - rabbitmq-4-management
+          - rabbitmq-cluster-operator
           - redis
           - redis-exporter
           - redis-operator
