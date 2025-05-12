@@ -33,6 +33,7 @@ on:
           - helidon
           - java
           - jenkins
+          - jre-21
           - kafka
           - karaf
           - kong
