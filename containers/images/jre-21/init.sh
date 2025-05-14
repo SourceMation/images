@@ -11,12 +11,12 @@ APP="JRE 21"
 
 echo "Checking the latest version of $APP"
 
-JAVA_VERSION=$(git ls-remote --tags https://github.com/adoptium/temurin21-binaries.git | grep -v beta | grep -o  'jdk-21(\.[0-9]+)+(\+[0-9]+)?' | sort --version-sort -r | head -1)
+JAVA_VERSION=$(git ls-remote --tags https://github.com/adoptium/temurin21-binaries.git | grep -v beta | grep -o  'jdk-21[.+0-9]*' | sort --version-sort -r | head -1)
 
 # Exit with an error if the returned version contains anything other
 # than digits and dots
 echo "Checking the latest version of $APP against the regex"
-echo "$JAVA_VERSION" | grep -q 'jdk-21(\.[0-9]+)+(\+[0-9]+)?' || exit 1
+echo "$JAVA_VERSION" | grep -q 'jdk-21[.+0-9]*' || exit 1
 
 echo "Latest version of $APP is $JAVA_VERSION"
 
