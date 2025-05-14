@@ -13,7 +13,7 @@ LABEL name="jdk-21" \
       io.k8s.description="Provides JDK 21 on Debian 12 Slim Container" \
       io.openshift.tags="jdk jdk-21 debian-12-slim"
 
-ENV JAVA_VERSION=jdk-21.0.7+6
+ENV JAVA_VERSION="jdk-21.0.7+6"
 ENV JAVA_HOME=/opt/java/openjdk
 ENV PATH=$JAVA_HOME/bin:$PATH
 # Default to UTF-8 file.encoding

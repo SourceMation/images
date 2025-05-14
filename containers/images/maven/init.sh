@@ -25,7 +25,7 @@ VER_STR="${MAVEN_VER//maven-/}"
 LABEL_STR="${VER_STR}-jdk-21"
 
 sed -i "s/version=\"[^\"]*\"/version=\"$LABEL_STR\"/" Dockerfile || exit 1
-sed -i "s/MAVEN_VER=\"[^\"]*\"/MAVEN_VER=\"$MAVEN_VER\"/" Dockerfile || exit 1
+sed -i "s/MAVEN_VERSION=\"[^\"]*\"/MAVEN_VERSION=\"$VER_STR\"/" Dockerfile || exit 1
 
 BASE_URL17=https://raw.githubusercontent.com/carlossg/docker-maven/refs/heads/main/eclipse-temurin-17/
 BASE_URL21=https://raw.githubusercontent.com/carlossg/docker-maven/refs/heads/main/eclipse-temurin-21/
