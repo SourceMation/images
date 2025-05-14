@@ -99,4 +99,4 @@ are available on the [SourceMation platform](https://www.sourcemation.com/).
 
 ### License
 
-The maven is licensed under the Apache License 2.0
+The Maven is licensed under the Apache License 2.0

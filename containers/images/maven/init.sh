@@ -11,12 +11,12 @@ APP="Maven 3.9"
 
 echo "Checking the latest version of $APP"
 
-MAVEN_VER=$(git ls-remote --tags  https://github.com/apache/maven.git | grep -v rc | grep -o  'maven-3.9[.+0-9]*' | sort --version-sort -r | head -1)
+MAVEN_VER=$(git ls-remote --tags  https://github.com/apache/maven.git | grep -v rc | grep -o  'maven-3\.9\.[0-9.]*' | sort --version-sort -r | head -1)
 
 # Exit with an error if the returned version contains anything other
 # than digits and dots
 echo "Checking the latest version of $APP against the regex"
-echo "$MAVEN_VER" | grep -q 'maven-3.9.[.0-9]*' || exit 1
+echo "$MAVEN_VER" | grep -q 'maven-3\.9\.[0-9.]*' || exit 1
 
 echo "Latest version of $APP is $MAVEN_VER"
 
