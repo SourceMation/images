@@ -64,7 +64,7 @@ ENV USE_SYSTEM_CA_CERTS=1
 # Set the working directory
 WORKDIR /app
 # Run the Java application
-CMD {"java", "-jar", "your-application.jar"}
+CMD ["java", "-jar", "your-application.jar"]
 ```
 
 ### Creating a new user and run application
