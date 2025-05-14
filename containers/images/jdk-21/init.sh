@@ -7,7 +7,7 @@
 
 set -euo pipefail
 
-APP="JRE 21"
+APP="JDK 21"
 
 echo "Checking the latest version of $APP"
 
