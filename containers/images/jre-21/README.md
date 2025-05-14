@@ -114,14 +114,13 @@ extend it to run your application as a non-root user.**
 
 ## Extra Information
 
-## Sourcemation
+### Sourcemation
 
 Sourcemation offers a range of open-source projects and Docker images with
 extensive risk assessment of open-source software. We are committed to providing
 high-quality images. Comprehensive risk analysis reports for selected images
 are available on the [SourceMation platform](https://www.sourcemation.com/).
 
-## License
+### License
 
 The OpenJDK project is licensed under the GNU General Public License, version 2, with the Classpath Exception.
-
