@@ -35,7 +35,7 @@ COPY your-application.jar /app/your-application.jar
 # Set the working directory
 WORKDIR /app
 # Run the Java application
-CMD {"java", "-jar", "your-application.jar"}
+CMD ["java", "-jar", "your-application.jar"]
 ```
 
 You can also run a Java application directly from the command line by mounting

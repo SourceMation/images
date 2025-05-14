@@ -39,7 +39,7 @@ RUN set -eux; \
 
 
 # Original image contains the `ESUM` var to verify download, checksum. But
-# it's unecessary as we are getting the GPG signed cheksum file, and verfiy
+# it's unnecessary as we are getting the GPG signed checksum file, and verify
 # file against the signature...
 # DL_VER_WITHOUT_PREFIX replaces the + with _
 RUN set -eux; \
