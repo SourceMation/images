@@ -32,11 +32,13 @@ on:
           - golang-1.24
           - helidon
           - java
+          - jdk-21
           - jenkins
           - jre-21
           - kafka
           - karaf
           - kong
+          - maven
           - micronaut
           - mongodb
           - mosquitto

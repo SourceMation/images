@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 # ---------------------------------------------------
-# Automated build process for the JRE 21 image
+# Automated build process for the JDK 21 image
 # Author: Aleksander Baranowski
 # e-mail: aleksander.baranowski@linuxpolska.pl
 # ---------------------------------------------------
 
 set -euo pipefail
 
-APP="JRE 21"
+APP="JDK 21"
 
 echo "Checking the latest version of $APP"
 

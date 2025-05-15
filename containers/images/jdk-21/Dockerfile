@@ -1,17 +1,17 @@
 FROM sourcemation/debian-12-slim:latest
 
-LABEL name="jre-21" \
+LABEL name="jdk-21" \
       vendor="SourceMation" \
       url="https://sourcemation.com/"\
       licenses="Multiple licenses" \
       created="$(date +%Y%m%d)" \
       architecture="$(uname -m)" \
-      summary="JRE 21 on Debian 12 Slim Container" \
-      description="Provides JRE 21 on Debian 12 Slim Container" \
+      summary="JDK 21 on Debian 12 Slim Container" \
+      description="Provides JDK 21 on Debian 12 Slim Container" \
       version="jdk-21.0.7-6" \
-      io.k8s.display-name="JRE 21 on Debian 12 Slim Container" \
-      io.k8s.description="Provides JRE 21 on Debian 12 Slim Container" \
-      io.openshift.tags="jre jre-21 debian-12-slim"
+      io.k8s.display-name="JDK 21 on Debian 12 Slim Container" \
+      io.k8s.description="Provides JDK 21 on Debian 12 Slim Container" \
+      io.openshift.tags="jdk jdk-21 debian-12-slim"
 
 ENV JAVA_VERSION="jdk-21.0.7+6"
 ENV JAVA_HOME=/opt/java/openjdk
@@ -48,10 +48,10 @@ RUN set -eux; \
     case "${ARCH}" in \
        amd64) \
          #BINARY_URL="https://github.com/adoptium/temurin21-binaries/releases/download/${JAVA_VERSION}/OpenJDK21U-jre_x64_linux_hotspot_21.0.7_6.tar.gz"; \
-         BINARY_URL="https://github.com/adoptium/temurin21-binaries/releases/download/${JAVA_VERSION}/OpenJDK21U-jre_x64_linux_hotspot_${DL_VER_WITHOUT_PREFIX}.tar.gz"; \
+         BINARY_URL="https://github.com/adoptium/temurin21-binaries/releases/download/${JAVA_VERSION}/OpenJDK21U-jdk_x64_linux_hotspot_${DL_VER_WITHOUT_PREFIX}.tar.gz"; \
          ;; \
        arm64) \
-         BINARY_URL="https://github.com/adoptium/temurin21-binaries/releases/download/${JAVA_VERSION}/OpenJDK21U-jre_aarch64_linux_hotspot_${DL_VER_WITHOUT_PREFIX}.tar.gz"; \
+         BINARY_URL="https://github.com/adoptium/temurin21-binaries/releases/download/${JAVA_VERSION}/OpenJDK21U-jdk_aarch64_linux_hotspot_${DL_VER_WITHOUT_PREFIX}.tar.gz"; \
          ;; \
        *) \
          echo "Unsupported arch: ${ARCH}"; \
