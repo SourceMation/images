@@ -1,9 +1,9 @@
-name: Monthly Refresh Images
+name: Bi-Monthly Refresh Images
 
 on:
   schedule:
-    - cron: '0 8 5 * *' # Runs every 5th of the month at 08:00
-    - cron: '0 8 20 * *' # Runs every 20th of the month at 08:00
+    - cron: '0 7 5 * *' # Runs every 5th of the month at 07:00 (UTC)
+    - cron: '0 7 20 * *' # Runs every 20th of the month at 07:00 (UTC)
   workflow_dispatch: # Allows manual trigger
 
 jobs:
