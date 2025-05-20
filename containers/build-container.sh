@@ -371,7 +371,7 @@ push_container_image(){
         for container_registry in "docker.io" "quay.io"; do
             # there is no need to remove the tag as it should be always unique
             echo "Creating latest manifest for ${container_registry} with amd64 ${container_registry} and $DOCKER_TAG_BUILD_VER_NO_ARCH"
-            docker manifest create "${container_registry}/sourcemation/$DOCKER_TAG_BUILD_VER_NO_ARCH" --amend "${container_registry}/sourcemation/$DOCKER_TAG_BUILD_VER_NO_ARCH"
+            docker manifest create "${container_registry}/sourcemation/$DOCKER_TAG_BUILD_VER_NO_ARCH" --amend "${container_registry}/sourcemation/$DOCKER_TAG_BUILD"
         done
     elif [ "$BASE_ARCH" == "aarch64" ]; then
         echo "Creating arm64 manifest for $DOCKER_TAG_BUILD_VER_NO_ARCH"
