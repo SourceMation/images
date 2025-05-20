@@ -22,7 +22,6 @@ RUN go mod download
 # Copy the go source
 COPY redis-operator/cmd/ cmd/
 COPY redis-operator/api/ api/
-COPY redis-operator/pkg/ pkg/
 COPY redis-operator/internal/ internal/
 COPY redis-operator/mocks/ mocks/
 
@@ -46,7 +45,7 @@ LABEL name="redis-operator" \
       architecture="$(uname -m)" \
       summary="Redis Operator on Distroless Container" \
       description="Provides Redis Operator on Distroless Container" \
-      version="0.20.1" \
+      version="0.20.2" \
       io.k8s.display-name="Redis Operator on Distroless Container" \
       io.k8s.description="Provides Redis Operator on Distroless Container" \
       io.openshift.tags="redis operator distroless"
