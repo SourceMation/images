@@ -154,6 +154,7 @@ build_container(){
 
     DOCKER_TAG_LATEST="${IMAGE_NAME}:latest-${latest_arch}${DOCKER_TAG_SUFFIX}"
     DOCKER_TAG_VERSION="${IMAGE_NAME}:${IMAGE_VERSION}${DOCKER_TAG_SUFFIX}"
+    DOCKER_TAG_BUILD_VER_NO_ARCH="${IMAGE_NAME}:${IMAGE_VERSION}-${B_DATE}${DOCKER_TAG_SUFFIX}"
     DOCKER_TAG_BUILD="${IMAGE_NAME}:${IMAGE_VERSION}-${B_DATE}${DOCKER_TAG_SUFFIX}-${latest_arch}"
 
     docker buildx build \
@@ -182,7 +183,7 @@ test_container(){
     if [ -f "tests/test_${IMAGE_NAME}.py" ]; then
         CONTAINER_TEST_FILES+=" test_${IMAGE_NAME}.py"
     fi
-   
+
     if [ "${DOCKER_TAG_SUFFIX}" != "" ] && [ -f "tests/test_${IMAGE_NAME}${DOCKER_TAG_SUFFIX}.py" ]; then
             CONTAINER_TEST_FILES+=" test_${IMAGE_NAME}${DOCKER_TAG_SUFFIX}.py"
     fi
@@ -363,6 +364,32 @@ push_container_image(){
     fi
     docker manifest push "docker.io/sourcemation/$DOCKER_TAG_VERSION"
     docker manifest push "quay.io/sourcemation/$DOCKER_TAG_VERSION"
+
+    # DOCKER_TAG_BUILD_VER_NO_ARCH - it's useful for the HELM charts
+
+    if [ "$BASE_ARCH" == "x86_64" ]; then
+        for container_registry in "docker.io" "quay.io"; do
+            # there is no need to remove the tag as it should be always unique
+            echo "Creating latest manifest for ${container_registry} with amd64 ${container_registry} and $DOCKER_TAG_BUILD_VER_NO_ARCH"
+            docker manifest create "${container_registry}/sourcemation/$DOCKER_TAG_BUILD_VER_NO_ARCH" --amend "${container_registry}/sourcemation/$DOCKER_TAG_BUILD_VER_NO_ARCH"
+        done
+    elif [ "$BASE_ARCH" == "aarch64" ]; then
+        echo "Creating arm64 manifest for $DOCKER_TAG_BUILD_VER_NO_ARCH"
+        # This may look stupid, I get that, but the thing is that in the
+        # previous pipeline, we had a single host that was pushing the
+        # manifests, so the x86_64 manifest was present before the arm64, and
+        # had host had the x86_64 image saved.
+        #        docker pull "sourcemation/$DOCKER_TAG_VERSION" || true
+        for container_registry in "docker.io" "quay.io"; do
+            echo "Creating $DOCKER_TAG_BUILD_VER_NO_ARCH manifest for ${container_registry} with arm64 and amd64"
+            docker manifest create "${container_registry}/sourcemation/$DOCKER_TAG_BUILD_VER_NO_ARCH" --amend "${container_registry}/sourcemation/$DOCKER_TAG_BUILD" --amend "$(echo ${container_registry}/sourcemation/"$DOCKER_TAG_BUILD" | sed 's/-arm64/-amd64/g' )"
+        done
+    fi
+
+    docker manifest push "docker.io/sourcemation/$DOCKER_TAG_BUILD_VER_NO_ARCH"
+    docker manifest push "quay.io/sourcemation/$DOCKER_TAG_BUILD_VER_NO_ARCH"
+
+
 
     # The latest tag is special case, do absolutely nothing if there is suffix
     if [ "$DOCKER_TAG_SUFFIX" != "" ]; then
