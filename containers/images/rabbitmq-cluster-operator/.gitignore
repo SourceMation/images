@@ -1,0 +1,8 @@
+api/
+cluster-operator/
+controllers/
+go.mod
+go.sum
+internal/
+main.go
+pkg/

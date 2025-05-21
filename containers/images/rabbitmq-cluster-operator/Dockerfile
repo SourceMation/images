@@ -1,5 +1,5 @@
 # Build the manager binary
-FROM --platform=$BUILDPLATFORM sourcemation/golang-1.23:latest AS builder
+FROM --platform=$BUILDPLATFORM sourcemation/golang-1.24:latest AS builder
 
 WORKDIR /workspace
 
@@ -41,7 +41,7 @@ LABEL name="rabbitmq-cluster-operator" \
       architecture="$(uname -m)" \
       summary="RabbitMQ Cluster Operator" \
       description="Provides RabbitMQ Cluster Operator" \
-      version="2.12.1" \
+      version="2.13.0" \
       io.k8s.display-name="RabbitMQ Cluster Operator Container" \
       io.k8s.description="Provides RabbitMQ Cluster Operator Container" \
       io.openshift.tags="rabbitmq-cluster-operator"
@@ -52,7 +52,7 @@ COPY --from=etc-builder /etc/passwd /etc/group /etc/
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 
 ENV APP_NAME="rabbitmq-cluster-operator" \
-    APP_VERSION="2.12.1"
+    APP_VERSION="2.13.0"
 
 USER 1000:1000
 
