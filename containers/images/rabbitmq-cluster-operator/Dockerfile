@@ -47,13 +47,14 @@ LABEL name="rabbitmq-cluster-operator" \
       io.openshift.tags="rabbitmq-cluster-operator"
 
 WORKDIR /
-COPY --from=builder /workspace/manager .
+COPY --from=builder /workspace/manager /usr/local/bin/
 COPY --from=etc-builder /etc/passwd /etc/group /etc/
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 
 ENV APP_NAME="rabbitmq-cluster-operator" \
-    APP_VERSION="2.13.0"
+    APP_VERSION="2.13.0" \
+    PATH=/usr/local/bin:$PATH
 
 USER 1000:1000
 
-ENTRYPOINT ["/manager"]
+ENTRYPOINT ["manager"]
