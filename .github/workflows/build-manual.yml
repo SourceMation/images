@@ -1,5 +1,5 @@
 name: Build container
-run-name: Duild of ${{ inputs.container_name }} container by @${{ github.actor }}
+run-name: Build of ${{ inputs.container_name }} container by @${{ github.actor }}
 
 concurrency:
   group: build-container-${{ github.ref }}
