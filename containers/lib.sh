@@ -78,7 +78,7 @@ read_configs(){
     else
         print_fail "There is no Dockerfile in this directory!"
     fi
-    # so basiclly set image_name image_version here
+    # so basically set image_name image_version here
     if [ -f ./conf.sh  ]; then
         # shellcheck disable=SC1091
         . ./conf.sh
