@@ -18,7 +18,7 @@ jobs:
     # This application is private application of SourceMation, installed in/for
     # this repository
 
-    - name: Get short lived token for GH APP
+      - name: Get short lived token for GH APP
         id: get_autocommit_app_token
         uses: peter-murray/workflow-application-token-action@v3
         with:
