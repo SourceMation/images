@@ -7,7 +7,9 @@ on:
   workflow_dispatch: # Allows manual trigger
 
 jobs:
-  generate-build-order:
+
+
+  Update the Dockerfiles and other artifacts:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -31,6 +33,16 @@ jobs:
         with:
           commit_message: "Update the Dockerfiles and other artifacts - ${{ env.CURRENT_DATE }}"
           tagging_message: ${{ steps.commit_tag.outputs.commit_tag }}
+
+
+  generate-build-order:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-tags: true
+          fetch-depth: 0
 
 # Temporary disabled
       #- name: Generate build order
