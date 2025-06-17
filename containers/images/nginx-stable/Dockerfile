@@ -16,7 +16,7 @@ LABEL name="nginx-stable" \
 
 ENV NGINX_VERSION="1.28.0"
 ENV PKG_RELEASE="1~bookworm"
-ENV NJS_VERSION="0.8.10"
+ENV NJS_VERSION="0.9.0"
 ENV NJS_RELEASE="1~bookworm"
 ENV DYNPKG_RELEASE="1~bookworm"
 

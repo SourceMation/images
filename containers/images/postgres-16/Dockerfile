@@ -8,7 +8,7 @@ LABEL name="postgres-16" \
       architecture="$(uname -m)" \
       summary="PostgreSQL 16 on Debian 12 Slim Container" \
       description="Provides PostgreSQL 16 on Debian Slim Container" \
-      version="16.8.1" \
+      version="16.9.1" \
       io.k8s.display-name="PostgreSQL 16 on Debian 12 Slim Container" \
       io.k8s.description="Provides PostgreSQL 16 on Debian 12 Slim Container" \
       io.openshift.tags="postgresql debian-12-slim"
@@ -18,7 +18,7 @@ ENV LANG en_US.utf8
 ENV PG_MAJOR="16"
 ENV PATH="$PATH:/usr/lib/postgresql/$PG_MAJOR/bin"
 ENV PGDATA /var/lib/postgresql/data
-ENV PG_VERSION="16.8-1.pgdg120+1"
+ENV PG_VERSION="16.9-1.pgdg120+1"
 ENV GOSU_VERSION 1.17
 
 # explicitly set user/group IDs

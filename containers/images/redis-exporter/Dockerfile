@@ -4,7 +4,7 @@ ARG TARGETARCH
 
 ARG EXPORTER_URL="https://github.com/oliver006/redis_exporter/releases/download"
 
-ARG REDIS_EXPORTER_VERSION="v1.70.0"
+ARG REDIS_EXPORTER_VERSION="v1.74.0"
 
 WORKDIR /tmp
 
@@ -27,7 +27,7 @@ LABEL name="redis-exporter" \
       architecture="$(uname -m)" \
       summary="Redis Exporter" \
       description="Provides Redis Exporter" \
-      version="1.70.0" \
+      version="1.74.0" \
       io.k8s.display-name="Redis Exporter" \
       io.k8s.description="Provides Redis Exporter" \
       io.openshift.tags="redis exporter"

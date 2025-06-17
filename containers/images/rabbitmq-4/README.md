@@ -18,7 +18,7 @@ This image uses the following environment variables:
 
 ```
 APP_NAME="rabbitmq-4"
-APP_VERSION="4.1.0"
+APP_VERSION="4.1.1"
 HOME=/var/lib/rabbitmq
 RABBITMQ_DATA_DIR=/var/lib/rabbitmq
 RABBITMQ_HOME=/opt/rabbitmq

@@ -13,7 +13,7 @@ LABEL name="python-3.13" \
       architecture="$(uname -m)" \
       summary="Python 3.13 on Debian 12 Slim Container" \
       description="Provides Python 3.13 on Debian 12 Slim Container" \
-      version="3.13.2" \
+      version="3.13.5" \
       io.k8s.display-name="Python 3.13 on Debian 12 Slim Container" \
       io.k8s.description="Provides Python 3.13 on Debian 12 Slim Container" \
       io.openshift.tags="python-3.13 debian-12-slim"
@@ -21,8 +21,8 @@ LABEL name="python-3.13" \
 # ensure local python is preferred over distribution python
 ENV PATH /usr/local/bin:$PATH
 ENV GPG_KEY="7169605F62C751356D054A26A821E680E5FA6305"
-ENV PYTHON_VERSION="3.13.2"
-ENV PYTHON_SHA256="d984bcc57cd67caab26f7def42e523b1c015bbc5dc07836cf4f0b63fa159eb56"
+ENV PYTHON_VERSION="3.13.5"
+ENV PYTHON_SHA256="93e583f243454e6e9e4588ca2c2662206ad961659863277afcdb96801647d640"
 
 # runtime dependencies
 RUN set -eux; \

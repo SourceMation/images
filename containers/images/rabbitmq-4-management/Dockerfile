@@ -8,7 +8,7 @@ LABEL name="rabbitmq-4-management" \
       architecture="$(uname -m)" \
       summary="RabbitMQ-4-Management Debian 12-slim" \
       description="Provides RabbitMQ-4-Management on Debian 12-slim" \
-      version="4.0.9" \
+      version="4.1.1" \
       io.k8s.display-name="RabbitMQ-4-Management on Debian 12-slim Container" \
       io.k8s.description="Provides RabbitMQ-4-Management Debian 12-slim Container" \
       io.openshift.tags="rabbitmq-4-management debian-12-slim"
@@ -28,6 +28,6 @@ RUN set -eux \
 	&& rabbitmqadmin --version
 
 ENV APP_NAME="rabbitmq-4-management" \
-    APP_VERSION="4.0.9"
+    APP_VERSION="4.1.1"
 
 EXPOSE 15671 15672

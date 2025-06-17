@@ -13,7 +13,7 @@ LABEL name="python-3.12" \
       architecture="$(uname -m)" \
       summary="Python 3.12 on Debian 12 Slim Container" \
       description="Provides Python 3.12 on Debian 12 Slim Container" \
-      version="3.12.9" \
+      version="3.12.11" \
       io.k8s.display-name="Python 3.12 on Debian 12 Slim Container" \
       io.k8s.description="Provides Python 3.12 on Debian 12 Slim Container" \
       io.openshift.tags="python-3.12 debian-12-slim"
@@ -24,8 +24,8 @@ ENV PATH=/usr/local/bin:$PATH
 ENV LANG=C.UTF-8
 # Build vars
 ENV GPG_KEY="7169605F62C751356D054A26A821E680E5FA6305"
-ENV PYTHON_VERSION="3.12.9"
-ENV PYTHON_SHA256="7220835d9f90b37c006e9842a8dff4580aaca4318674f947302b8d28f3f81112"
+ENV PYTHON_VERSION="3.12.11"
+ENV PYTHON_SHA256="c30bb24b7f1e9a19b11b55a546434f74e739bb4c271a3e3a80ff4380d49f7adb"
 
 # runtime dependencies
 RUN set -eux; \
