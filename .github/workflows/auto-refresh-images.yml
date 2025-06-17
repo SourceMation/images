@@ -34,6 +34,7 @@ jobs:
           tagging_message: ${{ steps.commit_tag.outputs.commit_tag }}
 
   generate-build-order:
+    needs: update-dockerfiles-and-artifacts
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
