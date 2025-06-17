@@ -2,8 +2,8 @@ name: Bi-Monthly Refresh Images
 
 on:
   schedule:
-    - cron: '0 7 5 * *' # Runs every 5th of the month at 07:00 (UTC)
-    - cron: '0 7 20 * *' # Runs every 20th of the month at 07:00 (UTC)
+    - cron: '0 2 5 * *' # Runs every 5th of the month at 02:00 (UTC)
+    - cron: '0 2 20 * *' # Runs every 20th of the month at 02:00 (UTC)
   workflow_dispatch: # Allows manual trigger
 
 jobs:
@@ -42,7 +42,7 @@ jobs:
         id: date
         run: echo "CURRENT_DATE=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
 
-      - uses: stefanzweifel/git-auto-commit-action@v5
+      - uses: stefanzweifel/git-auto-commit-action@v6
         name: Commit changes
         id: commit
         with:
@@ -59,40 +59,38 @@ jobs:
           ref: ${{ github.head_ref }}
           fetch-tags: true
           fetch-depth: 0
+      - name: Generate build order
+        run: |
+          cd containers
+          ./docker-build-order.py images/ sourcemation
 
-# Temporary disabled
-      #- name: Generate build order
-        #run: |
-          #cd containers
-          #./docker-build-order.py images/ sourcemation
+      - name: Upload build order
+        uses: actions/upload-artifact@v4
+        with:
+          name: build_order
+          path: containers/build_order.txt
 
-      #- name: Upload build order
-        #uses: actions/upload-artifact@v4
-        #with:
-          #name: build_order
-          #path: containers/build_order.txt
+  build-containers:
+    needs: generate-build-order
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-  #build-containers:
-    #needs: generate-build-order
-    #runs-on: ubuntu-latest
-    #steps:
-      #- name: Checkout repository
-        #uses: actions/checkout@v2
+      - name: Download build order
+        uses: actions/download-artifact@v4
+        with:
+          name: build_order
 
-      #- name: Download build order
-        #uses: actions/download-artifact@v4
-        #with:
-          #name: build_order
+      - name: Build containers
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          string=$(cat build_order.txt | tr '\n' ',' | sed 's/,$//')
+          container=$(echo "$string" | cut -d',' -f1)
+          to_build_list=$(echo "$string" | cut -d',' -f2-)
 
-      #- name: Build containers
-        #env:
-          #GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-        #run: |
-          #string=$(cat build_order.txt | tr '\n' ',' | sed 's/,$//')
-          #container=$(echo "$string" | cut -d',' -f1)
-          #to_build_list=$(echo "$string" | cut -d',' -f2-)
-
-          #echo "Container to build: $container"
-          #echo "Next container to build: $to_build_list"
-          #echo "Building container: $container"
-          #gh workflow run build-manual.yml  --repo SourceMation/images -f container_name=$container  -f next_containers="$to_build_list"
+          echo "Container to build: $container"
+          echo "Next container to build: $to_build_list"
+          echo "Building container: $container"
+          gh workflow run build-manual.yml  --repo SourceMation/images -f container_name=$container  -f next_containers="$to_build_list"
