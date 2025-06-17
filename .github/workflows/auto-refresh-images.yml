@@ -9,6 +9,9 @@ on:
 jobs:
 
   update-dockerfiles-and-artifacts:
+    # Allows the job to commit changes to the repository
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
