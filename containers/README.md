@@ -13,18 +13,18 @@ the container.
 - Then, the Dockerfile is read as config, and the image version and name are
   set. Note that it means that **each Dockerfile must have the version and the
   name label.**
-- Then the `./conf.sh`, if it exists, is executed; it could alter the build
+- Then, the `./conf.sh`, if it exists, is executed; it could alter the build
   anyway. The most important function of `conf.sh` is to set the
-  `DOCKER_TAG_SUFFIX`, that allows creating a multi-tag repository. This file
-  might not exist in all containers. It can also override anything set in the
-  `init.sh` script.
-- Then, the container is built, and we support aarch64 (arm64) and amd64
-  (x86_64) architectures.
+  `DOCKER_TAG_SUFFIX`, which allows the creation of a multi-tag repository. This
+  file might not exist in all containers. It can also override anything set in
+  the `init.sh` script.
+- Then, the container is built. We support aarch64 (arm64) and amd64 (x86_64) architectures.
 - The container is pushed to the Docker Hub and Quay.io.
 
 ## Creating multiple systems and tags images
 
-To build the container image that supports multiple base os and tags you have to do the following:
+To build the container image that supports multiple base os and tags you have
+to do the following:
 
 - Add the `conf.sh`, file to the root of the image directory.
 
@@ -46,11 +46,30 @@ The `DOCKER_TAG_SUFFIX`, as its name suggests, is a suffix to the tag and common
 values for it are/will be `debian-11`, `ubuntu-22.04`, `ubuntu-24.04`,
 `rocky-9`, etc.
 
+## Skipping tests
+
+Some images - mostly the Kubernetes operators - are not tested in this build
+process as they need the Kubernetes cluster up and running.
+
+
+To disable the tests for the container, add the following to the `conf.sh` file
+
+```bash
+TEST_IMAGE="false"
+```
+
+Example:
+
+```bash
+cat images/redis-operator/conf.sh
+TEST_IMAGE="false"
+```
 
 ## Extra notes
 
 When adding the new container, the following steps should be taken:
 
-- Add the container to the `containers` list the github workflow file.
+- Add the container to the `containers` list in the GitHub workflow file.
 - Build the container locally to ensure that it works.
 - Add the tests for the container to the `tests` directory.
+
