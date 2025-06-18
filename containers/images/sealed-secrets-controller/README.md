@@ -6,7 +6,7 @@ of most popular way to manage secrets in Kubernetes.
 
 ## How to replace the default Sealed Secret Controller
 
-To replace the default Sealed Secret Controller installed you have to edit the
+To replace the default Sealed Secret Controller installed, you have to edit the
 `values.yaml` file of the `sealed-secrets` chart from the following
 
 ```yaml
@@ -51,7 +51,7 @@ fixes.**
 This image has very narrow scope, and it not intended to be used as single
 image, but rather as the part of Helm charts installing the Sealed Secrets :).
 
-To understand how Sealed Secrets works, should read the official documentation
+To understand how Sealed Secrets works, you should read the official documentation
 in the main repository [Official Sealed Secrets GitHub
 Repository](https://github.com/bitnami-labs/sealed-secrets#overview)
 
