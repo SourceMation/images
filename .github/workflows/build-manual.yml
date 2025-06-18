@@ -71,6 +71,7 @@ on:
           - rocky-9
           - rocky-9-minimal
           - ruby
+          - sealed-secrets-controller
           - servicemix
 #          - postgres-16-bullseye-oneshot
 #          - cnpg-16-oneshot
