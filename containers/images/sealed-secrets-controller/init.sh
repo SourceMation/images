@@ -22,7 +22,6 @@ set -x
 git clone --depth 1 --branch "$VERSION" https://github.com/bitnami-labs/sealed-secrets.git
 set +x
 
-# TODO
 # Replacing the version number in the Dockerfile
 sed -i "s/version=\"[^\"]*\"/version=\"$VERSION\"/" Dockerfile || exit 1
 
