@@ -1,6 +1,6 @@
 # Sealed Secrets Controller packed by SourceMation
 
-This container image delivevers the Sealed Secret Controller, which is used to
+This container image delivers the Sealed Secret Controller, which is used to
 manage sealed secrets in Kubernetes clusters. It's independent build of the one
 of most popular way to manage secrets in Kubernetes.
 
