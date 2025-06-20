@@ -48,7 +48,6 @@ jobs:
         with:
           commit_message: "Update the Dockerfiles and other artifacts - ${{ env.CURRENT_DATE }}"
           tagging_message: ${{ steps.commit_tag.outputs.commit_tag }}
-          token: ${{ steps.get_autocommit_app_token.outputs.token }}
 
   generate-build-order:
     needs: update-dockerfiles-and-artifacts
