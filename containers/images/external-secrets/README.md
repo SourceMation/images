@@ -2,7 +2,7 @@
 
 This container image delivers the External Secrets, which is used to manage
 secrets, with external providers, in Kubernetes clusters. It's independent
-build of the one of most popular integration of secrets management in
+build of one of the most popular integrations for secrets management in
 Kubernetes.
 
 ## How to replace the default External Secrets Image?
@@ -63,8 +63,8 @@ fixes.**
 
 ## Extra notes
 
-This image has very narrow scope, and it not intended to be used as single
-image, but rather as the part of Helm charts installing the External Secret.
+This image has a very narrow scope, and is not intended to be used as a single
+image, but rather as part of the Helm charts installing the External Secret.
 
 To understand how the External Secrets works, you can read the project
 [Official Documentation](https://external-secrets.io/latest/).
