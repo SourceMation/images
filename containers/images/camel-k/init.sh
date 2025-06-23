@@ -4,7 +4,8 @@
 # Author: Aleksander Baranowski
 # e-mail: aleksander.baranowski@linuxpolska.pl
 # ---------------------------------------------------
-
+# TEMPORARY hack as there is camel-k version v2.7.0 that is pre-release!
+exit 0
 APP="camel-k"
 
 # Updating repository metadata and downloading the latest available version
