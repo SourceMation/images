@@ -310,7 +310,7 @@ push_container_image(){
 
     # The latest tag is special case, do absolutely nothing if there is suffix
     if [ "$DOCKER_TAG_SUFFIX" != "" ]; then
-        return
+        return 0
     fi
 
     # Note the x86_64 MUST BE the first build
@@ -342,7 +342,7 @@ push_readme(){
 
     # We do not push readme for suffixes
     if [ "$DOCKER_TAG_SUFFIX" != "" ]; then
-        return
+        return 0
     fi
 
     # preapre the binary
@@ -351,7 +351,7 @@ push_readme(){
     else
         # README.md is the same for all images; we do not need to push it for
         # each architecture, it's eating precious compute time/cloud credits
-        return
+        return 0
     fi
     binary_url="https://github.com/christian-korneck/docker-pushrm/releases/download/v1.9.0/docker-pushrm_linux_${bin_arch}"
     mkdir -p ~/.docker/cli-plugins
