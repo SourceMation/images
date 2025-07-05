@@ -1,7 +1,7 @@
 # Build stage
 FROM sourcemation/golang-1.23 AS builder
 
-ENV CAMEL_K_VER="v2.6.0"
+ENV CAMEL_K_VER="v2.7.0"
 RUN apt-get update && apt-get install openjdk-17-jdk-headless git gcc make cmake which maven -y
 # THE MAKEFILE targets are taken from the camel-k Makefile and `images:` without final image build
 # REMOVE ./pkg/cmd/source/util_test.go as they make everything to hang out or fail
@@ -23,7 +23,7 @@ LABEL name="camel-k" \
       architecture="$(uname -m)" \
       summary="Apache Camel-K on Debian 12 Slim Container" \
       description="Provides Camel-K on Debian 12 Slim Container" \
-      version="2.6.0" \
+      version="2.7.0" \
       io.k8s.display-name="Apache Camel-K on Debian 12 Slim Container" \
       io.k8s.description="Provides Camel-K on Debian 12 Slim Container" \
       io.openshift.tags="camel-k debian-12"
