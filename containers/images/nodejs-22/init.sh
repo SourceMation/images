@@ -11,7 +11,7 @@ APP="NodeJS 22"
 
 echo "Checking the latest version of $APP"
 
-NODE_VERSION=$(git ls-remote --tags https://github.com/nodejs/node.git | grep  -o 'v22.[.0-9]*$'  | tr -d 'v' | sort --version-sort --reverse | head -1)
+NODE_VERSION=$(git ls-remote --refs --tags https://github.com/nodejs/node.git | grep  -o 'v22.[.0-9]*$'  | tr -d 'v' | sort --version-sort --reverse | head -1)
 
 # Exit with an error if the returned version contains anything other
 # than digits and dots
@@ -28,7 +28,7 @@ APP="YARN Classic"
 
 echo "Checking the latest version of $APP"
 
-YARN_VERSION=$(git ls-remote --tags https://github.com/yarnpkg/yarn.git | grep -o 'v1.[.0-9]*$' | tr -d 'v' | sort --version-sort --reverse | head -1)
+YARN_VERSION=$(git ls-remote --refs --tags https://github.com/yarnpkg/yarn.git | grep -o 'v1.[.0-9]*$' | tr -d 'v' | sort --version-sort --reverse | head -1)
 
 echo "Checking the latest version of $APP against the regex"
 [[ ! $YARN_VERSION =~ ^[0-9.]+$ ]] && exit 1
