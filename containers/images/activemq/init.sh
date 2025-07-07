@@ -10,7 +10,7 @@ APP="activemq"
 # Updating repository metadata and downloading the latest available version
 # of the application
 echo "Checking the latest available version of the $APP"
-VERSION=$(git ls-remote --tags https://github.com/apache/activemq.git | grep  -o 'activemq-6.[.0-9]*$' | sort --version-sort --reverse | tr -d 'activemq-' | head -n 1)
+VERSION=$(git ls-remote --refs --tags https://github.com/apache/activemq.git | grep  -o 'activemq-6.[.0-9]*$' | sort --version-sort --reverse | tr -d 'activemq-' | head -n 1)
 # Exit with an error if the returned version contains anything other
 # than digits and dots
 [[ ! $VERSION =~ ^[0-9.]+$ ]] && exit 1

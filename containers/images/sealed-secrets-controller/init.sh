@@ -10,7 +10,7 @@ set -euo pipefail
 APP="sealed-secrets-controller"
 
 echo "Checking the latest available version of the $APP"
-VERSION=$(git ls-remote --tags https://github.com/bitnami-labs/sealed-secrets.git | grep -v helm |grep -o 'v[.0-9]*$' | sort --version-sort --reverse | head -1)
+VERSION=$(git ls-remote --refs --tags https://github.com/bitnami-labs/sealed-secrets.git | grep -v helm |grep -o 'v[.0-9]*$' | sort --version-sort --reverse | head -1)
 # Exit with an error if the returned version contains anything other
 # than digits and dots
 [[ ! $VERSION =~ ^v[0-9.]+$ ]] && exit 1

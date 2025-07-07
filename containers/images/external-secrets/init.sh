@@ -12,7 +12,7 @@ APP="external-secrets"
 echo "Checking the latest available version of the $APP"
 # note there is old and wrong tag v.0.3.6 thats version grep looks like this,
 # we also do not want any release candidates
-VERSION=$(git ls-remote --tags https://github.com/external-secrets/external-secrets.git | grep -v  '\-rc' | grep -o 'v[0-9].*[.0-9]*$' | sort --version-sort --reverse | head -1)
+VERSION=$(git ls-remote --refs --tags https://github.com/external-secrets/external-secrets.git | grep -v  '\-rc' | grep -o 'v[0-9].*[.0-9]*$' | sort --version-sort --reverse | head -1)
 # Exit with an error if the returned version contains anything other
 # than digits and dots
 [[ ! $VERSION =~ ^v[0-9.]+$ ]] && exit 1

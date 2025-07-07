@@ -11,7 +11,7 @@ APP="Maven 3.9"
 
 echo "Checking the latest version of $APP"
 
-MAVEN_VER=$(git ls-remote --tags  https://github.com/apache/maven.git | grep -v rc | grep -o  'maven-3\.9\.[0-9.]*' | sort --version-sort -r | head -1)
+MAVEN_VER=$(git ls-remote --refs --tags  https://github.com/apache/maven.git | grep -v rc | grep -o  'maven-3\.9\.[0-9.]*' | sort --version-sort -r | head -1)
 
 # Exit with an error if the returned version contains anything other
 # than digits and dots
