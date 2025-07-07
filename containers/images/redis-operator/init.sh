@@ -9,7 +9,7 @@
 set -euo pipefail
 
 REDIS_OPERATOR_GIT="https://github.com/OT-CONTAINER-KIT/redis-operator.git"
-VERSION=$(git ls-remote --refs --tags --refs $REDIS_OPERATOR_GIT | grep -o 'v.*' | sort --version-sort --reverse | head -1)
+VERSION=$(git ls-remote --refs --tags $REDIS_OPERATOR_GIT | grep -o 'v.*' | sort --version-sort --reverse | head -1)
 REDIS_OPERATOR_SRC="https://github.com/OT-CONTAINER-KIT/redis-operator/archive/refs/tags/v${VERSION:1}.tar.gz"
 
 SPATH=$(pwd)
