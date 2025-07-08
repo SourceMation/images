@@ -93,8 +93,8 @@ RUN ARCH= && dpkgArch="$(dpkg --print-architecture)" \
     108F52B48DB57BB0CC439B2997B01419BD92F80A \
     A363A499291CBBC940DD62E41F10027AF002F8B0 \
   ; do \
-      gpg --batch --keyserver-options timeout=5 --keyserver hkps://keys.openpgp.org --recv-keys "$key" || \
-      gpg --batch --keyserver-options timeout=10 --keyserver keyserver.ubuntu.com --recv-keys "$key" ; \
+      gpg --batch --keyserver-options timeout=5 --keyserver hkps://keys.openpgp.org --recv-keys "$key" && \
+      gpg --batch --keyserver-options timeout=10 --keyserver keyserver.ubuntu.com --recv-keys "$key" || true ; \
   done \
   && curl -LO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-$ARCH.tar.xz" \
   && curl -LO "https://nodejs.org/dist/v$NODE_VERSION/SHASUMS256.txt.asc" \
