@@ -11,8 +11,8 @@ LABEL name="debian-11-slim" \
       summary="Debian 11 (bullseye) Slim Base Container" \
       description="Provides Debian 11 Slim Base Container" \
       version="11" \
-      io.k8s.display-name="Debian 11 Slim Base Container" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
+      io.k8s.display-name="Debian 11 Slim Base Container" \
       io.k8s.description="Provides Debian 11 Slim Base Container" \
       io.openshift.tags="base debian"
 
