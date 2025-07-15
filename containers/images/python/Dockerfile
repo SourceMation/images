@@ -11,6 +11,7 @@ LABEL name="python" \
       summary="Python on EL9 Container" \
       description="Provides Python on Rocky Linux 9 Container" \
       version="3.9.21" \
+      org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="Python on EL9 Container" \
       io.k8s.description="Provides Python on Rocky Linux 9 Container" \
       io.openshift.tags="python rockylinux"

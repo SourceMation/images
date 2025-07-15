@@ -9,6 +9,7 @@ LABEL name="nodejs-24" \
       summary="NodeJS 24 on Debian 12 Slim Container" \
       description="Provides NodeJS 24 on Debian 12 Slim Container" \
       version="24.3.0" \
+      org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="NodeJS 24 on Debian 12 Slim Container" \
       io.k8s.description="Provides NodeJS 24 on Debian 12 Slim Container" \
       io.openshift.tags="nodejs nodejs-24 debian-12-slim"

@@ -9,6 +9,7 @@ LABEL name="apache-activemq" \
       summary="Apache ActiveMQ on EL9 Container" \
       description="Provides Apache ActiveMQ on Rocky Linux 9 Container" \
       version="6.1.7" \
+      org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="Apache ActiveMQ on EL9 Container" \
       io.k8s.description="Provides Apache ActiveMQ on Rocky Linux 9 Container" \
       io.openshift.tags="activemq rockylinux"

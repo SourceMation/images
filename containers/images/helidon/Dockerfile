@@ -9,6 +9,7 @@ LABEL name="helidon" \
       summary="Helidon with OpenJDK 21 and Maven 3.8 on EL9 Container" \
       description="Provides Helidon with OpenJDK 21 and Maven 3.8 on Rocky Linux 9 Container" \
       version="4.1.6" \
+      org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="Helidon with OpenJDK 21 and Maven 3.8 on EL9 Container" \
       io.k8s.description="Provides Helidon with OpenJDK 21 and Maven 3.8 on Rocky Linux 9 Container" \
       io.openshift.tags="helidon java maven rockylinux"

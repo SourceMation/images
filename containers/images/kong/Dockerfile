@@ -9,6 +9,7 @@ LABEL name="kong" \
       summary="Kong Gateway on EL9 Container" \
       description="Provides Kong Gateway Community Edition on Rocky Linux 9 Container" \
       version="3.9.1" \
+      org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="Kong Gateway on EL9 Container" \
       io.k8s.description="Provides Kong Gateway Community Edition on Rocky Linux 9 Container" \
       io.openshift.tags="kong gateway rockylinux"

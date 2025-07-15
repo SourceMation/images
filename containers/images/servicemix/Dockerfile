@@ -9,6 +9,7 @@ LABEL name="servicemix" \
       summary="Apache ServiceMix on EL9 Container" \
       description="Provides Apache ServiceMix on Rocky Linux 9 Container" \
       version="7.0.1" \
+      org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="Apache ServiceMix on EL9 Container" \
       io.k8s.description="Provides Apache ServiceMix on Rocky Linux 9 Container" \
       io.openshift.tags="servicemix rockylinux"

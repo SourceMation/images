@@ -36,6 +36,7 @@ LABEL name="redis" \
       summary="Redis on Debian Container" \
       description="Provides Redis on Debian 12 Container" \
       version="8.0.2" \
+      org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="Redis on Debian Container" \
       io.k8s.description="Provides Redis on Debian 12 Container" \
       io.openshift.tags="redis debian"

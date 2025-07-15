@@ -20,6 +20,7 @@ LABEL name="sealed-secrets-controller" \
       summary="Sealed Secrets Controller on Debian 12 Distroless image" \
       description="Provides Sealed Secrets Controller on Debian 12 Distroless image" \
       version="v0.30.0" \
+      org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="Sealed Secrets Controller on Debian 12 Distroless" \
       io.k8s.description="Provides Sealed Secrets Controller on Debian 12 Distroless image" \
       io.openshift.tags="sealed-secrets-controller, controller, debian12, distroless"

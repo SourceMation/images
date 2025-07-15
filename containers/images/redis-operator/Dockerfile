@@ -46,6 +46,7 @@ LABEL name="redis-operator" \
       summary="Redis Operator on Distroless Container" \
       description="Provides Redis Operator on Distroless Container" \
       version="0.21.0" \
+      org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="Redis Operator on Distroless Container" \
       io.k8s.description="Provides Redis Operator on Distroless Container" \
       io.openshift.tags="redis operator distroless"

@@ -9,6 +9,7 @@ LABEL name="apache-karaf" \
       summary="Apache Karaf on EL9 Container" \
       description="Provides Apache Karaf on Rocky Linux 9 Container" \
       version="4.4.7" \
+      org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="Apache Karaf on EL9 Container" \
       io.k8s.description="Provides Apache Karaf on Rocky Linux 9 Container" \
       io.openshift.tags="karaf rockylinux"

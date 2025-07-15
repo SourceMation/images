@@ -9,6 +9,7 @@ LABEL name="postgresql" \
       summary="PostgreSQL on EL9 Container" \
       description="Provides PostgreSQL on Rocky Linux 9 Container" \
       version="14.18" \
+      org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="PostgreSQL on EL9 Container" \
       io.k8s.description="Provides PostgreSQL on Rocky Linux 9 Container" \
       io.openshift.tags="postgresql rockylinux"

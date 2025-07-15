@@ -14,6 +14,7 @@ LABEL name="python-3.11" \
       summary="Python 3.11 on Debian 12 Slim Container" \
       description="Provides Python 3.11 on Debian 12 Slim Container" \
       version="3.11.13" \
+      org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="Python 3.11 on Debian 12 Slim Container" \
       io.k8s.description="Provides Python 3.11 on Debian 12 Slim Container" \
       io.openshift.tags="python-3.11 debian-12-slim"

@@ -9,6 +9,7 @@ LABEL name="rabbitmq" \
       summary="Rabbitmq on EL9 Container" \
       description="Provides Rabbitmq on Rocky Linux 9 Container" \
       version="4.1.1" \
+      org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="Rabbitmq on EL9 Container" \
       io.k8s.description="Provides Rabbitmq on Rocky Linux 9 Container" \
       io.openshift.tags="rabbitmq rockylinux"

@@ -41,6 +41,7 @@ LABEL name="redis-sentinel" \
       summary="Redis Sentinel on Debian Container" \
       description="Provides Redis Sentinel on Debian 12 Container" \
       version="8.0.2" \
+      org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="Redis Sentinel on Debian Container" \
       io.k8s.description="Provides Redis Sentinel on Debian 12 Container" \
       io.openshift.tags="redis sentinel debian"

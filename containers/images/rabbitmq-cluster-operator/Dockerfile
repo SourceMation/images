@@ -42,6 +42,7 @@ LABEL name="rabbitmq-cluster-operator" \
       summary="RabbitMQ Cluster Operator" \
       description="Provides RabbitMQ Cluster Operator" \
       version="2.15.0" \
+      org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="RabbitMQ Cluster Operator Container" \
       io.k8s.description="Provides RabbitMQ Cluster Operator Container" \
       io.openshift.tags="rabbitmq-cluster-operator"

@@ -11,6 +11,7 @@ LABEL name="java" \
       summary="Java on EL9 Container" \
       description="Provides Java on Rocky Linux 9 Container" \
       version="21" \
+      org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="Java on EL9 Container" \
       io.k8s.description="Provides Java on Rocky Linux 9 Container" \
       io.openshift.tags="java rockylinux"

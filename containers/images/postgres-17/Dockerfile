@@ -9,6 +9,7 @@ LABEL name="postgres-17" \
       summary="PostgreSQL 17 on Debian 12 Slim Container" \
       description="Provides PostgreSQL 17 on Debian Slim Container" \
       version="17.5.1" \
+      org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="PostgreSQL 17 on Debian 12 Slim Container" \
       io.k8s.description="Provides PostgreSQL 17 on Debian 12 Slim Container" \
       io.openshift.tags="postgresql debian-12-slim"
