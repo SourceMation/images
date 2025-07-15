@@ -9,6 +9,7 @@ LABEL name="openapi-generator-cli" \
       summary="Openapi Generators with CLI, Java-21, Maven 3.8" \
       description="Provides Openapi Generators with CLI, Java-21, Maven 3.8 on Rocky Linux 9 Container" \
       version="7.12.0" \
+      org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="Openapi Generators with CLI, Java-21, Maven 3.8 on EL9 Container" \
       io.k8s.description="Provides Openapi Generators with CLI, Java-21, Maven 3.8 on Rocky Linux 9 Container" \
       io.openshift.tags="openapi-generator java-21 maven-3.8 rockylinux"

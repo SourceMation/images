@@ -29,6 +29,7 @@ LABEL name="kafka" \
       summary="Apache Kafka on EL9 Container" \
       description="Provides Apache Kafka on Rocky Linux 9 Container" \
       version="3.9.0" \
+      org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="Apache Kafka on EL9 Container" \
       io.k8s.description="Provides Apache Kafka on Rocky Linux 9 Container" \
       io.openshift.tags="kafka rockylinux"

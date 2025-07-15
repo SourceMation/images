@@ -24,6 +24,7 @@ LABEL name="external-secrets" \
       summary="External Secrets Controller on Debian 12 Distroless image" \
       description="Provides External Secrets Controller on Debian 12 Distroless image" \
       version="v0.18.2" \
+      org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="External Secrets Controller on Debian 12 Distroless" \
       io.k8s.description="Provides External Secrets Controller on Debian 12 Distroless image" \
       io.openshift.tags="external-secrets-controller, controller, debian12, distroless"

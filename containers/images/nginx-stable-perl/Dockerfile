@@ -10,6 +10,7 @@ LABEL name="nginx-stable" \
       summary="Nginx Stable on Debian 12 Slim Container with Perl" \
       description="Provides Nginx Stable on Debian 12 Slim Container with Perl" \
       version="1.28.0" \
+      org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="Nginx stable on Debian 12 Slim Container with Perl" \
       io.k8s.description="Provides Nginx Stable on Debian 12 Slim Container with Perl" \
       io.openshift.tags="nginx debian-12-slim perl"

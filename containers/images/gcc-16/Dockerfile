@@ -12,6 +12,7 @@ LABEL name="gcc-16" \
       summary="GCC 16 on Debian 12 Slim Container" \
       description="Provides GCC 16 on Debian 12 Slim Container" \
       version="20250629" \
+      org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="GCC 16 on Debian 12 Slim Container" \
       io.k8s.description="Provides GCC 16 on Debian 12 Slim Container" \
       io.openshift.tags="gcc gcc-16 debian-12-slim"

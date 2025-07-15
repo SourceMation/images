@@ -11,6 +11,7 @@ LABEL name="ruby" \
       summary="Ruby on EL9 Container" \
       description="Provides Ruby on Rocky Linux 9 Container" \
       version="3.3.8" \
+      org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="Ruby on EL9 Container" \
       io.k8s.description="Provides Ruby on Rocky Linux 9 Container" \
       io.openshift.tags="ruby rockylinux"

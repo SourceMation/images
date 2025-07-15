@@ -12,6 +12,7 @@ LABEL name="gcc-15" \
       summary="GCC 15 on Debian 12 Slim Container" \
       description="Provides GCC 15 on Debian 12 Slim Container" \
       version="15.1.0" \
+      org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="GCC 15 on Debian 12 Slim Container" \
       io.k8s.description="Provides GCC 15 on Debian 12 Slim Container" \
       io.openshift.tags="gcc gcc-15 debian-12-slim"

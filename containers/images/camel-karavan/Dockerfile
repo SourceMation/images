@@ -30,6 +30,7 @@ LABEL name="camel-karavan" \
       summary="Apache Camel Karavan on EL9 Container" \
       description="Provides Camel Karavan on Rocky Linux 9 Container" \
       version="4.8.0" \
+      org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="Apache Camel Karavan on EL9 Container" \
       io.k8s.description="Provides Camel Karavan on Rocky Linux 9 Container" \
       io.openshift.tags="camel karavan rockylinux"

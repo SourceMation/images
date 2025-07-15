@@ -24,6 +24,7 @@ LABEL name="camel-k" \
       summary="Apache Camel-K on Debian 12 Slim Container" \
       description="Provides Camel-K on Debian 12 Slim Container" \
       version="2.7.0" \
+      org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="Apache Camel-K on Debian 12 Slim Container" \
       io.k8s.description="Provides Camel-K on Debian 12 Slim Container" \
       io.openshift.tags="camel-k debian-12"

@@ -43,6 +43,7 @@ LABEL name="rabbitmq-4" \
       summary="RabbitMQ on Debian 12-slim" \
       description="Provides RabbitMQ on Debian 12-slim" \
       version="4.1.2" \
+      org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="RabbitMQ on Debian 12-slim Container" \
       io.k8s.description="Provides RabbitMQ Debian 12-slim Container" \
       io.openshift.tags="rabbitmq-4 debian-12-slim"

@@ -10,6 +10,7 @@ LABEL name="nginx-mainline" \
       summary="Nginx Mainline on Debian 12 Slim Container with OTEL" \
       description="Provides Nginx Mainline on Debian 12 Slim Container with OTEL" \
       version="1.29.0" \
+      org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="Nginx mainline on Debian 12 Slim Container with OTEL" \
       io.k8s.description="Provides Nginx Mainline on Debian 12 Slim Container with OTEL" \
       io.openshift.tags="nginx debian-12-slim otel"

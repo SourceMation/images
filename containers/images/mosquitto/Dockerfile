@@ -11,6 +11,7 @@ LABEL name="mosquitto" \
       summary="Mosquitto from EPEL on EL9 Container" \
       description="Provides Mosquitto" \
       version="2.0.18" \
+      org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="Mosquitto on EL9 Container" \
       io.k8s.description="Provides Mosquitto on Rocky Linux 9 Container" \
       io.openshift.tags="mosquitto rockylinux"

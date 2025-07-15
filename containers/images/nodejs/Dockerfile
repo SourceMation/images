@@ -11,6 +11,7 @@ LABEL name="nodejs" \
       summary="NodeJS on EL9 Container" \
       description="Provides NodeJS on Rocky Linux 9 Container" \
       version="22.16.0" \
+      org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="NodeJS on EL9 Container" \
       io.k8s.description="Provides NodeJS on Rocky Linux 9 Container" \
       io.openshift.tags="nodejs rockylinux"

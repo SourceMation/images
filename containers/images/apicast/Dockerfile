@@ -9,6 +9,7 @@ LABEL name="apicast" \
       summary="APIcast on EL9 Container" \
       description="Provides APICast Rocky Linux 9 Container" \
       version="3.15.0" \
+      org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="APIcast on EL9 Container" \
       io.k8s.description="Provides APICast on Rocky Linux 9 Container" \
       io.openshift.tags="apicast rockylinux api gateway"

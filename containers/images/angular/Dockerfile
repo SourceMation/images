@@ -9,6 +9,7 @@ LABEL name="angular" \
       summary="NodeJS and Angular CLI on EL9 Container" \
       description="Provides NodeJS and Angular on Rocky Linux 9 Container" \
       version="19.2.0" \
+      org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="NodeJS and Angular CLI on EL9 Container" \
       io.k8s.description="Provides NodeJS and Angular on Rocky Linux 9 Container" \
       io.openshift.tags="nodejs angular rockylinux"

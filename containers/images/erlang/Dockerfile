@@ -128,6 +128,7 @@ LABEL name="erlang" \
       summary="Erlang on Debian 12-slim" \
       description="Provides Erlang on Debian 12-slim" \
       version="28.0.1" \
+      org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="Erlang on Debian 12-slim Container" \
       io.k8s.description="Provides Erlang Debian 12-slim Container" \
       io.openshift.tags="erlang debian-12-slim"

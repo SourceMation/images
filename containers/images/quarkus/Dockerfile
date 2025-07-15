@@ -12,6 +12,7 @@ LABEL name="quarkus" \
       summary="Quarkus development container on RL9" \
       description="Provides Quarkus development container on Rocky Linux 9" \
       version="3.19.1" \
+      org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="Quarkus on EL9 Container" \
       io.k8s.description="Provides Quarkus on Rocky Linux 9" \
       io.openshift.tags="quarkus rockylinux"

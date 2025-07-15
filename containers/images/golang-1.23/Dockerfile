@@ -66,6 +66,7 @@ LABEL name="golang-1.23" \
       summary="Golang on debian-12-slim container" \
       description="Provides golang on Debian 12 Slim Container" \
       version="1.23.10" \
+      org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="Golang on Debian 12 Slim Container" \
       io.k8s.description="Provides golang on Debian 12 Slim Container" \
       io.openshift.tags="golang debian-12-slim"

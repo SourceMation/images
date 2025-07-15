@@ -28,6 +28,7 @@ LABEL name="redis-exporter" \
       summary="Redis Exporter" \
       description="Provides Redis Exporter" \
       version="1.74.0" \
+      org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="Redis Exporter" \
       io.k8s.description="Provides Redis Exporter" \
       io.openshift.tags="redis exporter"

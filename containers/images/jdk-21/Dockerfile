@@ -9,6 +9,7 @@ LABEL name="jdk-21" \
       summary="JDK 21 on Debian 12 Slim Container" \
       description="Provides JDK 21 on Debian 12 Slim Container" \
       version="jdk-21.0.7-6" \
+      org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="JDK 21 on Debian 12 Slim Container" \
       io.k8s.description="Provides JDK 21 on Debian 12 Slim Container" \
       io.openshift.tags="jdk jdk-21 debian-12-slim"
