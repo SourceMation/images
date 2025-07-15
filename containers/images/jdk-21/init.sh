@@ -11,7 +11,7 @@ APP="JDK 21"
 
 echo "Checking the latest version of $APP"
 
-JAVA_VERSION=$(git ls-remote --tags https://github.com/adoptium/temurin21-binaries.git | grep -v beta | grep -o  'jdk-21[.+0-9]*' | sort --version-sort -r | head -1)
+JAVA_VERSION=$(git ls-remote --refs --tags https://github.com/adoptium/temurin21-binaries.git | grep -v beta | grep -o  'jdk-21[.+0-9]*' | sort --version-sort -r | head -1)
 
 # Exit with an error if the returned version contains anything other
 # than digits and dots

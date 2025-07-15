@@ -10,7 +10,7 @@ set -euo pipefail
 APP="gcc"
 
 echo "Checking the latest available version of the $APP"
-VERSION=$(git ls-remote --tags https://github.com/gcc-mirror/gcc.git  | grep -o 'gcc-13[.0-9]*$' | sort --version-sort --reverse | tr -d 'gc-' | head -n 1)
+VERSION=$(git ls-remote --refs --tags https://github.com/gcc-mirror/gcc.git  | grep -o 'gcc-13[.0-9]*$' | sort --version-sort --reverse | tr -d 'gc-' | head -n 1)
 # Exit with an error if the returned version contains anything other
 # than digits and dots
 [[ ! $VERSION =~ ^[0-9.]+$ ]] && exit 1

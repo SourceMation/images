@@ -10,7 +10,7 @@ APP="python3-11"
 # Updating repository metadata and downloading the latest available version
 # of the application
 echo "Checking the latest available version of the $APP"
-VERSION=$(git ls-remote --tags https://github.com/python/cpython.git | grep  -o 'v3.11.[0-9]*$'| tr -d 'v' | sort --version-sort --reverse | head -1)
+VERSION=$(git ls-remote --refs --tags https://github.com/python/cpython.git | grep  -o 'v3.11.[0-9]*$'| tr -d 'v' | sort --version-sort --reverse | head -1)
 # Exit with an error if the returned version contains anything other
 # than digits and dots
 [[ ! $VERSION =~ ^[0-9.]+$ ]] && exit 1
