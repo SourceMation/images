@@ -41,12 +41,12 @@ Please note that the ports need to be either manually forwarded with the
 
 ## Contributing and Issues
 
-We’d love for you to contribute! You can request new features by
-creating an issue or submitting a pull request with your contribution to
-this image on the SourceMation GitHub repository.
+We'd love for you to contribute! You can request new features, report bugs, or
+submit a pull request with your contribution to this image on the SourceMation
+GitHub repository.
 
-[Creating issues and images requests](https://github.com/SourceMation/images/issues/new/choose)
-[Creating pull requests](https://github.com/SourceMation/images/compare)
+- [Creating issues, feature requests, and bug reports](https://github.com/SourceMation/images/issues/new/choose)
+- [Creating pull requests](https://github.com/SourceMation/images/compare)
 
 **Disclaimer:** The `sourcemation/<APP_NAME>` image is not affiliated with
 the <APP_VENDOR_NAME>. The respective companies and

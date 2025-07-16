@@ -62,14 +62,14 @@ By default, the image exposes the following ports:
 - 8080 - Default development port for Helidon development
 
 
-## Contributing and Issues
+## Contributing and Reporting Issues
 
-We’d love for you to contribute! You can request new features by
-creating an issue or submitting a pull request with your contribution to
-this image on the SourceMation GitHub repository.
+Your contributions are valued! Feel free to suggest enhancements or request new
+images by opening an issue, or submit your own contributions via pull requests
+to the SourceMation GitHub repository.
 
-[Creating issues and images requests](https://github.com/SourceMation/images/issues/new/choose)
-[Creating pull requests](https://github.com/SourceMation/images/compare)
+- [Creating issues (bugs) and images requests](https://github.com/SourceMation/images/issues/new/choose)
+- [Creating pull requests](https://github.com/SourceMation/images/compare)
 
 **Disclaimer:** The `sourcemation/helidon` image is not affiliated with Oracle,
 Inc. The respective companies and organisations own the trademarks mentioned in

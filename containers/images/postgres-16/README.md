@@ -79,11 +79,10 @@ Port `5432`, the standard PostgreSQL port, is exposed by default.
 
 ## Contributions and Issue Reporting
 
-Your contributions are welcome! Suggest new features by creating an issue or
-submit a pull request on the SourceMation GitHub repository.
+Contributions are welcome! Propose new features by creating issues or submit
+pull requests on the SourceMation GitHub repository.
 
-
-- [Creating issues and image requests](https://github.com/SourceMation/images/issues/new/choose)
+- [Open a new issue (for feature requests, bug reports, or image requests)](https://github.com/SourceMation/images/issues/new/choose)
 - [Creating pull requests](https://github.com/SourceMation/images/compare)
 
 **Disclaimer:** The `sourcemation/postgres-16` image operates independently of

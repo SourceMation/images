@@ -75,6 +75,15 @@ software does not change (but the go binary is rebuilt for security reasons),
 so you can use more specific tags like v0.18.0-20250620 to ensure that you are
 using the fixed version of the image.**
 
+## Contributing and Issues
+
+We welcome your contributions! If you have new feature requests, want to report
+a bug, or wish to submit a pull request with your code or an image request, you
+can do so via the SourceMation GitHub repository for this image.
+
+- [Open a new issue (for feature requests, bug reports, or image requests)](https://github.com/SourceMation/images/issues/new/choose)
+- [Submit a pull request](https://github.com/SourceMation/images/compare)
+
 ## Image and its components Risk Analysis report
 
 The Sourcemation platform provides a detailed risk analysis report of the

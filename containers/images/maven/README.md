@@ -86,6 +86,14 @@ While this image aims to be straightforward, you might find these environment va
   persist the local Maven repository (`/root/.m2/repository`) to speed up
   dependency resolution.
 
+## Contributions and Issue Reporting
+
+Contributions are welcome! Propose new features by creating issues or submit
+pull requests on the SourceMation GitHub repository.
+
+- [Open a new issue (for feature requests, bug reports, or image requests)](https://github.com/SourceMation/images/issues/new/choose)
+- [Creating pull requests](https://github.com/SourceMation/images/compare)
+
 ## Extra information
 
 For more details on Apache Maven, please refer to the official Maven documentation: https://maven.apache.org/.

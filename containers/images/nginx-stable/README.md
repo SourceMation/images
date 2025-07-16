@@ -82,6 +82,15 @@ NGINX_VERSION=X.YY.Z # Example: 1.27.5
 There are also other VERSION variables, but they are more for building the
 image.
 
+## Contributing and Issues
+
+We welcome your contributions! If you have new feature requests, want to report
+a bug, or wish to submit a pull request with your code or an image request, you
+can do so via the SourceMation GitHub repository for this image.
+
+- [Open a new issue (for feature requests, bug reports, or image requests)](https://github.com/SourceMation/images/issues/new/choose)
+- [Submit a pull request](https://github.com/SourceMation/images/compare)
+
 ## Extra notes
 
 This image, unlike other images, does not remove the Nginx repository from its

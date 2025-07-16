@@ -64,14 +64,13 @@ PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 GENERATOR_VERSION="XXX - set during build"
 ```
 
-## Contributing and Issues
+## Contributions and Issue Reporting
 
-We’d love for you to contribute! You can request new features by
-creating an issue or submitting a pull request with your contribution to
-this image on the SourceMation GitHub repository.
+Contributions are welcome! Propose new features by creating issues or submit
+pull requests on the SourceMation GitHub repository.
 
-[Creating issues and images requests](https://github.com/SourceMation/images/issues/new/choose)
-[Creating pull requests](https://github.com/SourceMation/images/compare)
+- [Open a new issue (for feature requests, bug reports, or image requests)](https://github.com/SourceMation/images/issues/new/choose)
+- [Creating pull requests](https://github.com/SourceMation/images/compare)
 
 **Disclaimer:** The `sourcemation/openapi-generator-cli` image is not
 affiliated with the [OpenAPI Generator core

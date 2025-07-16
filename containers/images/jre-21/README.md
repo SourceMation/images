@@ -112,6 +112,15 @@ This image was created with the intention of being a drop-in replacement for
 the Temurin JRE 21 image. **This image runs as the root user! You should
 extend it to run your application as a non-root user.**
 
+## Contributing and Issues
+
+We welcome your contributions! If you have new feature requests, want to report
+a bug, or wish to submit a pull request with your code or an image request, you
+can do so via the SourceMation GitHub repository for this image.
+
+- [Open a new issue (for feature requests, bug reports, or image requests)](https://github.com/SourceMation/images/issues/new/choose)
+- [Submit a pull request](https://github.com/SourceMation/images/compare)
+
 ## Extra Information
 
 ### Sourcemation

@@ -19,7 +19,7 @@ documentation with `sourcemation/kong:latest`.
 
 ## Environment Vars, Ports, Volumes
 
-This image exposes the following ports: 
+This image exposes the following ports:
 
 - 8000
 - 8001
@@ -36,14 +36,14 @@ Please note that the ports need to be either manually forwarded with the `-p`
 option or let Docker choose some for you with the `-P` option. Refer to the
 [Kong installation instructions](#usage) for more information.
 
-## Contributing and Issues
+## Contributions and Issue Reporting
 
-We’d love for you to contribute! You can request new features by
-creating an issue or submitting a pull request with your contribution to
-this image on the SourceMation GitHub repository.
+Contributions are welcome! Propose new features by creating issues or submit
+pull requests on the SourceMation GitHub repository.
 
-[Creating issues and images requests](https://github.com/SourceMation/images/issues/new/choose)
-[Creating pull requests](https://github.com/SourceMation/images/compare)
+- [Open a new issue (for feature requests, bug reports, or image requests)](https://github.com/SourceMation/images/issues/new/choose)
+- [Creating pull requests](https://github.com/SourceMation/images/compare)
+
 
 **Disclaimer:** The `sourcemation/kong` image is not affiliated with Kong,
 Inc.. The respective companies and organisations own the trademarks mentioned

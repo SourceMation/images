@@ -28,7 +28,7 @@ APP_VERSION="XXX - set during build"
 APP_NAME="rabbitmq"
 ```
 
-This image exposes the following ports: 
+This image exposes the following ports:
 
 - 4369 : the Erlang Port Mapping Daemon port
 - 5671 : the default port for AMQP clients (HTTPS)
@@ -44,12 +44,12 @@ Please note that the ports need to be either manually forwarded with the
 
 ## Contributing and Issues
 
-We’d love for you to contribute! You can request new features by
-creating an issue or submitting a pull request with your contribution to
-this image on the SourceMation GitHub repository.
+We'd love for you to contribute! You can request new features, report bugs, or
+submit a pull request with your contribution to this image on the SourceMation
+GitHub repository.
 
-[Creating issues and images requests](https://github.com/SourceMation/images/issues/new/choose)
-[Creating pull requests](https://github.com/SourceMation/images/compare)
+- [Creating issues, feature requests, and bug reports](https://github.com/SourceMation/images/issues/new/choose)
+- [Creating pull requests](https://github.com/SourceMation/images/compare)
 
 **Disclaimer:** The `sourcemation/rabbitmq` image is not affiliated with
 Broadcom, Inc. The respective companies and organisations own the trademarks

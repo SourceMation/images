@@ -79,11 +79,11 @@ Furthermore, this image employs `dpkg-divert` to rename the original `gcc` and
 
 ## Contributing and Issues
 
-We’d love for you to contribute! You can request new features/images by
-creating an issue or submitting a pull request with your contribution to this
-image on the SourceMation GitHub repository.
+We'd love for you to contribute! You can request new features, report bugs, or
+submit a pull request with your contribution to this image on the SourceMation
+GitHub repository.
 
-- [Creating issues and image requests](https://github.com/SourceMation/images/issues/new/choose)
+- [Creating issues, feature requests, and bug reports](https://github.com/SourceMation/images/issues/new/choose)
 - [Creating pull requests](https://github.com/SourceMation/images/compare)
 
 **Disclaimer:** The `sourcemation/gcc-16` image is not affiliated with the GNU

@@ -28,7 +28,7 @@ Your contributions are valued! Feel free to suggest enhancements or request new
 images by opening an issue, or submit your own contributions via pull requests
 to the SourceMation GitHub repository.
 
-- [Creating issues and images requests](https://github.com/SourceMation/images/issues/new/choose)
+- [Creating issues (bugs) and images requests](https://github.com/SourceMation/images/issues/new/choose)
 - [Creating pull requests](https://github.com/SourceMation/images/compare)
 
 ### Security Assessment of the Image and its Components
