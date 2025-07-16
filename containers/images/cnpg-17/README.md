@@ -78,14 +78,13 @@ Docker documentation for details (though this image aims to follow it closely).
 This image exposes port `5432` by default, which is the standard PostgreSQL
 port.
 
-## Contributing and Issues
+## Contributions and Issue Reporting
 
-We’d love for you to contribute! You can request new features by creating an
-issue or submitting a pull request with your contribution to this image on the
-SourceMation GitHub repository.
+Contributions are welcome! Propose new features by creating issues or submit
+pull requests on the SourceMation GitHub repository.
 
-[Creating issues and images requests](https://github.com/SourceMation/images/issues/new/choose)
-[Creating pull requests](https://github.com/SourceMation/images/compare)
+- [Open a new issue (for feature requests, bug reports, or image requests)](https://github.com/SourceMation/images/issues/new/choose)
+- [Creating pull requests](https://github.com/SourceMation/images/compare)
 
 **Disclaimer:** The `sourcemation/cnpg-17` image is not directly affiliated
 with the PostgreSQL Global Development Group. The respective companies and

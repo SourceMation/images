@@ -45,11 +45,11 @@ YARN_VERSION=1.22.XX
 
 ## Contributing and Issues
 
-Your contributions are highly valued! To suggest new features or report issues,
-please create an issue or submit a pull request to this image within the
-SourceMation GitHub repository.
+We'd love for you to contribute! You can request new features, report bugs, or
+submit a pull request with your contribution to this image on the SourceMation
+GitHub repository.
 
-- [Creating issues and images requests](https://github.com/SourceMation/images/issues/new/choose)
+- [Creating issues, feature requests, and bug reports](https://github.com/SourceMation/images/issues/new/choose)
 - [Creating pull requests](https://github.com/SourceMation/images/compare)
 
 Disclaimer: The sourcemation/nodejs image operates independently and is not

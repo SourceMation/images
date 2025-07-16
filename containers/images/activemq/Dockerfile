@@ -1,6 +1,6 @@
 FROM sourcemation/rocky-9:latest
 
-LABEL name="apache-activemq" \
+LABEL name="activemq" \
       vendor="Linux Polska" \
       url="https://linuxpolska.com/en/"\
       licenses="Apache-2.0" \

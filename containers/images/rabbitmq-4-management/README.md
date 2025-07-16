@@ -28,7 +28,7 @@ LANGUAGE=C.UTF-8
 LC_ALL=C.UTF-8
 ```
 
-This image exposes the following ports: 
+This image exposes the following ports:
 
 - 4369 : the Erlang Port Mapping Daemon port
 - 5671 : the default port for AMQP clients (HTTPS)
@@ -48,12 +48,13 @@ This image uses the following volumes:
 
 ## Contributing and Issues
 
-We’d love for you to contribute! You can request new features by
-creating an issue or submitting a pull request with your contribution to
-this image on the SourceMation GitHub repository.
+We welcome your contributions! If you have new feature requests, want to report
+a bug, or wish to submit a pull request with your code or an image request, you
+can do so via the SourceMation GitHub repository for this image.
 
-[Creating issues and images requests](https://github.com/SourceMation/images/issues/new/choose)
-[Creating pull requests](https://github.com/SourceMation/images/compare)
+- [Open a new issue (for feature requests, bug reports, or image requests)](https://github.com/SourceMation/images/issues/new/choose)
+- [Submit a pull request](https://github.com/SourceMation/images/compare)
+
 
 **Disclaimer:** The `sourcemation/rabbitmq-4-management` image is not affiliated with
 the Broadcom. The respective companies and

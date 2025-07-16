@@ -54,14 +54,14 @@ This image exposes the following ports:
 Please note that the ports need to be either manually forwarded with the
 `-p` option or let Docker choose some for you with the `-P` option.
 
-## Contributing and Issues
+## Contributing and Reporting Issues
 
-We’d love for you to contribute! You can request new features by
-creating an issue or submitting a pull request with your contribution to
-this image on the SourceMation GitHub repository.
+Your contributions are valued! Feel free to suggest enhancements or request new
+images by opening an issue, or submit your own contributions via pull requests
+to the SourceMation GitHub repository.
 
-[Creating issues and images requests](https://github.com/SourceMation/images/issues/new/choose)
-[Creating pull requests](https://github.com/SourceMation/images/compare)
+- [Creating issues (bugs) and images requests](https://github.com/SourceMation/images/issues/new/choose)
+- [Creating pull requests](https://github.com/SourceMation/images/compare)
 
 **Disclaimer:** The `sourcemation/python` image is not affiliated with
 the Python Software Foundation. The respective companies and

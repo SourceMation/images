@@ -35,13 +35,12 @@ PATH=/opt/erlang/bin:/opt/openssl/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/
 
 ## Contributing and Issues
 
-We’d love for you to contribute! You can request new features by creating an
-issue or submitting a pull request with your contribution to this image on the
-SourceMation GitHub repository.
+We welcome your contributions! If you have new feature requests, want to report
+a bug, or wish to submit a pull request with your code or an image request, you
+can do so via the SourceMation GitHub repository for this image.
 
-
-- [Creating issues and images requests](https://github.com/SourceMation/images/issues/new/choose)
-- [Creating pull requests](https://github.com/SourceMation/images/compare)
+- [Open a new issue (for feature requests, bug reports, or image requests)](https://github.com/SourceMation/images/issues/new/choose)
+- [Submit a pull request](https://github.com/SourceMation/images/compare)
 
 
 **Disclaimer:** The `sourcemation/erlang` image is not affiliated with

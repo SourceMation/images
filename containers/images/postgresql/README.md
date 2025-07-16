@@ -52,14 +52,13 @@ This image exposes the following ports:
 Please note that the ports need to be either manually forwarded with the
 `-p` option or let Docker choose some for you with the `-P` option.
 
-## Contributing and Issues
+## Contributions and Issue Reporting
 
-We’d love for you to contribute! You can request new features or images by
-creating an issue or submitting a pull request with your contribution to
-this image on the SourceMation GitHub repository.
+Contributions are welcome! Propose new features by creating issues or submit
+pull requests on the SourceMation GitHub repository.
 
-[Creating issues and images requests](https://github.com/SourceMation/images/issues/new/choose)
-[Creating pull requests](https://github.com/SourceMation/images/compare)
+- [Open a new issue (for feature requests, bug reports, or image requests)](https://github.com/SourceMation/images/issues/new/choose)
+- [Creating pull requests](https://github.com/SourceMation/images/compare)
 
 **Disclaimer:** The `sourcemation/postgresql` image is not affiliated with The
 PostgreSQL Global Development Group. The respective companies and organisations

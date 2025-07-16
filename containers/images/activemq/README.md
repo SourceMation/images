@@ -43,14 +43,15 @@ This image exposes the following ports:
 Please note that the ports need to be either manually forwarded with the
 `-p` option or let Docker choose some for you with the `-P` option.
 
+
 ## Contributing and Issues
 
-We’d love for you to contribute! You can request new features by
-creating an issue or submitting a pull request with your contribution to
-this image on the SourceMation GitHub repository.
+We'd love for you to contribute! You can request new features, report bugs, or
+submit a pull request with your contribution to this image on the SourceMation
+GitHub repository.
 
-[Creating issues and images requests](https://github.com/SourceMation/images/issues/new/choose)
-[Creating pull requests](https://github.com/SourceMation/images/compare)
+- [Creating issues, feature requests, and bug reports](https://github.com/SourceMation/images/issues/new/choose)
+- [Creating pull requests](https://github.com/SourceMation/images/compare)
 
 **Disclaimer:** The `sourcemation/activemq` image is not affiliated with the
 Apache Software Foundation. The respective companies and organisations own the
