@@ -46,7 +46,6 @@ Please note that the ports need to be either manually forwarded with the
 
 ## Contributing and Issues
 
-## Contributing and Issues
 
 We'd love for you to contribute! You can request new features, report bugs, or
 submit a pull request with your contribution to this image on the SourceMation
