@@ -8,13 +8,13 @@ LABEL name="jdk-21" \
       architecture="$(uname -m)" \
       summary="JDK 21 on Debian 12 Slim Container" \
       description="Provides JDK 21 on Debian 12 Slim Container" \
-      version="jdk-21.0.7-6" \
+      version="jdk-21.0.8-9" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="JDK 21 on Debian 12 Slim Container" \
       io.k8s.description="Provides JDK 21 on Debian 12 Slim Container" \
       io.openshift.tags="jdk jdk-21 debian-12-slim"
 
-ENV JAVA_VERSION="jdk-21.0.7+6"
+ENV JAVA_VERSION="jdk-21.0.8+9"
 ENV JAVA_HOME=/opt/java/openjdk
 ENV PATH=$JAVA_HOME/bin:$PATH
 # Default to UTF-8 file.encoding

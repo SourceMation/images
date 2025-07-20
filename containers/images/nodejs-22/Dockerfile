@@ -8,7 +8,7 @@ LABEL name="nodejs-22" \
       architecture="$(uname -m)" \
       summary="NodeJS 22 on Debian 12 Slim Container" \
       description="Provides NodeJS 22 on Debian 12 Slim Container" \
-      version="22.17.0" \
+      version="22.17.1" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="NodeJS 22 on Debian 12 Slim Container" \
       io.k8s.description="Provides NodeJS 22  on Debian 12 Slim Container" \
@@ -18,7 +18,7 @@ LABEL name="nodejs-22" \
 RUN groupadd --gid 1000 node \
   && useradd --uid 1000 --gid node --shell /bin/bash --create-home node
 
-ENV NODE_VERSION="22.17.0"
+ENV NODE_VERSION="22.17.1"
 ENV YARN_VERSION="1.22.22"
 
 # Most of this packages are from buildpack-deps that is based on old Heroku
