@@ -50,6 +50,7 @@ on:
           - nginx-stable-otel
           - nginx-stable-perl
           - nodejs
+          - nodejs-20
           - nodejs-22
           - nodejs-24
           - openapi-generator-cli
