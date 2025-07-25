@@ -65,7 +65,7 @@ A detailed risk analysis report of the image and its components can be found on
 the [SourceMation platform](https://www.sourcemation.com/)
 
 
-For more information, check out the {overview of NodeJS®}(https://nodejs.org/)
+For more information, check out the [overview of NodeJS®](https://nodejs.org/)
 page.
 
 ## Licenses
