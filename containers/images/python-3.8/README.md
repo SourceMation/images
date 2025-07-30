@@ -74,7 +74,7 @@ contributions via pull requests to the SourceMation GitHub repository.
 
 [Creating issues (bugs) and image requests](https://github.com/SourceMation/images/issues/new/choose)
 
-[Creating pull requests](https://github.2com/SourceMation/images/compare)
+[Creating pull requests](https://github.com/SourceMation/images/compare)
 
 Disclaimer: The `sourcemation/python-3.8` image is not affiliated with the
 Python Software Foundation. The respective companies and organizations own the
