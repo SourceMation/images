@@ -41,7 +41,7 @@ LABEL name="rabbitmq-cluster-operator" \
       architecture="$(uname -m)" \
       summary="RabbitMQ Cluster Operator" \
       description="Provides RabbitMQ Cluster Operator" \
-      version="2.15.0" \
+      version="2.16.0" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="RabbitMQ Cluster Operator Container" \
       io.k8s.description="Provides RabbitMQ Cluster Operator Container" \
@@ -53,7 +53,7 @@ COPY --from=etc-builder /etc/passwd /etc/group /etc/
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 
 ENV APP_NAME="rabbitmq-cluster-operator" \
-    APP_VERSION="2.15.0" \
+    APP_VERSION="2.16.0" \
     PATH=/usr/local/bin:$PATH
 
 USER 1000:1000
