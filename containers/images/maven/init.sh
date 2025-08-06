@@ -27,8 +27,8 @@ LABEL_STR="${VER_STR}-jdk-21"
 sed -i "s/version=\"[^\"]*\"/version=\"$LABEL_STR\"/" Dockerfile || exit 1
 sed -i "s/MAVEN_VERSION=\"[^\"]*\"/MAVEN_VERSION=\"$VER_STR\"/" Dockerfile || exit 1
 
-BASE_URL17=https://raw.githubusercontent.com/carlossg/docker-maven/refs/heads/main/eclipse-temurin-17/
-BASE_URL21=https://raw.githubusercontent.com/carlossg/docker-maven/refs/heads/main/eclipse-temurin-21/
+BASE_URL17=https://raw.githubusercontent.com/carlossg/docker-maven/refs/heads/main/eclipse-temurin-17-noble/
+#BASE_URL21=https://raw.githubusercontent.com/carlossg/docker-maven/refs/heads/main/eclipse-temurin-21/
 
 
 echo 'Downloading settings and entrypoint scripts'
