@@ -5,7 +5,8 @@ import os
 
 def test_mosquitto_installed():
     result = subprocess.run(["mosquitto", "-h"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    assert result.returncode == 3, "Mosquitto is not installed"
+    # older mosquitto returned 3 newer versions return 0
+    assert result.returncode == 0, "Mosquitto is not installed"
 
 def test_mosquitto_running():
     result = subprocess.run(["pgrep", "mosquitto"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
