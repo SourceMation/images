@@ -2,7 +2,7 @@
 FROM sourcemation/rocky-9:latest AS builder
 
 ADD ee10ba76e3be503a07b7550b09e4d19f8fd25848.asc /
-ENV KARAVAN_VERSION="4.8.0"
+ENV KARAVAN_VERSION="4.10.2"
 RUN dnf module enable -y nodejs:22 && dnf install -y gpg maven-openjdk21 unzip npm wget && dnf clean all && rm -rf /var/cache/dnf
 RUN gpg --import ee10ba76e3be503a07b7550b09e4d19f8fd25848.asc &&\
       mkdir /build &&\
@@ -29,7 +29,7 @@ LABEL name="camel-karavan" \
       architecture="$(uname -m)" \
       summary="Apache Camel Karavan on EL9 Container" \
       description="Provides Camel Karavan on Rocky Linux 9 Container" \
-      version="4.8.0" \
+      version="4.10.2" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="Apache Camel Karavan on EL9 Container" \
       io.k8s.description="Provides Camel Karavan on Rocky Linux 9 Container" \
@@ -44,7 +44,7 @@ ENV JAVA_OPTS="-Dquarkus.http.host=0.0.0.0 -Djava.util.logging.manager=org.jboss
 ENV LANG="en_US.UTF-8"
 ENV LANGUAGE="en_US:en"
 ENV LC_ALL="en_US.UTF-8"
-ENV KARAVAN_VERSION="4.8.0"
+ENV KARAVAN_VERSION="4.10.2"
 
 
 COPY --from=builder /build/camel-karavan-${KARAVAN_VERSION}/karavan-app/target/karavan-${KARAVAN_VERSION}-runner.jar /opt/app/karavan.jar
