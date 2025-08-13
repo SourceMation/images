@@ -13,6 +13,7 @@ on:
         description: 'Name of the container to build'
         required: true
         type: choice
+        # Remember to sort it :)
         options:
           - activemq
           - angular
@@ -39,6 +40,7 @@ on:
           - kafka
           - karaf
           - kong
+          - manageiq
           - maven
           - micronaut
           - mongodb
@@ -58,10 +60,10 @@ on:
           - postgres-17
           - postgresql
           - python
-          - python-3.8
           - python-3.11
           - python-3.12
           - python-3.13
+          - python-3.8
           - quarkus
           - rabbitmq
           - rabbitmq-4
