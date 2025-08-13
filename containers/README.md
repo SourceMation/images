@@ -17,7 +17,7 @@ the container.
   anyway. The most important function of `conf.sh` is to set the
   `DOCKER_TAG_SUFFIX`, which allows the creation of a multi-tag repository. This
   file might not exist in all containers. It can also override anything set in
-  the `init.sh` script.
+  the `init.sh` script. Also the `CONTAINER_STARTUP_TIMEOUT` can be set here.
 - Then, the container is built. We support aarch64 (arm64) and amd64 (x86_64) architectures.
 - The container is pushed to the Docker Hub and Quay.io.
 
