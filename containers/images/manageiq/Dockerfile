@@ -3,7 +3,7 @@ FROM docker.io/manageiq/manageiq-ui-worker:${IMAGE_REF}
 
 LABEL name="manageiq" \
       vendor="SourceMation" \
-      url="https://sourcemation.com"\
+      url="https://sourcemation.com" \
       licenses="Apache-2.0 license" \
       created="$(date +%Y%m%d)" \
       architecture="$(uname -m)" \

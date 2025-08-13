@@ -120,5 +120,5 @@ is a separate project and is maintained by
 ## License
 
 The base license for the solution (ManageIQ) is the Apache License Version 2.0.
-The licenses for each component shipped as part of this image must be find
+The licenses for each component shipped as part of this image must be found
 separately from RPM or other resources.

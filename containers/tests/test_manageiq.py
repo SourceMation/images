@@ -42,7 +42,7 @@ def test_manageiq_web_accessible(timeout=60):
         try:
             # The 'verify=False' - self signed cert
             response = requests.get(MANAGEIQ_URL, verify=False)
-            print("  - Received response from ManageIQ web interface. with code ", response.status_code)
+            print("  - Received response from ManageIQ web interface with code", response.status_code)
             # A 200 OK response indicates the server is up and responding.
             assert response.status_code == 200, f"Web interface returned status code {response.status_code}."
             
