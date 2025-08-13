@@ -93,7 +93,8 @@ test_container(){
     print_info "Testing container $IMAGE_NAME"
     set -x
     CONTAINER_FULL_NAME="sourcemation/$DOCKER_TAG_BUILD"
-    CONTAINER_STARTUP_TIMEOUT=10
+    # THIS can be set in the conf.sh file
+    CONTAINER_STARTUP_TIMEOUT=${CONTAINER_STARTUP_TIMEOUT:-10}
     # default test
     CONTAINER_TEST_FILES="test_linux.py"
     # Extra tests
@@ -143,6 +144,9 @@ test_container(){
             CONTAINER_RUN_COMMAND=""
             ;;
         "kong")
+            CONTAINER_RUN_COMMAND=""
+            ;;
+        "manageiq")
             CONTAINER_RUN_COMMAND=""
             ;;
         "micronaut")
