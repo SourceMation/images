@@ -9,13 +9,13 @@ LABEL name="nginx-mainline" \
       architecture="$(uname -m)" \
       summary="Nginx Mainline on Debian 12 Slim Container with Perl" \
       description="Provides Nginx Mainline on Debian 12 Slim Container with Perl" \
-      version="1.29.0" \
+      version="1.29.1" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="Nginx mainline on Debian 12 Slim Container with Perl" \
       io.k8s.description="Provides Nginx Mainline on Debian 12 Slim Container with Perl" \
       io.openshift.tags="nginx debian-12-slim perl"
 
-ENV NGINX_VERSION="1.29.0"
+ENV NGINX_VERSION="1.29.1"
 ENV DYNPKG_RELEASE="1~bookworm"
 
 RUN set -xeu; \
