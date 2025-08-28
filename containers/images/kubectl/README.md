@@ -25,13 +25,13 @@ You can also mount your kubeconfig file to the container to interact with your
 Kubernetes cluster. For example:
 
 ```bash
-docker run --rm -it -v $HOME/.kube:/home/appuser/.kube sourcemation/kubectl:latest get pods
+docker run --rm -it -v $HOME/.kube:/home/kubectl/.kube sourcemation/kubectl:latest get pods
 ```
 
 Or more interactively by changin the entrypoint to bash:
 
 ```bash
-docker run --rm -it --entrypoint bash -v $HOME/.kube:/home/appuser/.kube sourcemation/kubectl:latest
+docker run --rm -it --entrypoint bash -v $HOME/.kube:/home/kubectl/.kube sourcemation/kubectl:latest
 ```
 
 This will open a shell inside the container, where you can then run your
@@ -50,7 +50,7 @@ You can create an alias in your shell to simplify the usage of the `sourcemation
 image. Add the following line to your shell configuration file (e.g., `.bashrc`, `.zshrc`):
 
 ```bash
-alias kubectl='docker run --rm -it -v $HOME/.kube:/home/appuser/.kube sourcemation/kubectl:latest'
+alias kubectl='docker run --rm -it -v $HOME/.kube:/home/kubectl/.kube sourcemation/kubectl:latest'
 ```
 
 and then reload your shell configuration (just start a new shell or source the
@@ -67,7 +67,7 @@ This image uses the following environment variables:
 KUBECTL_VERSION=v1.34.0
 ```
 
-There is single volume `/home/appuser/.kube` to potentially persist kubectl
+There is single volume `/home/kubectl/.kube` to potentially persist kubectl
 config.
 
 ## Contributing and Issues
@@ -87,7 +87,7 @@ is a separate project and is maintained by
 
 ## Extra notes
 
-The application runs as the `appuser`.
+The application runs as the `kubectl` user with a UID of `1001` and a GID of `1001`.
 You force usage of the root user with the docker `--user root` flag.
 
 
