@@ -28,6 +28,10 @@ CONTAINER_NAME="container-$(date +%s)"
 # set to false in the check variables if push_readme is set to true, and everything else is false
 BUILD_CONTAINER="true"
 
+# This way we can set entrypoint on invocation
+ENTRYPOINT_CMD="${ENTRYPOINT_CMD:-}"
+
+
 # Functions
 
 print_help(){
@@ -120,8 +124,8 @@ test_container(){
     fi
 
     CONTAINER_RUN_PARAMETERS=""
-    CONTAINER_RUN_COMMAND="/bin/bash"
-
+    # We should use CONTAINER_RUN_COMMAND only if it's not defined in conf.sh file that why there is no :-
+    CONTAINER_RUN_COMMAND=${CONTAINER_RUN_COMMAND-"/bin/bash"}
     case ${IMAGE_NAME} in
         "apache-activemq")
             CONTAINER_RUN_COMMAND=""
@@ -217,7 +221,8 @@ test_container(){
     else
         print_info "Running Docker Container from Image: ${CONTAINER_FULL_NAME}"
         # shellcheck disable=SC2086
-        docker run -d -it --name "$CONTAINER_NAME" ${CONTAINER_RUN_PARAMETERS} "${CONTAINER_FULL_NAME}" ${CONTAINER_RUN_COMMAND}
+        docker run -d -it --name "$CONTAINER_NAME" ${CONTAINER_RUN_PARAMETERS} ${ENTRYPOINT_CMD:+--entrypoint "$ENTRYPOINT_CMD"} "${CONTAINER_FULL_NAME}" ${CONTAINER_RUN_COMMAND}
+
     fi
 
 

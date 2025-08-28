@@ -18,8 +18,29 @@ the container.
   `DOCKER_TAG_SUFFIX`, which allows the creation of a multi-tag repository. This
   file might not exist in all containers. It can also override anything set in
   the `init.sh` script. Also the `CONTAINER_STARTUP_TIMEOUT` can be set here.
+- In `./conf.sh`, the `ENTRYPOINT_CMD` and `CONTAINER_RUN_COMMAND` variables
+  can be overridden from the build script defaults. This is useful for testing
+  containers that set the entrypoint to a command which does not support
+  running `/bin/bash`.
 - Then, the container is built. We support aarch64 (arm64) and amd64 (x86_64) architectures.
 - The container is pushed to the Docker Hub and Quay.io.
+
+## Adding the new container
+
+
+- Add the container to the `containers` list in the GitHub workflow file.
+- Build the container locally to ensure that it works.
+  ```bash
+  export TEST_IMAGE=true PUSH_IMAGE=false PUSH_README=false
+  ./build.sh super-image-name
+  ```
+  Example:
+  ```bash
+  export TEST_IMAGE=true PUSH_IMAGE=false PUSH_README=false
+  ./build-container.sh kubectl
+  ```
+- Add the tests for the container to the `tests` directory and rerun the build (it tests the
+  container locally).
 
 ## Creating multiple systems and tags images
 
@@ -65,11 +86,22 @@ cat images/redis-operator/conf.sh
 TEST_IMAGE="false"
 ```
 
-## Extra notes
+## Overwritting entrypoint and run command
 
-When adding the new container, the following steps should be taken:
+To overwrite the default entrypoint and run command, you can set the
+`ENTRYPOINT_CMD` and `CONTAINER_RUN_COMMAND` variables in the `conf.sh`
 
-- Add the container to the `containers` list in the GitHub workflow file.
-- Build the container locally to ensure that it works.
-- Add the tests for the container to the `tests` directory.
+```
+ENTRYPOINT_CMD="/my/custom/entrypoint"
+CONTAINER_RUN_COMMAND="my custom command"
+```
+
+Example:
+
+```bash
+# We need to set the /bin/bash as entrypoint
+ENTRYPOINT_CMD="/bin/bash"
+# Do not use /bin/bash as `bash bash` itself fails as /usr/bin/bash is binary
+CONTAINER_RUN_COMMAND=""
+```
 
