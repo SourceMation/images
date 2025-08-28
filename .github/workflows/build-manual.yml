@@ -40,6 +40,7 @@ on:
           - kafka
           - karaf
           - kong
+          - kubectl
           - manageiq
           - maven
           - micronaut
