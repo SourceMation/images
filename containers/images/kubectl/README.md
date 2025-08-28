@@ -28,7 +28,7 @@ Kubernetes cluster. For example:
 docker run --rm -it -v $HOME/.kube:/home/kubectl/.kube sourcemation/kubectl:latest get pods
 ```
 
-Or more interactively by changin the entrypoint to bash:
+Or more interactively by changing the entrypoint to bash:
 
 ```bash
 docker run --rm -it --entrypoint bash -v $HOME/.kube:/home/kubectl/.kube sourcemation/kubectl:latest
@@ -79,8 +79,7 @@ GitHub repository.
 - [Creating issues, feature requests, and bug reports](https://github.com/SourceMation/images/issues/new/choose)
 - [Creating pull requests](https://github.com/SourceMation/images/compare)
 
-**Disclaimer:** The `sourcemation/kubectl` image is not affiliated with the
-Cloud Native Computing Foundation (CNCF).. The respective companies and organisations
+Cloud Native Computing Foundation (CNCF). The respective companies and organisations
 own the trademarks mentioned in the offering. The `sourcemation/kubectl` image
 is a separate project and is maintained by
 [SourceMation](https://sourcemation.com).
