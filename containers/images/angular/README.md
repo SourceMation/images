@@ -7,6 +7,11 @@ choice for building Single Page Applications.
 This Angular distribution is provided by the upstream developers, hosted at
 [registry.npmjs.org](https://registry.npmjs.org/).
 
+The image uses SourceMation independent image stack as its base, which is a
+minimal Debian-based image with a small footprint, built from scratch. Also
+the default version of NodeJS is Node.js 24 which is the current active LTS.
+
+
 ## Usage
 
 Run a temporary container with the Angular CLI serving the project in your
