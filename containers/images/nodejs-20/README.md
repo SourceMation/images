@@ -9,6 +9,11 @@ widespread use.
 This particular version of Node.js is built on the `sourcemation/debian-12-slim`
 base image. It includes Node.js version 20 and Yarn Classic (version 1.22.XX).
 
+
+**This image is optimized for build reproducibility and contains the packages
+needed to compile NodeJS, providing developers with all tools needed in more advanced
+NodeJS development - thus it's not a super small image.**
+
 ## Usage
 
 Run a temporary container with the NodeJS REPL (don't forget the `-it` flags).

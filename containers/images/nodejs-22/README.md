@@ -9,6 +9,11 @@ This specific NodeJS distribution is constructed using the
 `sourcemation/debian-12-slim` base image and incorporates Node.js version 22
 alongside Yarn Classic, specifically version 1.22.XX.
 
+
+**This image is optimized for build reproducibility and contains the packages
+needed to compile NodeJS, providing developers with all tools needed in more advanced
+NodeJS development - thus it's not a super small image.**
+
 ## Usage
 
 Run a temporary container with the NodeJS REPL (don't forget the `-it` flags).
