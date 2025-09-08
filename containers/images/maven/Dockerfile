@@ -21,12 +21,15 @@ RUN set -eux; curl -LO https://dlcdn.apache.org/maven/maven-3/${MAVEN_VERSION}/b
 
 FROM sourcemation/jdk-21:latest
 
+ARG BUILD_DATE
+ARG TARGETARCH
+
 LABEL name="maven" \
       vendor="SourceMation" \
       url="https://sourcemation.com/"\
       licenses="Multiple licenses" \
-      created="$(date +%Y%m%d)" \
-      architecture="$(uname -m)" \
+      created="$BUILD_DATE" \
+      architecture="$TARGETARCH" \
       summary="Maven with JDK 21 on Debian 12 Slim Container" \
       description="Provides Maven with JDK 21 on Debian 12 Slim Container" \
       version="3.9.11-jdk-21" \

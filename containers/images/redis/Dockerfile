@@ -27,12 +27,15 @@ RUN VERSION=$(echo ${REDIS_VERSION} | sed -e "s/^v//g"); \
 
 FROM docker.io/sourcemation/debian-12-slim:latest
 
+ARG BUILD_DATE
+ARG TARGETARCH
+
 LABEL name="redis" \
       vendor="LinuxPolska" \
       url="https://linuxpolska.com/en/"\
       licenses="GPLv2" \
-      created="$(date +%Y%m%d)" \
-      architecture="$(uname -m)" \
+      created="$BUILD_DATE" \
+      architecture="$TARGETARCH" \
       summary="Redis on Debian Container" \
       description="Provides Redis on Debian 12 Container" \
       version="8.2.1" \

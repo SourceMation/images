@@ -1,13 +1,14 @@
 FROM sourcemation/rocky-9:latest
 
+ARG BUILD_DATE
 ARG TARGETARCH
 
 LABEL name="java" \
       vendor="LinuxPolska" \
       url="https://linuxpolska.com/en/"\
       licenses="GPLv2" \
-      created="$(date +%Y%m%d)" \
-      architecture="$(uname -m)" \
+      created="$BUILD_DATE" \
+      architecture="$TARGETARCH" \
       summary="Java on EL9 Container" \
       description="Provides Java on Rocky Linux 9 Container" \
       version="21" \

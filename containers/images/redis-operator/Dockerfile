@@ -37,12 +37,16 @@ RUN GO111MODULE=on go build -ldflags "${LDFLAGS}" -a -o operator cmd/main.go
 # Use distroless as minimal base image to package the binary
 # Refer to https://github.com/GoogleContainerTools/distroless for more details
 FROM gcr.io/distroless/static:nonroot
+
+ARG BUILD_DATE
+ARG TARGETARCH
+
 LABEL name="redis-operator" \
       vendor="LinuxPolska" \
       url="https://linuxpolska.com/en/"\
       licenses="GPLv2" \
-      created="$(date +%Y%m%d)" \
-      architecture="$(uname -m)" \
+      created="$BUILD_DATE" \
+      architecture="$TARGETARCH" \
       summary="Redis Operator on Distroless Container" \
       description="Provides Redis Operator on Distroless Container" \
       version="0.22.0" \

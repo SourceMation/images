@@ -1,12 +1,15 @@
 ARG IMAGE_REF=radjabov-1
 FROM docker.io/manageiq/manageiq-ui-worker:${IMAGE_REF}
 
+ARG BUILD_DATE
+ARG TARGETARCH
+
 LABEL name="manageiq" \
       vendor="SourceMation" \
       url="https://sourcemation.com" \
       licenses="Apache-2.0 license" \
-      created="$(date +%Y%m%d)" \
-      architecture="$(uname -m)" \
+      created="$BUILD_DATE" \
+      architecture="$TARGETARCH" \
       summary="ManageIQ on Debian Container" \
       description="Provides ManageIQ on UBI Container" \
       version="radjabov-1" \

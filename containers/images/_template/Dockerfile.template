@@ -5,6 +5,7 @@
 # END BUILD
 FROM sourcemation/rocky-9:latest
 
+ARG BUILD_DATE
 # Architecture (amd64 / arm64) is passed with --platform="linux/$latest_arch" option during build cmd.
 # We can use this in the dockerfile. Generally ${TARGETARCH} == amd64.
 ARG TARGETARCH
@@ -14,8 +15,8 @@ LABEL name="..." \
   url="https://sourcemation.com"\
   source="https://github.com/SourceMation/images/issues"\
   licenses="GPLv2" \
-  created="$(date +%Y%m%d)" \
-  architecture="$(uname -m)" \
+  created="$BUILD_DATE" \
+  architecture="$TARGETARCH" \
   summary="... on EL9 Container" \
   description="Provides ... on Rocky Linux 9 Container" \
   version="..." \

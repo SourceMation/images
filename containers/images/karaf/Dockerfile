@@ -1,11 +1,14 @@
 FROM sourcemation/rocky-9:latest
 
+ARG BUILD_DATE
+ARG TARGETARCH
+
 LABEL name="apache-karaf" \
       vendor="Linux Polska" \
       url="https://linuxpolska.com/en/"\
       licenses="Apache-2.0" \
-      created="$(date +%Y%m%d)" \
-      architecture="$(uname -m)" \
+      created="$BUILD_DATE" \
+      architecture="$TARGETARCH" \
       summary="Apache Karaf on EL9 Container" \
       description="Provides Apache Karaf on Rocky Linux 9 Container" \
       version="4.4.7" \

@@ -1,5 +1,8 @@
 FROM sourcemation/rocky-9:latest
 
+ARG BUILD_DATE
+ARG TARGETARCH
+
 # YOU MUST CHANGE IT MANUALLY HERE AND IN THE LABEL!
 ARG QUARKUS_VERSION=3.19.1
 
@@ -7,8 +10,8 @@ LABEL name="quarkus" \
       vendor="SourceMation" \
       url="https://sourcemation.com"\
       licenses="Apache-2.0" \
-      created="$(date +%Y%m%d)" \
-      architecture="$(uname -m)" \
+      created="$BUILD_DATE" \
+      architecture="$TARGETARCH" \
       summary="Quarkus development container on RL9" \
       description="Provides Quarkus development container on Rocky Linux 9" \
       version="3.19.1" \

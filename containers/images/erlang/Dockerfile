@@ -119,12 +119,15 @@ RUN erl -noshell -eval 'ok = crypto:start(), ok = io:format("~p~n~n~p~n~n", [cry
 # Create a minimal runtime image
 FROM sourcemation/debian-12-slim:latest
 
+ARG BUILD_DATE
+ARG TARGETARCH
+
 LABEL name="erlang" \
       vendor="SourceMation" \
       url="https://sourcemation.com" \
       licenses="Apache-2.0" \
-      created="$(date +%Y%m%d)" \
-      architecture="$(uname -m)" \
+      created="$BUILD_DATE" \
+      architecture="$TARGETARCH" \
       summary="Erlang on Debian 12-slim" \
       description="Provides Erlang on Debian 12-slim" \
       version="28.0.2" \

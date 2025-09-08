@@ -1,11 +1,14 @@
 FROM sourcemation/debian-12-slim:latest
 
+ARG BUILD_DATE
+ARG TARGETARCH
+
 LABEL name="nodejs-24" \
       vendor="SourceMation" \
       url="https://sourcemation.com/"\
       licenses="Multiple licenses" \
-      created="$(date +%Y%m%d)" \
-      architecture="$(uname -m)" \
+      created="$BUILD_DATE" \
+      architecture="$TARGETARCH" \
       summary="NodeJS 24 on Debian 12 Slim Container" \
       description="Provides NodeJS 24 on Debian 12 Slim Container" \
       version="24.7.0" \

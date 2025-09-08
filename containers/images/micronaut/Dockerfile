@@ -1,11 +1,14 @@
 FROM sourcemation/rocky-9
 
+ARG BUILD_DATE
+ARG TARGETARCH
+
 LABEL name="micronaut" \
       vendor="SourceMation" \
       url="https://SourceMation.com/"\
       licenses="Apache-2.0" \
-      created="$(date +%Y%m%d)" \
-      architecture="$(uname -m)" \
+      created="$BUILD_DATE" \
+      architecture="$TARGETARCH" \
       summary="Micronaut CLI, Java-21 GraalVM and SDKMAN with GCC on EL9 Container" \
       description="Provides Micronaut CLI, Java-21 GraalVM and SDKMAN with GCC Rocky Linux 9 Container" \
       version="4.7.6" \

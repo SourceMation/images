@@ -15,12 +15,15 @@ RUN go install github.com/go-delve/delve/cmd/dlv@latest
 
 FROM sourcemation/debian-12-slim:latest
 
+ARG BUILD_DATE
+ARG TARGETARCH
+
 LABEL name="camel-k" \
       vendor="Linux Polska" \
       url="https://linuxpolska.com/en/"\
       licenses="Apache-2.0" \
-      created="$(date +%Y%m%d)" \
-      architecture="$(uname -m)" \
+      created="$BUILD_DATE" \
+      architecture="$TARGETARCH" \
       summary="Apache Camel-K on Debian 12 Slim Container" \
       description="Provides Camel-K on Debian 12 Slim Container" \
       version="2.7.0" \

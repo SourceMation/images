@@ -1,5 +1,8 @@
 FROM sourcemation/debian-12-slim:latest
 
+ARG BUILD_DATE
+ARG TARGETARCH
+
 # It's based on the Docker Official image for gcc with some tweaks :)
 
 # Do not split the description, otherwise we will see a blank space in the labels
@@ -7,8 +10,8 @@ LABEL name="gcc-16" \
       vendor="SourceMation" \
       url="https://sourcemation.com/"\
       licenses="GPLv3+ with GCC Runtime Library Exception" \
-      created="$(date +%Y%m%d)" \
-      architecture="$(uname -m)" \
+      created="$BUILD_DATE" \
+      architecture="$TARGETARCH" \
       summary="GCC 16 on Debian 12 Slim Container" \
       description="Provides GCC 16 on Debian 12 Slim Container" \
       version="20250831" \

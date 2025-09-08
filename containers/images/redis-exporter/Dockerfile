@@ -19,12 +19,15 @@ RUN /redis_exporter -version
 
 FROM scratch
 
+ARG BUILD_DATE
+ARG TARGETARCH
+
 LABEL name="redis-exporter" \
       vendor="LinuxPolska" \
       url="https://linuxpolska.com/en/"\
       licenses="GPLv2" \
-      created="$(date +%Y%m%d)" \
-      architecture="$(uname -m)" \
+      created="$BUILD_DATE" \
+      architecture="$TARGETARCH" \
       summary="Redis Exporter" \
       description="Provides Redis Exporter" \
       version="1.76.0" \

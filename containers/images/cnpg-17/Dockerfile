@@ -4,13 +4,16 @@
 
 FROM sourcemation/postgres-17
 
+ARG BUILD_DATE
+ARG TARGETARCH
+
 # Do not split the description, otherwise we will see a blank space in the labels
 LABEL name="cnpg-17" \
       vendor="SourceMation" \
       url="https://sourcemation.com/"\
       licenses="GPLv2" \
-      created="$(date +%Y%m%d)" \
-      architecture="$(uname -m)" \
+      created="$BUILD_DATE" \
+      architecture="$TARGETARCH" \
       summary="PostgreSQL 17 for CNPG on Debian 12 Slim Container" \
       description="Provides PostgreSQL 17 for CNPG on Debian Slim Container" \
       version="17.6.1" \

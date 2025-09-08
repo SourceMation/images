@@ -57,12 +57,15 @@ RUN set -eux; \
 
 FROM sourcemation/debian-12-slim:latest
 
+ARG BUILD_DATE
+ARG TARGETARCH
+
 LABEL name="golang-1.23" \
       vendor="SourceMation" \
       url="https://sourcemation.com"\
       licenses="BSD 3-Clause \"New\" or \"Revised\" License" \
-      created="$(date +%Y%m%d)" \
-      architecture="$(uname -m)" \
+      created="$BUILD_DATE" \
+      architecture="$TARGETARCH" \
       summary="Golang on debian-12-slim container" \
       description="Provides golang on Debian 12 Slim Container" \
       version="1.23.12" \

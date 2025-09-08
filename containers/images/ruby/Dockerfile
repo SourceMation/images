@@ -1,13 +1,14 @@
 FROM sourcemation/rocky-9:latest
 
+ARG BUILD_DATE
 ARG TARGETARCH
 
 LABEL name="ruby" \
       vendor="LinuxPolska" \
       url="https://linuxpolska.com/en/"\
       licenses="GPLv2" \
-      created="$(date +%Y%m%d)" \
-      architecture="$(uname -m)" \
+      created="$BUILD_DATE" \
+      architecture="$TARGETARCH" \
       summary="Ruby on EL9 Container" \
       description="Provides Ruby on Rocky Linux 9 Container" \
       version="3.3.8" \

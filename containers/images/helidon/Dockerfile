@@ -1,11 +1,14 @@
 FROM sourcemation/rocky-9:latest
 
+ARG BUILD_DATE
+ARG TARGETARCH
+
 LABEL name="helidon" \
       vendor="SourceMation" \
       url="https://SourceMation.com/"\
       licenses="Apache-2.0" \
-      created="$(date +%Y%m%d)" \
-      architecture="$(uname -m)" \
+      created="$BUILD_DATE" \
+      architecture="$TARGETARCH" \
       summary="Helidon with OpenJDK 21 and Maven 3.8 on EL9 Container" \
       description="Provides Helidon with OpenJDK 21 and Maven 3.8 on Rocky Linux 9 Container" \
       version="4.1.6" \

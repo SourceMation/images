@@ -20,12 +20,15 @@ RUN /etc/kafka/docker/jsa_launch
 
 FROM sourcemation/rocky-9:latest
 
+ARG BUILD_DATE
+ARG TARGETARCH
+
 LABEL name="kafka" \
       vendor="SourceMation" \
       url="https://sourcemation.com"\
       licenses="Apache-2.0" \
-      created="$(date +%Y%m%d)" \
-      architecture="$(uname -m)" \
+      created="$BUILD_DATE" \
+      architecture="$TARGETARCH" \
       summary="Apache Kafka on EL9 Container" \
       description="Provides Apache Kafka on Rocky Linux 9 Container" \
       version="3.9.0" \

@@ -1,11 +1,14 @@
 FROM sourcemation/debian-12-slim:latest
 
+ARG BUILD_DATE
+ARG TARGETARCH
+
 LABEL name="postgres-17" \
       vendor="SourceMation" \
       url="https://sourcemation.com/"\
       licenses="GPLv2" \
-      created="$(date +%Y%m%d)" \
-      architecture="$(uname -m)" \
+      created="$BUILD_DATE" \
+      architecture="$TARGETARCH" \
       summary="PostgreSQL 17 on Debian 12 Slim Container" \
       description="Provides PostgreSQL 17 on Debian Slim Container" \
       version="17.6.1" \

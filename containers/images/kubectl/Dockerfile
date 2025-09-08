@@ -1,13 +1,14 @@
 FROM sourcemation/debian-12-slim:latest
 
+ARG BUILD_DATE
 ARG TARGETARCH
 
 LABEL name="kubectl" \
       vendor="SourceMation" \
       url="https://sourcemation.com"\
       licenses="Apache-2.0" \
-      created="$(date +%Y%m%d)" \
-      architecture="$(uname -m)" \
+      created="$BUILD_DATE" \
+      architecture="$TARGETARCH" \
       summary="Kubectl on Debian 12 Slim Container" \
       description="Provides kubectl on Debian 12 Slim Container" \
       version="v1.34.0" \

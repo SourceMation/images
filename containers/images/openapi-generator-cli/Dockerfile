@@ -1,11 +1,14 @@
 FROM sourcemation/rocky-9:latest
 
+ARG BUILD_DATE
+ARG TARGETARCH
+
 LABEL name="openapi-generator-cli" \
       vendor="SourceMation" \
       url="https://SourceMation.com/"\
       licenses="Apache-2.0" \
-      created="$(date +%Y%m%d)" \
-      architecture="$(uname -m)" \
+      created="$BUILD_DATE" \
+      architecture="$TARGETARCH" \
       summary="Openapi Generators with CLI, Java-21, Maven 3.8" \
       description="Provides Openapi Generators with CLI, Java-21, Maven 3.8 on Rocky Linux 9 Container" \
       version="7.12.0" \

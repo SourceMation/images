@@ -34,12 +34,15 @@ RUN curl -fsL -o "$RABBITMQ_PATH.tar.xz.asc" "$RABBITMQ_SOURCE_URL.asc" \
 
 FROM sourcemation/erlang:latest
 
+ARG BUILD_DATE
+ARG TARGETARCH
+
 LABEL name="rabbitmq-4" \
       vendor="SourceMation" \
       url="https://sourcemation.com" \
       licenses="MPLv2" \
-      created="$(date +%Y%m%d)" \
-      architecture="$(uname -m)" \
+      created="$BUILD_DATE" \
+      architecture="$TARGETARCH" \
       summary="RabbitMQ on Debian 12-slim" \
       description="Provides RabbitMQ on Debian 12-slim" \
       version="4.1.4" \

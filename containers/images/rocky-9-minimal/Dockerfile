@@ -1,13 +1,16 @@
 FROM scratch
 ADD base-image.tar.gz /
 
+ARG BUILD_DATE
+ARG TARGETARCH
+
 LABEL name="rocky-9-minimal" \
       maintainer="Sourcemation Containers team <contact@sourcemation.com>" \
       vendor="System - Rocky Linux; Image - SourceMation" \
       url="https://sourcemation.com"\
       licenses="GPLv2" \
-      created="$(date --utc --rfc-3339=seconds)" \
-      architecture="$(arch)" \
+      created="$BUILD_DATE" \
+      architecture="$TARGETARCH" \
       summary="Rocky Linux 9 Minimal Base Container" \
       description="Provides Rocky Linux 9 Minimal Base Container" \
       version="9" \
