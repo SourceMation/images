@@ -1,11 +1,14 @@
 FROM sourcemation/rabbitmq-4:latest
 
+ARG BUILD_DATE
+ARG TARGETARCH
+
 LABEL name="rabbitmq-4-management" \
       vendor="SourceMation" \
       url="https://sourcemation.com" \
       licenses="MPLv2" \
-      created="$(date +%Y%m%d)" \
-      architecture="$(uname -m)" \
+      created="$BUILD_DATE" \
+      architecture="$TARGETARCH" \
       summary="RabbitMQ-4-Management Debian 12-slim" \
       description="Provides RabbitMQ-4-Management on Debian 12-slim" \
       version="4.1.3" \

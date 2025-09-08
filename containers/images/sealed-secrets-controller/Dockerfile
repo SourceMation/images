@@ -11,12 +11,15 @@ RUN apt-get update && \
 
 FROM gcr.io/distroless/static-debian12
 
+ARG BUILD_DATE
+ARG TARGETARCH
+
 LABEL name="sealed-secrets-controller" \
       vendor="SourceMation" \
       url="https://sourcemation.com/"\
       licenses="Apache License Version 2.0," \
-      created="$(date +%Y%m%d)" \
-      architecture="$(uname -m)" \
+      created="$BUILD_DATE" \
+      architecture="$TARGETARCH" \
       summary="Sealed Secrets Controller on Debian 12 Distroless image" \
       description="Provides Sealed Secrets Controller on Debian 12 Distroless image" \
       version="v0.31.0" \

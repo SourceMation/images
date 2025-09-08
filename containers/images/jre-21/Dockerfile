@@ -1,11 +1,14 @@
 FROM sourcemation/debian-12-slim:latest
 
+ARG BUILD_DATE
+ARG TARGETARCH
+
 LABEL name="jre-21" \
       vendor="SourceMation" \
       url="https://sourcemation.com/"\
       licenses="Multiple licenses" \
-      created="$(date +%Y%m%d)" \
-      architecture="$(uname -m)" \
+      created="$BUILD_DATE" \
+      architecture="$TARGETARCH" \
       summary="JRE 21 on Debian 12 Slim Container" \
       description="Provides JRE 21 on Debian 12 Slim Container" \
       version="jdk-21.0.8-9" \

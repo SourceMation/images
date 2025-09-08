@@ -28,6 +28,7 @@ RUN VERSION=$(echo ${REDIS_SENTINEL_VERSION} | sed -e "s/^v//g"); \
 
 FROM docker.io/sourcemation/debian-12-slim:latest
 
+ARG BUILD_DATE
 ARG TARGETARCH
 
 ENV SENTINEL_PORT=26379
@@ -36,8 +37,8 @@ LABEL name="redis-sentinel" \
       vendor="LinuxPolska" \
       url="https://linuxpolska.com/en/"\
       licenses="GPLv2" \
-      created="$(date +%Y%m%d)" \
-      architecture="$(uname -m)" \
+      created="$BUILD_DATE" \
+      architecture="$TARGETARCH" \
       summary="Redis Sentinel on Debian Container" \
       description="Provides Redis Sentinel on Debian 12 Container" \
       version="8.2.1" \

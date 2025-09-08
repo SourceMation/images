@@ -24,14 +24,15 @@ ENV JENKINS_SLAVE_AGENT_PORT ${agent_port}
 ENV REF $REF
 ENV JENKINS_VERSION ${JENKINS_VERSION}
 
+ARG BUILD_DATE
 ARG TARGETARCH
 
 LABEL name="jenkins-lts" \
       vendor="LinuxPolska" \
       url="https://linuxpolska.com/en/"\
       licenses="GPLv2" \
-      created="$(date +%Y%m%d)" \
-      architecture="$(uname -m)" \
+      created="$BUILD_DATE" \
+      architecture="$TARGETARCH" \
       summary="Jenkins LTS on EL9 Container with RL9 vanilla openjdk-17" \
       description="Provides Jenkins with RL9 vanilla openjdk-17 on Rocky Linux 9 Container" \
       version="{JENKINS_VERSION}" \

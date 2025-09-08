@@ -5,12 +5,15 @@ FROM sourcemation/debian-12-slim
 # rebuilt and updated.
 # License: MIT
 
+ARG BUILD_DATE
+ARG TARGETARCH
+
 LABEL name="python-3.12" \
       vendor="SourceMation" \
       url="https://SourceMation.com/"\
       licenses="PSF License Version 2" \
-      created="$(date +%Y%m%d)" \
-      architecture="$(uname -m)" \
+      created="$BUILD_DATE" \
+      architecture="$TARGETARCH" \
       summary="Python 3.12 on Debian 12 Slim Container" \
       description="Provides Python 3.12 on Debian 12 Slim Container" \
       version="3.12.11" \

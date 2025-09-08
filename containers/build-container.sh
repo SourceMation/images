@@ -85,6 +85,7 @@ build_container(){
         --tag "quay.io/sourcemation/$DOCKER_TAG_LATEST" \
         --tag "quay.io/sourcemation/$DOCKER_TAG_VERSION" \
         --tag "quay.io/sourcemation/$DOCKER_TAG_BUILD" \
+        --build-arg BUILD_DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ") \
         --iidfile /tmp/docker-build-push/iidfile \
         --platform="linux/$latest_arch" \
         --file "./Dockerfile" --no-cache ./

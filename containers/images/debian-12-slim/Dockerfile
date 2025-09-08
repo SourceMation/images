@@ -1,13 +1,16 @@
 FROM scratch
 ADD rootfs.tar.gz /
 
+ARG BUILD_DATE
+ARG TARGETARCH
+
 LABEL name="debian-12-slim" \
       maintainer="Sourcemation Containers team <contact@sourcemation.com>" \
       vendor="System - Debian project; Image - SourceMation" \
       url="https://sourcemation.com"\
       licenses="GPLv2" \
-      created="$(date --utc --rfc-3339=seconds)" \
-      architecture="$(arch)" \
+      created="$BUILD_DATE" \
+      architecture="$TARGETARCH" \
       summary="Debian 12 Slim Base Container" \
       description="Provides Debian 12 Slim Base Container" \
       version="12" \

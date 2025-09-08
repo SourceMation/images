@@ -33,12 +33,15 @@ RUN echo "rabbitmq-cluster-operator:x:1000:" > /etc/group && \
 # ---------------------------------------
 FROM scratch
 
+ARG BUILD_DATE
+ARG TARGETARCH
+
 LABEL name="rabbitmq-cluster-operator" \
       vendor="SourceMation" \
       url="https://sourcemation.com" \
       licenses="MPLv2" \
-      created="$(date +%Y%m%d)" \
-      architecture="$(uname -m)" \
+      created="$BUILD_DATE" \
+      architecture="$TARGETARCH" \
       summary="RabbitMQ Cluster Operator" \
       description="Provides RabbitMQ Cluster Operator" \
       version="2.16.1" \

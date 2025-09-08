@@ -1,12 +1,14 @@
 FROM sourcemation/debian-12-slim:latest
 
+ARG BUILD_DATE
+ARG TARGETARCH
 
 LABEL name="nginx-stable" \
       vendor="SourceMation" \
       url="https://sourcemation.com/"\
       licenses="BSD-2-Clause License" \
-      created="$(date +%Y%m%d)" \
-      architecture="$(uname -m)" \
+      created="$BUILD_DATE" \
+      architecture="$TARGETARCH" \
       summary="Nginx Stable on Debian 12 Slim Container" \
       description="Provides Nginx Stable on Debian 12 Slim Container" \
       version="1.28.0" \

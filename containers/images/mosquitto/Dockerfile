@@ -1,13 +1,14 @@
 FROM sourcemation/rocky-9:latest
 
+ARG BUILD_DATE
 ARG TARGETARCH
 
 LABEL name="mosquitto" \
       vendor="SourceMation" \
       url="https://sourcemation.com/"\
       licenses="Eclipse Public License 2.0 and Eclipse Distribution License 1.0" \
-      created="$(date +%Y%m%d)" \
-      architecture="$(uname -m)" \
+      created="$BUILD_DATE" \
+      architecture="$TARGETARCH" \
       summary="Mosquitto from EPEL on EL9 Container" \
       description="Provides Mosquitto" \
       version="2.0.22" \

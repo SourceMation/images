@@ -1,13 +1,14 @@
 FROM sourcemation/rocky-9:latest
 
+ARG BUILD_DATE
 ARG TARGETARCH
 
 LABEL name="python" \
       vendor="LinuxPolska" \
       url="https://linuxpolska.com/en/"\
       licenses="Python" \
-      created="$(date +%Y%m%d)" \
-      architecture="$(uname -m)" \
+      created="$BUILD_DATE" \
+      architecture="$TARGETARCH" \
       summary="Python on EL9 Container" \
       description="Provides Python on Rocky Linux 9 Container" \
       version="3.9.21" \

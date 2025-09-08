@@ -1,11 +1,14 @@
 FROM quay.io/sourcemation/nodejs-24:latest
 
+ARG BUILD_DATE
+ARG TARGETARCH
+
 LABEL name="angular" \
       vendor="LinuxPolska" \
       url="https://linuxpolska.com/en/"\
       licenses="GPLv2" \
-      created="$(date +%Y%m%d)" \
-      architecture="$(uname -m)" \
+      created="$BUILD_DATE" \
+      architecture="$TARGETARCH" \
       summary="NodeJS and Angular CLI on Debian 12 Slim Container" \
       description="Provides NodeJS and Angular on Debian 12 Slim Container" \
       version="19.2.0" \
