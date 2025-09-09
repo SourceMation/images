@@ -1,7 +1,13 @@
+import subprocess
 import pytest
 import requests
 
 APICAST_URL = "http://localhost:8080"
+
+def test_apicast_installed():
+    result = subprocess.run(['apicast', '--help'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    assert result.returncode == 0, "Apicast is not installed or not found in system PATH"
+    assert "Start APIcast" in result.stdout, f"Unexpected output from 'apicast --help': {result.stdout}"
 
 def test_gateway_is_online_and_responding():
     response = requests.get(f"{APICAST_URL}/")
