@@ -11,7 +11,7 @@ LABEL name="apache-karaf" \
       architecture="$TARGETARCH" \
       summary="Apache Karaf on EL9 Container" \
       description="Provides Apache Karaf on Rocky Linux 9 Container" \
-      version="4.4.7" \
+      version="4.4.8" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="Apache Karaf on EL9 Container" \
       io.k8s.description="Provides Apache Karaf on Rocky Linux 9 Container" \
@@ -27,13 +27,16 @@ ENV KARAF_HOME $KARAF_INSTALL_PATH/apache-karaf
 ENV KARAF_EXEC exec
 ENV PATH $PATH:$KARAF_HOME/bin
 
-ENV KARAF_VERSION=4.4.7
+ENV KARAF_VERSION=4.4.8
 
-RUN cd /opt; \
-	curl -LO https://dlcdn.apache.org/karaf/${KARAF_VERSION}/apache-karaf-${KARAF_VERSION}.tar.gz && \
-	tar -xzf apache-karaf-${KARAF_VERSION}.tar.gz; \
-	mv apache-karaf-${KARAF_VERSION} apache-karaf; \
-	rm -f apache-karaf-${KARAF_VERSION}.tar.gz
+RUN set -euo pipefail; cd /opt; \
+    curl -LO https://dlcdn.apache.org/karaf/${KARAF_VERSION}/apache-karaf-${KARAF_VERSION}.tar.gz && \
+    # Missing https://github.com/apache/karaf/issues/1993 that's why we are using dlcdn.apache.org \
+    #curl https://dlcdn.apache.org/karaf/${KARAF_VERSION}/apache-karaf-${KARAF_VERSION}.tar.gz.sha512 && \
+    #sha512sum -c apache-karaf-${KARAF_VERSION}.tar.gz.sha512; \
+    tar -xzf apache-karaf-${KARAF_VERSION}.tar.gz; \
+    mv apache-karaf-${KARAF_VERSION} apache-karaf; \
+    rm -f apache-karaf-${KARAF_VERSION}.tar.gz
 
 RUN set -x && \
   ln -s $KARAF_INSTALL_PATH/apache-karaf* $KARAF_HOME
