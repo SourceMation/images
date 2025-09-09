@@ -1,6 +1,5 @@
 import pytest
 import requests
-import json
 
 APICAST_URL = "http://localhost:8080"
 
