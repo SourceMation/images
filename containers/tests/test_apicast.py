@@ -10,7 +10,7 @@ def test_apicast_installed():
     assert "Start APIcast" in result.stdout, f"Unexpected output from 'apicast --help': {result.stdout}"
 
 def test_gateway_is_online_and_responding():
-    response = requests.get(f"{APICAST_URL}/")
+    response = requests.get(f"{APICAST_URL}/", timeout=10)
     assert response.status_code == 200
     assert "GET / HTTP/1.1" in response.text
 
@@ -20,7 +20,7 @@ def test_gateway_is_online_and_responding():
 ])
 def test_routing_to_echo_api(path):
     url = f"{APICAST_URL}{path}"
-    response = requests.get(url)
+    response = requests.get(url, timeout=10)
     assert response.status_code == 200
     assert f"GET {path} HTTP/1.1" in response.text
 
@@ -30,13 +30,13 @@ def test_headers():
         'X-Test-Header': 'MyTestValue123',
         'User-Agent': 'Pytest-Client'
     }
-    response = requests.get(url, headers=custom_headers)
+    response = requests.get(url, headers=custom_headers, timeout=10)
     assert response.status_code == 200
     assert "GET /headers HTTP/1.1" in response.text
 
 def test_post_request():
     url = f"{APICAST_URL}/post"
     payload = {"user": "test_user", "permissions": [1, 2, 3]}
-    response = requests.post(url, json=payload)
+    response = requests.post(url, json=payload, timeout=10)
     assert response.status_code == 200
     assert "POST /post HTTP/1.1" in response.text
