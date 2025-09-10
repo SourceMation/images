@@ -242,7 +242,7 @@ test_container(){
     docker cp tests "$CONTAINER_NAME:/tmp"
 
     print_info 'Installing Python and PyTest in the Container'
-    docker exec -u 0 "$CONTAINER_NAME" dnf install -y python3-pip procps iproute || docker exec -u 0 "$CONTAINER_NAME" microdnf install -y python3-pip procps iproute || docker exec -u 0 "$CONTAINER_NAME" bash -c 'apt-get update && apt-get install -y python3-pip procps iproute2 iputils-ping'
+    docker exec -u 0 "$CONTAINER_NAME" dnf install -y python3-pip procps iproute || docker exec -u 0 "$CONTAINER_NAME" microdnf install -y python3-pip procps iproute || docker exec -u 0 "$CONTAINER_NAME" bash -c 'apt-get update && apt-get install -y python3-pip procps iproute2'
     docker exec -u 0 "$CONTAINER_NAME" pip3 install pytest requests psycopg2-binary redis pymongo pika || docker exec -u 0 "$CONTAINER_NAME" pip3 install pytest requests psycopg2-binary redis pymongo pika --break-system-packages
 
     print_info 'Executing PyTest Scripts'

@@ -2,7 +2,7 @@ import os
 import pytest
 import subprocess
 import shutil
-
+import socket
 
 def test_os_release_is_debian_11():
     os_release_path = '/etc/os-release'
@@ -42,13 +42,15 @@ def test_apt_get_update_works():
     except FileNotFoundError:
         pytest.fail("Command 'apt-get' not found in the container.")
 
-def test_network_dns_resolution_works():
+def test_network_dns_and_tcp_connectivity():
     try:
-        subprocess.run(['ping', '-c', '1', 'debian.org'], check=True, capture_output=True, timeout=10)
-    except FileNotFoundError:
-        pytest.fail("Command 'ping' not found. Is 'iputils-ping' package installed?")
-    except subprocess.CalledProcessError:
-        pytest.fail("Network test failed. Could not ping debian.org.")
+        socket.create_connection(("debian.org", 80), timeout=10)
+    except socket.gaierror:
+        pytest.fail("DNS resolution failed. Could not resolve 'debian.org'.")
+    except socket.timeout:
+        pytest.fail("Connection timed out. A firewall might be blocking outbound traffic on port 80.")
+    except OSError as e:
+        pytest.fail(f"An OS error occurred during connection: {e}")
 
 def test_path_variable_is_sane():
     path_var = os.environ.get('PATH')
