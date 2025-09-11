@@ -3,7 +3,7 @@ FROM sourcemation/postgres-17
 ARG BUILD_DATE
 ARG TARGETARCH
 
-ARG PGEXPORTER_VER="0.17.1"
+ENV PGEXPORTER_VER="0.17.1"
 ENV BINARY_URL="https://github.com/prometheus-community/postgres_exporter/releases/download/v${PGEXPORTER_VER}/postgres_exporter-${PGEXPORTER_VER}.linux-${TARGETARCH}.tar.gz"
 
 LABEL name="postgres-exporter" \
