@@ -43,6 +43,7 @@ on:
           - kong
           - kubectl
           - manageiq
+          - mariadb
           - maven
           - micronaut
           - mongodb
