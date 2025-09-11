@@ -6,7 +6,7 @@ ARG TARGETARCH
 ARG PGEXPORTER_VER="0.17.1"
 ENV BINARY_URL="https://github.com/prometheus-community/postgres_exporter/releases/download/v${PGEXPORTER_VER}/postgres_exporter-${PGEXPORTER_VER}.linux-${TARGETARCH}.tar.gz"
 
-LABEL name="..." \
+LABEL name="postgres-exporter" \
   vendor="Linux Polska" \
   url="https://sourcemation.com"\
   source="https://github.com/SourceMation/images/issues"\
