@@ -49,7 +49,7 @@ ARG PGPOOL_VER=""
 ENV PGPOOL_INSTALL_DIR "/opt/pgpool-II"
 ENV PGPOOL_CONF_VOLUME "/config"
 
-LABEL name="..." \
+LABEL name="pgpool" \
   vendor="Linux Polska" \
   url="https://sourcemation.com"\
   source="https://github.com/SourceMation/images/issues"\
