@@ -5,7 +5,7 @@
 # e-mail: pawel.piasek@linuxpolska.pl
 # ---------------------------------------------------
 
-set -euxo pipefail
+set -euo pipefail
 APP=prometheus
 # Get latest version
 echo "Checking the latest available version of the $APP"
