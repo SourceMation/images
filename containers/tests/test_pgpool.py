@@ -22,9 +22,9 @@ def test_pgpool_binary_is_executable():
     assert os.access(binary, os.X_OK), f"Binary is not executable: {binary}"
 
 def test_entrypoint_script_exist():
-    yml_file = '/opt/pgpool-II/bin/entrypoint.sh'
-    assert os.path.isfile(yml_file), f"Config file not found: {yml_file}"
+    entrypoint = '/opt/pgpool-II/bin/entrypoint.sh'
+    assert os.path.isfile(entrypoint), f"Config file not found: {entrypoint}"
 
 def test_start_script_exist():
-    yml_file = '/opt/pgpool-II/bin/start.sh'
-    assert os.path.isfile(yml_file), f"Config file not found: {yml_file}"
+    start = '/opt/pgpool-II/bin/start.sh'
+    assert os.path.isfile(start), f"Config file not found: {start}"
