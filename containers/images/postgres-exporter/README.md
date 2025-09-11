@@ -24,6 +24,7 @@ This image is intended for production environments where monitoring PostgreSQL i
 ```bash
 # Start an example database
 docker run --net=host -it --rm -e POSTGRES_PASSWORD=password postgres
+
 # Connect to it
 docker run \
   --net=host \

@@ -60,6 +60,7 @@ on:
           - openapi-generator-cli
           - postgres-16
           - postgres-17
+          - postgres-exporter
           - postgresql
           - python
           - python-3.11
