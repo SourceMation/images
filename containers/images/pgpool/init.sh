@@ -20,5 +20,6 @@ LATEST_VERSION=$(curl -s "$URL" | \
 
 # Replacing the version number in the Dockerfile
 sed -i "s/PGPOOL_VER=\"[^\"]*\"/PGPOOL_VER=\"$LATEST_VERSION\"/g" Dockerfile || exit 1
+sed -i "s/version=\"[^\"]*\"/version=\"$LATEST_VERSION\"/g" Dockerfile || exit 1
 
 echo "Finished setting up the $APP $LATEST_VERSION image"
