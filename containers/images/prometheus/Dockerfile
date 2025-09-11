@@ -20,8 +20,8 @@ LABEL name="prometheus" \
 
 # RUN update and setup user
 RUN set -ex; \
-    apt update; \
-    apt upgrade; \
+    apt-get update; \
+    apt-get upgrade -y; \
     rm -rf /var/lib/apt/lists/*
 
 # INSTAL OR COPY --from=builder /builder/path /path
