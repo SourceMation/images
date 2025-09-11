@@ -1,11 +1,6 @@
-import os
 import subprocess
-import pytest
-import time
-import socket
 
 def test_postgres_user_and_group_exist():
-    """Checks if the 'postgres' user and group were created."""
     result = subprocess.run([" id", "postgres"], capture_output=True, text=True)
     assert result.returncode == 0, "id postgres command failed."
     assert "(postgres)" in result.stdout, "group postgres not found."
