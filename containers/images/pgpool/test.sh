@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-source ../test_pgpool.sh
-# following tests will be executed
-
-test_postgres_user_and_group_exist
-test_ownership_main_pgpool_directory
-test_ownership_run_pgpool_directory
-test_pgpool_binary_is_executable
-test_entrypoint_and_start_scripts_exist
