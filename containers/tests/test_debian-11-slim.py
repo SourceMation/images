@@ -63,7 +63,7 @@ def test_core_filesystem_directories_exist(directory_path):
 
 @pytest.mark.parametrize("path", ["/bin", "/sbin", "/lib"])
 def test_merged_usr_filesystem_layout(path):
-    assert os.path.islink(path), f"Path '{path}' is not a symlink as expected in Debian 12."
+    assert os.path.islink(path), f"Path '{path}' is not a symlink as expected"
     
     target = os.readlink(path)
     expected_target = f"usr/{os.path.basename(path)}"
