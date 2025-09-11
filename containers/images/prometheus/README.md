@@ -50,10 +50,6 @@ docker run -d --name prometheus \
   --web.enable-lifecycle
 ```
 
-## Image tags and versions
-
-The `sourcemation/prometheus` image comes in two flavors: `debian-12` and `rocky-9`. The tag `latest` refers to the Debian-based flavor.
-
 ## Environment Vars, Ports, Volumes
 
 This image uses the following environment variables:
