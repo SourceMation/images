@@ -19,5 +19,6 @@ VERSION=$(git ls-remote --refs --tags https://github.com/prometheus-community/po
 
 # Replacing the version number in the Dockerfile
 sed -i "s/PGEXPORTER_VER=\"[^\"]*\"/PGEXPORTER_VER=\"$VERSION\"/" Dockerfile || exit 1
+sed -i "s/version=\"[^\"]*\"/version=\"$VERSION\"/" Dockerfile || exit 1
 
 echo "Finished setting up the $APP $VERSION image"
