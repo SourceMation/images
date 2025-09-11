@@ -21,9 +21,6 @@ def test_os_release_is_debian_11():
     assert release_info.get('PRETTY_NAME') == 'Debian GNU/Linux 12 (bookworm)'
 
 def test_default_user_is_root():
-    """
-    Sprawdza, czy domyślnym użytkownikiem w kontenerze jest root.
-    """
     try:
         result = subprocess.run(['whoami'], capture_output=True, text=True, check=True)
         current_user = result.stdout.strip()
