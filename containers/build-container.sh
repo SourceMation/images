@@ -190,6 +190,9 @@ test_container(){
         "quarkus")
             CONTAINER_RUN_COMMAND=""
             ;;
+        "servicemix")
+            CONTAINER_RUN_COMMAND=""
+            ;;
         *)
             :
             ;;
