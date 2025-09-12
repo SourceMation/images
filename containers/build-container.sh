@@ -188,6 +188,9 @@ test_container(){
         "redis")
             CONTAINER_RUN_COMMAND=""
             ;;
+        "redis-sentinel")
+            CONTAINER_RUN_COMMAND=""
+            ;;
         "rabbitmq")
             CONTAINER_RUN_COMMAND=""
             ;;
