@@ -16,6 +16,7 @@ on:
         # Remember to sort it :)
         options:
           - activemq
+          - alertmanager
           - angular
           - apicast
           - camel-k

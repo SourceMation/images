@@ -128,6 +128,9 @@ test_container(){
     # We should use CONTAINER_RUN_COMMAND only if it's not defined in conf.sh file that why there is no :-
     CONTAINER_RUN_COMMAND=${CONTAINER_RUN_COMMAND-"/bin/bash"}
     case ${IMAGE_NAME} in
+        "alertmanager")
+            CONTAINER_RUN_COMMAND=""
+            ;;
         "apache-activemq")
             CONTAINER_RUN_COMMAND=""
             ;;
