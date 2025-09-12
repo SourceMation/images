@@ -12,7 +12,7 @@
 
 # Be more strict with errors
 set -euo pipefail
-
+arch(){ uname -m; }
 
 # Global vars
 
@@ -174,6 +174,9 @@ test_container(){
         postgres-*)
             CONTAINER_RUN_COMMAND=""
             CONTAINER_RUN_PARAMETERS="-e POSTGRES_HOST_AUTH_METHOD=trust"
+            ;;
+        "prometheus")
+            CONTAINER_RUN_COMMAND="--storage.tsdb.path=/prometheus --config.file=/etc/prometheus/prometheus.yml --web.enable-lifecycle"
             ;;
         "redis")
             CONTAINER_RUN_COMMAND=""

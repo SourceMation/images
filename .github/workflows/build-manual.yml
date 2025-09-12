@@ -63,6 +63,7 @@ on:
           - postgres-17
           - postgres-exporter
           - postgresql
+          - prometheus
           - python
           - python-3.11
           - python-3.12
