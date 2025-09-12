@@ -171,6 +171,10 @@ test_container(){
             CONTAINER_RUN_COMMAND=""
             CONTAINER_RUN_PARAMETERS="-e POSTGRES_HOST_AUTH_METHOD=trust"
             ;;
+        "pgpool")
+            CONTAINER_RUN_COMMAND=""
+            CONTAINER_RUN_PARAMETERS="-e PGPOOL_PARAMS_BACKEND_HOSTNAME0='test_hostname'"
+            ;;
         postgres-*)
             CONTAINER_RUN_COMMAND=""
             CONTAINER_RUN_PARAMETERS="-e POSTGRES_HOST_AUTH_METHOD=trust"
