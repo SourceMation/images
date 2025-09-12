@@ -176,7 +176,7 @@ test_container(){
             CONTAINER_RUN_PARAMETERS="-e POSTGRES_HOST_AUTH_METHOD=trust"
             ;;
         "prometheus")
-            CONTAINER_RUN_COMMAND=""
+            CONTAINER_RUN_COMMAND="--storage.tsdb.path=/prometheus --config.file=/etc/prometheus/prometheus.yml --web.enable-lifecycle"
             ;;
         "redis")
             CONTAINER_RUN_COMMAND=""
