@@ -34,8 +34,15 @@ def test_sentinel_process_is_running():
 def test_sentinel_is_listening_on_port():
     try:
         result = subprocess.run(['ss', '-tuln'], capture_output=True, text=True, check=True)
-        assert f":{SENTINEL_PORT}" in result.stdout
-        assert "LISTEN" in result.stdout
+        
+        port_is_listening = False
+        for line in result.stdout.splitlines():
+            if "LISTEN" in line and f":{SENTINEL_PORT}" in line:
+                port_is_listening = True
+                break
+        
+        assert port_is_listening, f"Port {SENTINEL_PORT} was not found in a 'LISTEN' state."
+
     except (subprocess.CalledProcessError, FileNotFoundError) as e:
         pytest.fail(f"Failed to check listening ports with 'ss': {e}")
 
