@@ -16,13 +16,13 @@ def test_prometheus_binaries_installed():
     result = subprocess.run(['/bin/prometheus', '--version'], 
                           stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
     assert result.returncode == 0, "Prometheus binary is not installed or not found"
-    assert "prometheus, version" in result.stderr, f"Unexpected output from prometheus --version: {result.stderr}"
+    assert "prometheus, version" in result.stdout, f"Unexpected output from prometheus --version: {result.stdout}"
     
     # Test promtool binary
     result = subprocess.run(['/bin/promtool', '--version'], 
                           stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
     assert result.returncode == 0, "Promtool binary is not installed or not found"
-    assert "promtool, version" in result.stderr, f"Unexpected output from promtool --version: {result.stderr}"
+    assert "promtool, version" in result.stdout, f"Unexpected output from promtool --version: {result.stdout}"
 
 def test_prometheus_config_file_exists():
     """Test that the Prometheus configuration file exists."""
