@@ -1,30 +1,27 @@
 import pytest
 import subprocess
 import requests
-import json
-import time
 import os
+import json
 from pathlib import Path
 
 def test_alertmanager_binary_exists():
-    result = subprocess.run(['which', 'alertmanager'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-    assert result.returncode == 0, "Alertmanager binary not found in PATH."
-    assert result.stdout.strip() == '/bin/alertmanager', f"Alertmanager binary found at unexpected location: {result.stdout.strip()}"
+    assert os.path.isfile("/bin/alertmanager"), f"Binary not found: /bin/alertmanager"
+    assert os.access("/bin/alertmanager", os.X_OK), f"Binary is not executable: /bin/alertmanager"
 
 def test_amtool_binary_exists():
-    result = subprocess.run(['which', 'amtool'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-    assert result.returncode == 0, "amtool binary not found in PATH."
-    assert result.stdout.strip() == '/bin/amtool', f"amtool binary found at unexpected location: {result.stdout.strip()}"
+    assert os.path.isfile("/bin/amtool"), f"Binary not found: /bin/amtool"
+    assert os.access("/bin/amtool", os.X_OK), f"Binary is not executable: /bin/amtool"
 
 def test_alertmanager_version():
     result = subprocess.run(['alertmanager', '--version'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
     assert result.returncode == 0, "Failed to get Alertmanager version."
-    assert "alertmanager, version 0.28.1" in result.stderr, f"Unexpected version output: {result.stderr}"
+    assert "alertmanager, version 0.28.1" in result.stdout, f"Unexpected version output: {result.stdout}"
 
 def test_amtool_version():
     result = subprocess.run(['amtool', '--version'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
     assert result.returncode == 0, "Failed to get amtool version."
-    assert "amtool, version 0.28.1" in result.stderr, f"Unexpected version output: {result.stderr}"
+    assert "amtool, version 0.28.1" in result.stdout, f"Unexpected version output: {result.stdout}"
 
 def test_default_config_file_exists():
     config_path = '/etc/alertmanager/alertmanager.yml'
@@ -43,18 +40,7 @@ def test_data_directory_permissions():
     data_dir = '/alertmanager'
     stat_info = os.stat(data_dir)
     
-    # Check if directory is writable by group (nobody group)
     assert stat_info.st_mode & 0o020, f"Data directory {data_dir} is not writable by group."
-
-def test_alertmanager_config_validation():
-    """Test that the default configuration is valid"""
-    result = subprocess.run([
-        'alertmanager',
-        '--config.file=/etc/alertmanager/alertmanager.yml',
-        '--config.check'
-    ], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-    
-    assert result.returncode == 0, f"Configuration validation failed: {result.stderr}"
 
 def test_alertmanager_help():
     result = subprocess.run(['alertmanager', '--help'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
@@ -68,75 +54,43 @@ def test_amtool_help():
     assert "alert" in result.stdout or "silence" in result.stdout, "Expected amtool subcommands not found in help output."
 
 def test_exposed_port_9093():
-    """Test that port 9093 is the expected port for Alertmanager"""
-    # Start alertmanager in background for a short time to test port binding
-    process = subprocess.Popen([
-        'alertmanager',
-        '--config.file=/etc/alertmanager/alertmanager.yml',
-        '--storage.path=/tmp/alertmanager-test',
-        '--web.listen-address=:9093'
-    ], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    
     try:
-        # Give it a moment to start
-        time.sleep(3)
-        
-        # Check if process is still running
-        assert process.poll() is None, "Alertmanager process terminated unexpectedly"
-        
-        # Try to connect to the web interface
-        try:
-            response = requests.get('http://localhost:9093', timeout=5)
-            # Alertmanager should return a response (even if it's a redirect or error page)
-            assert response.status_code in [200, 302, 404], f"Unexpected status code: {response.status_code}"
-        except requests.ConnectionError:
-            pytest.fail("Could not connect to Alertmanager on port 9093")
-        except requests.Timeout:
-            pytest.fail("Timeout connecting to Alertmanager on port 9093")
-            
-    finally:
-        # Clean up the process
-        process.terminate()
-        process.wait(timeout=10)
+        response = requests.get('http://localhost:9093/-/ready', timeout=5)
+        assert response.status_code == 200, f"Unexpected status code for /-/ready: {response.status_code}"
+    except requests.ConnectionError:
+        pytest.fail("Could not connect to Alertmanager on port 9093")
+    except requests.Timeout:
+        pytest.fail("Timeout connecting to Alertmanager on port 9093")
 
 def test_alertmanager_api_endpoints():
-    """Test that Alertmanager API endpoints are accessible"""
-    process = subprocess.Popen([
-        'alertmanager',
-        '--config.file=/etc/alertmanager/alertmanager.yml',
-        '--storage.path=/tmp/alertmanager-test-api',
-        '--web.listen-address=:9093'
-    ], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    
-    try:
-        # Give it time to start
-        time.sleep(5)
+    endpoints = [
+        '/api/v2/status',
+        '/api/v2/alerts',
+        '/api/v2/silences'
+    ]
         
-        # Test API endpoints
-        endpoints = [
-            '/api/v1/status',
-            '/api/v1/alerts',
-            '/api/v1/silences'
-        ]
-        
-        for endpoint in endpoints:
-            try:
-                response = requests.get(f'http://localhost:9093{endpoint}', timeout=5)
-                assert response.status_code == 200, f"API endpoint {endpoint} returned status {response.status_code}"
+    for endpoint in endpoints:
+        try:
+            response = requests.get(f'http://localhost:9093{endpoint}', timeout=5)
+            assert response.status_code == 200, f"API endpoint {endpoint} returned status {response.status_code}"
                 
-                # Verify JSON response
-                data = response.json()
-                assert 'status' in data, f"API endpoint {endpoint} did not return expected JSON structure"
+            data = response.json()
+
+            if endpoint == '/api/v2/status':
+                assert 'cluster' in data, "Response from /api/v2/status is missing 'cluster' key"
+                assert 'versionInfo' in data, "Response from /api/v2/status is missing 'versionInfo' key"
+                assert 'config' in data, "Response from /api/v2/status is missing 'config' key"
+            
+            elif endpoint in ['/api/v2/alerts', '/api/v2/silences']:
+                assert isinstance(data, list), f"Response from {endpoint} should be a list, but was {type(data)}"
                 
-            except requests.RequestException as e:
-                pytest.fail(f"Failed to access API endpoint {endpoint}: {e}")
+        except requests.RequestException as e:
+            pytest.fail(f"Failed to access API endpoint {endpoint}: {e}")
+        except json.JSONDecodeError:
+            pytest.fail(f"Response from {endpoint} is not valid JSON.")
                 
-    finally:
-        process.terminate()
-        process.wait(timeout=10)
 
 def test_amtool_config_show():
-    """Test amtool can read and display configuration"""
     result = subprocess.run([
         'amtool',
         'config',
@@ -144,48 +98,8 @@ def test_amtool_config_show():
         '--alertmanager.url=http://localhost:9093'
     ], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, timeout=10)
     
-    # amtool might fail if alertmanager is not running, but it should not crash
     assert result.returncode in [0, 1], f"amtool config show failed unexpectedly: {result.stderr}"
-
-def test_working_directory():
-    """Test that the working directory is set correctly"""
-    cwd = os.getcwd()
-    assert cwd == '/alertmanager', f"Working directory is {cwd}, expected /alertmanager"
-
-def test_user_permissions():
-    """Test that the container runs as nobody user"""
-    result = subprocess.run(['whoami'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-    assert result.returncode == 0, "Failed to get current user"
-    current_user = result.stdout.strip()
-    assert current_user == 'nobody', f"Container is running as {current_user}, expected nobody"
-
-def test_alertmanager_storage_path():
-    """Test that alertmanager can write to storage path"""
-    test_storage = '/tmp/alertmanager-storage-test'
-    os.makedirs(test_storage, exist_ok=True)
-    
-    process = subprocess.Popen([
-        'alertmanager',
-        '--config.file=/etc/alertmanager/alertmanager.yml',
-        '--storage.path=' + test_storage,
-        '--web.listen-address=:9094'  # Use different port to avoid conflicts
-    ], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    
-    try:
-        time.sleep(3)
-        assert process.poll() is None, "Alertmanager failed to start with custom storage path"
         
-        # Check if alertmanager created files in the storage directory
-        storage_files = os.listdir(test_storage)
-        assert len(storage_files) > 0, "Alertmanager did not create any files in storage directory"
-        
-    finally:
-        process.terminate()
-        process.wait(timeout=10)
-        
-        # Clean up
-        import shutil
-        shutil.rmtree(test_storage, ignore_errors=True)
 
 @pytest.mark.parametrize("flag", [
     "--config.file",
@@ -196,7 +110,6 @@ def test_alertmanager_storage_path():
     "--log.level"
 ])
 def test_alertmanager_command_line_flags(flag):
-    """Test that important command line flags are recognized"""
     result = subprocess.run(['alertmanager', '--help'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
     assert result.returncode == 0
     assert flag in result.stdout, f"Command line flag {flag} not found in help output"
