@@ -48,7 +48,12 @@ check_variables_set_build_container(){
     if [[ "$TEST_IMAGE" == "false" && "$PUSH_IMAGE" == "false" && "$PUSH_README" == "true" ]]; then
         BUILD_CONTAINER="false"
     fi
-
+    # That's nasty too
+    UNSUPPORTED_IMAGES="mysql-aarch64 "
+    if [[ " $UNSUPPORTED_IMAGES " == *" $IMAGE_NAME-$BASE_ARCH "* ]]; then
+        print_info "Architecture $BASE_ARCH is not supported for $IMAGE_NAME image!"
+        exit 0
+    fi
 }
 
 
