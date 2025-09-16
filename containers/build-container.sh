@@ -155,6 +155,9 @@ test_container(){
             CONTAINER_RUN_COMMAND=""
             CONTAINER_RUN_PARAMETERS="-e POSTGRES_HOST_AUTH_METHOD=trust"
             ;;
+        "etcd")
+            CONTAINER_RUN_COMMAND=""
+            ;;
         "helidon")
             CONTAINER_RUN_COMMAND=""
             ;;

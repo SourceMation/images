@@ -26,6 +26,7 @@ on:
           - debian-11-slim
           - debian-12-slim
           - erlang
+          - etcd
           - external-secrets
           - gcc-13
           - gcc-14
