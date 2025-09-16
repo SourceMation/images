@@ -19,18 +19,17 @@ LABEL name="etcd" \
   io.k8s.description="Provides ${LONGNAME}" \
   io.openshift.tags="etcd debian-12-slim"
 
-# RUN update and setup user
+# RUN update
 RUN set -ex; \
     apt-get update; \
     apt-get upgrade -y; \
-    rm -rf /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/*;
 
 # INSTAL OR COPY --from=builder /builder/path /path
 COPY $COPYFROM/etcd $COPYFROM/etcdctl $COPYFROM/etcdutl /usr/local/bin/
 
-WORKDIR /var/lib/etcd/
-
 # END INSTALL
 USER       nobody
+WORKDIR    /var/lib/etcd/
 EXPOSE     2379 2380
 CMD        [ "/usr/local/bin/etcd" ]
