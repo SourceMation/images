@@ -62,6 +62,7 @@ on:
           - postgres-16
           - postgres-17
           - postgres-exporter
+          - postgres-repmgr
           - postgresql
           - python
           - python-3.11
