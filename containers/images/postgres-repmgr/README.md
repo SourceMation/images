@@ -24,7 +24,7 @@ This image is intended for production environments where database uptime is crit
 docker network create my-network
 ```
 
-### Step 1: Start the Primary Node
+### Step 2: Start the Primary Node
 
 The first node in the cluster must be started with the `REPMGR_ROLE` set to `primary`.
 
@@ -41,7 +41,7 @@ docker run -d --network  my-network --name primary \
   sourcemation/postgres-repmgr
 ```
 
-### Step 2: Start a Standby Node
+### Step 3: Start a Standby Node
 
 A standby node clones its data from an upstream node (usually the primary). You must provide the IP address or hostname of the primary in the `REPMGR_UPSTREAM_HOST` variable.
 
@@ -67,7 +67,7 @@ docker run -d --network  my-network --name standby \
   sourcemation/postgres-repmgr
 ```
 
-### Step 3: Verify the Cluster Status
+### Step 4: Verify the Cluster Status
 
 You can check the health and status of your replication cluster by running the `repmgr cluster show` command inside any of the containers.
 
