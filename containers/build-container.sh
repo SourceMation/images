@@ -194,6 +194,9 @@ test_container(){
         "prometheus")
             CONTAINER_RUN_COMMAND="--storage.tsdb.path=/prometheus --config.file=/etc/prometheus/prometheus.yml --web.enable-lifecycle"
             ;;
+        "prometheus-operator")
+            CONTAINER_RUN_COMMAND=""
+            ;;
         "redis")
             CONTAINER_RUN_COMMAND=""
             ;;

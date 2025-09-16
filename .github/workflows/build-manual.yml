@@ -68,6 +68,7 @@ on:
           - postgres-exporter
           - postgresql
           - prometheus
+          - prometheus-operator
           - python
           - python-3.11
           - python-3.12
