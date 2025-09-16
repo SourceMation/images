@@ -43,22 +43,20 @@ def test_etcdutl_version():
 
 def test_data_directories_exist():
     """Test that required data directories exist."""
-    directories = ["/var/lib/etcd", "/var/etcd"]
+    directory = "/var/lib/etcd"
     
-    for directory in directories:
-        assert os.path.exists(directory), f"Data directory {directory} does not exist"
-        assert os.path.isdir(directory), f"{directory} exists but is not a directory"
+    assert os.path.exists(directory), f"Data directory {directory} does not exist"
+    assert os.path.isdir(directory), f"{directory} exists but is not a directory"
 
 def test_data_directories_permissions():
     """Test that data directories have correct permissions for nobody user."""
-    directories = ["/var/lib/etcd", "/var/etcd"]
+    directory = "/var/lib/etcd"
     
-    for directory in directories:
-        stat_info = os.stat(directory)
-        # Check that the directory is accessible (readable and executable for others or group)
-        others_access = stat_info.st_mode & 0o005  # read and execute for others
-        group_access = stat_info.st_mode & 0o050   # read and execute for group
-        assert others_access or group_access, f"Data directory {directory} is not accessible by nobody user"
+    stat_info = os.stat(directory)
+    # Check that the directory is accessible (readable and executable for others or group)
+    others_access = stat_info.st_mode & 0o005  # read and execute for others
+    group_access = stat_info.st_mode & 0o050   # read and execute for group
+    assert others_access or group_access, f"Data directory {directory} is not accessible by nobody user"
 
 def test_etcd_service_running():
     """Test that etcd service is running and accessible."""
@@ -224,13 +222,12 @@ def test_etcd_snapshot_operations():
 
 def test_etcd_workdir():
     """Test that etcd working directory is set correctly."""
-    # The Dockerfile sets WORKDIR to /var/etcd/ and /var/lib/etcd/
+    # The Dockerfile sets WORKDIR to /var/lib/etcd/
     # We'll check that these directories exist and are accessible
-    working_dirs = ["/var/etcd", "/var/lib/etcd"]
+    workdir = "/var/lib/etcd"
     
-    for workdir in working_dirs:
-        assert os.path.exists(workdir), f"Working directory {workdir} does not exist"
-        assert os.path.isdir(workdir), f"Working directory {workdir} is not a directory"
+    assert os.path.exists(workdir), f"Working directory {workdir} does not exist"
+    assert os.path.isdir(workdir), f"Working directory {workdir} is not a directory"
 
 @pytest.mark.parametrize("flag", [
     "--name",
