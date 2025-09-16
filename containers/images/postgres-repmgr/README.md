@@ -54,7 +54,7 @@ PRIMARY_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}
 Now, start the standby container, pointing it to the primary:
 
 ```bash
-docker run -d --name standby \
+docker run -d --network  my-network --name standby \
   -e POSTGRES_USER=postgres \
   -e POSTGRES_PASSWORD=mysecretpassword \
   -e REPMGR_ROLE=standby \
