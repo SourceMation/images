@@ -42,6 +42,7 @@ on:
           - jre-21
           - kafka
           - karaf
+          - kibana
           - kong
           - kubectl
           - manageiq

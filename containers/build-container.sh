@@ -164,6 +164,9 @@ test_container(){
         "kafka")
             CONTAINER_RUN_COMMAND=""
             ;;
+        "kibana")
+            CONTAINER_RUN_COMMAND=""
+            ;;
         "kong")
             CONTAINER_RUN_COMMAND=""
             ;;
