@@ -1,4 +1,4 @@
-FROM docker.io/sourcemation/debian-12-slim:latest
+FROM sourcemation/debian-12-slim:latest
 
 ARG TARGETARCH
 ARG BUILD_DATE
