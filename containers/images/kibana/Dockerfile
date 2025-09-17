@@ -26,13 +26,11 @@ RUN set -ex; \
     apt-get install -y --no-install-recommends libnss3 libfontconfig1 libasound2; \
     rm -rf /var/lib/apt/lists/*; \
     groupadd --gid 1000 kibana; \
-    useradd --uid 1000 --gid 1000 --shell /bin/bash --create-home kibana; \
-    mkdir -p ${KIBANA_HOME}; \
-    chown -R kibana:kibana ${KIBANA_HOME}
+    useradd --uid 1000 --gid 1000 --shell /bin/bash -d ${KIBANA_HOME} --create-home kibana
 
 COPY --chown=kibana:kibana kibana/ ${KIBANA_HOME}/
 
-RUN ln -s ${Kibana_HOME}/bin/kibana /usr/local/bin/kibana
+RUN ln -s ${KIBANA_HOME}/bin/kibana /usr/local/bin/kibana
 
 WORKDIR ${KIBANA_HOME}
 
