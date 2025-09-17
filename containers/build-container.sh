@@ -48,11 +48,17 @@ check_variables_set_build_container(){
     if [[ "$TEST_IMAGE" == "false" && "$PUSH_IMAGE" == "false" && "$PUSH_README" == "true" ]]; then
         BUILD_CONTAINER="false"
     fi
-
 }
 
 
 build_container(){
+    # That's nasty too
+    UNSUPPORTED_IMAGES="mysql-aarch64 "
+    if [[ " $UNSUPPORTED_IMAGES " == *" $IMAGE_NAME-$BASE_ARCH "* ]]; then
+        print_info "Architecture $BASE_ARCH is not supported for $IMAGE_NAME image!"
+        exit 0
+    fi
+    
     pushd "$container_dir"
     print_info "Building container $IMAGE_NAME"
     mkdir /tmp/docker-build-push/ || sudo rm -rf /tmp/docker-build-push/*
@@ -149,6 +155,9 @@ test_container(){
             CONTAINER_RUN_COMMAND=""
             CONTAINER_RUN_PARAMETERS="-e POSTGRES_HOST_AUTH_METHOD=trust"
             ;;
+        "etcd")
+            CONTAINER_RUN_COMMAND=""
+            ;;
         "external-dns")
             ENTRYPOINT_CMD=--entrypoint=""
             ;;
@@ -156,6 +165,9 @@ test_container(){
             CONTAINER_RUN_COMMAND=""
             ;;
         "kafka")
+            CONTAINER_RUN_COMMAND=""
+            ;;
+        "kibana")
             CONTAINER_RUN_COMMAND=""
             ;;
         "kong")
@@ -187,6 +199,9 @@ test_container(){
             ;;
         "prometheus")
             CONTAINER_RUN_COMMAND="--storage.tsdb.path=/prometheus --config.file=/etc/prometheus/prometheus.yml --web.enable-lifecycle"
+            ;;
+        "prometheus-operator")
+            CONTAINER_RUN_COMMAND=""
             ;;
         "redis")
             CONTAINER_RUN_COMMAND=""

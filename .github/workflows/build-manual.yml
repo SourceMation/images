@@ -26,6 +26,7 @@ on:
           - debian-11-slim
           - debian-12-slim
           - erlang
+          - etcd
           - external-dns
           - external-secrets
           - gcc-13
@@ -42,6 +43,7 @@ on:
           - jre-21
           - kafka
           - karaf
+          - kibana
           - kong
           - kubectl
           - manageiq
@@ -50,6 +52,7 @@ on:
           - micronaut
           - mongodb
           - mosquitto
+          - mysql
           - nginx-mainline
           - nginx-mainline-otel
           - nginx-mainline-perl
@@ -67,6 +70,7 @@ on:
           - postgres-exporter
           - postgresql
           - prometheus
+          - prometheus-operator
           - python
           - python-3.11
           - python-3.12
