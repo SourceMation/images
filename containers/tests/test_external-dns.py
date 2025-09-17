@@ -2,7 +2,7 @@ import pytest
 import subprocess
 import os
 import tempfile
-import yaml
+
 
 def test_external_dns_installed():
     """Test that external-dns binary is installed and accessible."""
