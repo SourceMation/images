@@ -150,7 +150,7 @@ test_container(){
             CONTAINER_RUN_PARAMETERS="-e POSTGRES_HOST_AUTH_METHOD=trust"
             ;;
         "external-dns")
-            ENTRYPOINT_CMD="[""]"
+            ENTRYPOINT_CMD=--entrypoint=""
             ;;
         "helidon")
             CONTAINER_RUN_COMMAND=""
@@ -245,7 +245,7 @@ test_container(){
     else
         print_info "Running Docker Container from Image: ${CONTAINER_FULL_NAME}"
         # shellcheck disable=SC2086
-        docker run -d -it --name "$CONTAINER_NAME" ${CONTAINER_RUN_PARAMETERS} ${ENTRYPOINT_CMD:+--entrypoint "$ENTRYPOINT_CMD"} "${CONTAINER_FULL_NAME}" ${CONTAINER_RUN_COMMAND}
+        docker run -d -it --name "$CONTAINER_NAME" ${CONTAINER_RUN_PARAMETERS} ${ENTRYPOINT_CMD} "${CONTAINER_FULL_NAME}" ${CONTAINER_RUN_COMMAND}
 
     fi
 
