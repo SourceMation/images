@@ -17,6 +17,7 @@ on:
         options:
           - activemq
           - alertmanager
+          - azure-cli
           - angular
           - apicast
           - camel-k
