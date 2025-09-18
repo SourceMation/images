@@ -19,6 +19,12 @@ def test_installation_and_permissions():
         owner_user = pwd.getpwuid(owner_uid).pw_name
         assert owner_user == ELASTIC_USER
 
+@pytest.mark.parametrize("binary_name", ["elasticsearch", "elasticsearch-plugin", "elasticsearch-keystore", "elasticsearch-reset-password", "elasticsearch-users"])
+def test_core_binaries_exist_and_are_executable(binary_name):
+    binary_path = os.path.join(ELASTIC_HOME, 'bin', binary_name)
+    assert os.path.isfile(binary_path), f"Binary not found: {binary_path}"
+    assert os.access(binary_path, os.X_OK), f"Binary is not executable: {binary_path}"
+
 def test_elasticsearch_process_is_running():
     try:
         result = subprocess.run(['ps', 'auxww'], capture_output=True, text=True, check=True)
