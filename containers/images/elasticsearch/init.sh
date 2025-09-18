@@ -18,7 +18,7 @@ else
     exit 1
 fi
 
-rm -rf kibana kibana-*.tar.gz
+rm -rf elasticsearch elasticsearch-*.tar.gz
 
 echo "Download binaries for $APP version $VERSION for architecture $ARCH"
 curl https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-$VERSION-linux-$ARCH.tar.gz -sLo elasticsearch.tar.gz
