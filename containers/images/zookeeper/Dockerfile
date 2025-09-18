@@ -28,8 +28,8 @@ ENV DEBIAN_FRONTEND=noninteractive \
 ENV PATH=$PATH:$ZK_HOME/bin
 
 RUN useradd -r -d $ZK_HOME -s /bin/bash $ZK_USER \
-    && mkdir -p $ZK_HOME $ZK_DATA_DIR $ZK_DATA_LOG_DIR $ZK_LOG_DIR $ZK_CONF_DIR \
-    && chown -R $ZK_USER:$ZK_USER $ZK_HOME $ZK_DATA_DIR $ZK_DATA_LOG_DIR $ZK_LOG_DIR $ZK_CONF_DIR
+    && mkdir -p $ZK_HOME $ZK_DATA_DIR $ZK_DATA_LOG_DIR $ZK_CONF_DIR \
+    && chown -R $ZK_USER:$ZK_USER $ZK_HOME $ZK_DATA_DIR $ZK_DATA_LOG_DIR $ZK_CONF_DIR
 
 WORKDIR /tmp
 RUN /bin/bash -c set -o pipefail \
@@ -54,7 +54,8 @@ RUN /bin/bash -c set -o pipefail \
         /tmp/* \
         /var/tmp/* \
         $ZK_HOME/docs \
-        $ZK_HOME/*.md
+        $ZK_HOME/*.md \
+    && mkdir -p $ZK_LOG_DIR && chown $ZK_LOG_DIR
 
 COPY --chown=$ZK_USER:$ZK_USER zoo.cfg $ZK_CONF_DIR/
 COPY docker-entrypoint.sh /usr/local/bin/
