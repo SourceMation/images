@@ -55,7 +55,7 @@ RUN /bin/bash -c set -o pipefail \
         /var/tmp/* \
         $ZK_HOME/docs \
         $ZK_HOME/*.md \
-    && mkdir -p $ZK_LOG_DIR && chown $ZK_LOG_DIR
+    && mkdir -p $ZK_LOG_DIR && chown $ZK_USER:$ZK_USER $ZK_LOG_DIR
 
 COPY --chown=$ZK_USER:$ZK_USER zoo.cfg $ZK_CONF_DIR/
 COPY docker-entrypoint.sh /usr/local/bin/
