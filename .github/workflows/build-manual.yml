@@ -91,6 +91,7 @@ on:
           - ruby
           - sealed-secrets-controller
           - servicemix
+          - zookeeper
 #          - postgres-16-bullseye-oneshot
 #          - cnpg-16-oneshot
       push_image:
