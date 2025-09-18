@@ -35,6 +35,23 @@ docker run -d --name elasticsearch \
   sourcemation/elasticsearch
 ```
 
+## Configuration
+
+The repository includes a sample `elasticsearch.yml` configuration file, which contains a minimal setup for running Elasticsearch as a single node in Docker.
+The file contains the following:
+
+```
+cluster.name: sourcemation-es-cluster
+network.host: 0.0.0.0
+discovery.type: single-node
+```
+
+- `cluster.name`: Defines a unique name for your Elasticsearch cluster.
+
+- `network.host: 0.0.0.0`: Allows Elasticsearch to be accessed from outside the container.
+
+- `discovery.type: single-node`: Instructs Elasticsearch to run as a standalone node and not attempt to join a cluster with other nodes.
+
 ## Image tags and versions
 
 The `sourcemation/elasticsearch` image itself comes in `debian-12` flavor.
