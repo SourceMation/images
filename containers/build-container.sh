@@ -156,7 +156,7 @@ test_container(){
             CONTAINER_RUN_PARAMETERS="-e POSTGRES_HOST_AUTH_METHOD=trust"
             ;;
         "elasticsearch")
-            CONTAINER_RUN_COMMAND="bin/elasticsearch -E 'discovery.type=single-node' -E 'xpack.security.enabled=false' -E 'xpack.security.http.ssl.enabled=false'"
+            CONTAINER_RUN_COMMAND="-E 'discovery.type=single-node' -E 'xpack.security.enabled=false' -E 'xpack.security.http.ssl.enabled=false'"
             ;;
         "etcd")
             CONTAINER_RUN_COMMAND=""
