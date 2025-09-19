@@ -51,6 +51,7 @@ on:
           - manageiq
           - mariadb
           - maven
+          - metrics-server
           - micronaut
           - mongodb
           - mosquitto
