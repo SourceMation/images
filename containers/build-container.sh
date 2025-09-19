@@ -179,6 +179,9 @@ test_container(){
         "manageiq")
             CONTAINER_RUN_COMMAND=""
             ;;
+        "metrics-server")
+            ENTRYPOINT_CMD=--entrypoint=""
+           ;;
         "micronaut")
             CONTAINER_RUN_COMMAND=""
             ;;
