@@ -93,6 +93,7 @@ on:
           - ruby
           - sealed-secrets-controller
           - servicemix
+          - thanos
           - zookeeper
 #          - postgres-16-bullseye-oneshot
 #          - cnpg-16-oneshot
