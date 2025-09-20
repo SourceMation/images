@@ -191,6 +191,9 @@ test_container(){
         nginx*)
             CONTAINER_RUN_COMMAND=""
             ;;
+        "node_exporter")
+            CONTAINER_RUN_COMMAND=""
+            ;;
         "postgresql")
             CONTAINER_RUN_COMMAND=""
             CONTAINER_RUN_PARAMETERS="-e POSTGRES_HOST_AUTH_METHOD=trust"
