@@ -185,6 +185,9 @@ test_container(){
         "micronaut")
             CONTAINER_RUN_COMMAND=""
             ;;
+        "minio")
+            CONTAINER_RUN_COMMAND="/data"
+            ;;
         "mosquitto")
             CONTAINER_RUN_COMMAND=""
             ;;

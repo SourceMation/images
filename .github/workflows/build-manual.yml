@@ -53,6 +53,7 @@ on:
           - maven
           - metrics-server
           - micronaut
+          - minio
           - mongodb
           - mosquitto
           - mysql
