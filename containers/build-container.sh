@@ -186,7 +186,7 @@ test_container(){
             CONTAINER_RUN_COMMAND=""
             ;;
         "minio")
-            CONTAINER_RUN_COMMAND="/data"
+            CONTAINER_RUN_COMMAND="server /data"
             ;;
         "mosquitto")
             CONTAINER_RUN_COMMAND=""
