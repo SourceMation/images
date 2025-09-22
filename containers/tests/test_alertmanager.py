@@ -6,12 +6,12 @@ import json
 from pathlib import Path
 
 def test_alertmanager_binary_exists():
-    assert os.path.isfile("/bin/alertmanager"), f"Binary not found: /bin/alertmanager"
-    assert os.access("/bin/alertmanager", os.X_OK), f"Binary is not executable: /bin/alertmanager"
+    assert os.path.isfile("/usr/local/bin/alertmanager"), f"Binary not found: /usr/local/bin/alertmanager"
+    assert os.access("/usr/local/bin/alertmanager", os.X_OK), f"Binary is not executable: /usr/local/bin/alertmanager"
 
 def test_amtool_binary_exists():
-    assert os.path.isfile("/bin/amtool"), f"Binary not found: /bin/amtool"
-    assert os.access("/bin/amtool", os.X_OK), f"Binary is not executable: /bin/amtool"
+    assert os.path.isfile("/usr/local/bin/amtool"), f"Binary not found: /usr/local/bin/amtool"
+    assert os.access("/usr/local/bin/amtool", os.X_OK), f"Binary is not executable: /usr/local/bin/amtool"
 
 def test_alertmanager_version():
     result = subprocess.run(['alertmanager', '--version'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)

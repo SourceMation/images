@@ -25,15 +25,15 @@ RUN set -ex; \
     rm -rf /var/lib/apt/lists/*
 
 # INSTAL OR COPY --from=builder /builder/path /path
-COPY amtool             /bin/amtool
-COPY alertmanager       /bin/alertmanager
-COPY alertmanager.yml   /etc/alertmanager/alertmanager.yml
+COPY amtool alertmanager    /usr/local/bin/
+COPY alertmanager.yml       /etc/alertmanager/alertmanager.yml
 
 WORKDIR /alertmanager
 RUN chown -R nobody:nogroup /etc/alertmanager /alertmanager && chmod g+w /alertmanager
 
+USER       nobody
 EXPOSE     9093
 VOLUME     [ "/alertmanager" ]
-ENTRYPOINT [ "/bin/alertmanager" ]
+ENTRYPOINT [ "/usr/local/bin/alertmanager" ]
 CMD        [ "--config.file=/etc/alertmanager/alertmanager.yml", \
              "--storage.path=/alertmanager" ]
