@@ -22,7 +22,6 @@ LABEL name="cnpg-16" \
       io.k8s.description="Provides PostgreSQL 16 for CPNG on Debian 12 Slim Container" \
       io.openshift.tags="postgresql debian-12-slim cnpg"
 
-COPY requirements.txt /
 
 # Install additional extensions
 RUN set -xeu; \
@@ -31,9 +30,14 @@ RUN set -xeu; \
             "postgresql-${PG_MAJOR}-pgaudit" \
             "postgresql-${PG_MAJOR}-pgvector" \
             "postgresql-${PG_MAJOR}-pg-failover-slots" \
+            locales-all \
     ; \
-    rm -fr /tmp/* ; \
-    rm -rf /var/lib/apt/lists/*;
+    rm -rf /tmp/* ; \
+    rm -rf /var/lib/apt/lists/* /var/cache/* /var/log/*
+
+# Barman is install from pip, it will break system packages
+ENV PIP_BREAK_SYSTEM_PACKAGES=1
+ENV BARMAN_VERSION="3.14.0"
 
 # Install barman-cloud
 RUN set -xeu; \
@@ -46,11 +50,10 @@ RUN set -xeu; \
             python3-setuptools \
     ; \
     pip3 install --break-system-packages --upgrade pip; \
-    # TODO: Remove --no-deps once https://github.com/pypa/pip/issues/9644 is solved
-    # THIS issue is not resolved for about 4 years so yeah, we need to keep this flag...
-    pip3 install --break-system-packages --no-deps -r requirements.txt; \
+    pip3 install --no-cache-dir barman[cloud,azure,snappy,google,zstandard,lz4]==${BARMAN_VERSION} ;\
     apt-get remove -y --purge --autoremove build-essential python3-dev; \
-    rm -rf /var/lib/apt/lists/*;
+    apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \
+    rm -rf /var/lib/apt/lists/* /var/cache/* /var/log/* ;
 
 # enable optional pl locale for postgres create cluster
 RUN localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8; \

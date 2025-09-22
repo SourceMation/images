@@ -13,7 +13,8 @@ IMG_NAME=sourcemation/debian-12-slim
 # Unique container name
 container_name="temp-$(date +%s)"
 cp ../postgres-16/prepare-container-to-get-version.sh .
-docker run -d --name $container_name $IMG_NAME sleep 180
+# Demonize but also be sure that container will be removed after 120 seconds
+docker run --rm -d --name $container_name $IMG_NAME sleep 120
 docker cp prepare-container-to-get-version.sh $container_name:/prepare-container-to-get-version.sh
 docker exec $container_name /prepare-container-to-get-version.sh
 version=$(docker exec $container_name cat /version)
@@ -27,6 +28,17 @@ version_label="${upstream_version}.${debian_revision}"
 
 sed -i "s/version=\"[^\"]*\"/version=\"$version_label\"/" Dockerfile || exit 1
 
-# Our images are based on the official Docker so we we need same entrypoint and ensure-initdb scripts.
-rm -f requirements.txt
-wget https://github.com/cloudnative-pg/postgres-containers/raw/refs/heads/main/Debian/16/bookworm/requirements.txt
+curl https://raw.githubusercontent.com/cloudnative-pg/postgres-containers/refs/heads/main/docker-bake.hcl | grep barmanVersion  | awk '{print $3}' > barman_version
+
+barman_version=$(cat barman_version | head -1 | tr -d '"')
+
+# Check if version is in format XX.ZZ.YY only digits and dots
+
+if ! echo "$barman_version" | grep -Eq '^[0-9]+(\.[0-9]+){2}$'; then
+    echo "Error: barman_version is not in the correct format (XX.ZZ.YY)"
+    echo "The value is: $barman_version"
+    exit 1
+fi
+# Set braman version in Dockerfile 
+#ENV BARMAN_VERSION="3.14.0"
+sed -i "s/ENV BARMAN_VERSION=\"[^\"]*\"/ENV BARMAN_VERSION=\"$barman_version\"/" Dockerfile || exit 1
