@@ -164,6 +164,9 @@ test_container(){
         "external-dns")
             ENTRYPOINT_CMD=--entrypoint=""
             ;;
+        "grafana")
+            CONTAINER_RUN_COMMAND=""
+            ;;
         "helidon")
             CONTAINER_RUN_COMMAND=""
             ;;
