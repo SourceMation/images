@@ -1,4 +1,4 @@
-FROM docker.io/sourcemation/golang-1.24 AS builder
+FROM sourcemation/golang-1.24 AS builder
 
 ARG TARGETARCH
 ARG VERSION=RELEASE.2025-09-07T16-13-09Z
@@ -19,7 +19,7 @@ make build
 mv minio ../bin/
 EOF
 
-FROM docker.io/sourcemation/debian-12-slim:latest
+FROM sourcemation/debian-12-slim:latest
 
 ARG TARGETARCH="amd64"
 ARG BUILD_DATE
