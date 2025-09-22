@@ -26,7 +26,7 @@ RUN set -ex; \
 
 # COPY
 COPY tmpdir/node_exporter           /usr/local/bin/
-COPY tmpdir/LICENSE tmpdir/NOTICE   /LICENSE
+COPY tmpdir/LICENSE tmpdir/NOTICE   /
 
 # END INSTALL
 USER       nobody
