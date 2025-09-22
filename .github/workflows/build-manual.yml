@@ -67,6 +67,7 @@ on:
           - nodejs-20
           - nodejs-22
           - nodejs-24
+          - node_exporter
           - openapi-generator-cli
           - pgpool
           - postgres-16
