@@ -39,6 +39,6 @@ if ! echo "$barman_version" | grep -Eq '^[0-9]+(\.[0-9]+){2}$'; then
     echo "The value is: $barman_version"
     exit 1
 fi
-# Set braman version in Dockerfile 
+# Set barman version in Dockerfile 
 #ENV BARMAN_VERSION="3.14.0"
 sed -i "s/ENV BARMAN_VERSION=\"[^\"]*\"/ENV BARMAN_VERSION=\"$barman_version\"/" Dockerfile || exit 1
