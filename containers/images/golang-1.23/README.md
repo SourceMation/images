@@ -1,5 +1,30 @@
 # Golang 1.23 packaged by SourceMation
 
+## DEPRECATED: Please use newer versions from SourceMation
+
+---
+
+**Warning: This image is deprecated and will no longer be updated. Please use
+the latest newer versions image from SourceMation:
+[sourcemation](https://hub.docker.com/r/sourcemation/).**
+
+
+**Golang 1.23 has reached its end of life and is no longer supported, and
+won't get any security updates. The end of life date was 12 Aug 2025. The 
+There are two newer supported Golang versions: 1.24 and 1.25. Both of them are
+available from SourceMation.**
+
+
+**Lastly we will continue to build this image for a limited time, because the
+underlying base image `sourcemation/debian-12-slim` is still supported and
+getting security updates. However, we do not plan to do it indefinitely.**
+
+---
+
+
+
+
+
 Go (Golang) is a statically typed, compiled programming language designed at
 Google. Its simplicity, efficiency, and concurrency support make it ideal for
 building scalable and high-performance applications.
