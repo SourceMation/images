@@ -29,7 +29,8 @@ docker network create my-network
 The first node in the cluster must be started with the `REPMGR_ROLE` set to `primary`.
 
 ```bash
-docker run -d --network  my-network --name primary \
+PRIMARY_NAME=primary
+docker run -d --network  my-network --name $PRIMARY_NAME \
   -e POSTGRES_USER=postgres \
   -e POSTGRES_PASSWORD=mysecretpassword \
   -e REPMGR_ROLE=primary \
@@ -37,33 +38,28 @@ docker run -d --network  my-network --name primary \
   -e REPMGR_PASSWORD=repmgrpass \
   -e REPMGR_DB=repmgr \
   -e NODE_ID=1 \
-  -e NODE_NAME=primary \
+  -e NODE_NAME=$PRIMARY_NAME \
   sourcemation/postgres-repmgr
 ```
 
 ### Step 3: Start a Standby Node
 
-A standby node clones its data from an upstream node (usually the primary). You must provide the IP address or hostname of the primary in the `REPMGR_UPSTREAM_HOST` variable.
+A standby node clones its data from an upstream node (usually the primary). You must provide the node name of the primary in the `REPMGR_UPSTREAM_NAME` variable.
 
-First, get the primary container's IP address:
-
-```bash
-PRIMARY_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' primary)
-```
-
-Now, start the standby container, pointing it to the primary:
+Start the standby container, pointing it to the primary:
 
 ```bash
-docker run -d --network  my-network --name standby \
+STANDBY_NAME=primary
+docker run -d --network  my-network --name $STANDBY_NAME \
   -e POSTGRES_USER=postgres \
   -e POSTGRES_PASSWORD=mysecretpassword \
   -e REPMGR_ROLE=standby \
   -e REPMGR_USER=repmgr \
   -e REPMGR_PASSWORD=repmgrpass \
   -e REPMGR_DB=repmgr \
-  -e REPMGR_UPSTREAM_HOST=$PRIMARY_IP \
+  -e REPMGR_UPSTREAM_NAME=$PRIMARY_NAME \
   -e NODE_ID=2 \
-  -e NODE_NAME=standby \
+  -e NODE_NAME=$STANDBY_NAME \
   sourcemation/postgres-repmgr
 ```
 
@@ -72,7 +68,7 @@ docker run -d --network  my-network --name standby \
 You can check the health and status of your replication cluster by running the `repmgr cluster show` command inside any of the containers.
 
 ```bash
-docker exec -it primary repmgr cluster show
+docker exec -it primary repmgr cluster show -f "/etc/repmgr/repmgr.conf"
 ```
 
 -----
@@ -88,7 +84,7 @@ This container uses the following environment variables for configuration:
 | **`REPMGR_USER`** | **Required.** The username `repmgr` will use to connect for replication. | `repmgr` |
 | **`REPMGR_PASSWORD`** | **Required.** The password for the `repmgr` user. | `repmgrpass` |
 | **`REPMGR_DB`** | **Required.** The database `repmgr` will use for its metadata. | `repmgr` |
-| **`REPMGR_UPSTREAM_HOST`** | **Required for standbys.** The IP or hostname of the primary node to clone from. | `172.17.0.2` |
+| **`REPMGR_UPSTREAM_NAME`** | **Required for standbys.** The node name of the primary node to clone from. | `primary1` |
 | **`NODE_ID`** | **Required.** A unique integer ID for each node in the cluster. | `1` |
 | **`NODE_NAME`** | **Required.** A unique name for each node, often matching the container name. | `primary-db` |
 
