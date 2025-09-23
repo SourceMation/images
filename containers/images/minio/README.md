@@ -9,7 +9,7 @@ This MinIO distribution is provided by the SourceMation packaging team, built on
 Run a temporary container with MinIO:
 
 ```bash
-docker run --rm -it -p 9000:9000 -p 9001:9001 sourcemation/minio:latest server /data
+docker run --rm -it -p 9000:9000 -p 9001:9001 sourcemation/minio:latest server /data --console-address ":9001"
 ```
 
 The MinIO API will be available at [http://localhost:9000](http://localhost:9000) and the web console at [http://localhost:9001](http://localhost:9001).

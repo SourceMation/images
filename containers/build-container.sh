@@ -186,7 +186,7 @@ test_container(){
             CONTAINER_RUN_COMMAND=""
             ;;
         "minio")
-            CONTAINER_RUN_COMMAND="server /data"
+            CONTAINER_RUN_COMMAND="server /data --console-address :9001"
             ;;
         "mosquitto")
             CONTAINER_RUN_COMMAND=""
