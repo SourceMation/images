@@ -43,7 +43,9 @@ LABEL name="minio" \
 RUN set -e; \
     apt-get update; \
     apt-get upgrade -y; \
-    rm -rf /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/*; \
+    mkdir /data; \
+    chown nobody:nogroup /data
 
 # INSTAL OR COPY --from=builder /builder/path /path
 COPY --from=builder /go/bin/minio                   /usr/local/bin/
