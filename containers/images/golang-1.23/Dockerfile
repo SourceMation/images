@@ -82,6 +82,7 @@ RUN set -eux; \
 		libc6-dev \
 		make \
 		pkg-config \
+                ca-certificates \
 	; \
 	rm -rf /var/lib/apt/lists/*
 

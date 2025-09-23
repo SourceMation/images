@@ -1,6 +1,6 @@
 FROM sourcemation/debian-12-slim:latest AS build
 
-ENV PATH /usr/local/go/bin:$PATH
+ENV PATH="/usr/local/go/bin:$PATH"
 
 ENV GOLANG_VERSION="1.25.1"
 # The bellow URL is set in the init.sh script!
@@ -82,6 +82,7 @@ RUN set -eux; \
 		libc6-dev \
 		make \
 		pkg-config \
+                ca-certificates \
 	; \
 	rm -rf /var/lib/apt/lists/*
 
@@ -90,10 +91,10 @@ ENV GOLANG_VERSION="1.25.1"
 
 # don't auto-upgrade the gotoolchain
 # https://github.com/docker-library/golang/issues/472
-ENV GOTOOLCHAIN=local
+ENV GOTOOLCHAIN="local"
 
-ENV GOPATH /go
-ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
+ENV GOPATH="/go"
+ENV PATH="$GOPATH/bin:/usr/local/go/bin:$PATH"
 # (see notes above about "COPY --link")
 COPY --from=build --link /target/ /
 RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 1777 "$GOPATH"
