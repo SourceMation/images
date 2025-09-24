@@ -1,4 +1,4 @@
-# Grafana packaged by SourceMation
+# OpenLDAP packaged by SourceMation
 
 > OpenLDAP is a free, open-source implementation of the Lightweight Directory Access Protocol (LDAP) developed by the OpenLDAP Project.
 
