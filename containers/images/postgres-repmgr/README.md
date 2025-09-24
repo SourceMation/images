@@ -49,7 +49,7 @@ A standby node clones its data from an upstream node (usually the primary). You 
 Start the standby container, pointing it to the primary:
 
 ```bash
-STANDBY_NAME=primary
+STANDBY_NAME=standby
 docker run -d --network  my-network --name $STANDBY_NAME \
   -e POSTGRES_USER=postgres \
   -e POSTGRES_PASSWORD=mysecretpassword \
