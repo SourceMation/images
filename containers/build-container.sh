@@ -237,10 +237,10 @@ test_container(){
         -e REPMGR_PASSWORD=repmgrpass \
         -e REPMGR_DB=repmgr \
         -e NODE_ID=1 \
-        -e NODE_NAME=primary \
+        -e NODE_NAME="${CONTAINER_NAME}" \
         "${CONTAINER_FULL_NAME}"
 
-        PRIMARY_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' ${CONTAINER_NAME})
+        sleep 15
 
         docker run -d --network postgres-repmgr-net --name "${CONTAINER_NAME}-standby" \
         -e POSTGRES_USER=postgres \
@@ -249,9 +249,9 @@ test_container(){
         -e REPMGR_USER=repmgr \
         -e REPMGR_PASSWORD=repmgrpass \
         -e REPMGR_DB=repmgr \
-        -e REPMGR_UPSTREAM_HOST=$PRIMARY_IP \
+        -e REPMGR_UPSTREAM_NAME="${CONTAINER_NAME}" \
         -e NODE_ID=2 \
-        -e NODE_NAME=standby \
+        -e NODE_NAME="${CONTAINER_NAME}-standby" \
         "${CONTAINER_FULL_NAME}"
     else
         print_info "Running Docker Container from Image: ${CONTAINER_FULL_NAME}"
