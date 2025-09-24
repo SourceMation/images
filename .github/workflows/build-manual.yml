@@ -75,6 +75,7 @@ on:
           - postgres-16
           - postgres-17
           - postgres-exporter
+          - postgres-repmgr
           - postgresql
           - prometheus
           - prometheus-operator

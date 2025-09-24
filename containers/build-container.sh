@@ -272,6 +272,33 @@ test_container(){
             -p 8003:8003 \
             -p 8004:8004 \
             "${CONTAINER_FULL_NAME}"
+    elif [ "${IMAGE_NAME}" == "postgres-repmgr" ]; then
+        docker network create postgres-repmgr-net
+        
+        docker run -d --network postgres-repmgr-net --name "${CONTAINER_NAME}" \
+        -e POSTGRES_USER=postgres \
+        -e POSTGRES_PASSWORD=mysecretpassword \
+        -e REPMGR_ROLE=primary \
+        -e REPMGR_USER=repmgr \
+        -e REPMGR_PASSWORD=repmgrpass \
+        -e REPMGR_DB=repmgr \
+        -e NODE_ID=1 \
+        -e NODE_NAME="${CONTAINER_NAME}" \
+        "${CONTAINER_FULL_NAME}"
+
+        sleep 15
+
+        docker run -d --network postgres-repmgr-net --name "${CONTAINER_NAME}-standby" \
+        -e POSTGRES_USER=postgres \
+        -e POSTGRES_PASSWORD=mysecretpassword \
+        -e REPMGR_ROLE=standby \
+        -e REPMGR_USER=repmgr \
+        -e REPMGR_PASSWORD=repmgrpass \
+        -e REPMGR_DB=repmgr \
+        -e REPMGR_UPSTREAM_NAME="${CONTAINER_NAME}" \
+        -e NODE_ID=2 \
+        -e NODE_NAME="${CONTAINER_NAME}-standby" \
+        "${CONTAINER_FULL_NAME}"
     else
         print_info "Running Docker Container from Image: ${CONTAINER_FULL_NAME}"
         # shellcheck disable=SC2086
@@ -303,6 +330,10 @@ test_container(){
         docker stop kong-database
         docker rm kong-database
         docker network rm kong-net
+    elif [ "${IMAGE_NAME}" == "postgres-repmgr" ]; then
+        docker stop "${CONTAINER_NAME}-standby"
+        docker rm "${CONTAINER_NAME}-standby"
+        docker network rm postgres-repmgr-net
     fi
     set +x
 }
