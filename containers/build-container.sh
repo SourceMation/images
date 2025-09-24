@@ -140,6 +140,10 @@ test_container(){
         "apache-activemq")
             CONTAINER_RUN_COMMAND=""
             ;;
+        "apache")
+            CONTAINER_RUN_COMMAND=""
+            CONTAINER_RUN_PARAMETERS="-p 8080:8080"
+            ;;
         "apicast")
             CONTAINER_RUN_COMMAND="apicast start --dev"
             CONTAINER_RUN_PARAMETERS="--ulimit nofile=64000:64000 --ulimit nproc=64000:64000 -p 8080:8080"
