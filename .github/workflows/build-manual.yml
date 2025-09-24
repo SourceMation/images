@@ -19,6 +19,7 @@ on:
           - alertmanager
           - azure-cli
           - angular
+          - apache
           - apicast
           - camel-k
           - camel-karavan
