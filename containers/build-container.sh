@@ -200,6 +200,10 @@ test_container(){
         "node_exporter")
             CONTAINER_RUN_COMMAND=""
             ;;
+        "openldap")
+            CONTAINER_RUN_COMMAND=""
+            CONTAINER_RUN_PARAMETERS="-e LDAP_ADMIN_PASSWORD=admin -e LDAP_DOMAIN=mycompany.com -e LDAP_ORGANISATION=my-company"
+            ;;
         "postgresql")
             CONTAINER_RUN_COMMAND=""
             CONTAINER_RUN_PARAMETERS="-e POSTGRES_HOST_AUTH_METHOD=trust"
