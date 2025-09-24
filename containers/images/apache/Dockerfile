@@ -1,23 +1,7 @@
-FROM sourcemation/debian-12-slim:latest
+FROM sourcemation/debian-12-slim:latest as builder
 
-ARG BUILD_DATE
-ARG TARGETARCH
 ARG APACHE_VER="2.4.65"
 ENV APACHE_INSTALL_DIR /opt/apache2
-
-LABEL name="apache" \
-  vendor="Linux Polska" \
-  url="https://sourcemation.com"\
-  source="https://github.com/SourceMation/images/issues"\
-  licenses="GPLv2" \
-  created="$BUILD_DATE" \
-  architecture="$TARGETARCH" \
-  summary="Apache on Debian 12 Slim Container" \
-  description="Provides Apache on Debian 12 Slim Container" \
-  version="2.4.65" \
-  io.k8s.display-name="Apache on Debian 12 Slim Container" \
-  io.k8s.description="Provides Apache on Debian 12 Slim Container" \
-  io.openshift.tags="apache debian"
 
 # Install packages
 RUN set -eux \
@@ -46,10 +30,44 @@ RUN set -eux \
     && make -j "$(nproc)" \
     && make install
 
-COPY entrypoint.sh /entrypoint.sh
+FROM sourcemation/debian-12-slim:latest
+
+ARG BUILD_DATE
+ARG TARGETARCH
+ARG APACHE_VER="2.4.65"
+ENV APACHE_INSTALL_DIR /opt/apache2
+
+LABEL name="apache" \
+  vendor="Linux Polska" \
+  url="https://sourcemation.com"\
+  source="https://github.com/SourceMation/images/issues"\
+  licenses="GPLv2" \
+  created="$BUILD_DATE" \
+  architecture="$TARGETARCH" \
+  summary="Apache on Debian 12 Slim Container" \
+  description="Provides Apache on Debian 12 Slim Container" \
+  version="2.4.65" \
+  io.k8s.display-name="Apache on Debian 12 Slim Container" \
+  io.k8s.description="Provides Apache on Debian 12 Slim Container" \
+  io.openshift.tags="apache debian"
+
+
+RUN set -eux \
+    && apt-get update && apt-get install -y --no-install-recommends \
+        libaprutil1 \
+        libapr1 \
+        libpcre2-8-0 \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy install directory
+COPY --from=builder $APACHE_INSTALL_DIR $APACHE_INSTALL_DIR
 RUN chown -R 1001:1001 ${APACHE_INSTALL_DIR}
 
-USER 1001
-ENTRYPOINT ["/entrypoint.sh"]
+RUN sed -Ei "s|#ServerName.*|ServerName localhost|g" "${APACHE_INSTALL_DIR}/conf/httpd.conf"
+RUN sed -i "s|Listen 80|Listen 8080|g" "${APACHE_INSTALL_DIR}/conf/httpd.conf"
 
-EXPOSE "443" "80"
+# END INSTALL
+USER 1001
+
+EXPOSE 8080
+CMD ["/opt/apache2/bin/apachectl", "-D", "FOREGROUND"]
