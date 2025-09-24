@@ -28,6 +28,7 @@ on:
           - debian-12-slim
           - elasticsearch
           - erlang
+          - erlang-27
           - etcd
           - external-dns
           - external-secrets
