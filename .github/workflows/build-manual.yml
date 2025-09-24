@@ -71,6 +71,7 @@ on:
           - nodejs-24
           - node_exporter
           - openapi-generator-cli
+          - openldap
           - pgpool
           - postgres-16
           - postgres-17
