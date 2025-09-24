@@ -2,7 +2,7 @@
 
 RabbitMQ is a high-performant, scalable message broker for AMQP clients.
 
-This image contains RabbitMQ Server version 4 running on Debian 12 Slim. It's built on top of the latest stable Erlang image to ensure compatibility and optimal performance.
+This image contains RabbitMQ Server version 4 running on Debian 12 Slim. It's built on top of the latest compatible Erlang image to ensure compatibility and optimal performance.
 
 ## Usage
 
