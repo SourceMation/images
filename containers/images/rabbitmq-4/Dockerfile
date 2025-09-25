@@ -1,4 +1,4 @@
-FROM sourcemation/erlang:latest AS builder
+FROM sourcemation/erlang-27:latest AS builder
 
 ARG RABBITMQ_VERSION=4.1.4
 ARG RABBITMQ_SOURCE_URL="https://github.com/rabbitmq/rabbitmq-server/releases/download/v${RABBITMQ_VERSION}/rabbitmq-server-generic-unix-latest-toolchain-${RABBITMQ_VERSION}.tar.xz"
@@ -32,7 +32,7 @@ RUN curl -fsL -o "$RABBITMQ_PATH.tar.xz.asc" "$RABBITMQ_SOURCE_URL.asc" \
     && sed -i 's/^SYS_PREFIX=.*$/SYS_PREFIX=/' "$RABBITMQ_HOME/sbin/rabbitmq-defaults" \
     && grep -qE '^SYS_PREFIX=$' "$RABBITMQ_HOME/sbin/rabbitmq-defaults"
 
-FROM sourcemation/erlang:latest
+FROM sourcemation/erlang-27:latest
 
 ARG BUILD_DATE
 ARG TARGETARCH
