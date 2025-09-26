@@ -43,6 +43,7 @@ on:
           - golang-1.25
           - grafana
           - helidon
+          - hugo
           - java
           - jdk-21
           - jenkins

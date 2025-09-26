@@ -1,4 +1,4 @@
-# Hugo v0.150.1 Container on Debian 12 Slim packed by SourceMation
+# Hugo Container on Debian 12 Slim packed by SourceMation
 
 This image, `sourcemation/hugo`, is built on a minimal Debian base to provide **Hugo** environment (extended+withdeploy). Hugo is one of the world's most popular open-source static site generators, famous for its incredible speed and flexibility. Written in Go, it takes content files like markdown and uses powerful templating to render a complete, ready-to-deploy website in a fraction of a second.
 
@@ -23,13 +23,13 @@ This image is intended for building static websites using Hugo static site gener
 Running
 
 ```bash
-podman run --rm -v my_website_src:/src:Z -p 1313:1313 sourcemation/hugo
+docker run --rm -v my_website_src:/src:Z -p 1313:1313 sourcemation/hugo
 ```
 
 is a shorthand for:
 
 ```bash
-podman run --rm -v my_website_src:/src:Z -p 1313:1313 sourcemation/hugo server -D --bind 0.0.0.0 --baseURL /
+docker run --rm -v my_website_src:/src:Z -p 1313:1313 sourcemation/hugo server -D --bind 0.0.0.0 --baseURL /
 ```
 
 The default runs Hugo server (drafts included) in a container, mapping port `1313` to the default Hugo port `1313` and binds it to 0.0.0.0, setting baseURL for easy dev access.
@@ -37,7 +37,7 @@ Please remember to mount `my_website_src` (preferably, utilizing the `:Z` flag) 
 
 To override these defaults, please provide arguments in full, e.g.
 ```bash
-podman run --rm sourcemation/hugo version
+docker run --rm sourcemation/hugo version
 ```
 
 will just print the version.
