@@ -50,6 +50,7 @@ on:
           - jre-21
           - kafka
           - karaf
+          - keycloak
           - kibana
           - kong
           - kubectl
