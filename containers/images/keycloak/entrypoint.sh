@@ -40,25 +40,25 @@ if [ -f $KC_LOG_FILE ] && ! grep "Listening on:" $KC_LOG_FILE; then
 fi
 
 # Set admin user and password from arguments
-if [ -z "${KEYCLOAK_ADMIN_USERNAME}" ]; then
-    KEYCLOAK_ADMIN_USERNAME="user"
+if [ -z "${ADMIN_USERNAME}" ]; then
+    ADMIN_USERNAME="user"
 fi
-if [ -z "${KEYCLOAK_ADMIN_PASSWORD}" ]; then
-    KEYCLOAK_ADMIN_PASSWORD=$(tr -dc A-Za-z0-9 < /dev/urandom | head -c 16)
+if [ -z "${ADMIN_PASSWORD}" ]; then
+    ADMIN_PASSWORD=$(tr -dc A-Za-z0-9 < /dev/urandom | head -c 16)
     echo "###############################################"
     echo "Keycloak admin username: "
-    echo "${KEYCLOAK_ADMIN_USERNAME}"
+    echo "${ADMIN_USERNAME}"
     echo "Keycloak admin password: "
-    echo "${KEYCLOAK_ADMIN_PASSWORD}"
+    echo "${ADMIN_PASSWORD}"
     echo "###############################################"
-    echo "Set the KEYCLOAK_ADMIN_PASSWORD environment variable to override."
+    echo "Set the ADMIN_PASSWORD environment variable to override."
 fi
 
 # Add admin user
 bin/kcadm.sh config credentials --server http://localhost:8080 --realm master --user ${KC_BOOTSTRAP_ADMIN_USERNAME} --password ${KC_BOOTSTRAP_ADMIN_PASSWORD} 2>&1 | tee -a $KC_LOG_FILE
-bin/kcadm.sh create users -r master -s username=${KEYCLOAK_ADMIN_USERNAME} -s enabled=true 2>&1 | tee -a $KC_LOG_FILE
-bin/kcadm.sh set-password -r master --username ${KEYCLOAK_ADMIN_USERNAME} --new-password ${KEYCLOAK_ADMIN_PASSWORD} 2>&1 | tee -a $KC_LOG_FILE
-bin/kcadm.sh add-roles -r master --uusername ${KEYCLOAK_ADMIN_USERNAME} --rolename admin 2>&1 | tee -a $KC_LOG_FILE
+bin/kcadm.sh create users -r master -s username=${ADMIN_USERNAME} -s enabled=true 2>&1 | tee -a $KC_LOG_FILE
+bin/kcadm.sh set-password -r master --username ${ADMIN_USERNAME} --new-password ${ADMIN_PASSWORD} 2>&1 | tee -a $KC_LOG_FILE
+bin/kcadm.sh add-roles -r master --uusername ${ADMIN_USERNAME} --rolename admin 2>&1 | tee -a $KC_LOG_FILE
 
 # Remove temp admin
 ID=$(bin/kcadm.sh get users -r master -q username=${KC_BOOTSTRAP_ADMIN_USERNAME})
