@@ -174,6 +174,10 @@ test_container(){
         "helidon")
             CONTAINER_RUN_COMMAND=""
             ;;
+        "hugo")
+            CONTAINER_RUN_COMMAND=""
+            ENTRYPOINT_CMD=--entrypoint="/bin/bash"
+            ;;
         "kafka")
             CONTAINER_RUN_COMMAND=""
             ;;
