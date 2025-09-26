@@ -13,7 +13,7 @@ RUN set -ex; \
     useradd --uid 1000 --gid 1000 --shell /bin/bash -d ${KEYCLOAK_HOME} --create-home keycloak
 
 COPY --chown=keycloak:keycloak keycloak/ ${KEYCLOAK_HOME}/
-COPY entrypoint.sh $KEYCLOAK_HOME/bin/entrypoint.sh
+COPY --chown=keycloak:keycloak entrypoint.sh $KEYCLOAK_HOME/bin/entrypoint.sh
 
 LABEL name="keycloak" \
   vendor="Linux Polska" \
@@ -33,6 +33,6 @@ USER keycloak
 WORKDIR ${KEYCLOAK_HOME}
 
 EXPOSE 8080 8443 9000
-VOLUME [ "$KEYCLOAK_HOME/data" ]
+
 ENTRYPOINT [ "bin/entrypoint.sh" ]
 CMD [ "bin/kc.sh", "start-dev" ]
