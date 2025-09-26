@@ -5,6 +5,7 @@ ARG TARGETARCH
 
 ENV HUGO_VERSION=0.150.1
 ENV DART_SASS_VERSION=1.93.2
+ENV PATH="/usr/local/bin/src:${PATH}"
 
 LABEL name="hugo" \
       vendor="SourceMation" \
@@ -20,7 +21,16 @@ LABEL name="hugo" \
       io.k8s.description="Provides Hugo (extended+withdeploy) on Debian 12 Slim Contaner" \
       io.openshift.tags="Hugo debian-12-slim"
 
+ARG NODEJS_INSTALL_SUM=44ca60e9626194ab4f806eb55f931596a6058485a283493baae362a6f9635b9f
+
 RUN apt-get update && apt-get install -y curl ca-certificates gnupg git gcc g++ \
+    && curl -sSL -o /tmp/setup_24.x https://deb.nodesource.com/setup_24.x \
+    && echo "${NODEJS_INSTALL_SUM} /tmp/setup_24.x" | sha256sum -c - \
+    && bash /tmp/setup_24.x \
+    && rm -f /tmp/setup_24.x \
+    && apt-get update \
+    && apt-get install -y nodejs \
+    && apt-get clean \
     && if [ "${TARGETARCH}" = "amd64" ]; then DARTFILEARCH="x64"; else DARTFILEARCH="${TARGETARCH}"; fi \
     && curl -sSL -o /tmp/dart-sass-${DART_SASS_VERSION}-linux-${DARTFILEARCH}.tar.gz https://github.com/sass/dart-sass/releases/download/${DART_SASS_VERSION}/dart-sass-${DART_SASS_VERSION}-linux-${DARTFILEARCH}.tar.gz \
     && tar -xf /tmp/dart-sass-${DART_SASS_VERSION}-linux-${DARTFILEARCH}.tar.gz -C /tmp \
@@ -34,6 +44,4 @@ WORKDIR /src
 
 EXPOSE 1313
 
-ENTRYPOINT ["hugo"]
-
-CMD ["server", "-D", "--bind", "0.0.0.0"]
+CMD ["hugo", "server", "-D", "--bind", "0.0.0.0"]
