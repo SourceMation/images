@@ -21,10 +21,11 @@ LABEL name="hugo" \
       io.openshift.tags="Hugo debian-12-slim"
 
 RUN apt-get update && apt-get install -y curl ca-certificates gnupg git gcc g++ \
-    && curl -sSL -o /tmp/dart-sass-${DART_SASS_VERSION}-linux-x64.tar.gz https://github.com/sass/dart-sass/releases/download/${DART_SASS_VERSION}/dart-sass-${DART_SASS_VERSION}-linux-x64.tar.gz \
-    && tar -xf /tmp/dart-sass-${DART_SASS_VERSION}-linux-x64.tar.gz -C /tmp \
+    && if [ "${TARGETARCH}" = "amd64" ]; then DARTFILEARCH="x64"; else DARTFILEARCH="${TARGETARCH}"; fi \
+    && curl -sSL -o /tmp/dart-sass-${DART_SASS_VERSION}-linux-${DARTFILEARCH}.tar.gz https://github.com/sass/dart-sass/releases/download/${DART_SASS_VERSION}/dart-sass-${DART_SASS_VERSION}-linux-${DARTFILEARCH}.tar.gz \
+    && tar -xf /tmp/dart-sass-${DART_SASS_VERSION}-linux-${DARTFILEARCH}.tar.gz -C /tmp \
     && cp -r /tmp/dart-sass/* /usr/local/bin \
-    && curl -sSL -o /tmp/hugo_extended_withdeploy_${HUGO_VERSION}_linux-amd64.deb https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_withdeploy_${HUGO_VERSION}_linux-amd64.deb \
+    && curl -sSL -o /tmp/hugo_extended_withdeploy_${HUGO_VERSION}_linux-${TARGETARCH}.deb https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_withdeploy_${HUGO_VERSION}_linux-${TARGETARCH}.deb \
     && echo "$(curl -sSL https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_checksums.txt | awk -v HUGO_FILE=hugo_extended_withdeploy_${HUGO_VERSION}_linux-amd64.deb '$2 ~ HUGO_FILE {print $1}') /tmp/hugo_extended_withdeploy_${HUGO_VERSION}_linux-amd64.deb" | sha256sum -c - \
     && apt install -y /tmp/hugo_extended_withdeploy_${HUGO_VERSION}_linux-amd64.deb \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/*
