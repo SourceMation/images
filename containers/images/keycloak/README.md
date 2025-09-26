@@ -22,8 +22,8 @@ This image is intended for production environments where centralized authenticat
 
 ```bash
 docker run \
-    -e KEYCLOAK_ADMIN_USERNAME=admin \
-    -e KEYCLOAK_ADMIN_PASSWORD=password \
+    -e ADMIN_USERNAME=admin \
+    -e ADMIN_PASSWORD=password \
     -p 8080:8080 \
     -it sourcemation/keycloak \
     start-dev
@@ -37,8 +37,8 @@ This command runs the Keycloak container in development mode, mapping port `8080
 
 This container uses the following environment variables for initial configuration:
 
-  * `KEYCLOAK_ADMIN`: The username for the initial admin user created on the first boot.
-  * `KEYCLOAK_ADMIN_PASSWORD`: The password for the initial admin user.
+  * `ADMIN_USERNAME`: The username for the initial admin user created on the first boot.
+  * `ADMIN_PASSWORD`: The password for the initial admin user.
 
 -----
 
