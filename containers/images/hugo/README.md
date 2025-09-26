@@ -4,57 +4,58 @@ This image, `sourcemation/hugo`, is built on a minimal Debian base to provide **
 
 Maintained by the SourceMation automation team, this Hugo distribution is regularly updated to ensure it's current, secure, and compact. It's built on a minimal Debian Slim base, and cryptographic signatures are used during the build process to guarantee the integrity of all source code and packages.
 
------
-
-## Core Features
-
-  * **Blazing-Fast Performance:** Its world-class build speed accelerates development and delivers an incredibly fast user experience, which is crucial for SEO and visitor retention.
-  * **Flexible Content & Data Modeling:** Its powerful templating engine provides unparalleled flexibility, allowing any design to be implemented and content to be pulled from local files or external APIs.
-  * **Unmatched Security & Scalability:** By generating a static site with no live database, it offers incredible security and can be hosted on a global CDN to handle massive traffic at a very low cost.
-
------
-
-## Operational Use
+## Usage
 
 This image is intended for building static websites using Hugo static site generator.
 
 **Example for a local, non-production test:**
 
-Running
+To create a new project:
 
 ```bash
-docker run --rm -v my_website_src:/src:Z -p 1313:1313 sourcemation/hugo
+mkdir my_website_src && docker run -u "$(id -u):$(id -g)" --rm -v ./my_website_src:/src:Z sourcemation/hugo new site /src
 ```
 
-is a shorthand for:
+This will create `my_website_src` on your host with default hugo project layout, with current user's ownership.
+
+To live-run Hugo server with this project (for development):
 
 ```bash
-docker run --rm -v my_website_src:/src:Z -p 1313:1313 sourcemation/hugo server -D --bind 0.0.0.0 --baseURL /
+docker run -u "$(id -u):$(id -g)" --rm -v ./my_website_src:/src:Z -p 1313:1313 sourcemation/hugo
 ```
 
-The default runs Hugo server (drafts included) in a container, mapping port `1313` to the default Hugo port `1313` and binds it to 0.0.0.0, setting baseURL for easy dev access.
-Please remember to mount `my_website_src` (preferably, utilizing the `:Z` flag) so that hugo has content to work with.
-
-To override these defaults, please provide arguments in full, e.g.
+This is a shorthand for:
 ```bash
-docker run --rm sourcemation/hugo version
+docker run -u "$(id -u):$(id -g)" --rm -v ./my_website_src:/src:Z -p 1313:1313 sourcemation/hugo server -D --bind 0.0.0.0 --baseURL /
 ```
 
-will just print the version.
+This default runs Hugo server (drafts included) in a container, mapping port `1313` to the default Hugo port `1313` and binds it to 0.0.0.0, setting baseURL for easy dev access.
+Please remember to mount `./my_website_src` (preferably, utilizing the `:Z` flag) so that hugo has content to work with.
 
------
+To build Hugo website:
 
-## Configuration via Volume Mounts
+```bash
+docker run -u "$(id -u):$(id -g)" --rm -v ./my_website_src:/src:Z sourcemation/hugo build
+```
 
-This container is typically configured by mounting your files into it.
+## Image tags and versions
+
+The `sourcemation/hugo` image itself comes in flavor: `debian-12`.
+The tag `latest` refers to the Debian-based flavor.
+
+## Environment Vars, Ports, Volumes
+
+This image is typically configured by mounting your files into it.
 
   * **Your project:** Mount your website sources to `/src`.
 
------
 
-## Port Exposure
-Hugo image exposes port **1313**.
+This image exposes the following ports: 
 
+- 1313 - Hugo server port
+
+Please note that the ports need to be either manually forwarded with the
+`-p` option or let Docker choose some for you with the `-P` option.
 
 ## Contributing and Issues
 
@@ -70,9 +71,15 @@ organisations own the trademarks mentioned in the offering. The `sourcemation/hu
 
 ## Extra notes
 
-### More Information
-For more information on Hugo, check out [their website](https://gohugo.io).
+### Image and its components Risk Analysis report
+
+A detailed risk analysis report of the image and its components can be
+found on the [SourceMation platform](https://sourcemation.com).
+
+For more information, check out [project page](https://gohugo.io).
 
 ### Licenses
 
 The base license for Hugo is [Apache 2.0 License](https://gohugo.io/about/license/)
+The licenses for each component shipped as
+part of this image can be found on [SourceMation](https://sourcemation.com).
