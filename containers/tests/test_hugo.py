@@ -3,6 +3,7 @@ import pytest
 import subprocess
 import requests
 import time
+import shutil
 
 HUGO_SRC = "/src"
 HUGO_PORT = 1313
@@ -23,10 +24,13 @@ def test_hugo_environment():
     except (subprocess.CalledProcessError, FileNotFoundError) as e:
         pytest.fail(f"Failed to execute 'hugo env': {e}")
 
-def test_project_is_hosted_and_public_dir_created():
-    result = subprocess.run(['hugo', 'new', 'site', HUGO_SRC], capture_output=True, text=True, check=True)
+def test_hugo_server_hosts_project():
+    shutil.rmtree(HUGO_SRC)
+    assert not os.path.isdir(HUGO_SRC)
+    subprocess.run(['hugo', 'new', 'site', HUGO_SRC], capture_output=True, text=True, check=True)
     with open(os.path.join(HUGO_SRC, "layouts", "index.html"), "w", encoding="utf8") as f:
         f.write("Hello, Hugo!")
+    assert os.path.isdir(HUGO_SRC)
     try:
         hugo_server = subprocess.Popen(["hugo", "server", "-s", HUGO_SRC], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
         start = time.time()
@@ -55,11 +59,25 @@ def test_project_is_hosted_and_public_dir_created():
 
             assert response.status_code == 200
             assert "Hello, Hugo!" in response.text
+            assert "livereload" in response.text
         except requests.RequestException as e:
             pytest.fail(f"Failed to connect to Hugo server: {e}")
-
-        assert os.path.isdir(os.path.join(HUGO_SRC, 'public')), "public dir has not been created"
 
     finally:
         if hugo_server:
             hugo_server.terminate()
+
+def test_hugo_builds_project():
+    shutil.rmtree(HUGO_SRC)
+    assert not os.path.isdir(HUGO_SRC)
+    subprocess.run(['hugo', 'new', 'site', HUGO_SRC], capture_output=True, text=True, check=True)
+    with open(os.path.join(HUGO_SRC, "layouts", "index.html"), "w", encoding="utf8") as f:
+        f.write("Hello, Hugo!")
+    assert os.path.isdir(HUGO_SRC)
+    hugo_build = subprocess.run(["hugo", "build", "-s", HUGO_SRC], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    public_dir = os.path.join(HUGO_SRC, 'public')
+    assert os.path.isdir(public_dir), "public dir has not been created"
+    with open(os.path.join(public_dir, "index.html"), encoding="utf8") as f:
+        content = f.read()
+        assert "Hello, Hugo!" in content
+        assert "livereload" not in content
