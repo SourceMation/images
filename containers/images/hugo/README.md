@@ -21,32 +21,20 @@ This image is intended for building static websites using Hugo static site gener
 To create a new project:
 
 ```bash
-mkdir my_website_src && docker run -u "$(id -u):$(id -g)" --rm -v ./my_website_src:/src sourcemation/hugo new site /src
+mkdir my_website_src && docker run -u "$(id -u):$(id -g)" --rm -v ./my_website_src:/src:Z sourcemation/hugo new site /src
 ```
 
 This will create `my_website_src` on your host with default hugo project layout, with current user's ownership.
 
----
-
-For systems with SELinux, please append `:Z` flag for the mount:
-
-```bash
-mkdir my_website_src && docker run -u "$(id -u):$(id -g)" --rm -v ./my_website_src:/src:Z sourcemation/hugo new site /src
-```
-
-Examples below are presented for various systems, please adjust flags to your case.
-
----
-
 To live-run Hugo server with this project (for development):
 
 ```bash
-docker run -u "$(id -u):$(id -g)" --rm -v ./my_website_src:/src -p 1313:1313 sourcemation/hugo
+docker run -u "$(id -u):$(id -g)" --rm -v ./my_website_src:/src:Z -p 1313:1313 sourcemation/hugo
 ```
 
 This is a shorthand for:
 ```bash
-docker run -u "$(id -u):$(id -g)" --rm -v ./my_website_src:/src -p 1313:1313 sourcemation/hugo server -D --bind 0.0.0.0
+docker run -u "$(id -u):$(id -g)" --rm -v ./my_website_src:/src:Z -p 1313:1313 sourcemation/hugo server -D --bind 0.0.0.0
 ```
 
 This default runs Hugo server (drafts included) in a container, mapping port `1313` to the default Hugo port `1313` and binds it to 0.0.0.0.
@@ -55,7 +43,7 @@ Please remember to mount `./my_website_src` so that hugo has content to work wit
 To build Hugo website:
 
 ```bash
-docker run -u "$(id -u):$(id -g)" --rm -v ./my_website_src:/src sourcemation/hugo build
+docker run -u "$(id -u):$(id -g)" --rm -v ./my_website_src:/src:Z sourcemation/hugo build
 ```
 
 ## Image tags and versions
