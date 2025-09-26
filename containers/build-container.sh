@@ -179,6 +179,8 @@ test_container(){
             ;;
         "keycloak")
             CONTAINER_RUN_COMMAND=""
+            CONTAINER_RUN_PARAMETERS="-e KEYCLOAK_ADMIN_USERNAME=admin -e KEYCLOAK_ADMIN_PASSWORD=admin"
+            CONTAINER_STARTUP_TIMEOUT=60
             ;;
         "kibana")
             CONTAINER_RUN_COMMAND=""
@@ -330,7 +332,7 @@ test_container(){
 
     print_info 'Installing Python and PyTest in the Container'
     docker exec -u 0 "$CONTAINER_NAME" dnf install -y python3-pip procps iproute || docker exec -u 0 "$CONTAINER_NAME" microdnf install -y python3-pip procps iproute || docker exec -u 0 "$CONTAINER_NAME" bash -c 'apt-get update && apt-get install -y python3-pip procps iproute2'
-    docker exec -u 0 "$CONTAINER_NAME" pip3 install pytest requests psycopg2-binary redis pymongo pika || docker exec -u 0 "$CONTAINER_NAME" pip3 install pytest requests psycopg2-binary redis pymongo pika --break-system-packages
+    docker exec -u 0 "$CONTAINER_NAME" pip3 install pytest pytest-dependency pytest-order requests psycopg2-binary redis pymongo pika || docker exec -u 0 "$CONTAINER_NAME" pip3 install pytest pytest-dependency pytest-order requests psycopg2-binary redis pymongo pika --break-system-packages
 
     print_info 'Executing PyTest Scripts'
     docker exec -u 0 "$CONTAINER_NAME" /bin/bash -c "cd /tmp/tests && python3 -m pytest -vv ${CONTAINER_TEST_FILES}" || print_fail "PyTest execution failed"
