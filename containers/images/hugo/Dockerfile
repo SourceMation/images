@@ -36,4 +36,4 @@ EXPOSE 1313
 
 ENTRYPOINT ["hugo"]
 
-CMD ["server", "-D", "--bind", "0.0.0.0", "--baseURL", "/", "--appendPort"]
+CMD ["server", "-D", "--bind", "0.0.0.0"]
