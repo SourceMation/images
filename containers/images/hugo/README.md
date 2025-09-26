@@ -26,7 +26,7 @@ docker run -u "$(id -u):$(id -g)" --rm -v ./my_website_src:/src:Z -p 1313:1313 s
 
 This is a shorthand for:
 ```bash
-docker run -u "$(id -u):$(id -g)" --rm -v ./my_website_src:/src:Z -p 1313:1313 sourcemation/hugo server -D --bind 0.0.0.0 --baseURL /
+docker run -u "$(id -u):$(id -g)" --rm -v ./my_website_src:/src:Z -p 1313:1313 sourcemation/hugo server -D --bind 0.0.0.0 --baseURL / --appendPort
 ```
 
 This default runs Hugo server (drafts included) in a container, mapping port `1313` to the default Hugo port `1313` and binds it to 0.0.0.0, setting baseURL for easy dev access.
