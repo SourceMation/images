@@ -180,7 +180,7 @@ test_container(){
         "keycloak")
             CONTAINER_RUN_COMMAND=""
             CONTAINER_RUN_PARAMETERS="-e KEYCLOAK_ADMIN_USERNAME=admin -e KEYCLOAK_ADMIN_PASSWORD=admin"
-            CONTAINER_STARTUP_TIMEOUT=60
+            CONTAINER_STARTUP_TIMEOUT=120
             ;;
         "kibana")
             CONTAINER_RUN_COMMAND=""
