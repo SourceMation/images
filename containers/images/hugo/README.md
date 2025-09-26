@@ -1,8 +1,16 @@
 # Hugo Container on Debian 12 Slim packed by SourceMation
 
-This image, `sourcemation/hugo`, is built on a minimal Debian base to provide **Hugo** environment (extended+withdeploy). Hugo is one of the world's most popular open-source static site generators, famous for its incredible speed and flexibility. Written in Go, it takes content files like markdown and uses powerful templating to render a complete, ready-to-deploy website in a fraction of a second.
+This image, `sourcemation/hugo`, is built on a minimal Debian base to provide
+**Hugo** environment (extended+withdeploy). Hugo is one of the world's most
+popular open-source static site generators, famous for its incredible speed and
+flexibility. Written in Go, it takes content files like markdown and uses
+powerful templating to render a complete, ready-to-deploy website in a fraction
+of a second.
 
-Maintained by the SourceMation automation team, this Hugo distribution is regularly updated to ensure it's current, secure, and compact. It's built on a minimal Debian Slim base, and cryptographic signatures are used during the build process to guarantee the integrity of all source code and packages.
+Maintained by the SourceMation automation team, this Hugo distribution is
+regularly updated to ensure it's current, secure, and compact. It's built on a
+minimal Debian Slim base, and cryptographic signatures are used during the
+build process to guarantee the integrity of all source code and packages.
 
 ## Usage
 
@@ -26,11 +34,11 @@ docker run -u "$(id -u):$(id -g)" --rm -v ./my_website_src:/src:Z -p 1313:1313 s
 
 This is a shorthand for:
 ```bash
-docker run -u "$(id -u):$(id -g)" --rm -v ./my_website_src:/src:Z -p 1313:1313 sourcemation/hugo server -D --bind 0.0.0.0 --baseURL / --appendPort
+docker run -u "$(id -u):$(id -g)" --rm -v ./my_website_src:/src:Z -p 1313:1313 sourcemation/hugo server -D --bind 0.0.0.0
 ```
 
-This default runs Hugo server (drafts included) in a container, mapping port `1313` to the default Hugo port `1313` and binds it to 0.0.0.0, setting baseURL for easy dev access.
-Please remember to mount `./my_website_src` (preferably, utilizing the `:Z` flag) so that hugo has content to work with.
+This default runs Hugo server (drafts included) in a container, mapping port `1313` to the default Hugo port `1313` and binds it to 0.0.0.0.
+Please remember to mount `./my_website_src` so that hugo has content to work with.
 
 To build Hugo website:
 
