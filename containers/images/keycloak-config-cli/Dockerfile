@@ -31,11 +31,11 @@ WORKDIR ${CLI_HOME}
 
 COPY --chown=cli:cli keycloak-config-cli/ ${CLI_HOME}
 
-RUN set -ex; \
-    LATEST_JAR=$(ls -v "${CLI_HOME}" | tail -n 1); \
-    ln -s "${CLI_HOME}/${LATEST_JAR}" "${CLI_HOME}/keycloak-config-cli.jar"; \
-    chown -h cli:cli "${CLI_HOME}/keycloak-config-cli.jar"
+COPY entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/entrypoint.sh
 
 USER cli
 
-ENTRYPOINT ["java", "-jar", "/opt/keycloak-config-cli/keycloak-config-cli.jar"]
+ENTRYPOINT ["entrypoint.sh"]
+
+CMD ["java", "-jar", "/opt/keycloak-config-cli/keycloak-config-cli.jar"]

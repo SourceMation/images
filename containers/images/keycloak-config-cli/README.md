@@ -10,6 +10,7 @@ Run a container with the Keycloak Config CLI
 
 ```
 docker run \
+    -e KEYCLOAK_MAJOR_VERSION="26" \
     -e KEYCLOAK_URL="http://<your keycloak host>:8080/" \
     -e KEYCLOAK_USER="<keycloak admin username>" \
     -e KEYCLOAK_PASSWORD="<keycloak admin password>" \
@@ -23,6 +24,7 @@ This container uses the following environment variables for configuration:
 
 | Variable | Description | Example |
 | :--- | :--- | :--- |
+| **`KEYCLOAK_MAJOR_VERSION`** | **Optional.** Major version of Keycloak server to connect to. | `26` |
 | **`KEYCLOAK_URL`** | **Required.** The full URL of the Keycloak server to connect to. | `http://keycloak.local:8080` |
 | **`KEYCLOAK_USER`** | **Required.** The username for the Keycloak admin account. | `admin` |
 | **`KEYCLOAK_PASSWORD`** | **Required.** The password for the Keycloak admin account. | `a-very-secure-password` |
