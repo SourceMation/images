@@ -1,0 +1,30 @@
+{
+  "realm": "my-example-realm",
+  "enabled": true,
+  "displayName": "My Example App Realm",
+  "roles": {
+    "realm": [
+      {
+        "name": "user",
+        "description": "Standard user role for the application"
+      }
+    ]
+  },
+  "users": [
+    {
+      "username": "testuser",
+      "enabled": true,
+      "email": "test@example.local",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "testpassword",
+          "temporary": false
+        }
+      ],
+      "realmRoles": [
+        "user"
+      ]
+    }
+  ]
+}

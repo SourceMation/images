@@ -6,11 +6,27 @@ This Keycloak Config CLI distribution is provided by the upstream Keycloak Confi
 
 ## Usage
 
-Run a temporary container with the Keycloak Config CLI
+Run a container with the Keycloak Config CLI
 
 ```
-docker run --rm -it sourcemation/keycloak-config-cli:latest
+docker run \
+    -e KEYCLOAK_URL="http://<your keycloak host>:8080/" \
+    -e KEYCLOAK_USER="<keycloak admin username>" \
+    -e KEYCLOAK_PASSWORD="<keycloak admin password>" \
+    -e IMPORT_FILES_LOCATIONS='/config/*' \
+    -v <your config path>:/config/ \
+    sourcemation/keycloak-config-cli
 ```
+## Key Environment Variables
+
+This container uses the following environment variables for configuration:
+
+| Variable | Description | Example |
+| :--- | :--- | :--- |
+| **`KEYCLOAK_URL`** | **Required.** The full URL of the Keycloak server to connect to. | `http://keycloak.local:8080` |
+| **`KEYCLOAK_USER`** | **Required.** The username for the Keycloak admin account. | `admin` |
+| **`KEYCLOAK_PASSWORD`** | **Required.** The password for the Keycloak admin account. | `a-very-secure-password` |
+| **`IMPORT_FILES_LOCATIONS`** | **Required for import.** Tells the tool to perform an import. The value is the path **inside the container** where the configuration files are located. Use wildcards like `*` to import all files in a directory. | `/config/my-realm.json` or `/config/*` |
 
 ## Image tags and versions
 
