@@ -26,7 +26,7 @@ docker run \
     -e ADMIN_PASSWORD=password \
     -p 8080:8080 \
     -it sourcemation/keycloak \
-    start-dev
+    bin/kc.sh start-dev
 ```
 
 This command runs the Keycloak container in development mode, mapping port `8080` on your local machine to the container's default port `8080`.
