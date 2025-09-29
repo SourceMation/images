@@ -51,6 +51,7 @@ on:
           - kafka
           - karaf
           - keycloak
+          - keycloak-25
           - kibana
           - kong
           - kubectl

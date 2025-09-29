@@ -186,6 +186,11 @@ test_container(){
             CONTAINER_RUN_PARAMETERS="-e ADMIN_USERNAME=admin -e ADMIN_PASSWORD=admin"
             CONTAINER_STARTUP_TIMEOUT=60
             ;;
+        "keycloak-25")
+            CONTAINER_RUN_COMMAND=""
+            CONTAINER_RUN_PARAMETERS="-e ADMIN_USERNAME=admin -e ADMIN_PASSWORD=admin"
+            CONTAINER_STARTUP_TIMEOUT=60
+            ;;
         "kibana")
             CONTAINER_RUN_COMMAND=""
             ;;
