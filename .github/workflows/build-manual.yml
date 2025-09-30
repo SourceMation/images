@@ -96,6 +96,7 @@ on:
           - rabbitmq-4
           - rabbitmq-4-management
           - rabbitmq-cluster-operator
+          - rabbitmq-default-user-credential-updater
           - redis
           - redis-exporter
           - redis-operator
