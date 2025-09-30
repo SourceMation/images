@@ -321,6 +321,26 @@ test_container(){
         -e NODE_ID=2 \
         -e NODE_NAME="${CONTAINER_NAME}-standby" \
         "${CONTAINER_FULL_NAME}"
+    elif [ "${IMAGE_NAME}" == "keycloak-config-cli" ]; then
+        docker run -d --name "keycloak-${CONTAINER_NAME}" \
+        -e ADMIN_USERNAME=admin \
+        -e ADMIN_PASSWORD=admin \
+        -p 8080:8080 \
+        -it sourcemation/keycloak
+
+        sleep 60
+
+        KEYCLOAK_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' keycloak-${CONTAINER_NAME})
+
+        docker run -d -it \
+        -e KEYCLOAK_URL="http://${KEYCLOAK_IP}:8080/" \
+        -e KEYCLOAK_USER="admin" \
+        -e KEYCLOAK_PASSWORD="admin" \
+        -e IMPORT_FILES_LOCATIONS='/config/*' \
+        -v $(pwd)/${container_dir}/config.json:/config/config.json \
+        --entrypoint="entrypoint.sh" \
+        --name "$CONTAINER_NAME" \
+        "${CONTAINER_FULL_NAME}" "/bin/bash"
     else
         print_info "Running Docker Container from Image: ${CONTAINER_FULL_NAME}"
         # shellcheck disable=SC2086
@@ -356,6 +376,9 @@ test_container(){
         docker stop "${CONTAINER_NAME}-standby"
         docker rm "${CONTAINER_NAME}-standby"
         docker network rm postgres-repmgr-net
+    elif [ "${IMAGE_NAME}" == "keycloak-config-cli" ]; then
+        docker stop "keycloak-${CONTAINER_NAME}"
+        docker rm "keycloak-${CONTAINER_NAME}"
     fi
     set +x
 }

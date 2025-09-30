@@ -27,7 +27,7 @@ This container uses the following environment variables for configuration:
 | **`KEYCLOAK_MAJOR_VERSION`** | **Optional.** Major version of Keycloak server to connect to. | `26` |
 | **`KEYCLOAK_URL`** | **Required.** The full URL of the Keycloak server to connect to. | `http://keycloak.local:8080` |
 | **`KEYCLOAK_USER`** | **Required.** The username for the Keycloak admin account. | `admin` |
-| **`KEYCLOAK_PASSWORD`** | **Required.** The password for the Keycloak admin account. | `a-very-secure-password` |
+| **`KEYCLOAK_PASSWORD`** | **Required.** The password for the Keycloak admin account. | `password` |
 | **`IMPORT_FILES_LOCATIONS`** | **Required for import.** Tells the tool to perform an import. The value is the path **inside the container** where the configuration files are located. Use wildcards like `*` to import all files in a directory. | `/config/my-realm.json` or `/config/*` |
 
 ## Image tags and versions

@@ -52,6 +52,7 @@ on:
           - karaf
           - keycloak
           - keycloak-25
+          - keycloak-config-cli
           - kibana
           - kong
           - kubectl
