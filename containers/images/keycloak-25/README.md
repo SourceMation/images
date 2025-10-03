@@ -34,7 +34,7 @@ This command runs the Keycloak container in development mode, mapping port `8080
 
 ## Key Environment Variables
 
-This container uses the following environment variables for configuration. For any variable ending in `_PASSWORD`, `_USER`, etc., you can also use a `_FILE` suffix (e.g., `KC_BOOTSTRAP_ADMIN_PASSWORD_FILE`) to provide the value from a file, which is recommended for sensitive data.
+This container uses the following environment variables for configuration. For any variable ending in `_PASSWORD`, `_USER`, etc., you can also use a `_FILE` suffix (e.g., `KEYCLOAK_ADMIN_PASSWORD_FILE`) to provide the value from a file, which is recommended for sensitive data.
 
 ### Admin User
 * `KEYCLOAK_ADMIN`: The username for the initial admin user created on the first run.
