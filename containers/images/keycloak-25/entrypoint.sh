@@ -1,71 +1,251 @@
-#!/usr/bin/env bash
-# ---------------------------------------------------
-# Set environment variables
+#!/bin/bash
 
-set -e
-
-export KEYCLOAK_ADMIN=tmpadmin
-export KEYCLOAK_ADMIN_PASSWORD=temppassword
-export KC_LOG=console,file
-export KC_LOG_FILE="/opt/keycloak/logs/keycloak.log"
-
-# Check if Keycloak is already initialized
-if [ -f $KC_LOG_FILE ]; then
-    OLDEST_LOG_FILE=$(ls -lt /opt/keycloak/logs/keycloak.log* 2>/dev/null | tail -1 | awk '{print $9}')
-    if grep "Created new user with id " $OLDEST_LOG_FILE 2>&1 >/dev/null; then
-        echo "Keycloak already initialized, skipping setup."
-        exec "$@"
-    fi
-fi
-
-# Start Keycloak with temp admin
-mkdir -p /opt/keycloak/logs
-bin/kc.sh start-dev &
-PID=$!
-echo "Keycloak starting with PID: $PID"
-
-# Wait for Keycloak to start
-echo "Waiting for Keycloak to start... "
-sleep 20
-for i in {1..30}; do
-    sleep 5
-    if [ -f $KC_LOG_FILE ] && grep "Listening on:" $KC_LOG_FILE; then
-        echo "Keycloak started"
-        break
-    fi
-done
-if [ -f $KC_LOG_FILE ] && ! grep "Listening on:" $KC_LOG_FILE; then
-    echo "Keycloak failed to start within 150 seconds. Check the logs for details."
+if [ -z "$KEYCLOAK_HOME" ]; then
+    echo "ERROR: The KEYCLOAK_HOME environment variable is not set."
     exit 1
 fi
 
-# Set admin user and password from arguments
-if [ -z "${ADMIN_USERNAME}" ]; then
-    ADMIN_USERNAME="user"
+set_config() {
+    local key="$1"
+    local value="$2"
+    if [ -z "$value" ]; then return; fi
+    echo "-> Setting '$key'..."
+    if grep -q -E "^\s*${key}\s*=" "$CONF_FILE"; then
+        sed -i "s|^\s*${key}\s*=.*|${key} = ${value}|" "$CONF_FILE"
+        echo "   Updated active key '$key'."
+    elif grep -q -E "^\s*#\s*${key}\s*=" "$CONF_FILE"; then
+        sed -i "s|^\s*#\s*${key}\s*=.*|${key} = ${value}|" "$CONF_FILE"
+        echo "   Uncommented and set key '$key'."
+    else
+        echo "${key} = ${value}" >> "$CONF_FILE"
+        echo "   Added new key '$key'."
+    fi
+}
+
+keycloak_env_vars=(
+    KEYCLOAK_MOUNTED_CONF_DIR
+    KC_RUN_IN_CONTAINER
+    KEYCLOAK_PRODUCTION
+    KEYCLOAK_EXTRA_ARGS
+    KEYCLOAK_EXTRA_ARGS_PREPENDED
+    KC_HTTP_MANAGEMENT_PORT
+    KEYCLOAK_ENABLE_HTTPS
+    KEYCLOAK_HTTPS_USE_PEM
+    KEYCLOAK_ADMIN
+    KEYCLOAK_ADMIN_PASSWORD
+    KC_HTTP_PORT
+    KC_HTTPS_PORT
+    KC_HTTP_RELATIVE_PATH
+    KC_LOG_LEVEL
+    KC_LOG_CONSOLE_OUTPUT
+    KC_METRICS_ENABLED
+    KC_HEALTH_ENABLED
+    KC_CACHE
+    KC_CACHE_STACK
+    KC_CACHE_CONFIG_FILE
+    KC_HOSTNAME
+    KC_HOSTNAME_ADMIN
+    KC_HOSTNAME_STRICT
+    KC_HTTPS_TRUST_STORE_FILE
+    KC_HTTPS_TRUST_STORE_PASSWORD
+    KC_HTTPS_KEY_STORE_FILE
+    KC_HTTPS_KEY_STORE_PASSWORD
+    KC_HTTPS_CERTIFICATE_FILE
+    KC_HTTPS_CERTIFICATE_KEY_FILE
+    KC_DB
+    KEYCLOAK_DATABASE_HOST
+    KEYCLOAK_DATABASE_PORT
+    KEYCLOAK_DATABASE_NAME
+    KEYCLOAK_JDBC_PARAMS
+    KEYCLOAK_JDBC_DRIVER
+    KC_DB_USERNAME
+    KC_DB_PASSWORD
+    KC_DB_SCHEMA
+    KEYCLOAK_INIT_MAX_RETRIES
+    KEYCLOAK_DAEMON_USER
+    KEYCLOAK_DAEMON_GROUP
+    KEYCLOAK_HTTP_PORT
+    KEYCLOAK_HTTPS_PORT
+    KEYCLOAK_HTTP_RELATIVE_PATH
+    KEYCLOAK_LOG_LEVEL
+    KEYCLOAK_LOG_OUTPUT
+    KEYCLOAK_ENABLE_STATISTICS
+    KEYCLOAK_ENABLE_HEALTH_ENDPOINTS
+    KEYCLOAK_CACHE_TYPE
+    KEYCLOAK_CACHE_STACK
+    KEYCLOAK_CACHE_CONFIG_FILE
+    KEYCLOAK_HOSTNAME
+    KEYCLOAK_HOSTNAME_ADMIN
+    KEYCLOAK_HOSTNAME_STRICT
+    KEYCLOAK_HTTPS_TRUST_STORE_FILE
+    KEYCLOAK_HTTPS_TRUST_STORE_PASSWORD
+    KEYCLOAK_HTTPS_KEY_STORE_FILE
+    KEYCLOAK_HTTPS_KEY_STORE_PASSWORD
+    KEYCLOAK_HTTPS_CERTIFICATE_FILE
+    KEYCLOAK_HTTPS_CERTIFICATE_KEY_FILE
+    KEYCLOAK_DATABASE_VENDOR
+    KEYCLOAK_DATABASE_USER
+    KEYCLOAK_DATABASE_PASSWORD
+    KEYCLOAK_DATABASE_SCHEMA
+)
+for env_var in "${keycloak_env_vars[@]}"; do
+    file_env_var="${env_var}_FILE"
+    if [[ -n "${!file_env_var:-}" ]]; then
+        if [[ -r "${!file_env_var:-}" ]]; then
+            export "${env_var}=$(< "${!file_env_var}")"
+            unset "${file_env_var}"
+        else
+            warn "Skipping export of '${env_var}'. '${!file_env_var:-}' is not readable."
+        fi
+    fi
+done
+
+
+# Paths
+export SM_VOLUME_DIR="/"
+export KEYCLOAK_BASE_DIR="/opt/keycloak"
+export KEYCLOAK_BIN_DIR="$KEYCLOAK_BASE_DIR/bin"
+export KEYCLOAK_PROVIDERS_DIR="$KEYCLOAK_BASE_DIR/providers"
+export KEYCLOAK_LOG_DIR="$KEYCLOAK_PROVIDERS_DIR/log"
+export KEYCLOAK_TMP_DIR="$KEYCLOAK_PROVIDERS_DIR/tmp"
+export KEYCLOAK_DOMAIN_TMP_DIR="$KEYCLOAK_BASE_DIR/domain/tmp"
+export KEYCLOAK_VOLUME_DIR="/keycloak"
+export KEYCLOAK_CONF_DIR="$KEYCLOAK_BASE_DIR/conf"
+export KEYCLOAK_DEFAULT_CONF_DIR="$KEYCLOAK_BASE_DIR/conf.default"
+export KEYCLOAK_MOUNTED_CONF_DIR="${KEYCLOAK_MOUNTED_CONF_DIR:-${KEYCLOAK_VOLUME_DIR}/conf}"
+# export KEYCLOAK_INITSCRIPTS_DIR="/docker-entrypoint-initdb.d"
+export KEYCLOAK_CONF_FILE="keycloak.conf"
+export CONF_FILE="${KEYCLOAK_CONF_DIR}/${KEYCLOAK_CONF_FILE}"
+
+# Keycloak kc.sh context
+export KC_RUN_IN_CONTAINER="${KC_RUN_IN_CONTAINER:-true}"
+
+# Keycloak configuration
+KEYCLOAK_ADMIN="${KEYCLOAK_ADMIN:-"${KEYCLOAK_ADMIN_USER:-}"}"
+export KEYCLOAK_ADMIN="${KEYCLOAK_ADMIN:-user}"
+export KEYCLOAK_ADMIN_PASSWORD="${KEYCLOAK_ADMIN_PASSWORD:-}"
+export KEYCLOAK_HTTP_RELATIVE_PATH="${KEYCLOAK_HTTP_RELATIVE_PATH:-/}"
+export KEYCLOAK_HTTP_PORT="${KEYCLOAK_HTTP_PORT:-8080}"
+export KEYCLOAK_HTTPS_PORT="${KEYCLOAK_HTTPS_PORT:-8443}"
+export KEYCLOAK_BIND_ADDRESS="${KEYCLOAK_BIND_ADDRESS:-$(hostname --fqdn)}"
+KEYCLOAK_HOSTNAME="${KEYCLOAK_HOSTNAME:-"${KC_HOSTNAME:-}"}"
+export KEYCLOAK_HOSTNAME="${KEYCLOAK_HOSTNAME:-}"
+KEYCLOAK_HOSTNAME_ADMIN="${KEYCLOAK_HOSTNAME_ADMIN:-"${KC_HOSTNAME_ADMIN:-}"}"
+export KEYCLOAK_HOSTNAME_ADMIN="${KEYCLOAK_HOSTNAME_ADMIN:-}"
+KEYCLOAK_HOSTNAME_STRICT="${KEYCLOAK_HOSTNAME_STRICT:-"${KC_HOSTNAME_STRICT:-}"}"
+export KEYCLOAK_HOSTNAME_STRICT="${KEYCLOAK_HOSTNAME_STRICT:-false}"
+export KEYCLOAK_INIT_MAX_RETRIES="${KEYCLOAK_INIT_MAX_RETRIES:-10}"
+export KEYCLOAK_CACHE_TYPE="${KEYCLOAK_CACHE_TYPE:-ispn}"
+export KEYCLOAK_CACHE_STACK="${KEYCLOAK_CACHE_STACK:-}"
+export KEYCLOAK_CACHE_CONFIG_FILE="${KEYCLOAK_CACHE_CONFIG_FILE:-}"
+export KEYCLOAK_EXTRA_ARGS="${KEYCLOAK_EXTRA_ARGS:-}"
+export KEYCLOAK_ENABLE_STATISTICS="${KEYCLOAK_ENABLE_STATISTICS:-false}"
+KEYCLOAK_ENABLE_HEALTH_ENDPOINTS="${KEYCLOAK_ENABLE_HEALTH_ENDPOINTS:-"${KC_HEALTH_ENABLED:-}"}"
+export KEYCLOAK_ENABLE_HEALTH_ENDPOINTS="${KEYCLOAK_ENABLE_HEALTH_ENDPOINTS:-false}"
+export KEYCLOAK_ENABLE_HTTPS="${KEYCLOAK_ENABLE_HTTPS:-false}"
+KEYCLOAK_HTTPS_TRUST_STORE_FILE="${KEYCLOAK_HTTPS_TRUST_STORE_FILE:-"${KC_HTTPS_TRUST_STORE_FILE:-}"}"
+export KEYCLOAK_HTTPS_TRUST_STORE_FILE="${KEYCLOAK_HTTPS_TRUST_STORE_FILE:-}"
+KEYCLOAK_HTTPS_TRUST_STORE_PASSWORD="${KEYCLOAK_HTTPS_TRUST_STORE_PASSWORD:-"${KC_HTTPS_TRUST_STORE_PASSWORD:-}"}"
+export KEYCLOAK_HTTPS_TRUST_STORE_PASSWORD="${KEYCLOAK_HTTPS_TRUST_STORE_PASSWORD:-}"
+KEYCLOAK_HTTPS_KEY_STORE_FILE="${KEYCLOAK_HTTPS_KEY_STORE_FILE:-"${KC_HTTPS_KEY_STORE_FILE:-}"}"
+export KEYCLOAK_HTTPS_KEY_STORE_FILE="${KEYCLOAK_HTTPS_KEY_STORE_FILE:-}"
+KEYCLOAK_HTTPS_KEY_STORE_PASSWORD="${KEYCLOAK_HTTPS_KEY_STORE_PASSWORD:-"${KC_HTTPS_KEY_STORE_PASSWORD:-}"}"
+export KEYCLOAK_HTTPS_KEY_STORE_PASSWORD="${KEYCLOAK_HTTPS_KEY_STORE_PASSWORD:-}"
+export KEYCLOAK_HTTPS_USE_PEM="${KEYCLOAK_HTTPS_USE_PEM:-false}"
+KEYCLOAK_HTTPS_CERTIFICATE_FILE="${KEYCLOAK_HTTPS_CERTIFICATE_FILE:-"${KC_HTTPS_CERTIFICATE_FILE:-}"}"
+export KEYCLOAK_HTTPS_CERTIFICATE_FILE="${KEYCLOAK_HTTPS_CERTIFICATE_FILE:-}"
+KEYCLOAK_HTTPS_CERTIFICATE_KEY_FILE="${KEYCLOAK_HTTPS_CERTIFICATE_KEY_FILE:-"${KC_HTTPS_CERTIFICATE_KEY_FILE:-}"}"
+export KEYCLOAK_HTTPS_CERTIFICATE_KEY_FILE="${KEYCLOAK_HTTPS_CERTIFICATE_KEY_FILE:-}"
+KEYCLOAK_SPI_TRUSTSTORE_FILE="${KEYCLOAK_SPI_TRUSTSTORE_FILE:-"${KC_SPI_TRUSTSTORE_FILE_FILE:-}"}"
+export KEYCLOAK_SPI_TRUSTSTORE_FILE="${KEYCLOAK_SPI_TRUSTSTORE_FILE:-}"
+KEYCLOAK_SPI_TRUSTSTORE_PASSWORD="${KEYCLOAK_SPI_TRUSTSTORE_PASSWORD:-"${KC_SPI_TRUSTSTORE_PASSWORD:-}"}"
+export KEYCLOAK_SPI_TRUSTSTORE_PASSWORD="${KEYCLOAK_SPI_TRUSTSTORE_PASSWORD:-}"
+KEYCLOAK_SPI_TRUSTSTORE_FILE_HOSTNAME_VERIFICATION_POLICY="${KEYCLOAK_SPI_TRUSTSTORE_FILE_HOSTNAME_VERIFICATION_POLICY:-"${KC_SPI_TRUSTSTORE_FILE_HOSTNAME_VERIFICATION_POLICY:-}"}"
+export KEYCLOAK_SPI_TRUSTSTORE_FILE_HOSTNAME_VERIFICATION_POLICY="${KEYCLOAK_SPI_TRUSTSTORE_FILE_HOSTNAME_VERIFICATION_POLICY:-}"
+export KEYCLOAK_LOG_LEVEL="${KEYCLOAK_LOG_LEVEL:-info}"
+export KEYCLOAK_LOG_OUTPUT="${KEYCLOAK_LOG_OUTPUT:-default}"
+export KEYCLOAK_ROOT_LOG_LEVEL="${KEYCLOAK_ROOT_LOG_LEVEL:-INFO}"
+export KEYCLOAK_PROXY_HEADERS="${KEYCLOAK_PROXY_HEADERS:-}"
+export KEYCLOAK_PRODUCTION="${KEYCLOAK_PRODUCTION:-false}"
+export KEYCLOAK_EXTRA_ARGS_PREPENDED="${KEYCLOAK_EXTRA_ARGS_PREPENDED:-}"
+
+
+# Keycloak database configuration
+export KEYCLOAK_DATABASE_VENDOR="${KEYCLOAK_DATABASE_VENDOR:-}"
+KEYCLOAK_DATABASE_HOST="${KEYCLOAK_DATABASE_HOST:-"${DB_ADDR:-}"}"
+export KEYCLOAK_DATABASE_HOST="${KEYCLOAK_DATABASE_HOST:-}"
+KEYCLOAK_DATABASE_PORT="${KEYCLOAK_DATABASE_PORT:-"${DB_PORT:-}"}"
+export KEYCLOAK_DATABASE_PORT="${KEYCLOAK_DATABASE_PORT:-}"
+KEYCLOAK_DATABASE_USER="${KEYCLOAK_DATABASE_USER:-"${DB_USER:-}"}"
+export KEYCLOAK_DATABASE_USER="${KEYCLOAK_DATABASE_USER:-}"
+KEYCLOAK_DATABASE_NAME="${KEYCLOAK_DATABASE_NAME:-"${DB_DATABASE:-}"}"
+export KEYCLOAK_DATABASE_NAME="${KEYCLOAK_DATABASE_NAME:-}"
+KEYCLOAK_DATABASE_PASSWORD="${KEYCLOAK_DATABASE_PASSWORD:-"${DB_PASSWORD:-}"}"
+export KEYCLOAK_DATABASE_PASSWORD="${KEYCLOAK_DATABASE_PASSWORD:-}"
+KEYCLOAK_DATABASE_SCHEMA="${KEYCLOAK_DATABASE_SCHEMA:-"${DB_SCHEMA:-}"}"
+export KEYCLOAK_DATABASE_SCHEMA="${KEYCLOAK_DATABASE_SCHEMA:-public}"
+KEYCLOAK_JDBC_PARAMS="${KEYCLOAK_JDBC_PARAMS:-"${JDBC_PARAMS:-}"}"
+export KEYCLOAK_JDBC_PARAMS="${KEYCLOAK_JDBC_PARAMS:-}"
+export KEYCLOAK_JDBC_DRIVER="${KEYCLOAK_JDBC_DRIVER:-postgresql}"
+
+# System users (when running with a privileged user)
+export KEYCLOAK_DAEMON_USER="${KEYCLOAK_DAEMON_USER:-keycloak}"
+export KEYCLOAK_DAEMON_GROUP="${KEYCLOAK_DAEMON_GROUP:-keycloak}"
+
+
+for env_var in "${keycloak_env_vars[@]}"; do
+    if [[ -z "${!env_var}" ]]; then
+        unset "${env_var}"
+    fi
+done
+
+unset keycloak_env_vars
+
+echo "--- Admin Credentials ---"
+echo "--------------------------------------------------------"
+echo "USERNAME: $KEYCLOAK_ADMIN"
+
+if [ -z "$KEYCLOAK_ADMIN_PASSWORD" ]; then
+    echo "-> Admin password not set. Generating a random password."
+    NEW_PASSWORD=$(head /dev/urandom | tr -dc 'A-Za-z0-9' | head -c 24)
+    export KEYCLOAK_ADMIN_PASSWORD="$NEW_PASSWORD"
+    echo "PASSWORD: $NEW_PASSWORD"
+    echo "Save it in a safe place!"
+else
+    echo "-> Admin password is already set via environment variable."
 fi
-if [ -z "${ADMIN_PASSWORD}" ]; then
-    ADMIN_PASSWORD=$(tr -dc A-Za-z0-9 < /dev/urandom | head -c 16)
-    echo "###############################################"
-    echo "Keycloak admin username: "
-    echo "${ADMIN_USERNAME}"
-    echo "Keycloak admin password: "
-    echo "${ADMIN_PASSWORD}"
-    echo "###############################################"
-    echo "Set the ADMIN_PASSWORD environment variable to override."
+echo "--------------------------------------------------------"
+
+
+if [ ! -f "$CONF_FILE" ]; then
+    echo "ERROR: Configuration file '$CONF_FILE' not found! Skipping file modifications."
+elif [ ! -w "$CONF_FILE" ]; then
+    echo "ERROR: No write permissions for file '$CONF_FILE'! Skipping file modifications."
+else
+    jdbc_params="$(echo "$KEYCLOAK_JDBC_PARAMS" | sed -E '/^$|^\&.+$/!s/^/\&/;s/\&/\\&/g')"
+
+    if [ -n "$KEYCLOAK_JDBC_DRIVER" ] && [ -n "$KEYCLOAK_DATABASE_HOST" ] && [ -n "$KEYCLOAK_DATABASE_PORT" ] && [ -n "$KEYCLOAK_DATABASE_NAME" ]; then
+        # set_config "db" "postgres"
+        set_config "db-url" "jdbc:${KEYCLOAK_JDBC_DRIVER}://${KEYCLOAK_DATABASE_HOST}:${KEYCLOAK_DATABASE_PORT}/${KEYCLOAK_DATABASE_NAME}?currentSchema=${KEYCLOAK_DATABASE_SCHEMA}${jdbc_params}"
+    else
+        echo "INFO: To set 'db-url', all four variables (driver, host, port, and database name) must be defined. Skipping." >&2
+    fi
 fi
 
-# Add admin user
-bin/kcadm.sh config credentials --server http://localhost:8080 --realm master --user ${KEYCLOAK_ADMIN} --password ${KEYCLOAK_ADMIN_PASSWORD} 2>&1 | tee -a $KC_LOG_FILE
-bin/kcadm.sh create users -r master -s username=${ADMIN_USERNAME} -s enabled=true 2>&1 | tee -a $KC_LOG_FILE
-bin/kcadm.sh set-password -r master --username ${ADMIN_USERNAME} --new-password ${ADMIN_PASSWORD} 2>&1 | tee -a $KC_LOG_FILE
-bin/kcadm.sh add-roles -r master --uusername ${ADMIN_USERNAME} --rolename admin 2>&1 | tee -a $KC_LOG_FILE
+cmd=("$@")
 
-# Remove temp admin
-ID=$(bin/kcadm.sh get users -r master -q username=${KEYCLOAK_ADMIN})
-ID=$(echo $ID | grep '"id"' | head -1 | awk -F'"' '{print $4}')
-bin/kcadm.sh delete users/${ID} -r master 2>&1 | tee -a $KC_LOG_FILE
+if [[ "${KEYCLOAK_PRODUCTION}" == "true" ]]; then
+    echo "-> Production mode enabled. Switching to 'start' command."
+    cmd=("${cmd[@]/start-dev/start}")
+else
+    echo "-> Development mode enabled. Using 'start-dev' command."
+fi
 
-# Stop Keycloak
-kill $PID
+if [ -n "$KEYCLOAK_EXTRA_ARGS_PREPENDED" ]; then
+    echo "-> Prepending extra arguments to the startup command: $KEYCLOAK_EXTRA_ARGS_PREPENDED"
+fi
+if [ -n "$KEYCLOAK_EXTRA_ARGS" ]; then
+    echo "-> Appending extra arguments to the startup command: $KEYCLOAK_EXTRA_ARGS"
+fi
 
-exec "$@"
+exec "${cmd[@]}" $KEYCLOAK_EXTRA_ARGS_PREPENDED $KEYCLOAK_EXTRA_ARGS

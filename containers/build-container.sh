@@ -183,13 +183,13 @@ test_container(){
             ;;
         "keycloak")
             CONTAINER_RUN_COMMAND=""
-            CONTAINER_RUN_PARAMETERS="-e ADMIN_USERNAME=admin -e ADMIN_PASSWORD=admin"
-            CONTAINER_STARTUP_TIMEOUT=60
+            CONTAINER_RUN_PARAMETERS="-e KC_BOOTSTRAP_ADMIN_USERNAME=admin -e KC_BOOTSTRAP_ADMIN_PASSWORD=admin"
+            CONTAINER_STARTUP_TIMEOUT=45
             ;;
         "keycloak-25")
             CONTAINER_RUN_COMMAND=""
-            CONTAINER_RUN_PARAMETERS="-e ADMIN_USERNAME=admin -e ADMIN_PASSWORD=admin"
-            CONTAINER_STARTUP_TIMEOUT=60
+            CONTAINER_RUN_PARAMETERS="-e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin"
+            CONTAINER_STARTUP_TIMEOUT=45
             ;;
         "kibana")
             CONTAINER_RUN_COMMAND=""
@@ -323,12 +323,12 @@ test_container(){
         "${CONTAINER_FULL_NAME}"
     elif [ "${IMAGE_NAME}" == "keycloak-config-cli" ]; then
         docker run -d --name "keycloak-${CONTAINER_NAME}" \
-        -e ADMIN_USERNAME=admin \
-        -e ADMIN_PASSWORD=admin \
+        -e KC_BOOTSTRAP_ADMIN_USERNAME=admin \
+        -e KC_BOOTSTRAP_ADMIN_PASSWORD=admin \
         -p 8080:8080 \
         -it sourcemation/keycloak
 
-        sleep 60
+        sleep 45
 
         KEYCLOAK_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' keycloak-${CONTAINER_NAME})
 

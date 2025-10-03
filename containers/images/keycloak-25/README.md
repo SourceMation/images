@@ -22,11 +22,10 @@ This image is intended for production environments where centralized authenticat
 
 ```bash
 docker run \
-    -e ADMIN_USERNAME=admin \
-    -e ADMIN_PASSWORD=password \
+    -e KEYCLOAK_ADMIN=admin \
+    -e KEYCLOAK_ADMIN_PASSWORD=password \
     -p 8080:8080 \
-    -it sourcemation/keycloak \
-    bin/kc.sh start-dev
+    -it sourcemation/keycloak
 ```
 
 This command runs the Keycloak container in development mode, mapping port `8080` on your local machine to the container's default port `8080`.
@@ -35,10 +34,27 @@ This command runs the Keycloak container in development mode, mapping port `8080
 
 ## Key Environment Variables
 
-This container uses the following environment variables for initial configuration:
+This container uses the following environment variables for configuration. For any variable ending in `_PASSWORD`, `_USER`, etc., you can also use a `_FILE` suffix (e.g., `KEYCLOAK_ADMIN_PASSWORD_FILE`) to provide the value from a file, which is recommended for sensitive data.
 
-  * `ADMIN_USERNAME`: The username for the initial admin user created on the first boot.
-  * `ADMIN_PASSWORD`: The password for the initial admin user.
+### Admin User
+* `KEYCLOAK_ADMIN`: The username for the initial admin user created on the first run.
+    * Default: `admin`
+* `KEYCLOAK_ADMIN_PASSWORD`: The password for the initial admin user.
+    * Default: A random 24-character password will be generated and printed to the container logs on first run.
+
+### Database Connection
+* `KEYCLOAK_JDBC_DRIVER`: The JDBC driver for the database connection. For PostgreSQL, the value is `postgresql`.
+* `KEYCLOAK_DATABASE_HOST`: The hostname or IP address of the PostgreSQL database server.
+* `KEYCLOAK_DATABASE_PORT`: The port number of the PostgreSQL database server.
+* `KEYCLOAK_DATABASE_NAME`: The name of the database Keycloak will connect to.
+* `KEYCLOAK_DATABASE_USER`: The username for the database connection.
+* `KEYCLOAK_DATABASE_PASSWORD`: The password for the database user.
+
+### HTTP & Server Configuration
+* `KEYCLOAK_PRODUCTION`: Set to `true` to run Keycloak with the production `start` command. If `false` or unset, it will use the `start-dev` command.
+    * Default: `false`
+* `KEYCLOAK_EXTRA_ARGS`: A space-separated list of additional command-line arguments that will be appended to the server's startup command (e.g., `kc.sh start-dev`).
+    * Example: `"--log-level=DEBUG --features=token-exchange"`
 
 -----
 
