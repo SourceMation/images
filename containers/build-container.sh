@@ -328,7 +328,7 @@ test_container(){
         -p 8080:8080 \
         -it sourcemation/keycloak
 
-        sleep 30
+        sleep 45
 
         KEYCLOAK_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' keycloak-${CONTAINER_NAME})
 
