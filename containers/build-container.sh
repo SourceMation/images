@@ -184,12 +184,12 @@ test_container(){
         "keycloak")
             CONTAINER_RUN_COMMAND=""
             CONTAINER_RUN_PARAMETERS="-e KC_BOOTSTRAP_ADMIN_USERNAME=admin -e KC_BOOTSTRAP_ADMIN_PASSWORD=admin"
-            CONTAINER_STARTUP_TIMEOUT=30
+            CONTAINER_STARTUP_TIMEOUT=45
             ;;
         "keycloak-25")
             CONTAINER_RUN_COMMAND=""
-            CONTAINER_RUN_PARAMETERS="-e ADMIN_USERNAME=admin -e ADMIN_PASSWORD=admin"
-            CONTAINER_STARTUP_TIMEOUT=60
+            CONTAINER_RUN_PARAMETERS="-e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin"
+            CONTAINER_STARTUP_TIMEOUT=45
             ;;
         "kibana")
             CONTAINER_RUN_COMMAND=""
