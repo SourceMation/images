@@ -11,10 +11,10 @@ set_config() {
     if [ -z "$value" ]; then return; fi
     echo "-> Setting '$key'..."
     if grep -q -E "^\s*${key}\s*=" "$CONF_FILE"; then
-        sed -i "s|^\s*${key}\s*=.*|${key} = ${value}|" "$CONF_FILE"
+        sed -i "s|^\s*${key}\s*=.*|${key}=${value}|" "$CONF_FILE"
         echo "   Updated active key '$key'."
     elif grep -q -E "^\s*#\s*${key}\s*=" "$CONF_FILE"; then
-        sed -i "s|^\s*#\s*${key}\s*=.*|${key} = ${value}|" "$CONF_FILE"
+        sed -i "s|^\s*#\s*${key}\s*=.*|${key}=${value}|" "$CONF_FILE"
         echo "   Uncommented and set key '$key'."
     else
         echo "${key} = ${value}" >> "$CONF_FILE"
@@ -225,7 +225,7 @@ else
     jdbc_params="$(echo "$KEYCLOAK_JDBC_PARAMS" | sed -E '/^$|^\&.+$/!s/^/\&/;s/\&/\\&/g')"
 
     if [ -n "$KEYCLOAK_JDBC_DRIVER" ] && [ -n "$KEYCLOAK_DATABASE_HOST" ] && [ -n "$KEYCLOAK_DATABASE_PORT" ] && [ -n "$KEYCLOAK_DATABASE_NAME" ]; then
-        # set_config "db" "postgres"
+        set_config "db" "postgres"
         set_config "db-url" "jdbc:${KEYCLOAK_JDBC_DRIVER}://${KEYCLOAK_DATABASE_HOST}:${KEYCLOAK_DATABASE_PORT}/${KEYCLOAK_DATABASE_NAME}?currentSchema=${KEYCLOAK_DATABASE_SCHEMA}${jdbc_params}"
     else
         echo "INFO: To set 'db-url', all four variables (driver, host, port, and database name) must be defined. Skipping." >&2
