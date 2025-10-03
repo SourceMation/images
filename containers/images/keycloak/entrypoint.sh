@@ -1,36 +1,9 @@
 #!/bin/bash
 
-# --- Configuration ---
-# Check if KEYCLOAK_HOME is set
 if [ -z "$KEYCLOAK_HOME" ]; then
     echo "ERROR: The KEYCLOAK_HOME environment variable is not set."
     exit 1
 fi
-
-# Path to the Keycloak configuration file
-CONF_FILE="${KEYCLOAK_HOME}/conf/keycloak.conf"
-# --- End of Configuration ---
-
-# # Helper function to retrieve a value (file has priority over variable)
-# get_value() {
-#     local file_var_name="$1"
-#     local direct_var_name="$2"
-#     local value=""
-#     if [ -n "${!file_var_name}" ]; then
-#         local file_path="${!file_var_name}"
-#         if [ -r "$file_path" ]; then
-#             value=$(cat "$file_path")
-#             echo "$value"
-#             return
-#         else
-#             echo "WARNING: File '$file_path' specified by '$file_var_name' does not exist or is not readable." >&2
-#         fi
-#     fi
-#     if [ -n "${!direct_var_name}" ]; then
-#         value="${!direct_var_name}"
-#         echo "$value"
-#     fi
-# }
 
 set_config() {
     local key="$1"
@@ -126,12 +99,10 @@ for env_var in "${keycloak_env_vars[@]}"; do
         fi
     fi
 done
-unset keycloak_env_vars
 
 
 # Paths
-export BITNAMI_VOLUME_DIR="/"
-export JAVA_HOME="/opt/java"
+export SM_VOLUME_DIR="/"
 export KEYCLOAK_BASE_DIR="/opt/keycloak"
 export KEYCLOAK_BIN_DIR="$KEYCLOAK_BASE_DIR/bin"
 export KEYCLOAK_PROVIDERS_DIR="$KEYCLOAK_BASE_DIR/providers"
@@ -144,6 +115,7 @@ export KEYCLOAK_DEFAULT_CONF_DIR="$KEYCLOAK_BASE_DIR/conf.default"
 export KEYCLOAK_MOUNTED_CONF_DIR="${KEYCLOAK_MOUNTED_CONF_DIR:-${KEYCLOAK_VOLUME_DIR}/conf}"
 # export KEYCLOAK_INITSCRIPTS_DIR="/docker-entrypoint-initdb.d"
 export KEYCLOAK_CONF_FILE="keycloak.conf"
+export CONF_FILE="${KEYCLOAK_CONF_DIR}/${KEYCLOAK_CONF_FILE}"
 
 # Keycloak kc.sh context
 export KC_RUN_IN_CONTAINER="${KC_RUN_IN_CONTAINER:-true}"
@@ -198,14 +170,14 @@ export KC_HTTPS_CERTIFICATE_KEY_FILE="${KC_HTTPS_CERTIFICATE_KEY_FILE:-}"
 
 # Keycloak database configuration
 KC_DB="${KC_DB:-"${KEYCLOAK_DATABASE_VENDOR:-}"}"
-export KC_DB="${KC_DB:-postgres}"
-export KEYCLOAK_DATABASE_HOST="${KEYCLOAK_DATABASE_HOST:-postgresql}"
-export KEYCLOAK_DATABASE_PORT="${KEYCLOAK_DATABASE_PORT:-5432}"
-export KEYCLOAK_DATABASE_NAME="${KEYCLOAK_DATABASE_NAME:-keycloak}"
+export KC_DB="${KC_DB:-}"
+export KEYCLOAK_DATABASE_HOST="${KEYCLOAK_DATABASE_HOST:-}"
+export KEYCLOAK_DATABASE_PORT="${KEYCLOAK_DATABASE_PORT:-}"
+export KEYCLOAK_DATABASE_NAME="${KEYCLOAK_DATABASE_NAME:-}"
 export KEYCLOAK_JDBC_PARAMS="${KEYCLOAK_JDBC_PARAMS:-}"
 export KEYCLOAK_JDBC_DRIVER="${KEYCLOAK_JDBC_DRIVER:-postgresql}"
 KC_DB_USERNAME="${KC_DB_USERNAME:-"${KEYCLOAK_DATABASE_USER:-}"}"
-export KC_DB_USERNAME="${KC_DB_USERNAME:-keycloak}"
+export KC_DB_USERNAME="${KC_DB_USERNAME:-}"
 KC_DB_PASSWORD="${KC_DB_PASSWORD:-"${KEYCLOAK_DATABASE_PASSWORD:-}"}"
 export KC_DB_PASSWORD="${KC_DB_PASSWORD:-}"
 KC_DB_SCHEMA="${KC_DB_SCHEMA:-"${KEYCLOAK_DATABASE_SCHEMA:-}"}"
@@ -217,69 +189,59 @@ export KEYCLOAK_DAEMON_USER="${KEYCLOAK_DAEMON_USER:-keycloak}"
 export KEYCLOAK_DAEMON_GROUP="${KEYCLOAK_DAEMON_GROUP:-keycloak}"
 
 
+for env_var in "${keycloak_env_vars[@]}"; do
+    if [[ -z "${!env_var}" ]]; then
+        unset "${env_var}"
+    fi
+done
 
-echo "Starting environment and file configuration for Keycloak..."
+unset keycloak_env_vars
 
-# --- PART 1: Set Admin Credentials (Environment Variables) ---
-echo "--- Checking Admin Credentials ---"
-admin_pass=$KC_BOOTSTRAP_ADMIN_PASSWORD
-if [ -z "$admin_pass" ]; then
+echo "--- Admin Credentials ---"
+echo "--------------------------------------------------------"
+echo "USERNAME: $KC_BOOTSTRAP_ADMIN_USERNAME"
+
+if [ -z "$KC_BOOTSTRAP_ADMIN_PASSWORD" ]; then
     echo "-> Admin password not set. Generating a random password."
     NEW_PASSWORD=$(head /dev/urandom | tr -dc 'A-Za-z0-9' | head -c 24)
     export KC_BOOTSTRAP_ADMIN_PASSWORD="$NEW_PASSWORD"
-    echo "--------------------------------------------------------"
-    echo "IMPORTANT: Generated admin password: $NEW_PASSWORD"
+    echo "PASSWORD: $NEW_PASSWORD"
     echo "Save it in a safe place!"
-    echo "--------------------------------------------------------"
 else
     echo "-> Admin password is already set via environment variable."
 fi
+echo "--------------------------------------------------------"
 
-# --- PART 2: Modify keycloak.conf ---
-echo ""
-echo "--- Configuring file: $CONF_FILE ---"
 
 if [ ! -f "$CONF_FILE" ]; then
     echo "ERROR: Configuration file '$CONF_FILE' not found! Skipping file modifications."
 elif [ ! -w "$CONF_FILE" ]; then
     echo "ERROR: No write permissions for file '$CONF_FILE'! Skipping file modifications."
 else
-    # Special handling for the database URL (db-url)
-    db_host=$KEYCLOAK_DATABASE_HOST
-    db_port=$KEYCLOAK_DATABASE_PORT
-    db_name=$KEYCLOAK_DATABASE_NAME
+    jdbc_params="$(echo "$KEYCLOAK_JDBC_PARAMS" | sed -E '/^$|^\&.+$/!s/^/\&/;s/\&/\\&/g')"
 
-    if [ -n "$db_host" ] && [ -n "$db_port" ] && [ -n "$db_name" ]; then
-        set_config "db" "postgres"
-        db_schema=$KC_DB_SCHEMA
-        new_db_url="jdbc:postgresql://${db_host}:${db_port}/${db_name}?currentSchema=${db_schema}"
-        set_config "db-url" "$new_db_url"
-    elif [ -n "$db_host" ] || [ -n "$db_port" ] || [ -n "$db_name" ]; then
-        echo "WARNING: To set 'db-url', all three variables (host, port, and database name) must be defined. Skipping." >&2
+    if [ -n "$KEYCLOAK_JDBC_DRIVER" ] && [ -n "$KEYCLOAK_DATABASE_HOST" ] && [ -n "$KEYCLOAK_DATABASE_PORT" ] && [ -n "$KEYCLOAK_DATABASE_NAME" ]; then
+        # set_config "db" "postgres"
+        set_config "db-url" "jdbc:${KEYCLOAK_JDBC_DRIVER}://${KEYCLOAK_DATABASE_HOST}:${KEYCLOAK_DATABASE_PORT}/${KEYCLOAK_DATABASE_NAME}?currentSchema=${KC_DB_SCHEMA}${jdbc_params}"
+    else
+        echo "INFO: To set 'db-url', all four variables (driver, host, port, and database name) must be defined. Skipping." >&2
     fi
 fi
 
-echo ""
-echo "Configuration finished. Preparing to start Keycloak process..."
-
-# --- PART 3: Determine startup command and execute ---
-# Default command is from the Dockerfile's CMD (available in "$@")
 cmd=("$@")
 
-# Switch to production 'start' command if KEYCLOAK_PRODUCTION is true
 if [[ "${KEYCLOAK_PRODUCTION}" == "true" ]]; then
     echo "-> Production mode enabled. Switching to 'start' command."
-    # Replace 'start-dev' with 'start' in the command array
     cmd=("${cmd[@]/start-dev/start}")
 else
     echo "-> Development mode enabled. Using 'start-dev' command."
 fi
 
-# Check if KEYCLOAK_EXTRA_ARGS is set and append them to the command
+if [ -n "$KEYCLOAK_EXTRA_ARGS_PREPENDED" ]; then
+    echo "-> Prepending extra arguments to the startup command: $KEYCLOAK_EXTRA_ARGS_PREPENDED"
+fi
 if [ -n "$KEYCLOAK_EXTRA_ARGS" ]; then
     echo "-> Appending extra arguments to the startup command: $KEYCLOAK_EXTRA_ARGS"
-    # The variable is intentionally unquoted to allow for word splitting by the shell
-    exec "${cmd[@]}" $KEYCLOAK_EXTRA_ARGS
-else
-    exec "${cmd[@]}"
 fi
+
+exec "${cmd[@]}" $KEYCLOAK_EXTRA_ARGS_PREPENDED $KEYCLOAK_EXTRA_ARGS

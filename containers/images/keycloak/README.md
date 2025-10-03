@@ -25,8 +25,7 @@ docker run \
     -e KC_BOOTSTRAP_ADMIN_USERNAME=admin \
     -e KC_BOOTSTRAP_ADMIN_PASSWORD=password \
     -p 8080:8080 \
-    -it sourcemation/keycloak \
-    bin/kc.sh start-dev
+    -it sourcemation/keycloak
 ```
 
 This command runs the Keycloak container in development mode, mapping port `8080` on your local machine to the container's default port `8080`.
@@ -42,6 +41,7 @@ This container uses the following environment variables for configuration. For a
     * Default: A random 24-character password will be generated and printed to the container logs on first run.
 
 ### Database Connection
+* `KEYCLOAK_JDBC_DRIVER`: The JDBC driver for the database connection. For PostgreSQL, the value is `postgresql`.
 * `KEYCLOAK_DATABASE_HOST`: The hostname or IP address of the PostgreSQL database server.
 * `KEYCLOAK_DATABASE_PORT`: The port number of the PostgreSQL database server.
 * `KEYCLOAK_DATABASE_NAME`: The name of the database Keycloak will connect to.
