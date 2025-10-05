@@ -19,7 +19,7 @@ LABEL name="nginx-mainline" \
 
 ENV NGINX_VERSION="1.29.1"
 ENV PKG_RELEASE="1~bookworm"
-ENV NJS_VERSION="0.9.1"
+ENV NJS_VERSION="0.9.2"
 ENV NJS_RELEASE="1~bookworm"
 ENV DYNPKG_RELEASE="1~bookworm"
 
