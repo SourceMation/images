@@ -47,8 +47,8 @@ This container uses the following environment variables for configuration. For a
 * `KEYCLOAK_DATABASE_HOST`: The hostname or IP address of the PostgreSQL database server.
 * `KEYCLOAK_DATABASE_PORT`: The port number of the PostgreSQL database server.
 * `KEYCLOAK_DATABASE_NAME`: The name of the database Keycloak will connect to.
-* `KEYCLOAK_DATABASE_USER`: The username for the database connection.
-* `KEYCLOAK_DATABASE_PASSWORD`: The password for the database user.
+* `KC_DB_USERNAME`: The username for the database connection.
+* `KC_DB_PASSWORD`: The password for the database user.
 
 ### HTTP & Server Configuration
 * `KEYCLOAK_PRODUCTION`: Set to `true` to run Keycloak with the production `start` command. If `false` or unset, it will use the `start-dev` command.
