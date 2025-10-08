@@ -155,6 +155,11 @@ test_container(){
             CONTAINER_RUN_COMMAND=""
             CONTAINER_RUN_PARAMETERS="-v /var/run/docker.sock:/var/run/docker.sock"
             ;;
+        "cassandra")
+            CONTAINER_RUN_COMMAND=""
+            CONTAINER_RUN_PARAMETERS="-e CASSANDRA_RPC_ADDRESS=127.0.0.1"
+            CONTAINER_STARTUP_TIMEOUT=60
+            ;;
         cnpg-*)
             CONTAINER_RUN_COMMAND=""
             CONTAINER_RUN_PARAMETERS="-e POSTGRES_HOST_AUTH_METHOD=trust"
@@ -361,7 +366,7 @@ test_container(){
 
     print_info 'Installing Python and PyTest in the Container'
     docker exec -u 0 "$CONTAINER_NAME" dnf install -y python3-pip procps iproute || docker exec -u 0 "$CONTAINER_NAME" microdnf install -y python3-pip procps iproute || docker exec -u 0 "$CONTAINER_NAME" bash -c 'apt-get update && apt-get install -y python3-pip procps iproute2'
-    docker exec -u 0 "$CONTAINER_NAME" pip3 install pytest pytest-dependency pytest-order requests psycopg2-binary redis pymongo pika || docker exec -u 0 "$CONTAINER_NAME" pip3 install pytest pytest-dependency pytest-order requests psycopg2-binary redis pymongo pika --break-system-packages
+    docker exec -u 0 "$CONTAINER_NAME" pip3 install pytest pytest-dependency pytest-order requests psycopg2-binary redis pymongo pika cassandra-driver || docker exec -u 0 "$CONTAINER_NAME" pip3 install pytest pytest-dependency pytest-order requests psycopg2-binary redis pymongo pika cassandra-driver --break-system-packages
 
     print_info 'Executing PyTest Scripts'
     docker exec -u 0 "$CONTAINER_NAME" /bin/bash -c "cd /tmp/tests && python3 -m pytest -vv ${CONTAINER_TEST_FILES}" || print_fail "PyTest execution failed"

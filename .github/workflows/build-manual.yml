@@ -23,6 +23,7 @@ on:
           - apicast
           - camel-k
           - camel-karavan
+          - cassandra
           - cnpg-16
           - cnpg-17
           - debian-11-slim
