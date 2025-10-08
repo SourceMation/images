@@ -58,6 +58,7 @@ on:
           - kibana
           - kong
           - kubectl
+          - kube-state-metrics
           - manageiq
           - mariadb
           - maven
