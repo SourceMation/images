@@ -34,6 +34,7 @@ on:
           - etcd
           - external-dns
           - external-secrets
+          - fluentd
           - gcc-13
           - gcc-14
           - gcc-15

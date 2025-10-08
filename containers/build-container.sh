@@ -173,6 +173,9 @@ test_container(){
         "external-dns")
             ENTRYPOINT_CMD=--entrypoint=""
             ;;
+        "fluentd")
+            CONTAINER_RUN_COMMAND=""
+            ;;
         "grafana")
             CONTAINER_RUN_COMMAND=""
             ;;
