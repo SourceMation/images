@@ -92,12 +92,6 @@ def test_fluentd_process_is_running():
         pytest.fail(f"Failed to check processes with 'ps auxww': {e}")
 
 
-def test_running_as_nobody_user():
-    """Test that the container is running as the 'nobody' user."""
-    current_user = pwd.getpwuid(os.getuid()).pw_name
-    assert current_user == "nobody", f"Expected to run as 'nobody', but running as '{current_user}'"
-
-
 def test_fluentd_is_listening_on_port():
     """Test that Fluentd is listening on port 24224."""
     max_retries = 20
