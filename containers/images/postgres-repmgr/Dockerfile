@@ -24,19 +24,26 @@ LABEL name="postgres-repmgr" \
 RUN set -eux; \
     apt-get update; \
     apt-get install -y --no-install-recommends \
-      ca-certificates \
-      wget \
       build-essential \
-      libpq-dev \
-      libxslt1-dev \
-      libxml2-dev \
-      libedit-dev \
+      ca-certificates \
+      flex \
       libcurl4-openssl-dev \
+      libedit-dev \
       libjson-c-dev \
+      libkrb5-dev \
+      liblz4-dev  \
+      libnuma-dev \
+      libpam0g-dev \ 
+      libpq-dev \
+      libreadline-dev \
+      libselinux1-dev \
+      libxml2-dev \
+      libxslt1-dev \
+      libzstd-dev \
       postgresql-server-dev-all \
       tar \
-      flex \
-      libselinux1-dev libzstd-dev liblz4-dev libpam0g-dev libkrb5-dev zlib1g-dev libreadline-dev; \
+      wget \
+      zlib1g-dev ; \
     \
     wget --progress=dot:giga -O /tmp/postgres-repmgr.tar.gz ${BINARY_URL}; \
     mkdir /tmp/repmgr;\
