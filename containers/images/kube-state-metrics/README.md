@@ -1,9 +1,3 @@
-Of course. Running `kube-state-metrics` via a simple `docker run` command is misleading, as it requires access to the Kubernetes API server to function correctly. The primary and intended use is deployment within a Kubernetes cluster.
-
-Here is the revised `README.md` with the `docker run` examples removed and the focus shifted to in-cluster deployment.
-
------
-
 # kube-state-metrics packaged by SourceMation
 
 kube-state-metrics (KSM) is a simple service that listens to the Kubernetes API server and generates metrics about the state of Kubernetes objects. It provides valuable insights into cluster health by exposing metrics for deployments, nodes, pods, and other Kubernetes resources without modifying the objects themselves.
