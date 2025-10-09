@@ -105,3 +105,24 @@ ENTRYPOINT_CMD="/bin/bash"
 CONTAINER_RUN_COMMAND=""
 ```
 
+## Problem with environment variables
+
+In rare ocassions (example - `debian-13-slim` base image), the container won't
+build because of some environment variable like ones responsible for dates,
+example:
+
+```
+LC_TIME=pl_PL.UTF-8
+```
+
+The easiest way to fix it to run your local build process in the new shell without
+these extra environment variables:
+
+```bash
+env -i bash
+```
+of
+```bash
+env -i fish
+```
+
