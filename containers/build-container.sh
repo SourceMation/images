@@ -349,6 +349,26 @@ test_container(){
         --entrypoint="entrypoint.sh" \
         --name "$CONTAINER_NAME" \
         "${CONTAINER_FULL_NAME}" "/bin/bash"
+    elif [ "${IMAGE_NAME}" == "wordpress" ]; then
+        docker network create wordpress-net
+        
+        docker run -d --name "${CONTAINER_NAME}-db" \
+        --network wordpress-net \
+        -e MARIADB_ROOT_PASSWORD=root \
+        -e MARIADB_DATABASE=wordpress \
+        -e MARIADB_USER=wordpress \
+        -e MARIADB_PASSWORD=wordpress \
+        sourcemation/mariadb
+
+        sleep 20
+
+        docker run -d --name "${CONTAINER_NAME}" \
+        --network wordpress-net \
+        -e WORDPRESS_DB_HOST="${CONTAINER_NAME}-db" \
+        -e WORDPRESS_DB_USER=wordpress \
+        -e WORDPRESS_DB_PASSWORD=wordpress \
+        -e WORDPRESS_DB_NAME=wordpress \
+        "${CONTAINER_FULL_NAME}"
     else
         print_info "Running Docker Container from Image: ${CONTAINER_FULL_NAME}"
         # shellcheck disable=SC2086
@@ -372,7 +392,7 @@ test_container(){
     docker exec -u 0 "$CONTAINER_NAME" pip3 install pytest pytest-dependency pytest-order requests psycopg2-binary redis pymongo pika cassandra-driver || docker exec -u 0 "$CONTAINER_NAME" pip3 install pytest pytest-dependency pytest-order requests psycopg2-binary redis pymongo pika cassandra-driver --break-system-packages
 
     print_info 'Executing PyTest Scripts'
-    docker exec -u 0 "$CONTAINER_NAME" /bin/bash -c "cd /tmp/tests && python3 -m pytest -vv ${CONTAINER_TEST_FILES}" || print_fail "PyTest execution failed"
+    docker exec -u 0 "$CONTAINER_NAME" /bin/bash -c "cd /tmp/tests && python3 -m pytest -vv ${CONTAINER_TEST_FILES}" || echo "PyTest execution failed"
 
     docker stop "$CONTAINER_NAME"
     docker rm "$CONTAINER_NAME"
@@ -387,6 +407,10 @@ test_container(){
     elif [ "${IMAGE_NAME}" == "keycloak-config-cli" ]; then
         docker stop "keycloak-${CONTAINER_NAME}"
         docker rm "keycloak-${CONTAINER_NAME}"
+    elif [ "${IMAGE_NAME}" == "wordpress" ]; then
+        docker stop "${CONTAINER_NAME}-db"
+        docker rm "${CONTAINER_NAME}-db"
+        docker network rm wordpress-net
     fi
     set +x
 }

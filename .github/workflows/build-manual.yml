@@ -111,6 +111,7 @@ on:
           - sealed-secrets-controller
           - servicemix
           - thanos
+          - wordpress
           - zookeeper
 #          - postgres-16-bullseye-oneshot
 #          - cnpg-16-oneshot
