@@ -208,6 +208,9 @@ test_container(){
         "manageiq")
             CONTAINER_RUN_COMMAND=""
             ;;
+        "memcached")
+            CONTAINER_RUN_COMMAND=""
+            ;;
         "metrics-server")
             ENTRYPOINT_CMD=--entrypoint=""
            ;;
@@ -389,7 +392,7 @@ test_container(){
 
     print_info 'Installing Python and PyTest in the Container'
     docker exec -u 0 "$CONTAINER_NAME" dnf install -y python3-pip procps iproute || docker exec -u 0 "$CONTAINER_NAME" microdnf install -y python3-pip procps iproute || docker exec -u 0 "$CONTAINER_NAME" bash -c 'apt-get update && apt-get install -y python3-pip procps iproute2'
-    docker exec -u 0 "$CONTAINER_NAME" pip3 install pytest pytest-dependency pytest-order requests psycopg2-binary redis pymongo pika cassandra-driver || docker exec -u 0 "$CONTAINER_NAME" pip3 install pytest pytest-dependency pytest-order requests psycopg2-binary redis pymongo pika cassandra-driver --break-system-packages
+    docker exec -u 0 "$CONTAINER_NAME" pip3 install pytest pytest-dependency pytest-order requests psycopg2-binary redis pymongo pika cassandra-driver pymemcache|| docker exec -u 0 "$CONTAINER_NAME" pip3 install pytest pytest-dependency pytest-order requests psycopg2-binary redis pymongo pika cassandra-driver pymemcache --break-system-packages
 
     print_info 'Executing PyTest Scripts'
     docker exec -u 0 "$CONTAINER_NAME" /bin/bash -c "cd /tmp/tests && python3 -m pytest -vv ${CONTAINER_TEST_FILES}" || echo "PyTest execution failed"

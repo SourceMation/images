@@ -62,6 +62,7 @@ on:
           - manageiq
           - mariadb
           - maven
+          - memcached
           - metrics-server
           - micronaut
           - minio
