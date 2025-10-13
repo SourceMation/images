@@ -16,7 +16,7 @@ LABEL name="phpmyadmin" \
       version="5.2.3" \
       io.k8s.display-name="${LONGNAME}" \
       io.k8s.description="Provides ${LONGNAME}" \
-      io.openshift.tags="phpmyadmin debian-12-slim"
+      io.openshift.tags="phpmyadmin debian-13-slim"
 
 ENV APACHE_DOCUMENT_ROOT=/var/www/html
 
