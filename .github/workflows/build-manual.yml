@@ -84,6 +84,7 @@ on:
           - openapi-generator-cli
           - openldap
           - pgpool
+          - phpmyadmin
           - postgres-16
           - postgres-17
           - postgres-18
