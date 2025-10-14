@@ -1,4 +1,4 @@
-FROM sourcemation/postgres-17
+FROM sourcemation/postgres-18
 
 ARG BUILD_DATE
 ARG TARGETARCH
@@ -13,11 +13,11 @@ LABEL name="postgres-repmgr" \
   licenses="GPLv2" \
   created="$BUILD_DATE" \
   architecture="$TARGETARCH" \
-  summary="Postgresql-repmgr on Debian 12 Slim Container" \
-  description="Provides postgres-repmgr on Debian 12 Slim Container" \
+  summary="Postgresql-repmgr on Debian 13 Slim Container" \
+  description="Provides postgres-repmgr on Debian 13 Slim Container" \
   version="5.5.0" \
-  io.k8s.display-name="Postgresql-repmgr on Debian 12 Slim Container" \
-  io.k8s.description="Provides postgres-repmgr on Debian 12 Slim Container" \
+  io.k8s.display-name="Postgresql-repmgr on Debian 13 Slim Container" \
+  io.k8s.description="Provides postgres-repmgr on Debian 13 Slim Container" \
   io.openshift.tags="postgres repmgr debian"
 
 
@@ -27,6 +27,7 @@ RUN set -eux; \
       build-essential \
       ca-certificates \
       flex \
+      libcurl4 \
       libcurl4-openssl-dev \
       libedit-dev \
       libjson-c-dev \
@@ -53,7 +54,7 @@ RUN set -eux; \
         --strip-components=1 \
         --no-same-owner; \
     \
-    cd /tmp/repmgr && ./configure && make LDFLAGS="-L /usr/lib/postgresql/17/lib" USE_PGXS=1 install; \
+    cd /tmp/repmgr && ./configure && make LDFLAGS="-L /usr/lib/postgresql/18/lib" USE_PGXS=1 install; \
     cd /; \
     apt-get purge -y --auto-remove \
       ca-certificates \
