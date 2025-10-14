@@ -305,6 +305,23 @@ test_container(){
             -p 8003:8003 \
             -p 8004:8004 \
             "${CONTAINER_FULL_NAME}"
+    elif [ "${IMAGE_NAME}" == "phpmyadmin" ]; then
+        docker network create my-app-net
+        
+        docker run -d --name "${CONTAINER_NAME}-db" \
+        --network my-app-net \
+        -e MARIADB_ROOT_PASSWORD=root \
+        -e MARIADB_DATABASE=mariadb \
+        -e MARIADB_USER=mariadb \
+        -e MARIADB_PASSWORD=mariadb \
+        sourcemation/mariadb
+
+        sleep 20
+
+        docker run -d --name "${CONTAINER_NAME}" \
+        --network my-app-net \
+        -e PMA_HOST="${CONTAINER_NAME}-db" \
+        "${CONTAINER_FULL_NAME}"
     elif [ "${IMAGE_NAME}" == "postgres-repmgr" ]; then
         docker network create postgres-repmgr-net
         
@@ -395,7 +412,7 @@ test_container(){
     docker exec -u 0 "$CONTAINER_NAME" pip3 install pytest pytest-dependency pytest-order requests psycopg2-binary redis pymongo pika cassandra-driver pymemcache|| docker exec -u 0 "$CONTAINER_NAME" pip3 install pytest pytest-dependency pytest-order requests psycopg2-binary redis pymongo pika cassandra-driver pymemcache --break-system-packages
 
     print_info 'Executing PyTest Scripts'
-    docker exec -u 0 "$CONTAINER_NAME" /bin/bash -c "cd /tmp/tests && python3 -m pytest -vv ${CONTAINER_TEST_FILES}" || echo "PyTest execution failed"
+    docker exec -u 0 "$CONTAINER_NAME" /bin/bash -c "cd /tmp/tests && python3 -m pytest -vv ${CONTAINER_TEST_FILES}" || print_fail "PyTest execution failed"
 
     docker stop "$CONTAINER_NAME"
     docker rm "$CONTAINER_NAME"
@@ -403,6 +420,10 @@ test_container(){
         docker stop kong-database
         docker rm kong-database
         docker network rm kong-net
+    elif [ "${IMAGE_NAME}" == "phpmyadmin" ]; then
+        docker stop "${CONTAINER_NAME}-db"
+        docker rm "${CONTAINER_NAME}-db"
+        docker network rm my-app-net
     elif [ "${IMAGE_NAME}" == "postgres-repmgr" ]; then
         docker stop "${CONTAINER_NAME}-standby"
         docker rm "${CONTAINER_NAME}-standby"
