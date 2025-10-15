@@ -208,6 +208,9 @@ test_container(){
         "manageiq")
             CONTAINER_RUN_COMMAND=""
             ;;
+        "matomo")
+            CONTAINER_RUN_COMMAND=""
+            ;;
         "memcached")
             CONTAINER_RUN_COMMAND=""
             ;;
