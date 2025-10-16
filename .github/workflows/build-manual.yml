@@ -62,6 +62,7 @@ on:
           - kube-state-metrics
           - manageiq
           - mariadb
+          - matomo
           - maven
           - memcached
           - metrics-server
