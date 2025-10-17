@@ -282,14 +282,14 @@ test_container(){
 
     print_info "Running Docker Container from Image: ${CONTAINER_FULL_NAME}"
     if [ "${IMAGE_NAME}" == "kong" ]; then
-        docker network create kong-net
-        docker run -d --name kong-database --network=kong-net -p 5432:5432 -e "POSTGRES_USER=kong" -e "POSTGRES_DB=kong" -e "POSTGRES_PASSWORD=kongpass" postgres:13
-        docker run --rm --network=kong-net -e "KONG_DATABASE=postgres" -e "KONG_PG_HOST=kong-database" -e "KONG_PG_PASSWORD=kongpass" -e "KONG_PASSWORD=test" "${CONTAINER_FULL_NAME}" kong migrations bootstrap
+        docker network create "${CONTAINER_NAME}-net"
+        docker run -d --name "${CONTAINER_NAME}-db" --network "${CONTAINER_NAME}-net" -p 5432:5432 -e "POSTGRES_USER=kong" -e "POSTGRES_DB=kong" -e "POSTGRES_PASSWORD=kongpass" postgres:13
+        docker run --rm --network "${CONTAINER_NAME}-net" -e "KONG_DATABASE=postgres" -e "KONG_PG_HOST=${CONTAINER_NAME}-db" -e "KONG_PG_PASSWORD=kongpass" -e "KONG_PASSWORD=test" "${CONTAINER_FULL_NAME}" kong migrations bootstrap
 
         docker run -d --name "$CONTAINER_NAME" \
-            --network=kong-net \
+            --network "${CONTAINER_NAME}-net" \
             -e "KONG_DATABASE=postgres" \
-            -e "KONG_PG_HOST=kong-database" \
+            -e "KONG_PG_HOST=${CONTAINER_NAME}-db" \
             -e "KONG_PG_USER=kong" \
             -e "KONG_PG_PASSWORD=kongpass" \
             -e "KONG_PROXY_ACCESS_LOG=/dev/stdout" \
@@ -309,10 +309,10 @@ test_container(){
             -p 8004:8004 \
             "${CONTAINER_FULL_NAME}"
     elif [ "${IMAGE_NAME}" == "phpmyadmin" ]; then
-        docker network create my-app-net
+        docker network create "${CONTAINER_NAME}-net"
         
         docker run -d --name "${CONTAINER_NAME}-db" \
-        --network my-app-net \
+        --network "${CONTAINER_NAME}-net" \
         -e MARIADB_ROOT_PASSWORD=root \
         -e MARIADB_DATABASE=mariadb \
         -e MARIADB_USER=mariadb \
@@ -322,13 +322,13 @@ test_container(){
         sleep 20
 
         docker run -d --name "${CONTAINER_NAME}" \
-        --network my-app-net \
+        --network "${CONTAINER_NAME}-net" \
         -e PMA_HOST="${CONTAINER_NAME}-db" \
         "${CONTAINER_FULL_NAME}"
     elif [ "${IMAGE_NAME}" == "postgres-repmgr" ]; then
-        docker network create postgres-repmgr-net
+        docker network create "${CONTAINER_NAME}-net"
         
-        docker run -d --network postgres-repmgr-net --name "${CONTAINER_NAME}" \
+        docker run -d --network "${CONTAINER_NAME}-net" --name "${CONTAINER_NAME}" \
         -e POSTGRES_USER=postgres \
         -e POSTGRES_PASSWORD=mysecretpassword \
         -e REPMGR_ROLE=primary \
@@ -341,7 +341,7 @@ test_container(){
 
         sleep 15
 
-        docker run -d --network postgres-repmgr-net --name "${CONTAINER_NAME}-standby" \
+        docker run -d --network "${CONTAINER_NAME}-net" --name "${CONTAINER_NAME}-standby" \
         -e POSTGRES_USER=postgres \
         -e POSTGRES_PASSWORD=mysecretpassword \
         -e REPMGR_ROLE=standby \
@@ -373,10 +373,10 @@ test_container(){
         --name "$CONTAINER_NAME" \
         "${CONTAINER_FULL_NAME}" "/bin/bash"
     elif [ "${IMAGE_NAME}" == "wordpress" ]; then
-        docker network create wordpress-net
+        docker network create "${CONTAINER_NAME}-net"
         
         docker run -d --name "${CONTAINER_NAME}-db" \
-        --network wordpress-net \
+        --network "${CONTAINER_NAME}-net" \
         -e MARIADB_ROOT_PASSWORD=root \
         -e MARIADB_DATABASE=wordpress \
         -e MARIADB_USER=wordpress \
@@ -386,7 +386,7 @@ test_container(){
         sleep 20
 
         docker run -d --name "${CONTAINER_NAME}" \
-        --network wordpress-net \
+        --network "${CONTAINER_NAME}-net" \
         -e WORDPRESS_DB_HOST="${CONTAINER_NAME}-db" \
         -e WORDPRESS_DB_USER=wordpress \
         -e WORDPRESS_DB_PASSWORD=wordpress \
@@ -420,24 +420,24 @@ test_container(){
     docker stop "$CONTAINER_NAME"
     docker rm "$CONTAINER_NAME"
     if [ "${IMAGE_NAME}" == "kong" ]; then
-        docker stop kong-database
-        docker rm kong-database
-        docker network rm kong-net
+        docker stop "${CONTAINER_NAME}-db"
+        docker rm "${CONTAINER_NAME}-db"
+        docker network rm "${CONTAINER_NAME}-net"
     elif [ "${IMAGE_NAME}" == "phpmyadmin" ]; then
         docker stop "${CONTAINER_NAME}-db"
         docker rm "${CONTAINER_NAME}-db"
-        docker network rm my-app-net
+        docker network rm "${CONTAINER_NAME}-net"
     elif [ "${IMAGE_NAME}" == "postgres-repmgr" ]; then
         docker stop "${CONTAINER_NAME}-standby"
         docker rm "${CONTAINER_NAME}-standby"
-        docker network rm postgres-repmgr-net
+        docker network rm "${CONTAINER_NAME}-net"
     elif [ "${IMAGE_NAME}" == "keycloak-config-cli" ]; then
         docker stop "keycloak-${CONTAINER_NAME}"
         docker rm "keycloak-${CONTAINER_NAME}"
     elif [ "${IMAGE_NAME}" == "wordpress" ]; then
         docker stop "${CONTAINER_NAME}-db"
         docker rm "${CONTAINER_NAME}-db"
-        docker network rm wordpress-net
+        docker network rm "${CONTAINER_NAME}-net"
     fi
     set +x
 }
