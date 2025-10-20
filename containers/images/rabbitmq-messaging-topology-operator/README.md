@@ -22,7 +22,7 @@ This image uses the following environment variables:
 
 ```
 APP_NAME="rabbitmq-messaging-topology-operator"
-APP_VERSION="1.17.4"
+APP_VERSION="1.18.0"
 ```
 
 This image does not expose any ports. However, you can expose the ports you need by using the `-p` option, setting up the ports manually, or with kubernetes or docker-compose. You can also create an image with the ports exposed by default.

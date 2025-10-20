@@ -1,7 +1,7 @@
 FROM sourcemation/golang-1.24 AS builder
 
 ARG TARGETARCH
-ARG VERSION=RELEASE.2025-09-07T16-13-09Z
+ARG VERSION=RELEASE.2025-10-15T17-29-55Z
 
 ADD https://github.com/minio/minio/archive/refs/tags/${VERSION}.tar.gz .
 
@@ -34,7 +34,7 @@ LABEL name="minio" \
   architecture="${TARGETARCH}" \
   summary="${LONGNAME}" \
   description="Provides ${LONGNAME}" \
-  version="RELEASE.2025-09-07T16-13-09Z" \
+  version="RELEASE.2025-10-15T17-29-55Z" \
   io.k8s.display-name="${LONGNAME}" \
   io.k8s.description="Provides ${LONGNAME}" \
   io.openshift.tags="minio debian-12-slim"

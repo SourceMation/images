@@ -2,7 +2,7 @@ FROM sourcemation/jdk-21:latest
 
 ARG BUILD_DATE
 ARG TARGETARCH
-ARG KEYCLOAK_VER="26.4.0"
+ARG KEYCLOAK_VER="26.4.1"
 ENV KEYCLOAK_HOME=/opt/keycloak
 
 RUN set -ex; \
@@ -24,7 +24,7 @@ LABEL name="keycloak" \
   architecture="$TARGETARCH" \
   summary="Keycloak on Debian 12 Slim Container" \
   description="Provides Keycloak on Debian 12 Slim Container" \
-  version="26.4.0" \
+  version="26.4.1" \
   io.k8s.display-name="Keycloak on Debian 12 Slim Container" \
   io.k8s.description="Provides Keycloak on Debian 12 Slim Container" \
   io.openshift.tags="keycloak debian"
