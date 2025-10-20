@@ -176,6 +176,9 @@ test_container(){
         "fluentd")
             CONTAINER_RUN_COMMAND=""
             ;;
+        "ghost")
+            CONTAINER_RUN_COMMAND=""
+            ;;
         "grafana")
             CONTAINER_RUN_COMMAND=""
             ;;
