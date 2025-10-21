@@ -26,6 +26,7 @@ on:
           - cassandra
           - cnpg-16
           - cnpg-17
+          - cnpg-18
           - debian-11-slim
           - debian-12-slim
           - debian-13-slim
