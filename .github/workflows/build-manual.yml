@@ -237,7 +237,7 @@ jobs:
           echo "Building container: $container"
           # The cut -d',' -f2- won't make empty list for single element ...
           if [[ $to_build_list == $container ]]; then
-            gh workflow run build-manual.yml  --repo SourceMation/images -f container_name=$container
+            gh workflow run build-manual.yml  --repo SourceMation/images -f container_name=$container -f push_image=${{ inputs.push_image }} -f test_image=${{ inputs.test_image }} -f push_readme=${{ inputs.push_readme }}
           else
-            gh workflow run build-manual.yml  --repo SourceMation/images -f container_name=$container  -f next_containers=$to_build_list
+            gh workflow run build-manual.yml  --repo SourceMation/images -f container_name=$container  -f push_image=${{ inputs.push_image }} -f test_image=${{ inputs.test_image }} -f push_readme=${{ inputs.push_readme }} -f next_containers=$to_build_list
           fi
