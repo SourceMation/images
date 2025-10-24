@@ -41,10 +41,10 @@ We'd love for you to contribute! You can request new features, report bugs, or s
 
 ### Image and its components Risk Analysis report
 
-A detailed risk analysis report of the image and its components can be found on the [SourceMation platform](https://platform.sourcemation.com/images/azure-cli).
+A detailed risk analysis report of the image and its components can be found on the [SourceMation platform](https://sourcemation.com/catalog/azure-cli).
 
 For more information, check out the [overview of Azure CLI](https://docs.microsoft.com/en-us/cli/azure/) page.
 
 ### Licenses
 
-The base license for the solution (Azure CLI) is the [MIT License](https://github.com/Azure/azure-cli/blob/dev/LICENSE). The licenses for each component shipped as part of this image can be found on [the image's appropriate SourceMation entry](https://platform.sourcemation.com/images/azure-cli).
+The base license for the solution (Azure CLI) is the [MIT License](https://github.com/Azure/azure-cli/blob/dev/LICENSE). The licenses for each component shipped as part of this image can be found on [the image's appropriate SourceMation entry](https://sourcemation.com/catalog/azure-cli).

@@ -48,7 +48,7 @@ organisations own the trademarks mentioned in the offering. The
 
 A detailed risk analysis report of the image and its components can be
 found on the [SourceMation
-platform](https://sourcemation.com/images/rabbitmq-messaging-topology-operator).
+platform](https://sourcemation.com/catalog/rabbitmq-messaging-topology-operator).
 
 For more information, check out the [overview of
 RabbitMQ Messaging Topology Operator](https://github.com/rabbitmq/messaging-topology-operator) page.
@@ -58,4 +58,4 @@ RabbitMQ Messaging Topology Operator](https://github.com/rabbitmq/messaging-topo
 The base license for the solution (RabbitMQ Messaging Topology Operator) is the
 [Mozilla Public License 2.0 (MPLv2)](https://www.mozilla.org/en-US/MPL/2.0/). The licenses for each component shipped as
 part of this image can be found on [the image's appropriate SourceMation
-entry](https://sourcemation.com/images/rabbitmq-messaging-topology-operator).
+entry](https://sourcemation.com/catalog/rabbitmq-messaging-topology-operator).
