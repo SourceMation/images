@@ -16,7 +16,7 @@ available from SourceMation.**
 
 
 **Lastly we will continue to build this image for a limited time, because the
-underlying base image `sourcemation/debian-12-slim` is still supported and
+underlying base image `sourcemation/debian-13-slim` is still supported and
 getting security updates. However, we do not plan to do it indefinitely.**
 
 ---
@@ -35,7 +35,7 @@ to the latest patch version. For user convenience, the `go` toolchain is
 pre-installed and ready to use.
 
 The base image is the latest, at the time of the build,
-`sourcemation/debian-12-slim` image. It's gives you fully independent and
+`sourcemation/debian-13-slim` image. It's gives you fully independent and
 self-contained Golang environment, that is regularly updated and patched.
 Lastly the build process takes advantage of cryptographic signatures to ensure
 that the source code is not tampered with.

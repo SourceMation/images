@@ -1,4 +1,4 @@
-FROM sourcemation/debian-12-slim:latest AS build
+FROM sourcemation/debian-13-slim:latest AS build
 
 ENV PATH /usr/local/go/bin:$PATH
 
@@ -55,7 +55,7 @@ RUN set -eux; \
 	find /target -newer /target/usr/local/go -exec sh -c 'ls -ld "$@" && exit "$#"' -- '{}' +
 
 
-FROM sourcemation/debian-12-slim:latest
+FROM sourcemation/debian-13-slim:latest
 
 ARG BUILD_DATE
 ARG TARGETARCH
@@ -66,13 +66,13 @@ LABEL name="golang-1.23" \
       licenses="BSD 3-Clause \"New\" or \"Revised\" License" \
       created="$BUILD_DATE" \
       architecture="$TARGETARCH" \
-      summary="Golang on debian-12-slim container" \
-      description="Provides golang on Debian 12 Slim Container" \
+      summary="Golang on debian-13-slim container" \
+      description="Provides golang on Debian 13 Slim Container" \
       version="1.23.12" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
-      io.k8s.display-name="Golang on Debian 12 Slim Container" \
-      io.k8s.description="Provides golang on Debian 12 Slim Container" \
-      io.openshift.tags="golang debian-12-slim"
+      io.k8s.display-name="Golang on Debian 13 Slim Container" \
+      io.k8s.description="Provides golang on Debian 13 Slim Container" \
+      io.openshift.tags="golang debian-13-slim"
 
 RUN set -eux; \
 	apt-get update; \
