@@ -149,7 +149,8 @@ on:
       ref:
         description: 'Git branch or ref to run the workflow on'
         required: false
-        default: ${{ github.ref_name }}
+        type: string
+        default: 'main'
 jobs:
   build_container_amd64:
     name: Build container (amd64)
