@@ -44,10 +44,10 @@ We'd love for you to contribute! You can request new features, report bugs, or s
 
 ### Image and its components Risk Analysis report
 
-A detailed risk analysis report of the image and its components can be found on the [SourceMation platform](https://sourcemation.com/images/rabbitmq-default-user-credential-updater).
+A detailed risk analysis report of the image and its components can be found on the [SourceMation platform](https://sourcemation.com/catalog/rabbitmq-default-user-credential-updater).
 
 For more information, check out the [overview of RabbitMQ](https://www.rabbitmq.com/) page.
 
 ### Licenses
 
-The base license for the solution (RabbitMQ Default User Credential Updater) is the [MPL-2.0](https://www.mozilla.org/en-US/MPL/2.0/). The licenses for each component shipped as part of this image can be found on [the image's appropriate SourceMation entry](https://sourcemation.com/images/rabbitmq-default-user-credential-updater).
+The base license for the solution (RabbitMQ Default User Credential Updater) is the [MPL-2.0](https://www.mozilla.org/en-US/MPL/2.0/). The licenses for each component shipped as part of this image can be found on [the image's appropriate SourceMation entry](https://sourcemation.com/catalog/rabbitmq-default-user-credential-updater).

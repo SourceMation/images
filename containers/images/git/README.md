@@ -83,12 +83,12 @@ We'd love for you to contribute! You can request new features, report bugs, or s
 
 ### Image and its components Risk Analysis report
 
-A detailed risk analysis report of the image and its components can be found on the [SourceMation platform](https://sourcemation.com/images/git).
+A detailed risk analysis report of the image and its components can be found on the [SourceMation platform](https://sourcemation.com/catalog/git).
 For more information, check out the [overview of Git](https://git-scm.com) page.
 
 ### Licenses
 
-The base license for the solution (Git) is the [GNU General Public License v2.0](https://github.com/git/git/blob/master/COPYING). The licenses for each component shipped as part of this image can be found on [the image's appropriate SourceMation entry](https://sourcemation.com/images/git).
+The base license for the solution (Git) is the [GNU General Public License v2.0](https://github.com/git/git/blob/master/COPYING). The licenses for each component shipped as part of this image can be found on [the image's appropriate SourceMation entry](https://sourcemation.com/catalog/git).
 
 ### Additional Resources
 

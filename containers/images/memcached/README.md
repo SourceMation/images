@@ -63,7 +63,7 @@ organisations own the trademarks mentioned in the offering. The
 
 A detailed risk analysis report of the image and its components can be
 found on the [SourceMation
-platform](https://sourcemation.com/images/memcached).
+platform](https://sourcemation.com/catalog/memcached).
 
 For more information, check out the [overview of
 Memcached](https://memcached.org/) page.
@@ -73,4 +73,4 @@ Memcached](https://memcached.org/) page.
 The base license for the solution (Memcached) is the
 [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause). The licenses for each component shipped as
 part of this image can be found on [the image's appropriate SourceMation
-entry](https://sourcemation.com/images/memcached).
+entry](https://sourcemation.com/catalog/memcached).

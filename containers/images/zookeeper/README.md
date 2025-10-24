@@ -157,7 +157,7 @@ organisations own the trademarks mentioned in the offering. The
 
 A detailed risk analysis report of the image and its components can be
 found on the [SourceMation
-platform](https://sourcemation.com/images/zookeeper).
+platform](https://sourcemation.com/catalog/zookeeper).
 
 For more information, check out the [overview of
 Apache ZooKeeper](https://zookeeper.apache.org/) page.
@@ -167,4 +167,4 @@ Apache ZooKeeper](https://zookeeper.apache.org/) page.
 The base license for the solution (Apache ZooKeeper) is the
 [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0). The licenses for each component shipped as
 part of this image can be found on [the image's appropriate SourceMation
-entry](https://sourcemation.com/images/zookeeper).
+entry](https://sourcemation.com/catalog/zookeeper).

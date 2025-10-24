@@ -142,7 +142,7 @@ trademarks mentioned in the offering. The
 
 A detailed risk analysis report of the image and its components can be
 found on the [SourceMation
-platform](https://sourcemation.com/images/external-dns).
+platform](https://sourcemation.com/catalog/external-dns).
 
 For more information, check out the [overview of
 external-dns](https://kubernetes-sigs.github.io/external-dns/) page.
@@ -152,4 +152,4 @@ external-dns](https://kubernetes-sigs.github.io/external-dns/) page.
 The base license for the solution (external-dns) is the
 [Apache License 2.0](https://github.com/kubernetes-sigs/external-dns/blob/master/LICENSE). The licenses for each component shipped as
 part of this image can be found on [the image's appropriate SourceMation
-entry](https://sourcemation.com/images/external-dns).
+entry](https://sourcemation.com/catalog/external-dns).
