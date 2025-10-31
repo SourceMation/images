@@ -17,8 +17,8 @@ sed -i "s#^ARG OPENSSL_VERSION=.*#ARG OPENSSL_VERSION=${OPENSSL_VERSION}#" Docke
 sed -i "s#^ARG OPENSSL_SHA256=.*#ARG OPENSSL_SHA256=${OPENSSL_SHA256}#" Dockerfile || exit 1
 
 echo "-> Preparing erlang variables"
-ERLANG_VER_SRC="https://api.github.com/repos/erlang/otp/releases/latest"
-ERLANG_VERSION=$(curl -s ${ERLANG_VER_SRC} |grep -o '"tag_name": "[^"]*' |cut -d'"' -f4 |sed 's/OTP-//')
+ERLANG_VER_SRC="https://api.github.com/repos/erlang/otp/releases"
+ERLANG_VERSION=$(curl -s ${ERLANG_VER_SRC} | grep -o '"tag_name": "OTP-[^"]*"' | cut -d'"' -f4 | sed 's/OTP-//' | grep -v '^27\.' | sort -V | tail -1)
 ERLANG_DOWNLOAD_SHA256=https://github.com/erlang/otp/releases/download/OTP-${ERLANG_VERSION}/SHA256.txt
 ERLANG_SHA256=$(curl -fsL ${ERLANG_DOWNLOAD_SHA256}|grep 'otp_src' |awk '{print $1}')
 
