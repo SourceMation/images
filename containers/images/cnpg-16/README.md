@@ -7,7 +7,7 @@ notably `pgaudit`, `pgvector`, and `pg-failover-slots`.
 
 Constructed by the SourceMation automation team, this PostgreSQL distribution,
 version 16.X.Y, receives regular updates. Built upon the latest
-`sourcemation/debian-12-slim` image at build time, it provides a compact,
+`sourcemation/debian-13-slim` image at build time, it provides a compact,
 secure, and current base. Cryptographic signatures are employed during the
 build to ensure source and package integrity.
 
@@ -65,7 +65,7 @@ LANG=en_US.UTF-8
 PG_MAJOR=16
 PATH=$PATH:/usr/lib/postgresql/$PG_MAJOR/bin
 PGDATA=/var/lib/postgresql/data
-PG_VERSION=16.X.Y # Example: 16.8-1.pgdg120+2
+PG_VERSION=16.X.Y # Example: 16.8-1.pgdg13+1
 GOSU_VERSION=1.17
 ```
 
