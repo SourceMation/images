@@ -1,8 +1,8 @@
-FROM sourcemation/debian-12-slim:latest
+FROM sourcemation/debian-13-slim:latest
 
 ARG TARGETARCH
 ARG BUILD_DATE
-ARG LONGNAME="Elasticsearch on Debian 12 Slim Container"
+ARG LONGNAME="Elasticsearch on Debian 13 Slim Container"
 
 LABEL name="elasticsearch" \
       vendor="SourceMation" \
@@ -13,10 +13,10 @@ LABEL name="elasticsearch" \
       architecture="${TARGETARCH}" \
       summary="${LONGNAME}" \
       description="Provides ${LONGNAME}" \
-      version="9.1.5" \
+      version="9.2.0" \
       io.k8s.display-name="${LONGNAME}" \
       io.k8s.description="Provides ${LONGNAME}" \
-      io.openshift.tags="elasticsearch debian-12-slim"
+      io.openshift.tags="elasticsearch debian-13-slim"
 
 ENV ELASTICSEARCH_HOME=/usr/share/elasticsearch
 
