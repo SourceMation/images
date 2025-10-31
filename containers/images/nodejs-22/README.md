@@ -6,7 +6,7 @@ conferencing platforms, thanks to its widespread adoption and extensive module
 ecosystem.
 
 This specific NodeJS distribution is constructed using the
-`sourcemation/debian-12-slim` base image and incorporates Node.js version 22
+`sourcemation/debian-13-slim` base image and incorporates Node.js version 22
 alongside Yarn Classic, specifically version 1.22.XX.
 
 
