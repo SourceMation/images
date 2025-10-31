@@ -1,4 +1,4 @@
-FROM docker.io/sourcemation/debian-12-slim:latest AS ruby
+FROM docker.io/sourcemation/debian-13-slim:latest AS ruby
 
 ARG VERSION=1.19.0
 ARG RUBY_INSTALL=https://github.com/postmodern/ruby-install/releases/download/v0.10.1/ruby-install-0.10.1.tar.gz
@@ -16,11 +16,11 @@ gem update --system
 gem install fluentd -v ${VERSION}
 EOF
 
-FROM docker.io/sourcemation/debian-12-slim:latest
+FROM docker.io/sourcemation/debian-13-slim:latest
 
 ARG TARGETARCH
 ARG BUILD_DATE
-ARG LONGNAME="fluentd on Debian 12 Slim Container"
+ARG LONGNAME="fluentd on Debian 13 Slim Container"
 
 LABEL name="fluentd" \
   vendor="SourceMation" \
@@ -34,7 +34,7 @@ LABEL name="fluentd" \
   version="1.19.0" \
   io.k8s.display-name="${LONGNAME}" \
   io.k8s.description="Provides ${LONGNAME}" \
-  io.openshift.tags="fluentd debian-12-slim"
+  io.openshift.tags="fluentd debian-13-slim"
 
 # INSTAL OR COPY --from=builder /builder/path /path
 COPY --from=ruby /opt/ruby    /opt/ruby

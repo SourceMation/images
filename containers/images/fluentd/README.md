@@ -2,7 +2,7 @@
 
 Fluentd is an open-source data collector that unifies the data collection and consumption for better use and understanding of data. It allows you to unify data collection and consumption for a better understanding and use of data by providing a unified logging layer.
 
-Built by SourceMation's automation team, this Fluentd distribution is regularly updated to ensure it's current, secure, and compact. It's built on a minimal Debian 12 Slim base image.
+Built by SourceMation's automation team, this Fluentd distribution is regularly updated to ensure it's current, secure, and compact. It's built on a minimal Debian 13 Slim base image.
 
 ## Usage
 
