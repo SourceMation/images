@@ -6,7 +6,7 @@ requirements.
 
 
 This Docker image provides a clean, lightweight installation of Erlang v27 built
-from source on Debian 12 Slim. It includes the latest stable OpenSSL compiled
+from source on Debian 13 Slim. It includes the latest stable OpenSSL compiled
 from the source to ensure maximum security and performance.
 
 ## Usage

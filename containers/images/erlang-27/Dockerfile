@@ -1,4 +1,4 @@
-FROM sourcemation/debian-12-slim:latest AS builder
+FROM sourcemation/debian-13-slim:latest AS builder
 
 ARG ERLANG_VERSION=27.3.4.3
 ARG ERLANG_DOWNLOAD_URL="https://github.com/erlang/otp/releases/download/OTP-${ERLANG_VERSION}/otp_src_${ERLANG_VERSION}.tar.gz"
@@ -117,7 +117,7 @@ RUN set -eux \
 RUN erl -noshell -eval 'ok = crypto:start(), ok = io:format("~p~n~n~p~n~n", [crypto:supports(), ssl:versions()]), init:stop().'
 
 # Create a minimal runtime image
-FROM sourcemation/debian-12-slim:latest
+FROM sourcemation/debian-13-slim:latest
 
 ARG BUILD_DATE
 ARG TARGETARCH
@@ -128,13 +128,13 @@ LABEL name="erlang-27" \
       licenses="Apache-2.0" \
       created="$BUILD_DATE" \
       architecture="$TARGETARCH" \
-      summary="Erlang 27 on Debian 12-slim" \
-      description="Provides Erlang 27 on Debian 12-slim" \
+      summary="Erlang 27 on Debian 13-slim" \
+      description="Provides Erlang 27 on Debian 13-slim" \
       version="27.3.4.3" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
-      io.k8s.display-name="Erlang 27 on Debian 12-slim Container" \
-      io.k8s.description="Provides Erlang 27 Debian 12-slim Container" \
-      io.openshift.tags="erlang-27 debian-12-slim"
+      io.k8s.display-name="Erlang 27 on Debian 13-slim Container" \
+      io.k8s.description="Provides Erlang 27 Debian 13-slim Container" \
+      io.openshift.tags="erlang-27 debian-13-slim"
 
 
 ARG ERLANG_INSTALL_PATH_PREFIX=/opt/erlang
@@ -148,7 +148,7 @@ COPY --from=builder /etc/ssl/certs /etc/ssl/certs
 # Install runtime dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libsctp1 \
-    libodbc1 \
+    libodbc2 \
     zlib1g \
     && rm -rf /var/lib/apt/lists/* \
     && ldconfig
