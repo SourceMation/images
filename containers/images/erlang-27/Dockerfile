@@ -148,7 +148,7 @@ COPY --from=builder /etc/ssl/certs /etc/ssl/certs
 # Install runtime dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libsctp1 \
-    libodbc1 \
+    libodbc2 \
     zlib1g \
     && rm -rf /var/lib/apt/lists/* \
     && ldconfig
