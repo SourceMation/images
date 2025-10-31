@@ -2,7 +2,7 @@
 
 **etcd** is a distributed, reliable key-value store for the most critical data of a distributed system. It provides a reliable way to store data that needs to be accessed by a distributed system or cluster of machines. It gracefully handles leader elections during network partitions and can tolerate machine failure, even in the leader node.
 
-This etcd distribution is provided by the SourceMation packaging team, built on a secure Debian 12 Slim base image.
+This etcd distribution is provided by the SourceMation packaging team, built on a secure Debian 13 Slim base image.
 
 ## Usage
 
