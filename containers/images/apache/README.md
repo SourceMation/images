@@ -1,4 +1,4 @@
-# Apache HTTP Server Container on Debian 12 Slim packed by SourceMation
+# Apache HTTP Server Container on Debian 13 Slim packed by SourceMation
 
 This image, `sourcemation/apache`, is built on a minimal Debian base to provide a robust **Apache HTTP Server** environment. It's designed for serving web content, handling dynamic requests, and acting as a powerful and flexible web server. The image integrates an essential Apache configuration and can be easily extended with custom modules and site setups.
 

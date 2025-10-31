@@ -1,4 +1,4 @@
-FROM sourcemation/debian-12-slim:latest as builder
+FROM sourcemation/debian-13-slim:latest as builder
 
 ARG APACHE_VER="2.4.65"
 ENV APACHE_INSTALL_DIR /opt/apache2
@@ -30,7 +30,7 @@ RUN set -eux \
     && make -j "$(nproc)" \
     && make install
 
-FROM sourcemation/debian-12-slim:latest
+FROM sourcemation/debian-13-slim:latest
 
 ARG BUILD_DATE
 ARG TARGETARCH
@@ -44,11 +44,11 @@ LABEL name="apache" \
   licenses="GPLv2" \
   created="$BUILD_DATE" \
   architecture="$TARGETARCH" \
-  summary="Apache on Debian 12 Slim Container" \
-  description="Provides Apache on Debian 12 Slim Container" \
+  summary="Apache on Debian 13 Slim Container" \
+  description="Provides Apache on Debian 13 Slim Container" \
   version="2.4.65" \
-  io.k8s.display-name="Apache on Debian 12 Slim Container" \
-  io.k8s.description="Provides Apache on Debian 12 Slim Container" \
+  io.k8s.display-name="Apache on Debian 13 Slim Container" \
+  io.k8s.description="Provides Apache on Debian 13 Slim Container" \
   io.openshift.tags="apache debian"
 
 
