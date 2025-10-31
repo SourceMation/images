@@ -8,7 +8,7 @@ configurations for CNPG, such as `pgaudit`, `pgvector`, and
 
 This PostgreSQL distribution is built by the SourceMation automation team. The
 version is 17.X.Y and it's regularly updated. The base image is the latest
-`sourcemation/debian-12-slim` image at the time of the build, providing a
+`sourcemation/debian-13-slim` image at the time of the build, providing a
 small, secure, and up-to-date foundation. The build process incorporates
 cryptographic signatures to ensure the integrity of the source code and
 packages.
@@ -65,7 +65,7 @@ LANG=en_US.UTF-8
 PG_MAJOR=17
 PATH=$PATH:/usr/lib/postgresql/$PG_MAJOR/bin
 PGDATA=/var/lib/postgresql/data
-PG_VERSION=17.X.Y # For example 17.4-1.pgdg120+2
+PG_VERSION=17.X.Y # For example 17.4-1.pgdg13+1
 GOSU_VERSION=1.17
 ```
 
