@@ -2,7 +2,7 @@
 
 > Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
 
-This Git distribution is provided by the downstream Debian 12 packaging team in the version respective to that system.
+This Git distribution is provided by the downstream Debian 13 packaging team in the version respective to that system.
 
 ## Usage
 
@@ -27,12 +27,13 @@ docker run -u 0 --rm -v $(pwd):/workspace -w /workspace sourcemation/git git clo
 
 ## Image tags and versions
 
-The `sourcemation/git` image comes in the `debian-12` flavor. The tag `latest` refers to the latest Debian-based image.
+The `sourcemation/git` image comes in the `debian-13` flavor. The tag `latest` refers to the latest Debian-based image.
 
 Available tags:
-- `latest` - Latest Debian 12 based image
-- `latest-arm64` - Latest Debian 12 based image for ARM architecture
-- `latest-amd64` - Latest Debian 12 based image for x86-64 architecture
+- `latest` - Latest Debian 13 based image
+- `latest-arm64` - Latest Debian 13 based image for ARM architecture
+- `latest-amd64` - Latest Debian 13 based image for x86-64 architecture
+- `2.47.3` - Specific Git version on Debian 13
 - `2.39.5` - Specific Git version on Debian 12
 
 ## Environment Vars, Ports, Volumes
@@ -75,8 +76,8 @@ We'd love for you to contribute! You can request new features, report bugs, or s
 
 ### What's Included
 
-- Minimal Debian 12 base system
-- Git (latest available in Debian 12 repositories)
+- Minimal Debian 13 base system
+- Git (latest available in Debian 13 repositories)
 - Curl for HTTPS operations
 - OpenSSL for cryptographic operations
 - CA certificates for secure connections
@@ -95,4 +96,4 @@ The base license for the solution (Git) is the [GNU General Public License v2.0]
 - [Official Git Documentation](https://git-scm.com/doc)
 - [Pro Git Book](https://git-scm.com/book)
 - [Git Reference Manual](https://git-scm.com/docs)
-- [Debian Git Package Information](https://packages.debian.org/bookworm/git)
+- [Debian Git Package Information](https://packages.debian.org/trixie/git)
