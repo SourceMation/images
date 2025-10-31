@@ -2,7 +2,7 @@
 
 Alertmanager is a component of the Prometheus monitoring system that handles alerts sent by client applications such as the Prometheus server. It takes care of deduplicating, grouping, and routing them to the correct receiver integrations such as email, PagerDuty, or OpsGenie. It also takes care of silencing and inhibition of alerts.
 
-This Alertmanager distribution is provided by the SourceMation packaging team, built on a secure Debian 12 Slim base image with version 0.28.1.
+This Alertmanager distribution is provided by the SourceMation packaging team, built on a secure Debian 13 Slim base image with version 0.28.1.
 
 ## Usage
 
