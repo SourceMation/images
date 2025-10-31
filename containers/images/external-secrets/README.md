@@ -56,7 +56,7 @@ helm install external-secrets \
 ## Why use this image?
 
 This image comes with all the goodies of publicly built images from
-SourceMation and is based on newer Debian 12 instead of older Debian 11 (both
+SourceMation and is based on newer Debian 13 instead of older Debian 12 (both
 images are distroless). **This image is also regularly updated and rebuilt, so
 you can be sure that your static binary is up to date with the latest security
 fixes.**
