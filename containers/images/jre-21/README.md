@@ -4,7 +4,7 @@ This image contains the Java Runtime Environment (JRE) 21 from the Eclipse
 Temurin project, which in this case is a compilation of the OpenJDK project.
 
 This carefully crafted Docker image delivers a pristine and lightweight
-installation of JRE 21. It is built upon SourceMation’s optimized Debian 12 Slim
+installation of JRE 21. It is built upon SourceMation’s optimized Debian 13 Slim
 base, ensuring a minimal footprint and enhanced security.
 
 This image was built to be a drop-in replacement for the Temurin JRE 21 image.
