@@ -14,13 +14,13 @@ LABEL name="cnpg-16" \
       licenses="GPLv2" \
       created="$BUILD_DATE" \
       architecture="$TARGETARCH" \
-      summary="PostgreSQL 16 for CNPG on Debian 12 Slim Container" \
+      summary="PostgreSQL 16 for CNPG on Debian 13 Slim Container" \
       description="Provides PostgreSQL 16 for CNPG on Debian Slim Container" \
       version="16.10.1" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
-      io.k8s.display-name="PostgreSQL 16 for CNPG on Debian 12 Slim Container" \
-      io.k8s.description="Provides PostgreSQL 16 for CPNG on Debian 12 Slim Container" \
-      io.openshift.tags="postgresql debian-12-slim cnpg"
+      io.k8s.display-name="PostgreSQL 16 for CNPG on Debian 13 Slim Container" \
+      io.k8s.description="Provides PostgreSQL 16 for CPNG on Debian 13 Slim Container" \
+      io.openshift.tags="postgresql debian-13-slim cnpg"
 
 
 # Install additional extensions
@@ -49,7 +49,7 @@ RUN set -xeu; \
             python3-psycopg2 \
             python3-setuptools \
     ; \
-    pip3 install --break-system-packages --upgrade pip; \
+    # pip3 install --break-system-packages --upgrade pip; \
     pip3 install --no-cache-dir barman[cloud,azure,snappy,google,zstandard,lz4]==${BARMAN_VERSION} ;\
     apt-get remove -y --purge --autoremove build-essential python3-dev; \
     apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \
