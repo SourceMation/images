@@ -1,4 +1,4 @@
-FROM sourcemation/debian-12-slim:latest
+FROM sourcemation/debian-13-slim:latest
 
 ARG BUILD_DATE
 ARG TARGETARCH
@@ -9,20 +9,20 @@ LABEL name="postgres-16" \
       licenses="GPLv2" \
       created="$BUILD_DATE" \
       architecture="$TARGETARCH" \
-      summary="PostgreSQL 16 on Debian 12 Slim Container" \
+      summary="PostgreSQL 16 on Debian 13 Slim Container" \
       description="Provides PostgreSQL 16 on Debian Slim Container" \
       version="16.10.1" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
-      io.k8s.display-name="PostgreSQL 16 on Debian 12 Slim Container" \
-      io.k8s.description="Provides PostgreSQL 16 on Debian 12 Slim Container" \
-      io.openshift.tags="postgresql debian-12-slim"
+      io.k8s.display-name="PostgreSQL 16 on Debian 13 Slim Container" \
+      io.k8s.description="Provides PostgreSQL 16 on Debian 13 Slim Container" \
+      io.openshift.tags="postgresql debian-13-slim"
 
 # Setup the environment variables
 ENV LANG en_US.utf8
 ENV PG_MAJOR="16"
 ENV PATH="$PATH:/usr/lib/postgresql/$PG_MAJOR/bin"
 ENV PGDATA /var/lib/postgresql/data
-ENV PG_VERSION="16.10-1.pgdg12+1"
+ENV PG_VERSION="16.10-1.pgdg13+1"
 ENV GOSU_VERSION 1.17
 
 # explicitly set user/group IDs
@@ -100,7 +100,7 @@ RUN set -ex; \
     export PYTHONDONTWRITEBYTECODE=1; \
     \
     dpkgArch="$(dpkg --print-architecture)"; \
-    aptRepo="[ signed-by=/usr/local/share/keyrings/postgres.gpg.asc ] http://apt.postgresql.org/pub/repos/apt/ bookworm-pgdg main $PG_MAJOR"; \
+    aptRepo="[ signed-by=/usr/local/share/keyrings/postgres.gpg.asc ] http://apt.postgresql.org/pub/repos/apt/ trixie-pgdg main $PG_MAJOR"; \
     echo "deb $aptRepo" > /etc/apt/sources.list.d/pgdg.list; \
     apt-get update; \
     apt-get install -y --no-install-recommends postgresql-common; \

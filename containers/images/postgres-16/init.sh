@@ -8,7 +8,7 @@
 set -euo pipefail
 
 # First we have to find the newest version of the PostgreSQL available for us.
-IMG_NAME=sourcemation/debian-12-slim
+IMG_NAME=sourcemation/debian-13-slim
 
 
 # Unique container name
@@ -33,6 +33,6 @@ sed -i "s/PG_VERSION=\"[^\"]*\"/PG_VERSION=\"$package_version\"/" Dockerfile || 
 
 # Our images are based on the official Docker so we we need same entrypoint and ensure-initdb scripts.
 rm -f docker-entrypoint.sh docker-ensure-initdb.sh
-wget https://raw.githubusercontent.com/docker-library/postgres/refs/heads/master/16/bookworm/docker-entrypoint.sh
-wget https://raw.githubusercontent.com/docker-library/postgres/refs/heads/master/16/bookworm/docker-ensure-initdb.sh
+wget https://raw.githubusercontent.com/docker-library/postgres/refs/heads/master/16/trixie/docker-entrypoint.sh
+wget https://raw.githubusercontent.com/docker-library/postgres/refs/heads/master/16/trixie/docker-ensure-initdb.sh
 chmod +x docker-entrypoint.sh docker-ensure-initdb.sh
