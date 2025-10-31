@@ -92,7 +92,7 @@ docker run --rm \
 
 ## Image tags and versions
 
-The `sourcemation/external-dns` image itself comes in two flavors: `debian-12`. The tag `latest` refers to the Debian-based flavor.
+The `sourcemation/external-dns` image itself comes in two flavors: `debian-13`. The tag `latest` refers to the Debian-based flavor.
 
 ## Environment Vars, Ports, Volumes
 
