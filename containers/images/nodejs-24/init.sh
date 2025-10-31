@@ -38,7 +38,7 @@ echo "Latest version of $APP is $YARN_VERSION"
 sed -i "s/YARN_VERSION=\"[^\"]*\"/YARN_VERSION=\"$YARN_VERSION\"/" Dockerfile || exit 1
 
 echo "Downloading entrypoint script"
-curl -LO https://github.com/nodejs/docker-node/raw/refs/heads/main/24/bookworm-slim/docker-entrypoint.sh
+curl -LO https://github.com/nodejs/docker-node/raw/refs/heads/main/24/trixie-slim/docker-entrypoint.sh
 chmod +x docker-entrypoint.sh
 
 echo "Init script completed successfully"

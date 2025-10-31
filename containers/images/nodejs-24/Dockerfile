@@ -1,4 +1,4 @@
-FROM sourcemation/debian-12-slim:latest
+FROM sourcemation/debian-13-slim:latest
 
 ARG BUILD_DATE
 ARG TARGETARCH
@@ -9,19 +9,19 @@ LABEL name="nodejs-24" \
       licenses="Multiple licenses" \
       created="$BUILD_DATE" \
       architecture="$TARGETARCH" \
-      summary="NodeJS 24 on Debian 12 Slim Container" \
-      description="Provides NodeJS 24 on Debian 12 Slim Container" \
-      version="24.10.0" \
+      summary="NodeJS 24 on Debian 13 Slim Container" \
+      description="Provides NodeJS 24 on Debian 13 Slim Container" \
+      version="24.11.0" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
-      io.k8s.display-name="NodeJS 24 on Debian 12 Slim Container" \
-      io.k8s.description="Provides NodeJS 24 on Debian 12 Slim Container" \
-      io.openshift.tags="nodejs nodejs-24 debian-12-slim"
+      io.k8s.display-name="NodeJS 24 on Debian 13 Slim Container" \
+      io.k8s.description="Provides NodeJS 24 on Debian 13 Slim Container" \
+      io.openshift.tags="nodejs nodejs-24 debian-13-slim"
 
 
 RUN groupadd --gid 1000 node \
   && useradd --uid 1000 --gid node --shell /bin/bash --create-home node
 
-ENV NODE_VERSION="24.10.0"
+ENV NODE_VERSION="24.11.0"
 ENV YARN_VERSION="1.22.22"
 
 # Most of this packages are from buildpack-deps that is based on old Heroku
