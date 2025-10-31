@@ -8,7 +8,7 @@ collection of modules.
 
 
 This particular NodeJS distribution is built upon the
-`sourcemation/debian-12-slim` base image and integrates Node.js version 24
+`sourcemation/debian-13-slim` base image and integrates Node.js version 24
 along with Yarn Classic, specifically version `1.22.XX`.
 
 
