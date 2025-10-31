@@ -1,4 +1,4 @@
-FROM sourcemation/debian-12-slim:latest
+FROM sourcemation/debian-13-slim:latest
 
 ARG BUILD_DATE
 ARG TARGETARCH
@@ -9,13 +9,13 @@ LABEL name="git" \
       licenses="GPLv2" \
       created="$BUILD_DATE" \
       architecture="$TARGETARCH" \
-      summary="git on Debian 12 Slim Container" \
-      description="Provides git on Debian 12 Slim Container" \
-      version="2.39.5" \
+      summary="git on Debian 13 Slim Container" \
+      description="Provides git on Debian 13 Slim Container" \
+      version="2.47.3" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
-      io.k8s.display-name="git on Debian 12 Slim Container" \
-      io.k8s.description="Provides git on Debian 12 Slim Container" \
-      io.openshift.tags="git debian-12-slim"
+      io.k8s.display-name="git on Debian 13 Slim Container" \
+      io.k8s.description="Provides git on Debian 13 Slim Container" \
+      io.openshift.tags="git debian-13-slim"
 
 ENV LANG=C.UTF-8 DEBIAN_FRONTEND=noninteractive HOME=/home/git
 

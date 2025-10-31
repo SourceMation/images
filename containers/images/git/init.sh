@@ -9,7 +9,7 @@ set -eu
 
 echo "-> Preparing git variables"
 APP="git"
-VERSION=$(curl -s "https://packages.debian.org/bookworm/git" | grep -o 'Package: git ([^-]*' | grep -o '[0-9.]*$')
+VERSION=$(curl -s "https://packages.debian.org/trixie/git" | grep -o 'Package: git ([^-]*' | grep -o '[0-9.]*$')
 
 # Exit if the version variable contains anything other
 # than digits and dots
