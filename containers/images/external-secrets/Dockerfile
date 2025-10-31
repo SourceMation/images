@@ -13,7 +13,7 @@ RUN apt-get update && \
     go build -o external-secrets main.go
 
 
-FROM gcr.io/distroless/static-debian12
+FROM gcr.io/distroless/static-debian13
 
 ARG BUILD_DATE
 ARG TARGETARCH
@@ -24,13 +24,13 @@ LABEL name="external-secrets" \
       licenses="Apache License Version 2.0," \
       created="$BUILD_DATE" \
       architecture="$TARGETARCH" \
-      summary="External Secrets Controller on Debian 12 Distroless image" \
-      description="Provides External Secrets Controller on Debian 12 Distroless image" \
-      version="v0.20.3" \
+      summary="External Secrets Controller on Debian 13 Distroless image" \
+      description="Provides External Secrets Controller on Debian 13 Distroless image" \
+      version="v0.20.4" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
-      io.k8s.display-name="External Secrets Controller on Debian 12 Distroless" \
-      io.k8s.description="Provides External Secrets Controller on Debian 12 Distroless image" \
-      io.openshift.tags="external-secrets-controller, controller, debian12, distroless"
+      io.k8s.display-name="External Secrets Controller on Debian 13 Distroless" \
+      io.k8s.description="Provides External Secrets Controller on Debian 13 Distroless image" \
+      io.openshift.tags="external-secrets-controller, controller, debian13, distroless"
 
 # nobody
 USER 65534
