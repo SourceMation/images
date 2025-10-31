@@ -7,7 +7,7 @@ distribution operates on a lean Debian Slim base.
 
 Built by SourceMation's automation team, this PostgreSQL release (version
 16.X.Y) undergoes regular updates. The foundation is the latest
-`sourcemation/debian-12-slim` image at build time, ensuring a compact, secure,
+`sourcemation/debian-13-slim` image at build time, ensuring a compact, secure,
 and current setup. Cryptographic signatures are employed during the build to
 guarantee source code and package integrity.
 
