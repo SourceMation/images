@@ -1,8 +1,8 @@
-FROM sourcemation/debian-12-slim:latest
+FROM sourcemation/debian-13-slim:latest
 
 ARG TARGETARCH
 ARG BUILD_DATE
-ARG LONGNAME="Grafana on Debian 12 Slim Container"
+ARG LONGNAME="Grafana on Debian 13 Slim Container"
 
 LABEL name="grafana" \
       vendor="SourceMation" \
@@ -16,7 +16,7 @@ LABEL name="grafana" \
       version="12.2.0" \
       io.k8s.display-name="${LONGNAME}" \
       io.k8s.description="Provides ${LONGNAME}" \
-      io.openshift.tags="grafana debian-12-slim"
+      io.openshift.tags="grafana debian-13-slim"
 
 ENV GRAFANA_HOME=/usr/share/grafana
 

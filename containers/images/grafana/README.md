@@ -40,7 +40,7 @@ The repository includes a sample `grafana.ini` configuration file, which provide
 
 ## Image tags and versions
 
-The `sourcemation/grafana` image itself comes in `debian-12` flavor.
+The `sourcemation/grafana` image itself comes in `debian-13` flavor.
 The tag `latest` refers to the Debian-based flavor.
 
 ## Environment Vars, Ports, Volumes
