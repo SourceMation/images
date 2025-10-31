@@ -6,7 +6,7 @@ requirements.
 
 
 This Docker image provides a clean, lightweight installation of Erlang built
-from source on Debian 12 Slim. It includes the latest stable OpenSSL compiled
+from source on Debian 13 Slim. It includes the latest stable OpenSSL compiled
 from the source to ensure maximum security and performance.
 
 ## Usage
@@ -29,7 +29,7 @@ This image uses the following environment variables:
 
 ```
 APP_NAME="erlang"
-APP_VERSION="28.1"
+APP_VERSION="27.3.4.4"
 PATH=/opt/erlang/bin:/opt/openssl/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 ```
 
