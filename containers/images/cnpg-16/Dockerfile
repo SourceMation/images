@@ -49,7 +49,7 @@ RUN set -xeu; \
             python3-psycopg2 \
             python3-setuptools \
     ; \
-    pip3 install --break-system-packages --upgrade pip; \
+    # pip3 install --break-system-packages --upgrade pip; \
     pip3 install --no-cache-dir barman[cloud,azure,snappy,google,zstandard,lz4]==${BARMAN_VERSION} ;\
     apt-get remove -y --purge --autoremove build-essential python3-dev; \
     apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \
