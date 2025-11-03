@@ -1,8 +1,8 @@
-FROM docker.io/sourcemation/debian-12-slim:latest
+FROM docker.io/sourcemation/debian-13-slim:latest
 
 ARG TARGETARCH
 ARG BUILD_DATE
-ARG LONGNAME="Prometheus on Debian 12 Slim Container"
+ARG LONGNAME="Prometheus on Debian 13 Slim Container"
 
 LABEL name="prometheus" \
   vendor="SourceMation" \
@@ -16,7 +16,7 @@ LABEL name="prometheus" \
   version="3.7.1" \
   io.k8s.display-name="${LONGNAME}" \
   io.k8s.description="Provides ${LONGNAME}" \
-  io.openshift.tags="prometheus debian-12-slim"
+  io.openshift.tags="prometheus debian-13-slim"
 
 # RUN update and setup user
 RUN set -ex; \

@@ -11,7 +11,7 @@ no longer officially supported by the Python Software Foundation and does not
 receive security updates.**
 
 While the Python 3.8 environment itself is outdated, this SourceMation image is
-built on our regularly updated and patched `sourcemation/debian-12-slim` base
+built on our regularly updated and patched `sourcemation/debian-13-slim` base
 image. This ensures that the underlying system components are current, even
 though the Python version itself is EOL.
 

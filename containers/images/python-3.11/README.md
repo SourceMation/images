@@ -9,7 +9,7 @@ automation team. The version is 3.11.X and it's regularly updated to the latest
 patch version. For user convenience, the pip package manager is shipped as well.
 
 The base image is the latest, at the time of the build,
-`sourcemation/debian-12-slim` image. It's gives you fully independent and
+`sourcemation/debian-13-slim` image. It's gives you fully independent and
 self-contained Python environment, that is regrulary updated and patched.
 Lastly the build process takes advantage of cryptographic signatures to ensure
 that the source code is not tampered with.
