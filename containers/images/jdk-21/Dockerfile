@@ -1,4 +1,4 @@
-FROM sourcemation/debian-12-slim:latest
+FROM sourcemation/debian-13-slim:latest
 
 ARG BUILD_DATE
 ARG TARGETARCH
@@ -9,13 +9,13 @@ LABEL name="jdk-21" \
       licenses="Multiple licenses" \
       created="$BUILD_DATE" \
       architecture="$TARGETARCH" \
-      summary="JDK 21 on Debian 12 Slim Container" \
-      description="Provides JDK 21 on Debian 12 Slim Container" \
+      summary="JDK 21 on Debian 13 Slim Container" \
+      description="Provides JDK 21 on Debian 13 Slim Container" \
       version="jdk-21.0.8-9" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
-      io.k8s.display-name="JDK 21 on Debian 12 Slim Container" \
-      io.k8s.description="Provides JDK 21 on Debian 12 Slim Container" \
-      io.openshift.tags="jdk jdk-21 debian-12-slim"
+      io.k8s.display-name="JDK 21 on Debian 13 Slim Container" \
+      io.k8s.description="Provides JDK 21 on Debian 13 Slim Container" \
+      io.openshift.tags="jdk jdk-21 debian-13-slim"
 
 ENV JAVA_VERSION="jdk-21.0.8+9"
 ENV JAVA_HOME=/opt/java/openjdk
