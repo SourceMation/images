@@ -26,7 +26,7 @@ RUN git clone --depth 1 --branch v${VERSION} https://github.com/kubernetes-sigs/
         -o metrics-server \
         ./cmd/metrics-server
 
-FROM sourcemation/debian-12-slim:latest
+FROM sourcemation/debian-13-slim:latest
 
 ARG BUILD_DATE
 ARG TARGETARCH
@@ -37,13 +37,13 @@ LABEL name="metrics-server" \
       licenses="Apache-2.0" \
       created="$BUILD_DATE" \
       architecture="$TARGETARCH" \
-      summary="Metrics Server on Debian 12 Slim Container" \
-      description="Provides Metrics Server on Debian 12 Slim Container" \
+      summary="Metrics Server on Debian 13 Slim Container" \
+      description="Provides Metrics Server on Debian 13 Slim Container" \
       version="0.8.0" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
-      io.k8s.display-name="Metrics Server on Debian 12 Slim Container" \
-      io.k8s.description="Provides Metrics Server on Debian 12 Slim Container" \
-      io.openshift.tags="metrics-server debian-12-slim"
+      io.k8s.display-name="Metrics Server on Debian 13 Slim Container" \
+      io.k8s.description="Provides Metrics Server on Debian 13 Slim Container" \
+      io.openshift.tags="metrics-server debian-13-slim"
 
 ENV DEBIAN_FRONTEND=noninteractive
 

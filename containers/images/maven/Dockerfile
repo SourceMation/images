@@ -30,13 +30,13 @@ LABEL name="maven" \
       licenses="Multiple licenses" \
       created="$BUILD_DATE" \
       architecture="$TARGETARCH" \
-      summary="Maven with JDK 21 on Debian 12 Slim Container" \
-      description="Provides Maven with JDK 21 on Debian 12 Slim Container" \
+      summary="Maven with JDK 21 on Debian 13 Slim Container" \
+      description="Provides Maven with JDK 21 on Debian 13 Slim Container" \
       version="3.9.11-jdk-21" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
-      io.k8s.display-name="Maven with JDK 21 on Debian 12 Slim Container" \
-      io.k8s.description="Provides Maven with JDK 21 on Debian 12 Slim Container" \
-      io.openshift.tags="maven jdk jdk-21 debian-12-slim"
+      io.k8s.display-name="Maven with JDK 21 on Debian 13 Slim Container" \
+      io.k8s.description="Provides Maven with JDK 21 on Debian 13 Slim Container" \
+      io.openshift.tags="maven jdk jdk-21 debian-13-slim"
 
 
 RUN apt-get update \

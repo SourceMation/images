@@ -19,11 +19,11 @@ make build
 mv minio ../bin/
 EOF
 
-FROM sourcemation/debian-12-slim:latest
+FROM sourcemation/debian-13-slim:latest
 
 ARG TARGETARCH="amd64"
 ARG BUILD_DATE
-ARG LONGNAME="Minio on Debian 12 Slim Container"
+ARG LONGNAME="Minio on Debian 13 Slim Container"
 
 LABEL name="minio" \
   vendor="SourceMation" \
@@ -37,7 +37,7 @@ LABEL name="minio" \
   version="RELEASE.2025-10-15T17-29-55Z" \
   io.k8s.display-name="${LONGNAME}" \
   io.k8s.description="Provides ${LONGNAME}" \
-  io.openshift.tags="minio debian-12-slim"
+  io.openshift.tags="minio debian-13-slim"
 
 # RUN update and setup user
 RUN set -e; \
