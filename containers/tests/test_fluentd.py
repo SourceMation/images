@@ -147,7 +147,7 @@ def test_fluentd_accepts_tcp_connection():
 def test_required_libraries_installed():
     """Test that required system libraries are installed."""
 
-    lib_names_to_check = ['ssl', 'yaml']
+    lib_names_to_check = ['ssl', 'yaml-0.2']
     missing_libs = []
 
     for name in lib_names_to_check:
