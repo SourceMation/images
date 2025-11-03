@@ -6,7 +6,7 @@ systems. Its popularity comes from its vast collection of modules and
 widespread use.
 
 
-This particular version of Node.js is built on the `sourcemation/debian-12-slim`
+This particular version of Node.js is built on the `sourcemation/debian-13-slim`
 base image. It includes Node.js version 20 and Yarn Classic (version 1.22.XX).
 
 
