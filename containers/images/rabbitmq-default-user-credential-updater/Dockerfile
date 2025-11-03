@@ -32,13 +32,13 @@ LABEL name="rabbitmq-default-user-credential-updater" \
       licenses="MPL-2.0" \
       created="$BUILD_DATE" \
       architecture="$TARGETARCH" \
-      summary="RabbitMQ Default User Credential Updater on Debian 12 Slim Container" \
-      description="Provides RabbitMQ Default User Credential Updater on Debian 12 Slim Container" \
+      summary="RabbitMQ Default User Credential Updater on Debian 13 Slim Container" \
+      description="Provides RabbitMQ Default User Credential Updater on Debian 13 Slim Container" \
       version="1.0.9" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
-      io.k8s.display-name="RabbitMQ Default User Credential Updater on Debian 12 Slim Container" \
-      io.k8s.description="Provides RabbitMQ Default User Credential Updater on Debian 12 Slim Container" \
-      io.openshift.tags="rabbitmq-default-user-credential-updater debian-12-slim"
+      io.k8s.display-name="RabbitMQ Default User Credential Updater on Debian 13 Slim Container" \
+      io.k8s.description="Provides RabbitMQ Default User Credential Updater on Debian 13 Slim Container" \
+      io.openshift.tags="rabbitmq-default-user-credential-updater debian-13-slim"
 
 COPY --from=builder /go/bin/app/ /usr/local/bin/default-user-credential-updater
 

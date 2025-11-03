@@ -14,7 +14,7 @@ docker run --rm -it sourcemation/rabbitmq-default-user-credential-updater:latest
 
 ## Image tags and versions
 
-The `sourcemation/rabbitmq-default-user-credential-updater` image itself comes in `debian-12` flavor.  The tag `latest` refers to the Debian-based flavor.
+The `sourcemation/rabbitmq-default-user-credential-updater` image itself comes in `debian-13` flavor.  The tag `latest` refers to the Debian-based flavor.
 
 ## Environment Vars, Ports, Volumes
 
