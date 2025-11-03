@@ -2,7 +2,7 @@
 
 > OpenLDAP is a free, open-source implementation of the Lightweight Directory Access Protocol (LDAP) developed by the OpenLDAP Project.
 
-This OpenLDAP distribution is provided by the SourceMation packaging team. It is built from the latest available source code to ensure up-to-date features and security, all on a secure **Debian 12 Slim** base image. The container is configured on its first run using environment variables.
+This OpenLDAP distribution is provided by the SourceMation packaging team. It is built from the latest available source code to ensure up-to-date features and security, all on a secure **Debian 13 Slim** base image. The container is configured on its first run using environment variables.
 
 ## Usage
 
@@ -40,7 +40,7 @@ This image is configured on the first run using environment variables passed to 
 
 ## Image tags and versions
 
-The `sourcemation/openldap` image itself comes in `debian-12` flavor.
+The `sourcemation/openldap` image itself comes in `debian-13` flavor.
 The tag `latest` refers to the Debian-based flavor.
 
 ## Environment Vars, Ports, Volumes

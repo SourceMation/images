@@ -1,4 +1,4 @@
-FROM sourcemation/debian-12-slim:latest AS builder
+FROM sourcemation/debian-13-slim:latest AS builder
 
 ARG VERSION=2.6.10
 
@@ -28,11 +28,11 @@ RUN ./configure \
     && make \
     && make install DESTDIR=/install
 
-FROM sourcemation/debian-12-slim:latest
+FROM sourcemation/debian-13-slim:latest
 
 ARG TARGETARCH
 ARG BUILD_DATE
-ARG LONGNAME="OpenLDAP on Debian 12 Slim Container"
+ARG LONGNAME="OpenLDAP on Debian 13 Slim Container"
 
 LABEL name="openldap" \
       vendor="SourceMation" \
@@ -46,7 +46,7 @@ LABEL name="openldap" \
       version="2.6.10" \
       io.k-display-name="${LONGNAME}" \
       io.k8s.description="Provides ${LONGNAME}" \
-      io.openshift.tags="openldap debian-12-slim"
+      io.openshift.tags="openldap debian-13-slim"
 
 ENV LDAP_CONF_DIR=/etc/ldap \
     LDAP_DATA_DIR=/var/lib/ldap \
