@@ -2,7 +2,7 @@
 
 Node Exporter is a Prometheus exporter for hardware and OS metrics exposed by *NIX kernels, written in Go with pluggable metric collectors. It exposes a wide variety of hardware- and kernel-related metrics such as CPU, memory, disk space, disk I/O, network bandwidth, and more.
 
-This Node Exporter distribution is provided by the SourceMation packaging team, built on a secure Debian 12 Slim base image.
+This Node Exporter distribution is provided by the SourceMation packaging team, built on a secure Debian 13 Slim base image.
 
 ## Usage
 

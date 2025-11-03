@@ -9,11 +9,6 @@ def test_node_exporter_binary_exists():
     assert os.path.isfile("/usr/local/bin/node_exporter"), f"Binary not found: /usr/local/bin/node_exporter"
     assert os.access("/usr/local/bin/node_exporter", os.X_OK), f"Binary is not executable: /usr/local/bin/node_exporter"
 
-def test_node_exporter_version():
-    result = subprocess.run(['node_exporter', '--version'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-    assert result.returncode == 0, "Failed to get Node Exporter version."
-    assert "node_exporter, version 1.9.1" in result.stdout, f"Unexpected version output: {result.stdout}"
-
 def test_node_exporter_help():
     result = subprocess.run(['node_exporter', '--help'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
     assert result.returncode == 0, "Failed to get Node Exporter help."

@@ -9,16 +9,16 @@ LABEL name="nginx-mainline" \
       licenses="BSD-2-Clause License" \
       created="$BUILD_DATE" \
       architecture="$TARGETARCH" \
-      summary="Nginx Mainline on Debian 12 Slim Container with Perl" \
-      description="Provides Nginx Mainline on Debian 12 Slim Container with Perl" \
+      summary="Nginx Mainline on Debian 13 Slim Container with Perl" \
+      description="Provides Nginx Mainline on Debian 13 Slim Container with Perl" \
       version="1.29.2" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
-      io.k8s.display-name="Nginx mainline on Debian 12 Slim Container with Perl" \
-      io.k8s.description="Provides Nginx Mainline on Debian 12 Slim Container with Perl" \
-      io.openshift.tags="nginx debian-12-slim perl"
+      io.k8s.display-name="Nginx mainline on Debian 13 Slim Container with Perl" \
+      io.k8s.description="Provides Nginx Mainline on Debian 13 Slim Container with Perl" \
+      io.openshift.tags="nginx debian-13-slim perl"
 
 ENV NGINX_VERSION="1.29.2"
-ENV DYNPKG_RELEASE="1~bookworm"
+ENV DYNPKG_RELEASE="1~trixie"
 
 RUN set -xeu; \
     nginxPackages=" \
