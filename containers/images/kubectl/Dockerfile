@@ -1,4 +1,4 @@
-FROM sourcemation/debian-12-slim:latest
+FROM sourcemation/debian-13-slim:latest
 
 ARG BUILD_DATE
 ARG TARGETARCH
@@ -9,13 +9,13 @@ LABEL name="kubectl" \
       licenses="Apache-2.0" \
       created="$BUILD_DATE" \
       architecture="$TARGETARCH" \
-      summary="Kubectl on Debian 12 Slim Container" \
-      description="Provides kubectl on Debian 12 Slim Container" \
+      summary="Kubectl on Debian 13 Slim Container" \
+      description="Provides kubectl on Debian 13 Slim Container" \
       version="v1.34.1" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
-      io.k8s.display-name="Kubectl on Debian 12 Slim Container" \
-      io.k8s.description="Provides kubectl on Debian 12 Slim Container" \
-      io.openshift.tags="kubectl debian-12"
+      io.k8s.display-name="Kubectl on Debian 13 Slim Container" \
+      io.k8s.description="Provides kubectl on Debian 13 Slim Container" \
+      io.openshift.tags="kubectl debian-13"
 
 ENV KUBECTL_VERSION="v1.34.1"
 

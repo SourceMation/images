@@ -22,11 +22,11 @@ LABEL name="keycloak" \
   licenses="Apache-2.0" \
   created="$BUILD_DATE" \
   architecture="$TARGETARCH" \
-  summary="Keycloak on Debian 12 Slim Container" \
-  description="Provides Keycloak on Debian 12 Slim Container" \
+  summary="Keycloak on Debian 13 Slim Container" \
+  description="Provides Keycloak on Debian 13 Slim Container" \
   version="26.4.1" \
-  io.k8s.display-name="Keycloak on Debian 12 Slim Container" \
-  io.k8s.description="Provides Keycloak on Debian 12 Slim Container" \
+  io.k8s.display-name="Keycloak on Debian 13 Slim Container" \
+  io.k8s.description="Provides Keycloak on Debian 13 Slim Container" \
   io.openshift.tags="keycloak debian"
 
 USER keycloak
