@@ -9,7 +9,7 @@ set -eu
 
 echo "-> Preparing mysql variables"
 APP="mysql"
-VERSION=$(curl -s https://repo.mysql.com/apt/debian/dists/bookworm/mysql-8.4-lts/binary-amd64/Packages.gz \
+VERSION=$(curl -s https://repo.mysql.com/apt/debian/dists/trixie/mysql-8.4-lts/binary-amd64/Packages.gz \
     |   gunzip \
     |   grep -A2 'Package: mysql-server' \
     |   grep Version \

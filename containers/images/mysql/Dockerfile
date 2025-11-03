@@ -1,4 +1,4 @@
-FROM sourcemation/debian-12-slim:latest
+FROM sourcemation/debian-13-slim:latest
 
 ARG BUILD_DATE
 ARG TARGETARCH
@@ -9,13 +9,13 @@ LABEL name="mysql" \
       licenses="GPLv2" \
       created="$BUILD_DATE" \
       architecture="$TARGETARCH" \
-      summary="MySQL Community Server on Debian 12 Slim Container" \
-      description="Provides MySQL Community Server on Debian 12 Slim Container" \
+      summary="MySQL Community Server on Debian 13 Slim Container" \
+      description="Provides MySQL Community Server on Debian 13 Slim Container" \
       version="8.4.6" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
-      io.k8s.display-name="MySQL Community Server on Debian 12 Slim Container" \
-      io.k8s.description="Provides MySQL Community Server on Debian 12 Slim Container" \
-      io.openshift.tags="mysql debian-12-slim"
+      io.k8s.display-name="MySQL Community Server on Debian 13 Slim Container" \
+      io.k8s.description="Provides MySQL Community Server on Debian 13 Slim Container" \
+      io.openshift.tags="mysql debian-13-slim"
 
 ENV LANG=C.UTF-8 \
     DEBIAN_FRONTEND=noninteractive \
@@ -37,7 +37,7 @@ RUN apt-get update \
         zlib1g \
         gnupg \
     && curl -fsSL https://repo.mysql.com/RPM-GPG-KEY-mysql-2023 | gpg --dearmor -o /etc/apt/keyrings/mysql-keyring.gpg \
-    && echo "deb [signed-by=/etc/apt/keyrings/mysql-keyring.gpg] http://repo.mysql.com/apt/debian/ bookworm mysql-8.4-lts" > /etc/apt/sources.list.d/mysql.list \
+    && echo "deb [signed-by=/etc/apt/keyrings/mysql-keyring.gpg] http://repo.mysql.com/apt/debian/ trixie mysql-8.4-lts" > /etc/apt/sources.list.d/mysql.list \
     && printf "Package: *\nPin: release o=MySQL\nPin-Priority: 999" > /etc/apt/preferences.d/mysql \
     && apt-get update \
     && apt-get install -y \

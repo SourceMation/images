@@ -58,7 +58,7 @@ docker run --name mysql-server \
 
 ## Image tags and versions
 
-The `sourcemation/mysql` image itself comes in `debian-12` flavor. The tag `latest` refers to the Debian-based flavor.  
+The `sourcemation/mysql` image itself comes in `debian-13` flavor. The tag `latest` refers to the Debian-based flavor.  
 ***We are not building a MySQL image for the arm64 architecture. The official MySQL repository doesn't provide packages for the arm64 architecture.***
 
 ## Environment Vars, Ports, Volumes

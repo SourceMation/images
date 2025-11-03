@@ -1,4 +1,4 @@
-FROM sourcemation/debian-12-slim:latest AS builder
+FROM sourcemation/debian-13-slim:latest AS builder
 
 ARG TARGETARCH
 ARG VERSION=1.6.39
@@ -37,7 +37,7 @@ RUN curl -sSL -o memcached-${VERSION}.tar.gz ${MEMCACHED_DOWNLOAD_URL} \
 RUN ./configure --build=${TARGETARCH}-linux-gnu ${CONFIGURE_OPTS}
 RUN make -j"$(nproc)"
 
-FROM sourcemation/debian-12-slim:latest
+FROM sourcemation/debian-13-slim:latest
 
 ARG BUILD_DATE
 ARG TARGETARCH
@@ -48,13 +48,13 @@ LABEL name="memcached" \
       licenses="BSD-3-Clause" \
       created="$BUILD_DATE" \
       architecture="$TARGETARCH" \
-      summary="Memcached on Debian 12 Slim Container" \
-      description="Provides Memcached on Debian 12 Slim Container" \
+      summary="Memcached on Debian 13 Slim Container" \
+      description="Provides Memcached on Debian 13 Slim Container" \
       version="1.6.39" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
-      io.k8s.display-name="Memcached on Debian 12 Slim Container" \
-      io.k8s.description="Provides Memcached Server on Debian 12 Slim Container" \
-      io.openshift.tags="memcached debian-12-slim"
+      io.k8s.display-name="Memcached on Debian 13 Slim Container" \
+      io.k8s.description="Provides Memcached Server on Debian 13 Slim Container" \
+      io.openshift.tags="memcached debian-13-slim"
 
 ENV DEBIAN_FRONTEND=noninteractive
 

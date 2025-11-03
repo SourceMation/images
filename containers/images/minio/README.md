@@ -2,7 +2,7 @@
 
 MinIO is a high-performance, S3-compatible object storage server that delivers scalable and secure data storage for cloud-native applications. MinIO's distributed architecture provides fault tolerance and high availability while maintaining simplicity and ease of deployment.
 
-This MinIO distribution is provided by the SourceMation packaging team, built on a secure Debian 12 Slim base image with MinIO server.
+This MinIO distribution is provided by the SourceMation packaging team, built on a secure Debian 13 Slim base image with MinIO server.
 
 ## Usage
 

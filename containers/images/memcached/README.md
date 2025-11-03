@@ -21,17 +21,17 @@ docker run --rm -p 11211:11211 sourcemation/memcached -m 256
 
 Run Memcached with multiple connections:
 ```bash
-docker run --rm -p 11211:11211 sourcemation/memcached:debian-12 memcached -c 1024
+docker run --rm -p 11211:11211 sourcemation/memcached:debian-13 memcached -c 1024
 ```
 
 Run Memcached with SASL authentication enabled:
 ```bash
-docker run --rm -p 11211:11211 sourcemation/memcached:debian-12 memcached -S
+docker run --rm -p 11211:11211 sourcemation/memcached:debian-13 memcached -S
 ```
 
 ## Image tags and versions
 
-The `sourcemation/memcached` image comes in the `debian-12` flavor based on Debian 12 Slim. The tag `latest` refers to the Debian-based flavor.
+The `sourcemation/memcached` image comes in the `debian-13` flavor based on Debian 13 Slim. The tag `latest` refers to the Debian-based flavor.
 
 ## Environment Vars, Ports, Volumes
 

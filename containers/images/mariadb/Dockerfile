@@ -1,4 +1,4 @@
-FROM sourcemation/debian-12-slim:latest
+FROM sourcemation/debian-13-slim:latest
 
 ARG BUILD_DATE
 ARG TARGETARCH
@@ -9,13 +9,13 @@ LABEL name="mariadb" \
       licenses="GPLv2" \
       created="$BUILD_DATE" \
       architecture="$TARGETARCH" \
-      summary="mariadb on Debian 12 Slim Container" \
-      description="Provides mariadb on Debian 12 Slim Container" \
+      summary="mariadb on Debian 13 Slim Container" \
+      description="Provides mariadb on Debian 13 Slim Container" \
       version="12.0.2" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
-      io.k8s.display-name="mariadb on Debian 12 Slim Container" \
-      io.k8s.description="Provides mariadb on Debian 12 Slim Container" \
-      io.openshift.tags="mariadb debian-12-slim"
+      io.k8s.display-name="mariadb on Debian 13 Slim Container" \
+      io.k8s.description="Provides mariadb on Debian 13 Slim Container" \
+      io.openshift.tags="mariadb debian-13-slim"
 
 ENV LANG=C.UTF-8 \
     DEBIAN_FRONTEND=noninteractive \
@@ -36,7 +36,7 @@ RUN apt-get update \
         tzdata \
         zlib1g \
     && curl -o /etc/apt/keyrings/mariadb-keyring.pgp 'https://mariadb.org/mariadb_release_signing_key.pgp' \
-    && echo "deb [signed-by=/etc/apt/keyrings/mariadb-keyring.pgp] https://deb.mariadb.org/12.0/debian bookworm main" > /etc/apt/sources.list.d/mariadb.list \
+    && echo "deb [signed-by=/etc/apt/keyrings/mariadb-keyring.pgp] https://deb.mariadb.org/12.0/debian trixie main" > /etc/apt/sources.list.d/mariadb.list \
     && printf "Package: *\nPin: release o=MariaDB\nPin-Priority: 999" > /etc/apt/preferences.d/mariadb \
     && apt-get update \
     && apt-get install -y \
