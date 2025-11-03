@@ -8,7 +8,7 @@
 set -euo pipefail
 
 # First we have to find the newest version of the Nginx mainline available for us.
-IMG_NAME=sourcemation/debian-12-slim
+IMG_NAME=sourcemation/debian-13-slim
 
 # Unique container name
 container_name="temp-$(date +%s)"
