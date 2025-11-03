@@ -6,7 +6,7 @@ and low resource consumption.
 
 
 This Docker image provides a clean, lightweight Nginx stable release installed
-on SourceMation’s Debian 12 Slim.
+on SourceMation’s Debian 13 Slim.
 
 ## Usage
 

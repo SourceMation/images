@@ -8,7 +8,7 @@ has become a cornerstone of modern web infrastructure.
 
 This carefully crafted Docker image delivers a pristine and lightweight
 installation of the Nginx **mainline release**. It is built upon SourceMation’s
-optimized Debian 12 Slim base, ensuring a minimal footprint and enhanced
+optimized Debian 13 Slim base, ensuring a minimal footprint and enhanced
 security.
 
 ## Getting Started

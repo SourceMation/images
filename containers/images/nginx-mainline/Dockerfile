@@ -1,4 +1,4 @@
-FROM sourcemation/debian-12-slim:latest
+FROM sourcemation/debian-13-slim:latest
 
 ARG BUILD_DATE
 ARG TARGETARCH
@@ -9,19 +9,19 @@ LABEL name="nginx-mainline" \
       licenses="BSD-2-Clause License" \
       created="$BUILD_DATE" \
       architecture="$TARGETARCH" \
-      summary="Nginx Mainline on Debian 12 Slim Container" \
-      description="Provides Nginx Mainline on Debian 12 Slim Container" \
+      summary="Nginx Mainline on Debian 13 Slim Container" \
+      description="Provides Nginx Mainline on Debian 13 Slim Container" \
       version="1.29.2" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
-      io.k8s.display-name="Nginx Mainline on Debian 12 Slim Container" \
-      io.k8s.description="Provides Nginx Mainline on Debian 12 Slim Container" \
-      io.openshift.tags="nginx debian-12-slim"
+      io.k8s.display-name="Nginx Mainline on Debian 13 Slim Container" \
+      io.k8s.description="Provides Nginx Mainline on Debian 13 Slim Container" \
+      io.openshift.tags="nginx debian-13-slim"
 
 ENV NGINX_VERSION="1.29.2"
-ENV PKG_RELEASE="1~bookworm"
+ENV PKG_RELEASE="1~trixie"
 ENV NJS_VERSION="0.9.3"
-ENV NJS_RELEASE="1~bookworm"
-ENV DYNPKG_RELEASE="1~bookworm"
+ENV NJS_RELEASE="1~trixie"
+ENV DYNPKG_RELEASE="1~trixie"
 
 RUN set -xeu; \
     groupadd --system --gid 101 nginx ;\
@@ -45,7 +45,7 @@ RUN set -xeu; \
     # Original Nginx rebuild the packages for not supported architectures. But they are doing it the wrong way IMO. \
     # Instead of creating a builder sub image, they are using a temp directory to build the packages... \
     # It complicates a lot of things. So if in the future we would also support other architectures, do it simpler and cleaner way. \
-    echo "deb [signed-by=$NGINX_GPGKEY_PATH] https://nginx.org/packages/mainline/debian/ bookworm nginx" >> /etc/apt/sources.list.d/nginx.list; \
+    echo "deb [signed-by=$NGINX_GPGKEY_PATH] https://nginx.org/packages/mainline/debian/ trixie nginx" >> /etc/apt/sources.list.d/nginx.list; \
     apt-get update; \
     apt-get install --no-install-recommends --no-install-suggests -y \
                         $nginxPackages \

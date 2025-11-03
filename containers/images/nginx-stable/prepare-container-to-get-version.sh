@@ -11,7 +11,7 @@ gpg --batch --keyserver keyserver.ubuntu.com --recv-keys $keys
 # shellcheck disable=SC2086
 gpg --export $keys > "$key_path"
 
-aptRepo="deb [signed-by=$key_path] https://nginx.org/packages/debian/ bookworm nginx"
+aptRepo="deb [signed-by=$key_path] https://nginx.org/packages/debian/ trixie nginx"
 # Add the repository to apt sources.list.d
 echo "$aptRepo" > /etc/apt/sources.list.d/nginx-stable.list
 apt update
