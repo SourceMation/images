@@ -6,7 +6,7 @@ includes the Java Runtime Environment (JRE) and development tools necessary for
 building, testing, and running Java applications.
 
 This carefully crafted Docker image delivers a pristine and lightweight
-installation of JDK 21. It is built upon SourceMation’s optimized Debian 12 Slim
+installation of JDK 21. It is built upon SourceMation’s optimized Debian 13 Slim
 base, ensuring a minimal footprint and enhanced security.
 
 This image can be used to both run and build Java applications, serving as a
