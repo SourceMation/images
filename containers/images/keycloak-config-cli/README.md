@@ -32,7 +32,7 @@ This container uses the following environment variables for configuration:
 
 ## Image tags and versions
 
-The `sourcemation/keycloak-config-cli` image itself comes in `debian-12` flavor.
+The `sourcemation/keycloak-config-cli` image itself comes in `debian-13` flavor.
 The tag `latest` refers to the Debian-based flavor.
 
 ## Environment Vars, Ports, Volumes

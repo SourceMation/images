@@ -2,7 +2,7 @@
 
 kube-state-metrics (KSM) is a simple service that listens to the Kubernetes API server and generates metrics about the state of Kubernetes objects. It provides valuable insights into cluster health by exposing metrics for deployments, nodes, pods, and other Kubernetes resources without modifying the objects themselves.
 
-This kube-state-metrics distribution is provided by the SourceMation packaging team, built on a secure Debian 12 Slim base image with kube-state-metrics.
+This kube-state-metrics distribution is provided by the SourceMation packaging team, built on a secure Debian 13 Slim base image with kube-state-metrics.
 
 ## Deployment
 
@@ -470,7 +470,7 @@ scrape_configs:
 
 ## Security
 
-This image runs as the `nobody` user (non-root) for enhanced security. The container follows security best practices and is built on a minimal Debian 12 Slim base image.
+This image runs as the `nobody` user (non-root) for enhanced security. The container follows security best practices and is built on a minimal Debian 13 Slim base image.
 
 ## Resource Recommendations
 

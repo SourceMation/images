@@ -18,11 +18,11 @@ make build-local
 mv kube-state-metrics ../bin/
 EOF
 
-FROM sourcemation/debian-12-slim:latest
+FROM sourcemation/debian-13-slim:latest
 
 ARG TARGETARCH
 ARG BUILD_DATE
-ARG LONGNAME="kube-state-metrics on Debian 12 Slim Container"
+ARG LONGNAME="kube-state-metrics on Debian 13 Slim Container"
 
 LABEL name="kube-state-metrics" \
   vendor="SourceMation" \
@@ -36,7 +36,7 @@ LABEL name="kube-state-metrics" \
   version="2.17.0" \
   io.k8s.display-name="${LONGNAME}" \
   io.k8s.description="Provides ${LONGNAME}" \
-  io.openshift.tags="kube-state-metrics debian-12-slim"
+  io.openshift.tags="kube-state-metrics debian-13-slim"
 
 # RUN update and setup user
 RUN << EOF 

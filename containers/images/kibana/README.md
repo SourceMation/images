@@ -36,7 +36,7 @@ docker run -d --name kibana \
 
 ## Image tags and versions
 
-The `sourcemation/kibana` image itself comes in `debian-12` flavor.
+The `sourcemation/kibana` image itself comes in `debian-13` flavor.
 The tag `latest` refers to the Debian-based flavor.
 
 ## Environment Vars, Ports, Volumes

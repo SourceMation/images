@@ -2,7 +2,7 @@ FROM sourcemation/jdk-21:latest
 
 ARG TARGETARCH
 ARG BUILD_DATE
-ARG LONGNAME="Keycloak Config CLI on Debian 12 Slim Container"
+ARG LONGNAME="Keycloak Config CLI on Debian 13 Slim Container"
 
 LABEL name="keycloak-config-cli" \
       vendor="SourceMation" \
@@ -16,7 +16,7 @@ LABEL name="keycloak-config-cli" \
       version="6.4.0" \
       io.k8s.display-name="${LONGNAME}" \
       io.k8s.description="Provides ${LONGNAME}" \
-      io.openshift.tags="keycloak-config-cli jdk-21 debian-12-slim"
+      io.openshift.tags="keycloak-config-cli jdk-21 debian-13-slim"
 
 ENV CLI_HOME=/opt/keycloak-config-cli
 

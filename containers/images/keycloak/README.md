@@ -1,4 +1,4 @@
-# Keycloak Container on Debian 12 Slim packed by SourceMation
+# Keycloak Container on Debian 13 Slim packed by SourceMation
 
 This image, `sourcemation/keycloak`, is built on a minimal Debian base to provide a robust **Keycloak** environment. It's designed for adding authentication to applications and securing services with minimal effort, providing a comprehensive Identity and Access Management (IAM) solution. The image integrates the complete Keycloak server and can be configured for production workloads.
 
