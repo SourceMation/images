@@ -5,6 +5,7 @@ import requests
 import time
 import socket
 import pwd
+import platform
 
 FLUENTD_CONFIG_DIR = "/etc/fluent"
 FLUENTD_PORT = 24224
@@ -145,10 +146,18 @@ def test_fluentd_accepts_tcp_connection():
 
 def test_required_libraries_installed():
     """Test that required system libraries are installed."""
-    required_libs = [
-        '/usr/lib/x86_64-linux-gnu/libssl.so.3',
-        '/usr/lib/x86_64-linux-gnu/libyaml-0.so.2'
-    ]
+    arch = platform.machine()
+    if arch == "aarch64":
+        required_libs = [
+            '/usr/lib/aarch64-linux-gnu/libssl.so.3',
+            '/usr/lib/aarch64-linux-gnu/libyaml-0.so.2'
+        ]
+    elif arch == "x86_64":
+        required_libs = [
+            '/usr/lib/x86_64-linux-gnu/libssl.so.3',
+            '/usr/lib/x86_64-linux-gnu/libyaml-0.so.2'
+        ]
+    
     
     for lib in required_libs:
         # Check if the library exists (could be symlink or actual file)
