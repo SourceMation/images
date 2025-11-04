@@ -95,7 +95,7 @@ docker run -d --name zk3 \
 
 ## Image tags and versions
 
-The `sourcemation/zookeeper` image itself comes in `debian-12` flavour. The tag `latest` refers to the Debian-based flavor.
+The `sourcemation/zookeeper` image itself comes in `debian-13` flavour. The tag `latest` refers to the Debian-based flavor.
 
 ## Environment Vars, Ports, Volumes
 
