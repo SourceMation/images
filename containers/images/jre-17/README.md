@@ -27,7 +27,7 @@ This Dockerfile example shows how to execute a Java application with the
 JRE 17 image:
 
 ```dockerfile
-from sourcemation/jre-17
+FROM sourcemation/jre-17
 
 # Copy your Java application JAR file into the image
 COPY your-application.jar /app/your-application.jar

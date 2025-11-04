@@ -51,7 +51,7 @@ it to the image during the Containerfile/Dockerfile build) and set the
 USE\_SYSTEM\_CA\_CERTS environment variable to 1:
 
 ```bash
-docker run -v /home/dev/mycerts:/certificates/ -e USE\_SYSTEM\_CA\_CERTS=1 sourcemation/jdk-17
+docker run -v /home/dev/mycerts:/certificates/ -e USE_SYSTEM_CA_CERTS=1 sourcemation/jdk-17
 ```
 
 ```dockerfile
