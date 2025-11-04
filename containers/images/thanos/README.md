@@ -2,7 +2,7 @@
 
 Thanos is a set of components that can be composed into a highly available metric system with unlimited storage capacity, which can be added seamlessly on top of existing Prometheus deployments. Thanos leverages the Prometheus 2.0 storage format to cost-efficiently store historical metric data in any object storage while retaining fast query latencies.
 
-This Thanos distribution is provided by the Sourcemation packaging team, built on a secure Debian 12 Slim base image with version.
+This Thanos distribution is provided by the Sourcemation packaging team, built on a secure Debian 13 Slim base image with version.
 
 ## Usage
 
