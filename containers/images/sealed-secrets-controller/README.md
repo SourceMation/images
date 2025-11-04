@@ -41,7 +41,7 @@ helm install sealed-secrets bitnami/sealed-secrets \
 ## Why use this image?
 
 This image comes with all the goodies of publicly built images from
-Sourcemation and is based on newer Debian 12 instead of older Debian 11 (both
+Sourcemation and is based on newer Debian 13 instead of older Debian 11 (both
 images are distroless). **This image is also regularly updated and rebuilt, so
 you can be sure that your static binary is up to date with the latest security
 fixes.**

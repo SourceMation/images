@@ -9,7 +9,7 @@ RUN apt-get update && \
     cd /sealed-secrets && \
     make all
 
-FROM gcr.io/distroless/static-debian12
+FROM gcr.io/distroless/static-debian13
 
 ARG BUILD_DATE
 ARG TARGETARCH
@@ -20,12 +20,12 @@ LABEL name="sealed-secrets-controller" \
       licenses="Apache License Version 2.0," \
       created="$BUILD_DATE" \
       architecture="$TARGETARCH" \
-      summary="Sealed Secrets Controller on Debian 12 Distroless image" \
-      description="Provides Sealed Secrets Controller on Debian 12 Distroless image" \
+      summary="Sealed Secrets Controller on Debian 13 Distroless image" \
+      description="Provides Sealed Secrets Controller on Debian 13 Distroless image" \
       version="v0.32.2" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
-      io.k8s.display-name="Sealed Secrets Controller on Debian 12 Distroless" \
-      io.k8s.description="Provides Sealed Secrets Controller on Debian 12 Distroless image" \
+      io.k8s.display-name="Sealed Secrets Controller on Debian 13 Distroless" \
+      io.k8s.description="Provides Sealed Secrets Controller on Debian 13 Distroless image" \
       io.openshift.tags="sealed-secrets-controller, controller, debian12, distroless"
 
 USER 1001
