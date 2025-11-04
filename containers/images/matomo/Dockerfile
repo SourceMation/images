@@ -5,9 +5,9 @@ ARG BUILD_DATE
 ARG LONGNAME="Matomo on Debian 13 Slim Container"
 
 LABEL name="matomo" \
-      vendor="SourceMation" \
+      vendor="Sourcemation" \
       url="https://sourcemation.com" \
-      source="https://github.com/SourceMation/images/issues" \
+      source="https://github.com/Sourcemation/images/issues" \
       licenses="GPL-3.0-or-later" \
       created="${BUILD_DATE}" \
       architecture="${TARGETARCH}" \

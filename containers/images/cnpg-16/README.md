@@ -1,11 +1,11 @@
-# SourceMation's Cloud Native PostgreSQL 16 on Debian Slim (cnpg-16)
+# Sourcemation's Cloud Native PostgreSQL 16 on Debian Slim (cnpg-16)
 
 This image, `sourcemation/cnpg-16`, builds upon `sourcemation/postgres-16` to
 deliver a PostgreSQL 16 environment optimized for Cloud Native PostgreSQL
 (CNPG) deployments. It integrates essential CNPG extensions and configurations,
 notably `pgaudit`, `pgvector`, and `pg-failover-slots`.
 
-Constructed by the SourceMation automation team, this PostgreSQL distribution,
+Constructed by the Sourcemation automation team, this PostgreSQL distribution,
 version 16.X.Y, receives regular updates. Built upon the latest
 `sourcemation/debian-13-slim` image at build time, it provides a compact,
 secure, and current base. Cryptographic signatures are employed during the
@@ -80,22 +80,22 @@ Port `5432`, the standard PostgreSQL port, is exposed by default.
 ## Contributions and Issue Reporting
 
 Contributions are welcome! Propose new features by creating issues or submit
-pull requests on the SourceMation GitHub repository.
+pull requests on the Sourcemation GitHub repository.
 
-- [Open a new issue (for feature requests, bug reports, or image requests)](https://github.com/SourceMation/images/issues/new/choose)
-- [Creating pull requests](https://github.com/SourceMation/images/compare)
+- [Open a new issue (for feature requests, bug reports, or image requests)](https://github.com/Sourcemation/images/issues/new/choose)
+- [Creating pull requests](https://github.com/Sourcemation/images/compare)
 
 **Disclaimer:** The `sourcemation/cnpg-16` image is independent of the
 PostgreSQL Global Development Group. Trademarks mentioned are owned by their
 respective entities. This image is a separate project maintained by
-[SourceMation](https://sourcemation.com).
+[Sourcemation](https://sourcemation.com).
 
 ## Additional Information
 
 ### Image Component Risk Analysis
 
 Detailed risk analysis reports for our images and their components are
-available on the [SourceMation platform](https://www.sourcemation.com/).
+available on the [Sourcemation platform](https://www.sourcemation.com/).
 
 Note: Risk analysis reports are not yet available for all images. Contact us
 for additional software components or inquiries.

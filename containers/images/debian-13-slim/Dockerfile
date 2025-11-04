@@ -6,7 +6,7 @@ ARG TARGETARCH
 
 LABEL name="debian-13-slim" \
       maintainer="Sourcemation Containers team <contact@sourcemation.com>" \
-      vendor="System - Debian project; Image - SourceMation" \
+      vendor="System - Debian project; Image - Sourcemation" \
       url="https://sourcemation.com"\
       licenses="GPLv2" \
       created="$BUILD_DATE" \

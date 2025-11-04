@@ -1,3 +1,3 @@
-# Jenkins packaged by SourceMation
+# Jenkins packaged by Sourcemation
 
 **THIS IS TEST IMAGE. IT'S NOT CONSIDERED STABLE AT THE MOMENT PLEASE DO NOT USE IT**

@@ -1,4 +1,4 @@
-# RabbitMQ-4 packaged by SourceMation
+# RabbitMQ-4 packaged by Sourcemation
 
 RabbitMQ is a high-performant, scalable message broker for AMQP clients.
 
@@ -48,17 +48,17 @@ This image uses the following volumes:
 
 We welcome your contributions! If you have new feature requests, want to report
 a bug, or wish to submit a pull request with your code or an image request, you
-can do so via the SourceMation GitHub repository for this image.
+can do so via the Sourcemation GitHub repository for this image.
 
-- [Open a new issue (for feature requests, bug reports, or image requests)](https://github.com/SourceMation/images/issues/new/choose)
-- [Submit a pull request](https://github.com/SourceMation/images/compare)
+- [Open a new issue (for feature requests, bug reports, or image requests)](https://github.com/Sourcemation/images/issues/new/choose)
+- [Submit a pull request](https://github.com/Sourcemation/images/compare)
 
 
 **Disclaimer:** The `sourcemation/rabbitmq-4` image is not affiliated with
 the Broadcom. The respective companies and
 organisations own the trademarks mentioned in the offering. The
 `sourcemation/rabbitmq-4` image is a separate project and is maintained by
-[SourceMation](https://sourcemation.com).
+[Sourcemation](https://sourcemation.com).
 
 ### Licenses
 

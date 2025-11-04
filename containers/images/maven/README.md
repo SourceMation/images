@@ -1,4 +1,4 @@
-# Maven packed by SourceMation
+# Maven packed by Sourcemation
 
 This image provides a ready-to-use environment for Apache Maven, a powerful
 project management tool used primarily for Java projects. Maven can manage a
@@ -89,10 +89,10 @@ While this image aims to be straightforward, you might find these environment va
 ## Contributions and Issue Reporting
 
 Contributions are welcome! Propose new features by creating issues or submit
-pull requests on the SourceMation GitHub repository.
+pull requests on the Sourcemation GitHub repository.
 
-- [Open a new issue (for feature requests, bug reports, or image requests)](https://github.com/SourceMation/images/issues/new/choose)
-- [Creating pull requests](https://github.com/SourceMation/images/compare)
+- [Open a new issue (for feature requests, bug reports, or image requests)](https://github.com/Sourcemation/images/issues/new/choose)
+- [Creating pull requests](https://github.com/Sourcemation/images/compare)
 
 ## Extra information
 
@@ -103,7 +103,7 @@ For more details on Apache Maven, please refer to the official Maven documentati
 Sourcemation offers a range of open-source projects and Docker images with
 extensive risk assessment of open-source software. We are committed to providing
 high-quality images. Comprehensive risk analysis reports for selected images
-are available on the [SourceMation platform](https://www.sourcemation.com/).
+are available on the [Sourcemation platform](https://www.sourcemation.com/).
 
 ### License
 

@@ -1,5 +1,5 @@
 # Copyright The CloudNativePG Contributors
-# Copyright SourceMation
+# Copyright Sourcemation
 # License: Apache License 2.0
 
 FROM sourcemation/postgres-18
@@ -9,7 +9,7 @@ ARG TARGETARCH
 
 # Do not split the description, otherwise we will see a blank space in the labels
 LABEL name="cnpg-18" \
-      vendor="SourceMation" \
+      vendor="Sourcemation" \
       url="https://sourcemation.com/"\
       licenses="GPLv2" \
       created="$BUILD_DATE" \

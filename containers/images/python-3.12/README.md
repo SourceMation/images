@@ -1,10 +1,10 @@
-# Python 3.12 packaged by SourceMation
+# Python 3.12 packaged by Sourcemation
 
 Python is one of the most popular programming languages. Its simplicity,
 emphasis on readability and a dozen of modules make it the perfect choice for
 various work domains, ranging from web development to AI/ML.
 
-This Python distribution is compiled from fresh sources by the SourceMation
+This Python distribution is compiled from fresh sources by the Sourcemation
 automation team. The version is 3.12.X and it's regularly updated to the latest
 patch version. For user convenience, the pip package manager is shipped as well.
 
@@ -65,22 +65,22 @@ exposed by default.
 
 Your contributions are valued! Feel free to suggest enhancements or request new
 images by opening an issue, or submit your own contributions via pull requests
-to the SourceMation GitHub repository.
+to the Sourcemation GitHub repository.
 
-- [Creating issues (bugs) and images requests](https://github.com/SourceMation/images/issues/new/choose)
-- [Creating pull requests](https://github.com/SourceMation/images/compare)
+- [Creating issues (bugs) and images requests](https://github.com/Sourcemation/images/issues/new/choose)
+- [Creating pull requests](https://github.com/Sourcemation/images/compare)
 
 **Disclaimer:** The `sourcemation/python-3.12` image is not affiliated with the
 Python Software Foundation. The respective companies and organisations own the
 trademarks mentioned in the offering. The `sourcemation/python-3.12` image is a
-separate project and is maintained by [SourceMation](https://sourcemation.com).
+separate project and is maintained by [Sourcemation](https://sourcemation.com).
 
 ## Extra notes
 
 ### Image and its components Risk Analysis report
 
 A detailed risk analysis report of our images and its components might be found
-on the [SourceMation
+on the [Sourcemation
 platform](https://www.sourcemation.com/).
 
 

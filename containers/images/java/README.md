@@ -1,4 +1,4 @@
-# Java packaged by SourceMation
+# Java packaged by Sourcemation
 
 Java is an industry-standard, robust, object-oriented programming language
 widely used for enterprise software development.
@@ -73,22 +73,22 @@ LANGUAGE="en_US:en"
 
 We welcome your contributions! If you have new feature requests, want to report
 a bug, or wish to submit a pull request with your code or an image request, you
-can do so via the SourceMation GitHub repository for this image.
+can do so via the Sourcemation GitHub repository for this image.
 
-- [Open a new issue (for feature requests, bug reports, or image requests)](https://github.com/SourceMation/images/issues/new/choose)
-- [Submit a pull request](https://github.com/SourceMation/images/compare)
+- [Open a new issue (for feature requests, bug reports, or image requests)](https://github.com/Sourcemation/images/issues/new/choose)
+- [Submit a pull request](https://github.com/Sourcemation/images/compare)
 
 **Disclaimer:** The `sourcemation/java` image is not affiliated with Oracle,
 Inc. or the OpenJDK community. The respective companies and organisations own
 the trademarks mentioned in the offering. The `sourcemation/java` image is a
-separate project and is maintained by [SourceMation](https://sourcemation.com).
+separate project and is maintained by [Sourcemation](https://sourcemation.com).
 
 ## Extra notes
 
 ### Image and its components Risk Analysis report
 
 A detailed risk analysis report of the image and its components can be found on
-the [SourceMation
+the [Sourcemation
 platform](https://sourcemation.com/products/f10b4231-8a90-40c4-8475-65d7aeb1368a/deployments).
 
 For more information, check out the [official OpenJDK
@@ -100,5 +100,5 @@ The base license for the solution (OpenJDK 21) is the [GPLv2+CPE (GPLv2 with
 Classpath Exception)
 license](https://github.com/openjdk/jdk21/blob/master/LICENSE). The licenses
 for each component shipped as part of this image can be found on [the image's
-appropriate SourceMation
+appropriate Sourcemation
 entry](https://sourcemation.com/products/f10b4231-8a90-40c4-8475-65d7aeb1368a/deployments).

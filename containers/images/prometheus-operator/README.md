@@ -1,8 +1,8 @@
-# Prometheus Operator packaged by SourceMation
+# Prometheus Operator packaged by Sourcemation
 
 Prometheus Operator is a Kubernetes native operator that automates the management of Prometheus instances, ServiceMonitors, PrometheusRules, and other monitoring components in Kubernetes clusters.
 
-This Prometheus Operator distribution is provided by the SourceMation packaging team, built on a secure Debian 12 Slim base image with Prometheus Operator.
+This Prometheus Operator distribution is provided by the Sourcemation packaging team, built on a secure Debian 12 Slim base image with Prometheus Operator.
 
 ## Usage
 
@@ -132,21 +132,21 @@ For production deployments in Kubernetes, refer to the [official Prometheus Oper
 
 ## Contributing and Issues
 
-We'd love for you to contribute! You can request new features, report bugs, or submit a pull request with your contribution to this image on the SourceMation GitHub repository.
+We'd love for you to contribute! You can request new features, report bugs, or submit a pull request with your contribution to this image on the Sourcemation GitHub repository.
 
-- [Creating issues, feature requests, and bug reports](https://github.com/SourceMation/images/issues/new/choose)
-- [Creating pull requests](https://github.com/SourceMation/images/compare)
+- [Creating issues, feature requests, and bug reports](https://github.com/Sourcemation/images/issues/new/choose)
+- [Creating pull requests](https://github.com/Sourcemation/images/compare)
 
-**Disclaimer:** The `sourcemation/prometheus-operator` image is not affiliated with the Prometheus project or the Cloud Native Computing Foundation. The respective companies and organisations own the trademarks mentioned in the offering. The `sourcemation/prometheus-operator` image is a separate project and is maintained by [SourceMation](https://sourcemation.com).
+**Disclaimer:** The `sourcemation/prometheus-operator` image is not affiliated with the Prometheus project or the Cloud Native Computing Foundation. The respective companies and organisations own the trademarks mentioned in the offering. The `sourcemation/prometheus-operator` image is a separate project and is maintained by [Sourcemation](https://sourcemation.com).
 
 ## Extra notes
 
 ### Image and its components Risk Analysis report
 
-A detailed risk analysis report of the image and its components can be found on the [SourceMation platform](https://www.sourcemation.com/).
+A detailed risk analysis report of the image and its components can be found on the [Sourcemation platform](https://www.sourcemation.com/).
 
 For more information, check out the [Prometheus Operator documentation](https://prometheus-operator.dev/docs/getting-started/introduction/).
 
 ### Licenses
 
-The base license for the solution (Prometheus Operator) is the [Apache License 2.0](https://github.com/prometheus-operator/prometheus-operator/blob/main/LICENSE). The licenses for each component shipped as part of this image can be found on [the image's appropriate SourceMation entry](https://www.sourcemation.com/).
+The base license for the solution (Prometheus Operator) is the [Apache License 2.0](https://github.com/prometheus-operator/prometheus-operator/blob/main/LICENSE). The licenses for each component shipped as part of this image can be found on [the image's appropriate Sourcemation entry](https://www.sourcemation.com/).

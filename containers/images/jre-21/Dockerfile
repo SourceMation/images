@@ -4,7 +4,7 @@ ARG BUILD_DATE
 ARG TARGETARCH
 
 LABEL name="jre-21" \
-      vendor="SourceMation" \
+      vendor="Sourcemation" \
       url="https://sourcemation.com/"\
       licenses="Multiple licenses" \
       created="$BUILD_DATE" \

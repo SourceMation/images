@@ -26,9 +26,9 @@ ARG BUILD_DATE
 ARG LONGNAME="Minio on Debian 13 Slim Container"
 
 LABEL name="minio" \
-  vendor="SourceMation" \
+  vendor="Sourcemation" \
   url="https://sourcemation.com"\
-  source="https://github.com/SourceMation/images/issues"\
+  source="https://github.com/Sourcemation/images/issues"\
   licenses="AGPLv3" \
   created="${BUILD_DATE}" \
   architecture="${TARGETARCH}" \

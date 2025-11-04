@@ -5,9 +5,9 @@ ARG BUILD_DATE
 ARG LONGNAME="Ghost on Nojde.js 22 Container"
 
 LABEL name="ghost" \
-      vendor="SourceMation" \
+      vendor="Sourcemation" \
       url="https://sourcemation.com" \
-      source="https://github.com/SourceMation/images/issues" \
+      source="https://github.com/Sourcemation/images/issues" \
       licenses="MIT" \
       created="${BUILD_DATE}" \
       architecture="${TARGETARCH}" \

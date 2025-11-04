@@ -1,8 +1,8 @@
-# etcd packaged by SourceMation
+# etcd packaged by Sourcemation
 
 **etcd** is a distributed, reliable key-value store for the most critical data of a distributed system. It provides a reliable way to store data that needs to be accessed by a distributed system or cluster of machines. It gracefully handles leader elections during network partitions and can tolerate machine failure, even in the leader node.
 
-This etcd distribution is provided by the SourceMation packaging team, built on a secure Debian 13 Slim base image.
+This etcd distribution is provided by the Sourcemation packaging team, built on a secure Debian 13 Slim base image.
 
 ## Usage
 
@@ -173,21 +173,21 @@ docker exec etcd etcdutl snapshot restore /var/lib/etcd/backup.db \
 
 ## Contributing and Issues
 
-We'd love for you to contribute! You can request new features, report bugs, or submit a pull request with your contribution to this image on the SourceMation GitHub repository.
+We'd love for you to contribute! You can request new features, report bugs, or submit a pull request with your contribution to this image on the Sourcemation GitHub repository.
 
-- [Creating issues, feature requests, and bug reports](https://github.com/SourceMation/images/issues/new/choose)
-- [Creating pull requests](https://github.com/SourceMation/images/compare)
+- [Creating issues, feature requests, and bug reports](https://github.com/Sourcemation/images/issues/new/choose)
+- [Creating pull requests](https://github.com/Sourcemation/images/compare)
 
-**Disclaimer:** The `sourcemation/etcd` image is not affiliated with the etcd project. The respective companies and organisations own the trademarks mentioned in the offering. The `sourcemation/etcd` image is a separate project and is maintained by [SourceMation](https://sourcemation.com).
+**Disclaimer:** The `sourcemation/etcd` image is not affiliated with the etcd project. The respective companies and organisations own the trademarks mentioned in the offering. The `sourcemation/etcd` image is a separate project and is maintained by [Sourcemation](https://sourcemation.com).
 
 ## Extra notes
 
 ### Image and its components Risk Analysis report
 
-A detailed risk analysis report of the image and its components can be found on the [SourceMation platform](https://www.sourcemation.com/).
+A detailed risk analysis report of the image and its components can be found on the [Sourcemation platform](https://www.sourcemation.com/).
 
 For more information, check out the [overview of etcd](https://etcd.io/) page.
 
 ### Licenses
 
-The base license for the solution (etcd) is the [Apache License 2.0](https://github.com/etcd-io/etcd/blob/main/LICENSE). The licenses for each component shipped as part of this image can be found on [the image's appropriate SourceMation entry](https://www.sourcemation.com/).
+The base license for the solution (etcd) is the [Apache License 2.0](https://github.com/etcd-io/etcd/blob/main/LICENSE). The licenses for each component shipped as part of this image can be found on [the image's appropriate Sourcemation entry](https://www.sourcemation.com/).

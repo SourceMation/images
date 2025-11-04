@@ -4,7 +4,7 @@ This image contains the Java Runtime Environment (JRE) 21 from the Eclipse
 Temurin project, which in this case is a compilation of the OpenJDK project.
 
 This carefully crafted Docker image delivers a pristine and lightweight
-installation of JRE 21. It is built upon SourceMation’s optimized Debian 13 Slim
+installation of JRE 21. It is built upon Sourcemation’s optimized Debian 13 Slim
 base, ensuring a minimal footprint and enhanced security.
 
 This image was built to be a drop-in replacement for the Temurin JRE 21 image.
@@ -116,10 +116,10 @@ extend it to run your application as a non-root user.**
 
 We welcome your contributions! If you have new feature requests, want to report
 a bug, or wish to submit a pull request with your code or an image request, you
-can do so via the SourceMation GitHub repository for this image.
+can do so via the Sourcemation GitHub repository for this image.
 
-- [Open a new issue (for feature requests, bug reports, or image requests)](https://github.com/SourceMation/images/issues/new/choose)
-- [Submit a pull request](https://github.com/SourceMation/images/compare)
+- [Open a new issue (for feature requests, bug reports, or image requests)](https://github.com/Sourcemation/images/issues/new/choose)
+- [Submit a pull request](https://github.com/Sourcemation/images/compare)
 
 ## Extra Information
 
@@ -128,7 +128,7 @@ can do so via the SourceMation GitHub repository for this image.
 Sourcemation offers a range of open-source projects and Docker images with
 extensive risk assessment of open-source software. We are committed to providing
 high-quality images. Comprehensive risk analysis reports for selected images
-are available on the [SourceMation platform](https://www.sourcemation.com/).
+are available on the [Sourcemation platform](https://www.sourcemation.com/).
 
 ### License
 

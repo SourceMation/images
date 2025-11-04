@@ -1,11 +1,11 @@
-# GCC 15 packaged by SourceMation
+# GCC 15 packaged by Sourcemation
 
 This container image delivers the GNU Compiler Collection (GCC) version 15,
 supplying an immediate environment for compiling projects written in C, C++,
 GO, Fortran, and other supported programming languages.
 
 
-Built upon the foundation of the SourceMation Debian 12 Slim image.
+Built upon the foundation of the Sourcemation Debian 12 Slim image.
 
 
 ## Usage
@@ -74,22 +74,22 @@ executables. They are still present within the system.
 ## Contributing and Issues
 
 We'd love for you to contribute! You can request new features, report bugs, or
-submit a pull request with your contribution to this image on the SourceMation
+submit a pull request with your contribution to this image on the Sourcemation
 GitHub repository.
 
-- [Creating issues, feature requests, and bug reports](https://github.com/SourceMation/images/issues/new/choose)
-- [Creating pull requests](https://github.com/SourceMation/images/compare)
+- [Creating issues, feature requests, and bug reports](https://github.com/Sourcemation/images/issues/new/choose)
+- [Creating pull requests](https://github.com/Sourcemation/images/compare)
 
 **Disclaimer:** The `sourcemation/gcc-15` image is not affiliated with the GNU
 Project. The respective companies and organisations own the trademarks
 mentioned in the offering. The sourcemation/gcc-15 image is a separate project
-and is maintained by SourceMation.
+and is maintained by Sourcemation.
 
 ## Extra notes
 
 This GCC 15 image is built on a Debian 12 Slim base image, which is a minimal
 consistent compilation environment. This image is loosely based on the Docker
-official image for gcc and is built using a separate, independent SourceMation
+official image for gcc and is built using a separate, independent Sourcemation
 images build chain.
 
 ## Image and its components Risk Analysis report

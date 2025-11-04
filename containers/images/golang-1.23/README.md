@@ -1,18 +1,18 @@
-# Golang 1.23 packaged by SourceMation
+# Golang 1.23 packaged by Sourcemation
 
-## DEPRECATED: Please use newer versions from SourceMation
+## DEPRECATED: Please use newer versions from Sourcemation
 
 ---
 
 **Warning: This image is deprecated and will no longer be updated. Please use
-the latest newer versions image from SourceMation:
+the latest newer versions image from Sourcemation:
 [sourcemation](https://hub.docker.com/r/sourcemation/).**
 
 
 **Golang 1.23 has reached its end of life and is no longer supported, and
 won't get any security updates. The end of life date was 12 Aug 2025. The 
 There are two newer supported Golang versions: 1.24 and 1.25. Both of them are
-available from SourceMation.**
+available from Sourcemation.**
 
 
 **Lastly we will continue to build this image for a limited time, because the
@@ -30,7 +30,7 @@ Google. Its simplicity, efficiency, and concurrency support make it ideal for
 building scalable and high-performance applications.
 
 This Golang distribution is packed from fresh official Google builds by the
-SourceMation automation team. The version is 1.23.X and it's regularly updated
+Sourcemation automation team. The version is 1.23.X and it's regularly updated
 to the latest patch version. For user convenience, the `go` toolchain is
 pre-installed and ready to use.
 
@@ -90,23 +90,23 @@ exposed by default.
 ## Contributions and Issue Reporting
 
 Contributions are welcome! Propose new features by creating issues or submit
-pull requests on the SourceMation GitHub repository.
+pull requests on the Sourcemation GitHub repository.
 
-- [Open a new issue (for feature requests, bug reports, or image requests)](https://github.com/SourceMation/images/issues/new/choose)
-- [Creating pull requests](https://github.com/SourceMation/images/compare)
+- [Open a new issue (for feature requests, bug reports, or image requests)](https://github.com/Sourcemation/images/issues/new/choose)
+- [Creating pull requests](https://github.com/Sourcemation/images/compare)
 
 
 **Disclaimer:** The `sourcemation/golang-1.23` image is not affiliated with the
 Go project or Google. The respective companies and organisations own the
 trademarks mentioned in the offering. The `sourcemation/golang-1.23` image is a
-separate project and is maintained by [SourceMation](https://sourcemation.com).
+separate project and is maintained by [Sourcemation](https://sourcemation.com).
 
 ## Extra notes
 
 ### Image and its components Risk Analysis report
 
 A detailed risk analysis report of our images and its components might be found
-on the [SourceMation platform](https://www.sourcemation.com/).
+on the [Sourcemation platform](https://www.sourcemation.com/).
 
 However, not all images have a risk analysis report yet. If need risk report
 for you images, have any questions, please contact us.

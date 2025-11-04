@@ -15,7 +15,7 @@ ARG BUILD_DATE
 ARG TARGETARCH
 
 LABEL name="sealed-secrets-controller" \
-      vendor="SourceMation" \
+      vendor="Sourcemation" \
       url="https://sourcemation.com/"\
       licenses="Apache License Version 2.0," \
       created="$BUILD_DATE" \

@@ -1,4 +1,4 @@
-# NodeJS 20 with Yarn Classic packed by SourceMation
+# NodeJS 20 with Yarn Classic packed by Sourcemation
 
 Node.js is a powerful and adaptable JavaScript runtime that's used to build all
 sorts of applications, from simple command-line tools to complex conferencing
@@ -50,24 +50,24 @@ YARN_VERSION=1.22.XX
 ## Contributing and Issues
 
 We'd love for you to contribute! You can request new features, report bugs, or
-submit a pull request with your contribution to this image on the SourceMation
+submit a pull request with your contribution to this image on the Sourcemation
 GitHub repository.
 
-- [Creating issues, feature requests, and bug reports](https://github.com/SourceMation/images/issues/new/choose)
-- [Creating pull requests](https://github.com/SourceMation/images/compare)
+- [Creating issues, feature requests, and bug reports](https://github.com/Sourcemation/images/issues/new/choose)
+- [Creating pull requests](https://github.com/Sourcemation/images/compare)
 
 
 Disclaimer: The sourcemation/nodejs image is not affiliated with the
 [OpenJS Foundation](https://openjsf.org/). The respective companies and
 organisations own the trademarks mentioned in the offering. The
 sourcemation/nodejs image is a separate project and is maintained by
-[SourceMation](https://sourcemation.com).
+[Sourcemation](https://sourcemation.com).
 
 ## Extra notes
 ### Image and its components Risk Analysis report
 
 A detailed risk analysis report of the image and its components can be found on
-the [SourceMation platform](https://www.sourcemation.com/)
+the [Sourcemation platform](https://www.sourcemation.com/)
 
 
 For more information, check out the [overview of NodeJS®](https://nodejs.org/)

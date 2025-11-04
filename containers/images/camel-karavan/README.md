@@ -1,4 +1,4 @@
-# Apache Camel-Karavan packaged by SourceMation
+# Apache Camel-Karavan packaged by Sourcemation
 
 Karavan is a suite for cloud-related development, aimed to help visualize
 integration processes and patterns, as well as deploy images directly to
@@ -40,16 +40,16 @@ Please note that the ports need to be either manually forwarded with the
 
 We welcome your contributions! If you have new feature requests, want to report
 a bug, or wish to submit a pull request with your code or an image request, you
-can do so via the SourceMation GitHub repository for this image.
+can do so via the Sourcemation GitHub repository for this image.
 
-- [Open a new issue (for feature requests, bug reports, or image requests)](https://github.com/SourceMation/images/issues/new/choose)
-- [Submit a pull request](https://github.com/SourceMation/images/compare)
+- [Open a new issue (for feature requests, bug reports, or image requests)](https://github.com/Sourcemation/images/issues/new/choose)
+- [Submit a pull request](https://github.com/Sourcemation/images/compare)
 
 **Disclaimer:** The `sourcemation/camel-karavan` image is not affiliated with
 the Apache Software Foundation (ASF). The respective companies and
 organisations own the trademarks mentioned in the offering. The
 `sourcemation/camel-karavan` image is a separate project and is maintained by
-[SourceMation](https://sourcemation.com).
+[Sourcemation](https://sourcemation.com).
 
 ## Extra notes
 
@@ -64,7 +64,7 @@ by the Apache Software Foundation (ASF).
 
 ### Image and its components Risk Analysis report
 
-A detailed risk analysis report of the image and its components can be found on the SourceMation platform.
+A detailed risk analysis report of the image and its components can be found on the Sourcemation platform.
 
 For more information, check out the [Karavan entries on
 apache.org](https://camel.apache.org/categories/Karavan/).
@@ -74,4 +74,4 @@ apache.org](https://camel.apache.org/categories/Karavan/).
 The base license for the solution (Karavan) is the [Apache License Version
 2.0](https://github.com/apache/camel-karavan/blob/main/LICENSE.txt). The
 licenses for each component shipped as part of this image can be found on the
-image's appropriate SourceMation entry.
+image's appropriate Sourcemation entry.

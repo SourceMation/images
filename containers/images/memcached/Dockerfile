@@ -43,7 +43,7 @@ ARG BUILD_DATE
 ARG TARGETARCH
 
 LABEL name="memcached" \
-      vendor="SourceMation" \
+      vendor="Sourcemation" \
       url="https://sourcemation.com/"\
       licenses="BSD-3-Clause" \
       created="$BUILD_DATE" \

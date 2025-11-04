@@ -1,4 +1,4 @@
-# Git packaged by SourceMation
+# Git packaged by Sourcemation
 
 > Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
 
@@ -22,7 +22,7 @@ docker run -u 0 --rm -it sourcemation/git
 
 **Clone a repository to local directory:**
 ```bash
-docker run -u 0 --rm -v $(pwd):/workspace -w /workspace sourcemation/git git clone https://github.com/SourceMation/images.git
+docker run -u 0 --rm -v $(pwd):/workspace -w /workspace sourcemation/git git clone https://github.com/Sourcemation/images.git
 ```
 
 ## Image tags and versions
@@ -58,12 +58,12 @@ This image does not expose any ports as Git is primarily a command-line tool.
 
 ## Contributing and Issues
 
-We'd love for you to contribute! You can request new features, report bugs, or submit a pull request with your contribution to this image on the SourceMation GitHub repository.
+We'd love for you to contribute! You can request new features, report bugs, or submit a pull request with your contribution to this image on the Sourcemation GitHub repository.
 
-- [Creating issues, feature requests, and bug reports](https://github.com/SourceMation/images/issues/new/choose)
-- [Creating pull requests](https://github.com/SourceMation/images/compare)
+- [Creating issues, feature requests, and bug reports](https://github.com/Sourcemation/images/issues/new/choose)
+- [Creating pull requests](https://github.com/Sourcemation/images/compare)
 
-**Disclaimer:** The `sourcemation/git` image is not affiliated with the Git project or the Git development team. Git and its logo are trademarks of the Git project. The `sourcemation/git` image is a separate project and is maintained by [SourceMation](https://sourcemation.com).
+**Disclaimer:** The `sourcemation/git` image is not affiliated with the Git project or the Git development team. Git and its logo are trademarks of the Git project. The `sourcemation/git` image is a separate project and is maintained by [Sourcemation](https://sourcemation.com).
 
 ## Extra notes
 
@@ -84,12 +84,12 @@ We'd love for you to contribute! You can request new features, report bugs, or s
 
 ### Image and its components Risk Analysis report
 
-A detailed risk analysis report of the image and its components can be found on the [SourceMation platform](https://sourcemation.com/catalog/git).
+A detailed risk analysis report of the image and its components can be found on the [Sourcemation platform](https://sourcemation.com/catalog/git).
 For more information, check out the [overview of Git](https://git-scm.com) page.
 
 ### Licenses
 
-The base license for the solution (Git) is the [GNU General Public License v2.0](https://github.com/git/git/blob/master/COPYING). The licenses for each component shipped as part of this image can be found on [the image's appropriate SourceMation entry](https://sourcemation.com/catalog/git).
+The base license for the solution (Git) is the [GNU General Public License v2.0](https://github.com/git/git/blob/master/COPYING). The licenses for each component shipped as part of this image can be found on [the image's appropriate Sourcemation entry](https://sourcemation.com/catalog/git).
 
 ### Additional Resources
 

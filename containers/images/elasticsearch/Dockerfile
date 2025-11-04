@@ -5,9 +5,9 @@ ARG BUILD_DATE
 ARG LONGNAME="Elasticsearch on Debian 13 Slim Container"
 
 LABEL name="elasticsearch" \
-      vendor="SourceMation" \
+      vendor="Sourcemation" \
       url="https://sourcemation.com" \
-      source="https://github.com/SourceMation/images/issues" \
+      source="https://github.com/Sourcemation/images/issues" \
       licenses="Elastic-License-2.0" \
       created="${BUILD_DATE}" \
       architecture="${TARGETARCH}" \

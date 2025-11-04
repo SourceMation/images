@@ -1,4 +1,4 @@
-# MariaDB packaged by SourceMation
+# MariaDB packaged by Sourcemation
 
 > MariaDB is a popular open source relational database that was created by the original developers of MySQL. MariaDB is developed as open source software and as a relational database it provides an SQL interface for accessing data.
 
@@ -91,12 +91,12 @@ Please note that the ports need to be either manually forwarded with the `-p` op
 
 ## Contributing and Issues
 
-We'd love for you to contribute! You can request new features, report bugs, or submit a pull request with your contribution to this image on the SourceMation GitHub repository.
+We'd love for you to contribute! You can request new features, report bugs, or submit a pull request with your contribution to this image on the Sourcemation GitHub repository.
 
-- [Creating issues, feature requests, and bug reports](https://github.com/SourceMation/images/issues/new/choose)
-- [Creating pull requests](https://github.com/SourceMation/images/compare)
+- [Creating issues, feature requests, and bug reports](https://github.com/Sourcemation/images/issues/new/choose)
+- [Creating pull requests](https://github.com/Sourcemation/images/compare)
 
-**Disclaimer:** The `sourcemation/mariadb` image is not affiliated with the MariaDB Foundation. The respective companies and organisations own the trademarks mentioned in the offering. The `sourcemation/mariadb` image is a separate project and is maintained by [SourceMation](https://sourcemation.com).
+**Disclaimer:** The `sourcemation/mariadb` image is not affiliated with the MariaDB Foundation. The respective companies and organisations own the trademarks mentioned in the offering. The `sourcemation/mariadb` image is a separate project and is maintained by [Sourcemation](https://sourcemation.com).
 
 ## Extra notes
 
@@ -117,10 +117,10 @@ The container supports initialization scripts that will be executed when the dat
 
 ### Image and its components Risk Analysis report
 
-A detailed risk analysis report of the image and its components can be found on the [SourceMation platform](https://sourcemation.com).
+A detailed risk analysis report of the image and its components can be found on the [Sourcemation platform](https://sourcemation.com).
 
 For more information, check out the [overview of MariaDB](https://mariadb.org/) page.
 
 ### Licenses
 
-The base license for the solution (MariaDB) is the [GPLv2](https://github.com/MariaDB/server/blob/11.4/COPYING). The licenses for each component shipped as part of this image can be found on [the image's appropriate SourceMation entry](https://sourcemation.com).
+The base license for the solution (MariaDB) is the [GPLv2](https://github.com/MariaDB/server/blob/11.4/COPYING). The licenses for each component shipped as part of this image can be found on [the image's appropriate Sourcemation entry](https://sourcemation.com).

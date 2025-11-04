@@ -52,7 +52,7 @@ ENV PGPOOL_CONF_VOLUME "/config"
 LABEL name="pgpool" \
   vendor="Linux Polska" \
   url="https://sourcemation.com"\
-  source="https://github.com/SourceMation/images/issues"\
+  source="https://github.com/Sourcemation/images/issues"\
   licenses="GPLv2" \
   created="$BUILD_DATE" \
   architecture="$TARGETARCH" \

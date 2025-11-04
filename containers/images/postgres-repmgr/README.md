@@ -2,7 +2,7 @@
 
 This image provides a complete PostgreSQL and **repmgr** environment for building high-availability database clusters. It's designed to simplify the setup of primary and standby nodes with automated failover capabilities, which is critical for production database environments.
 
-Maintained by SourceMation, this distribution is regularly updated to ensure it's current and secure. It is a focused container designed for easy integration into your existing infrastructure, providing a robust foundation for a resilient PostgreSQL setup.
+Maintained by Sourcemation, this distribution is regularly updated to ensure it's current and secure. It is a focused container designed for easy integration into your existing infrastructure, providing a robust foundation for a resilient PostgreSQL setup.
 
 -----
 
@@ -100,21 +100,21 @@ The standard **PostgreSQL** port, **5432**, is exposed by default for database c
 
 Your contributions are valued\! Feel free to suggest enhancements or request new
 images by opening an issue, or submit your own contributions via pull requests
-to the SourceMation GitHub repository.
+to the Sourcemation GitHub repository.
 
-  - [Creating issues (bugs) and images requests](https://github.com/SourceMation/images/issues/new/choose)
-  - [Creating pull requests](https://github.com/SourceMation/images/compare)
+  - [Creating issues (bugs) and images requests](https://github.com/Sourcemation/images/issues/new/choose)
+  - [Creating pull requests](https://github.com/Sourcemation/images/compare)
 
 -----
 
 ## Extra notes
 
-**Disclaimer:** The `sourcemation/postgres-repmgr` image is not affiliated with the PostgreSQL Global Development Group or EnterpriseDB. The respective entities own the trademarks mentioned in the offering. The `sourcemation/postgres-repmgr` image is a separate project and is maintained by [SourceMation](https://sourcemation.com).
+**Disclaimer:** The `sourcemation/postgres-repmgr` image is not affiliated with the PostgreSQL Global Development Group or EnterpriseDB. The respective entities own the trademarks mentioned in the offering. The `sourcemation/postgres-repmgr` image is a separate project and is maintained by [Sourcemation](https://sourcemation.com).
 
 ### Image and its components Risk Analysis report
 
 A detailed risk analysis report of the image and its components can be
-found on the [SourceMation
+found on the [Sourcemation
 platform](https://www.sourcemation.com/products/b95ab2de-202b-45f2-a2a3-086e64968979/deployments).
 
 ### Licenses

@@ -1,4 +1,4 @@
-# Cloud Native PostgreSQL 18 on Debian Slim packaged by SourceMation (cnpg-18)
+# Cloud Native PostgreSQL 18 on Debian Slim packaged by Sourcemation (cnpg-18)
 
 This image, `sourcemation/cnpg-18`, is built upon `sourcemation/postgres-18`
 and extends it to provide a PostgreSQL 18 environment optimized for Cloud
@@ -6,7 +6,7 @@ Native PostgreSQL (CNPG) deployments. It includes essential extensions and
 configurations for CNPG, such as `pgaudit`, `pgvector`, and
 `pg-failover-slots`.
 
-This PostgreSQL distribution is built by the SourceMation automation team. The
+This PostgreSQL distribution is built by the Sourcemation automation team. The
 version is 18.X.Y and it's regularly updated. The base image is the latest
 `sourcemation/debian-12-slim` image at the time of the build, providing a
 small, secure, and up-to-date foundation. The build process incorporates
@@ -81,23 +81,23 @@ port.
 ## Contributions and Issue Reporting
 
 Contributions are welcome! Propose new features by creating issues or submit
-pull requests on the SourceMation GitHub repository.
+pull requests on the Sourcemation GitHub repository.
 
-- [Open a new issue (for feature requests, bug reports, or image requests)](https://github.com/SourceMation/images/issues/new/choose)
-- [Creating pull requests](https://github.com/SourceMation/images/compare)
+- [Open a new issue (for feature requests, bug reports, or image requests)](https://github.com/Sourcemation/images/issues/new/choose)
+- [Creating pull requests](https://github.com/Sourcemation/images/compare)
 
 **Disclaimer:** The `sourcemation/cnpg-18` image is not directly affiliated
 with the PostgreSQL Global Development Group. The respective companies and
 organisations own the trademarks mentioned in the offering. The
 `sourcemation/cnpg-18` image is a separate project and is maintained by
-[SourceMation](https://sourcemation.com).
+[Sourcemation](https://sourcemation.com).
 
 ## Extra notes
 
 ### Image and its components Risk Analysis report
 
 A detailed risk analysis report of our images and its components might be found
-on the [SourceMation platform](https://www.sourcemation.com/).
+on the [Sourcemation platform](https://www.sourcemation.com/).
 
 However, not all images have a risk analysis report yet. If you need additional
 software components or have any questions, please contact us.

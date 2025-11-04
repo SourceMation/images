@@ -1,11 +1,11 @@
-# Golang 1.25 packaged by SourceMation
+# Golang 1.25 packaged by Sourcemation
 
 Go (Golang) is a statically typed, compiled programming language developed by
 Google. Its simplicity, performance, and robust concurrency features make it perfect for
 creating scalable and high-performance applications.
 
 This Golang distribution is packaged from fresh official Google releases by the
-SourceMation automation team. The version is 1.25.X and receives regular updates
+Sourcemation automation team. The version is 1.25.X and receives regular updates
 to the latest patch version. For developer convenience, the complete `go` toolchain is
 pre-installed and ready to use.
 
@@ -80,23 +80,23 @@ exposed by default.
 ## Contributions and Issue Reporting
 
 Contributions are welcome! Propose new features by creating issues or submit
-pull requests on the SourceMation GitHub repository.
+pull requests on the Sourcemation GitHub repository.
 
-- [Open a new issue (for feature requests, bug reports, or image requests)](https://github.com/SourceMation/images/issues/new/choose)
-- [Creating pull requests](https://github.com/SourceMation/images/compare)
+- [Open a new issue (for feature requests, bug reports, or image requests)](https://github.com/Sourcemation/images/issues/new/choose)
+- [Creating pull requests](https://github.com/Sourcemation/images/compare)
 
 
 **Disclaimer:** The `sourcemation/golang-1.25` image is not affiliated with the
 Go project or Google. The respective companies and organisations own the
 trademarks mentioned in the offering. The `sourcemation/golang-1.25` image is a
-separate project and is maintained by [SourceMation](https://sourcemation.com).
+separate project and is maintained by [Sourcemation](https://sourcemation.com).
 
 ## Extra notes
 
 ### Image and its components Risk Analysis report
 
 A detailed risk analysis report of our images and its components might be found
-on the [SourceMation platform](https://www.sourcemation.com/).
+on the [Sourcemation platform](https://www.sourcemation.com/).
 
 However, not all images have a risk analysis report yet. If you need risk report
 for you images, have any questions, please contact us.

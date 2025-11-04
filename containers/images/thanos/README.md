@@ -1,8 +1,8 @@
-# Thanos packaged by SourceMation
+# Thanos packaged by Sourcemation
 
 Thanos is a set of components that can be composed into a highly available metric system with unlimited storage capacity, which can be added seamlessly on top of existing Prometheus deployments. Thanos leverages the Prometheus 2.0 storage format to cost-efficiently store historical metric data in any object storage while retaining fast query latencies.
 
-This Thanos distribution is provided by the SourceMation packaging team, built on a secure Debian 12 Slim base image with version.
+This Thanos distribution is provided by the Sourcemation packaging team, built on a secure Debian 12 Slim base image with version.
 
 ## Usage
 
@@ -274,21 +274,21 @@ This image runs as the `nobody` user (non-root) for enhanced security. The Thano
 
 ## Contributing and Issues
 
-We'd love for you to contribute! You can request new features, report bugs, or submit a pull request with your contribution to this image on the SourceMation GitHub repository.
+We'd love for you to contribute! You can request new features, report bugs, or submit a pull request with your contribution to this image on the Sourcemation GitHub repository.
 
-- [Creating issues, feature requests, and bug reports](https://github.com/SourceMation/images/issues/new/choose)
-- [Creating pull requests](https://github.com/SourceMation/images/compare)
+- [Creating issues, feature requests, and bug reports](https://github.com/Sourcemation/images/issues/new/choose)
+- [Creating pull requests](https://github.com/Sourcemation/images/compare)
 
-**Disclaimer:** The `sourcemation/thanos` image is not affiliated with the Thanos project. The respective companies and organisations own the trademarks mentioned in the offering. The `sourcemation/thanos` image is a separate project and is maintained by [SourceMation](https://sourcemation.com).
+**Disclaimer:** The `sourcemation/thanos` image is not affiliated with the Thanos project. The respective companies and organisations own the trademarks mentioned in the offering. The `sourcemation/thanos` image is a separate project and is maintained by [Sourcemation](https://sourcemation.com).
 
 ## Extra notes
 
 ### Image and its components Risk Analysis report
 
-A detailed risk analysis report of the image and its components can be found on the [SourceMation platform](https://www.sourcemation.com/).
+A detailed risk analysis report of the image and its components can be found on the [Sourcemation platform](https://www.sourcemation.com/).
 
 For more information, check out the [overview of Thanos](https://thanos.io/tip/thanos/getting-started.md/) page.
 
 ### Licenses
 
-The base license for the solution (Thanos) is the [Apache License 2.0](https://github.com/thanos-io/thanos/blob/main/LICENSE). The licenses for each component shipped as part of this image can be found on [the image's appropriate SourceMation entry](https://www.sourcemation.com/).
+The base license for the solution (Thanos) is the [Apache License 2.0](https://github.com/thanos-io/thanos/blob/main/LICENSE). The licenses for each component shipped as part of this image can be found on [the image's appropriate Sourcemation entry](https://www.sourcemation.com/).
