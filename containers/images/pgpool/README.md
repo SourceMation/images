@@ -1,4 +1,4 @@
-# Pgpool-II Container on Debian 12 Slim packed by SourceMation
+# Pgpool-II Container on Debian 13 Slim packed by SourceMation
 
 This image, `sourcemation/pgpool`, is built on `sourcemation/postgresql-17` to provide a robust **Pgpool-II** environment. It's designed for handling connection pooling, load balancing, and high availability for your PostgreSQL database deployments. The image integrates essential Pgpool-II configurations and includes the Pgpool Command-line Protocol (PCP).
 

@@ -1,4 +1,4 @@
-FROM sourcemation/debian-12-slim
+FROM sourcemation/debian-13-slim
 
 # This Dockerfile originates from the official Docker Hub image. We have made modifications
 # to improve readability and maintainability. Importantly, our images are automatically
@@ -14,13 +14,13 @@ LABEL name="python-3.8" \
       licenses="PSF License Version 2" \
       created="$BUILD_DATE" \
       architecture="$TARGETARCH" \
-      summary="Python 3.8 on Debian 12 Slim Container" \
-      description="Provides Python 3.8 on Debian 12 Slim Container" \
+      summary="Python 3.8 on Debian 13 Slim Container" \
+      description="Provides Python 3.8 on Debian 13 Slim Container" \
       version="3.8.20" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
-      io.k8s.display-name="Python 3.8 on Debian 12 Slim Container" \
-      io.k8s.description="Provides Python 3.8 on Debian 12 Slim Container" \
-      io.openshift.tags="python-3.8 debian-12-slim"
+      io.k8s.display-name="Python 3.8 on Debian 13 Slim Container" \
+      io.k8s.description="Provides Python 3.8 on Debian 13 Slim Container" \
+      io.openshift.tags="python-3.8 debian-13-slim"
 
 # New python is installed in /usr/local/bin
 ENV PATH=/usr/local/bin:$PATH
@@ -112,6 +112,8 @@ RUN set -eux; \
             | awk '/=>/ { so = $(NF-1); if (index(so, "/usr/local/") == 1) { next }; gsub("^/(usr/)?", "", so); printf "*%s\n", so }' \
             | sort -u \
             | xargs -r dpkg-query --search \
+            | grep -vE '^diversion' \
+            | grep ':' \
             | cut -d: -f1 \
             | sort -u \
             | xargs -r apt-mark manual \

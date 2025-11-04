@@ -2,7 +2,7 @@
 
 Prometheus is an open-source monitoring system and time series database that collects metrics from configured targets at given intervals, evaluates rule expressions, displays the results, and can trigger alerts when specified conditions are observed.
 
-This Prometheus distribution is provided by the SourceMation packaging team, built on a secure Debian 12 Slim base image with version 3.5.0.
+This Prometheus distribution is provided by the SourceMation packaging team, built on a secure Debian 13 Slim base image with version 3.5.0.
 
 ## Usage
 
