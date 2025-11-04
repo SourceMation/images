@@ -27,7 +27,7 @@ ENV GOFIPS140=$FIPS_MODE
 
 RUN CGO_ENABLED=0 GO111MODULE=on go build -a -tags timetzdata -o manager main.go
 
-FROM sourcemation/debian-12-slim:latest AS etc-builder
+FROM sourcemation/debian-13-slim:latest AS etc-builder
 
 RUN echo "messaging-topology-operator:x:1000:" > /etc/group && \
     echo "messaging-topology-operator:x:1000:1000::/home/messaging-topology-operator:/usr/sbin/nologin" > /etc/passwd

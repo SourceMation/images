@@ -25,7 +25,7 @@ ENV GOARCH=$TARGETARCH
 RUN CGO_ENABLED=0 GO111MODULE=on go build -a -tags timetzdata -o manager main.go
 
 # ---------------------------------------
-FROM sourcemation/debian-12-slim:latest AS etc-builder
+FROM sourcemation/debian-13-slim:latest AS etc-builder
 
 RUN echo "rabbitmq-cluster-operator:x:1000:" > /etc/group && \
     echo "rabbitmq-cluster-operator:x:1000:1000::/home/rabbitmq-cluster-operator:/usr/sbin/nologin" > /etc/passwd

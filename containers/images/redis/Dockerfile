@@ -1,4 +1,4 @@
-FROM docker.io/sourcemation/debian-12-slim:latest as builder
+FROM docker.io/sourcemation/debian-13-slim:latest as builder
 
 ARG TARGETARCH
 
@@ -25,7 +25,7 @@ RUN VERSION=$(echo ${REDIS_VERSION} | sed -e "s/^v//g"); \
     make -C redis-${VERSION} all; \
     make -C redis-${VERSION} install
 
-FROM docker.io/sourcemation/debian-12-slim:latest
+FROM docker.io/sourcemation/debian-13-slim:latest
 
 ARG BUILD_DATE
 ARG TARGETARCH
@@ -37,11 +37,11 @@ LABEL name="redis" \
       created="$BUILD_DATE" \
       architecture="$TARGETARCH" \
       summary="Redis on Debian Container" \
-      description="Provides Redis on Debian 12 Container" \
+      description="Provides Redis on Debian 13 Container" \
       version="8.2.2" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="Redis on Debian Container" \
-      io.k8s.description="Provides Redis on Debian 12 Container" \
+      io.k8s.description="Provides Redis on Debian 13 Container" \
       io.openshift.tags="redis debian"
 
 
