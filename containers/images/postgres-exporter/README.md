@@ -2,7 +2,7 @@
 
 This image provides a robust **postgres-exporter** environment for Prometheus. It's designed for exporting a wide range of PostgreSQL metrics for monitoring, including performance, resource utilization, and operational health. The image is configured to be flexible, allowing for extensive customization of the metrics you collect.
 
-Maintained by the SourceMation, this `postgres_exporter` distribution is regularly updated to ensure it's current and secure. It is a lightweight and focused container, designed for easy integration into your existing Prometheus and PostgreSQL monitoring stack.
+Maintained by the Sourcemation, this `postgres_exporter` distribution is regularly updated to ensure it's current and secure. It is a lightweight and focused container, designed for easy integration into your existing Prometheus and PostgreSQL monitoring stack.
 
 -----
 
@@ -58,10 +58,10 @@ The standard `postgres-exporter` port, **9187**, is exposed by default. Metrics 
 
 Your contributions are valued! Feel free to suggest enhancements or request new
 images by opening an issue, or submit your own contributions via pull requests
-to the SourceMation GitHub repository.
+to the Sourcemation GitHub repository.
 
-- [Creating issues (bugs) and images requests](https://github.com/SourceMation/images/issues/new/choose)
-- [Creating pull requests](https://github.com/SourceMation/images/compare)
+- [Creating issues (bugs) and images requests](https://github.com/Sourcemation/images/issues/new/choose)
+- [Creating pull requests](https://github.com/Sourcemation/images/compare)
 
 
 ## Extra notes
@@ -69,12 +69,12 @@ to the SourceMation GitHub repository.
 **Disclaimer:** The `sourcemation/postgres-exporter` image is not affiliated with
 prometheus-community. The respective entities own the trademarks mentioned in
 the offering. The `sourcemation/postgres-exporter` image is a separate project and
-is maintained by [SourceMation](https://sourcemation.com).
+is maintained by [Sourcemation](https://sourcemation.com).
 
 ### Image and its components Risk Analysis report
 
 A detailed risk analysis report of the image and its components can be
-found on the [SourceMation
+found on the [Sourcemation
 platform](https://www.sourcemation.com/products/b95ab2de-202b-45f2-a2a3-086e64968979/deployments).
 
 For more information, check out the [overview of

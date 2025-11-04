@@ -27,7 +27,7 @@ ARG BUILD_DATE
 ARG TARGETARCH
 
 LABEL name="rabbitmq-default-user-credential-updater" \
-      vendor="SourceMation" \
+      vendor="Sourcemation" \
       url="https://sourcemation.com/"\
       licenses="MPL-2.0" \
       created="$BUILD_DATE" \

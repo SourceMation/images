@@ -25,7 +25,7 @@ ARG BUILD_DATE
 ARG TARGETARCH
 
 LABEL name="maven" \
-      vendor="SourceMation" \
+      vendor="Sourcemation" \
       url="https://sourcemation.com/"\
       licenses="Multiple licenses" \
       created="$BUILD_DATE" \

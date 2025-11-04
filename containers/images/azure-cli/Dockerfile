@@ -5,7 +5,7 @@ ARG TARGETARCH
 ARG USER=azure-cli
 
 LABEL name="azure-cli" \
-      vendor="SourceMation" \
+      vendor="Sourcemation" \
       url="https://sourcemation.com/"\
       licenses="MIT" \
       created="$BUILD_DATE" \

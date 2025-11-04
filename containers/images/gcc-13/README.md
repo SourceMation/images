@@ -1,10 +1,10 @@
-# GCC 13 packaged by SourceMation
+# GCC 13 packaged by Sourcemation
 
 This image provides the GNU Compiler Collection (GCC) version 13. It's ready to
 compile your C, C++, GO, Fortran, and other supported languages right out of
 the container.
 
-This image is built on top of SourceMation Debian 12 Slim image:
+This image is built on top of Sourcemation Debian 12 Slim image:
 
 ```dockerfile
 from sourcemation/debian:12-slim
@@ -74,17 +74,17 @@ binaries. They still exist in the system.
 ## Contributing and Issues
 
 We'd love for you to contribute! You can request new features, report bugs, or
-submit a pull request with your contribution to this image on the SourceMation
+submit a pull request with your contribution to this image on the Sourcemation
 GitHub repository.
 
-- [Creating issues, feature requests, and bug reports](https://github.com/SourceMation/images/issues/new/choose)
-- [Creating pull requests](https://github.com/SourceMation/images/compare)
+- [Creating issues, feature requests, and bug reports](https://github.com/Sourcemation/images/issues/new/choose)
+- [Creating pull requests](https://github.com/Sourcemation/images/compare)
 
 
 **Disclaimer:** The `sourcemation/gcc-13` image is not affiliated with the GNU
 Project. The respective companies and organisations own the trademarks
 mentioned in the offering. The `sourcemation/gcc-13` image is a separate
-project and is maintained by [SourceMation](https://sourcemation.com).
+project and is maintained by [Sourcemation](https://sourcemation.com).
 
 ## Extra notes
 
@@ -96,7 +96,7 @@ images build chain.
 ## Image and its components Risk Analysis report
 
 A detailed risk analysis report of the images and their components can be found
-on the [SourceMation platform](https://www.sourcemation.com/).
+on the [Sourcemation platform](https://www.sourcemation.com/).
 
 For more information about GCC, check out the [official GCC website](https://gcc.gnu.org/).
 

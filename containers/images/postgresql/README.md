@@ -1,4 +1,4 @@
-# PostgreSQL packaged by SourceMation
+# PostgreSQL packaged by Sourcemation
 
 PostgreSQL is an industry-proven, mature, feature-rich relational database
 management system with a flexible support for both small applications and
@@ -55,16 +55,16 @@ Please note that the ports need to be either manually forwarded with the
 ## Contributions and Issue Reporting
 
 Contributions are welcome! Propose new features by creating issues or submit
-pull requests on the SourceMation GitHub repository.
+pull requests on the Sourcemation GitHub repository.
 
-- [Open a new issue (for feature requests, bug reports, or image requests)](https://github.com/SourceMation/images/issues/new/choose)
-- [Creating pull requests](https://github.com/SourceMation/images/compare)
+- [Open a new issue (for feature requests, bug reports, or image requests)](https://github.com/Sourcemation/images/issues/new/choose)
+- [Creating pull requests](https://github.com/Sourcemation/images/compare)
 
 **Disclaimer:** The `sourcemation/postgresql` image is not affiliated with The
 PostgreSQL Global Development Group. The respective companies and organisations
 own the trademarks mentioned in the offering. The `sourcemation/postgresql`
 image is a separate project and is maintained by
-[SourceMation](https://sourcemation.com).
+[Sourcemation](https://sourcemation.com).
 
 ## Extra notes
 
@@ -78,7 +78,7 @@ usage examples"](#advanced-usage-examples) paragraph for examples.
 ### Image and its components Risk Analysis report
 
 A detailed risk analysis report of the image and its components can be found on
-the [SourceMation
+the [Sourcemation
 platform](https://www.sourcemation.com/products/a702cf04-27d5-4b4f-b4b7-099e2dc7a407/deployments).
 
 For more information, check out the [overview of
@@ -89,5 +89,5 @@ PostgreSQL®](https://www.postgresql.org/about/) page.
 The base license for the solution (PostgreSQL) is the [PostgreSQL
 License](https://www.postgresql.org/about/licence/). The licenses for each
 component shipped as part of this image can be found on [the image's
-appropriate SourceMation
+appropriate Sourcemation
 entry](https://www.sourcemation.com/products/a702cf04-27d5-4b4f-b4b7-099e2dc7a407/deployments).

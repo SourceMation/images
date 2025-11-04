@@ -37,7 +37,7 @@ ARG BUILD_DATE
 ARG TARGETARCH
 
 LABEL name="rabbitmq-cluster-operator" \
-      vendor="SourceMation" \
+      vendor="Sourcemation" \
       url="https://sourcemation.com" \
       licenses="MPLv2" \
       created="$BUILD_DATE" \

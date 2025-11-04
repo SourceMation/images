@@ -1,8 +1,8 @@
-# SourceMation main image repository
+# Sourcemation main image repository
 
 
 This repository contains the images delivered/tested and scored by the
-SourceMation platform. The aim is to provide a central location for the images
+Sourcemation platform. The aim is to provide a central location for the images
 you can test, use and deploy in your projects and solutions.
 
 ## Issues and PRs

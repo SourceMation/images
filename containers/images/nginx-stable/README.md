@@ -1,4 +1,4 @@
-# Nginx stable packaged by SourceMation
+# Nginx stable packaged by Sourcemation
 
 Nginx (engine x) is a high-performance HTTP server, reverse proxy and load
 balancer. It’s known for its stability, rich feature set, simple configuration,
@@ -6,7 +6,7 @@ and low resource consumption.
 
 
 This Docker image provides a clean, lightweight Nginx stable release installed
-on SourceMation’s Debian 13 Slim.
+on Sourcemation’s Debian 13 Slim.
 
 ## Usage
 
@@ -86,10 +86,10 @@ image.
 
 We welcome your contributions! If you have new feature requests, want to report
 a bug, or wish to submit a pull request with your code or an image request, you
-can do so via the SourceMation GitHub repository for this image.
+can do so via the Sourcemation GitHub repository for this image.
 
-- [Open a new issue (for feature requests, bug reports, or image requests)](https://github.com/SourceMation/images/issues/new/choose)
-- [Submit a pull request](https://github.com/SourceMation/images/compare)
+- [Open a new issue (for feature requests, bug reports, or image requests)](https://github.com/Sourcemation/images/issues/new/choose)
+- [Submit a pull request](https://github.com/Sourcemation/images/compare)
 
 ## Extra notes
 
@@ -101,7 +101,7 @@ configuration, so it is possible to install additional Nginx-related packages.
 ### Image Component Risk Analysis
 
 Detailed risk analysis reports for our images and their components are
-available on the [SourceMation platform](https://www.sourcemation.com/).
+available on the [Sourcemation platform](https://www.sourcemation.com/).
 
 Note: Risk analysis reports are not yet available for all images. Contact us
 for additional software components or inquiries.

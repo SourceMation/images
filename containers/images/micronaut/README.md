@@ -1,4 +1,4 @@
-# Micronaut CLI packaged by SourceMation
+# Micronaut CLI packaged by Sourcemation
 
 This image contains the Micronaut CLI, Java-21 GraalVM, and SDKMAN on Rocky
 Linux 9. This allows you to build and run Micronaut applications using GraalVM.
@@ -54,15 +54,15 @@ Please note that the ports need to be either manually forwarded with the
 
 Your contributions are valued! Feel free to suggest enhancements or request new
 images by opening an issue, or submit your own contributions via pull requests
-to the SourceMation GitHub repository.
+to the Sourcemation GitHub repository.
 
-- [Creating issues (bugs) and images requests](https://github.com/SourceMation/images/issues/new/choose)
-- [Creating pull requests](https://github.com/SourceMation/images/compare)
+- [Creating issues (bugs) and images requests](https://github.com/Sourcemation/images/issues/new/choose)
+- [Creating pull requests](https://github.com/Sourcemation/images/compare)
 
 **Disclaimer:** The `sourcemation/micronaut` image is not affiliated with the
 Micronaut Foundation. The respective companies and organisations own the
 trademarks mentioned in the offering. The `sourcemation/micronaut` image is a
-separate project and is maintained by [SourceMation](https://sourcemation.com).
+separate project and is maintained by [Sourcemation](https://sourcemation.com).
 
 ## Extra notes
 
@@ -77,7 +77,7 @@ This image does **not** have the `JAVA_HOME` variable set.
 ### Image and its components Risk Analysis report
 
 A detailed risk analysis report of the image and its components can be found on
-the SourceMation platform.
+the Sourcemation platform.
 
 For more information, check out the [official Micronaut
 website](https://micronaut.io/), and the "[Creating your first Micronaut
@@ -90,5 +90,5 @@ The base license for the solution (Micronaut version 4.5.1) is the [Apache
 License, Version
 2.0](https://github.com/micronaut-projects/micronaut-core/blob/4.5.x/LICENSE).
 The licenses for each component shipped as part of this image can be found on
-the image's appropriate SourceMation entry.
+the image's appropriate Sourcemation entry.
 

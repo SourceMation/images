@@ -1,4 +1,4 @@
-# Python 3.8 packaged by SourceMation
+# Python 3.8 packaged by Sourcemation
 Python is one of the most popular programming languages, known for its
 simplicity, readability, and extensive module ecosystem. It's a versatile
 choice for a wide range of applications, from web development to AI/ML.
@@ -10,12 +10,12 @@ compatibility workflows that require an older Python environment. **Python 3.8 i
 no longer officially supported by the Python Software Foundation and does not
 receive security updates.**
 
-While the Python 3.8 environment itself is outdated, this SourceMation image is
-built on our regularly updated and patched `sourcemation/debian-12-slim` base
+While the Python 3.8 environment itself is outdated, this Sourcemation image is
+built on our regularly updated and patched `sourcemation/debian-13-slim` base
 image. This ensures that the underlying system components are current, even
 though the Python version itself is EOL.
 
-This distribution is compiled from fresh sources by the SourceMation automation
+This distribution is compiled from fresh sources by the Sourcemation automation
 team, and the pip package manager is included for your convenience. The build
 process leverages cryptographic signatures to guarantee the integrity of the
 source code.
@@ -70,20 +70,20 @@ the flexibility to create a custom image with pre-exposed ports.
 ## Contributing and Reporting Issues
 Your contributions are valuable! If you have suggestions for enhancements or
 requests for new images, please open an issue. You can also submit your own
-contributions via pull requests to the SourceMation GitHub repository.
+contributions via pull requests to the Sourcemation GitHub repository.
 
-[Creating issues (bugs) and image requests](https://github.com/SourceMation/images/issues/new/choose)
+[Creating issues (bugs) and image requests](https://github.com/Sourcemation/images/issues/new/choose)
 
-[Creating pull requests](https://github.com/SourceMation/images/compare)
+[Creating pull requests](https://github.com/Sourcemation/images/compare)
 
 Disclaimer: The `sourcemation/python-3.8` image is not affiliated with the
 Python Software Foundation. The respective companies and organizations own the
 trademarks mentioned in this offering. The `sourcemation/python-3.8` image is a
-separate project and is maintained by [SourceMation](https://sourcemation.com).
+separate project and is maintained by [Sourcemation](https://sourcemation.com).
 
 ## Extra Notes
 A detailed risk analysis report of our images and their components may be found
-on the [SourceMation platform](https://www.sourcemation.com/).
+on the [Sourcemation platform](https://www.sourcemation.com/).
 
 Please note that not all images currently have a risk analysis report
 available. If you require additional software components or have any questions,

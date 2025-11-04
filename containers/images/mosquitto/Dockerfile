@@ -4,7 +4,7 @@ ARG BUILD_DATE
 ARG TARGETARCH
 
 LABEL name="mosquitto" \
-      vendor="SourceMation" \
+      vendor="Sourcemation" \
       url="https://sourcemation.com/"\
       licenses="Eclipse Public License 2.0 and Eclipse Distribution License 1.0" \
       created="$BUILD_DATE" \

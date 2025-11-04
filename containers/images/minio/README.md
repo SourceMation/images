@@ -1,8 +1,8 @@
-# MinIO packaged by SourceMation
+# MinIO packaged by Sourcemation
 
 MinIO is a high-performance, S3-compatible object storage server that delivers scalable and secure data storage for cloud-native applications. MinIO's distributed architecture provides fault tolerance and high availability while maintaining simplicity and ease of deployment.
 
-This MinIO distribution is provided by the SourceMation packaging team, built on a secure Debian 13 Slim base image with MinIO server.
+This MinIO distribution is provided by the Sourcemation packaging team, built on a secure Debian 13 Slim base image with MinIO server.
 
 ## Usage
 
@@ -276,21 +276,21 @@ For optimal performance:
 
 ## Contributing and Issues
 
-We'd love for you to contribute! You can request new features, report bugs, or submit a pull request with your contribution to this image on the SourceMation GitHub repository.
+We'd love for you to contribute! You can request new features, report bugs, or submit a pull request with your contribution to this image on the Sourcemation GitHub repository.
 
-- [Creating issues, feature requests, and bug reports](https://github.com/SourceMation/images/issues/new/choose)
-- [Creating pull requests](https://github.com/SourceMation/images/compare)
+- [Creating issues, feature requests, and bug reports](https://github.com/Sourcemation/images/issues/new/choose)
+- [Creating pull requests](https://github.com/Sourcemation/images/compare)
 
-**Disclaimer:** The `sourcemation/minio` image is not affiliated with the MinIO project. The respective companies and organisations own the trademarks mentioned in the offering. The `sourcemation/minio` image is a separate project and is maintained by [SourceMation](https://sourcemation.com).
+**Disclaimer:** The `sourcemation/minio` image is not affiliated with the MinIO project. The respective companies and organisations own the trademarks mentioned in the offering. The `sourcemation/minio` image is a separate project and is maintained by [Sourcemation](https://sourcemation.com).
 
 ## Extra notes
 
 ### Image and its components Risk Analysis report
 
-A detailed risk analysis report of the image and its components can be found on the [SourceMation platform](https://www.sourcemation.com/).
+A detailed risk analysis report of the image and its components can be found on the [Sourcemation platform](https://www.sourcemation.com/).
 
 For more information, check out the [MinIO documentation](https://docs.min.io/).
 
 ### Licenses
 
-The base license for the solution (MinIO) is the [GNU AGPLv3](https://github.com/minio/minio/blob/master/LICENSE). The licenses for each component shipped as part of this image can be found on [the image's appropriate SourceMation entry](https://www.sourcemation.com/).
+The base license for the solution (MinIO) is the [GNU AGPLv3](https://github.com/minio/minio/blob/master/LICENSE). The licenses for each component shipped as part of this image can be found on [the image's appropriate Sourcemation entry](https://www.sourcemation.com/).

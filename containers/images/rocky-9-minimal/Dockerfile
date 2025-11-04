@@ -6,7 +6,7 @@ ARG TARGETARCH
 
 LABEL name="rocky-9-minimal" \
       maintainer="Sourcemation Containers team <contact@sourcemation.com>" \
-      vendor="System - Rocky Linux; Image - SourceMation" \
+      vendor="System - Rocky Linux; Image - Sourcemation" \
       url="https://sourcemation.com"\
       licenses="GPLv2" \
       created="$BUILD_DATE" \

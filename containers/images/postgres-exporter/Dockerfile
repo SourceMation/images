@@ -9,15 +9,15 @@ ENV BINARY_URL="https://github.com/prometheus-community/postgres_exporter/releas
 LABEL name="postgres-exporter" \
   vendor="Linux Polska" \
   url="https://sourcemation.com"\
-  source="https://github.com/SourceMation/images/issues"\
+  source="https://github.com/Sourcemation/images/issues"\
   licenses="GPLv2" \
   created="$BUILD_DATE" \
   architecture="$TARGETARCH" \
-  summary="Postgresql-exporter on Debian 12 Slim Container" \
-  description="Provides postgres-exporter on Debian 12 Slim Container" \
+  summary="Postgresql-exporter on Debian 13 Slim Container" \
+  description="Provides postgres-exporter on Debian 13 Slim Container" \
   version="0.18.1" \
-  io.k8s.display-name="Postgresql-exporter on Debian 12 Slim Container" \
-  io.k8s.description="Provides postgres-exporter on Debian 12 Slim Container" \
+  io.k8s.display-name="Postgresql-exporter on Debian 13 Slim Container" \
+  io.k8s.description="Provides postgres-exporter on Debian 13 Slim Container" \
   io.openshift.tags="postgres-exporter debian"
 
 RUN set -eux; \

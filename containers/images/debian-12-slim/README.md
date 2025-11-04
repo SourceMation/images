@@ -1,4 +1,4 @@
-# Debian 12 Slim Image by SourceMation
+# Debian 12 Slim Image by Sourcemation
 
 Debian is the most popular, truly independent Linux distribution. It is a
 versatile, stable, and secure operating system. Debian is a community-driven
@@ -27,16 +27,16 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 Your contributions are valued! Feel free to suggest enhancements or request new
 images by opening an issue, or submit your own contributions via pull requests
-to the SourceMation GitHub repository.
+to the Sourcemation GitHub repository.
 
-- [Creating issues (bugs) and images requests](https://github.com/SourceMation/images/issues/new/choose)
-- [Creating pull requests](https://github.com/SourceMation/images/compare)
+- [Creating issues (bugs) and images requests](https://github.com/Sourcemation/images/issues/new/choose)
+- [Creating pull requests](https://github.com/Sourcemation/images/compare)
 
 
 ### Image and its components Risk Analysis report
 
 A detailed risk analysis report of the image and its components can be found on
-the [SourceMation platform](https://www.sourcemation.com/).
+the [Sourcemation platform](https://www.sourcemation.com/).
 
 For more information, check out the [Debian Official Website](https://www.debian.org/).
 

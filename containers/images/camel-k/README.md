@@ -1,11 +1,11 @@
-# Apache Camel-K packaged by SourceMation
+# Apache Camel-K packaged by Sourcemation
 
 Camel-K is an Integration Toolkit for Apache Camel aimed to increase the
 scope of Camel components and patterns, like Camel DSL, for Kubernetes
 integration scenarios, mainly serverless and microservice-based ones.
 
 This Camel-K distribution is a compilation provided by the
-[SourceMation](https://sourcemation.com) packaging team.
+[Sourcemation](https://sourcemation.com) packaging team.
 
 ## Usage
 
@@ -33,17 +33,17 @@ MAVEN_OPTS=" -Dlogback.configurationFile=/usr/share/maven/conf/logback.xml"
 ## Contributing and Issues
 
 We'd love for you to contribute! You can request new features, report bugs, or
-submit a pull request with your contribution to this image on the SourceMation
+submit a pull request with your contribution to this image on the Sourcemation
 GitHub repository.
 
-- [Creating issues, feature requests, and bug reports](https://github.com/SourceMation/images/issues/new/choose)
-- [Creating pull requests](https://github.com/SourceMation/images/compare)
+- [Creating issues, feature requests, and bug reports](https://github.com/Sourcemation/images/issues/new/choose)
+- [Creating pull requests](https://github.com/Sourcemation/images/compare)
 
 **Disclaimer:** The `sourcemation/camel-k` image is not affiliated with the
 Apache Software Foundation (ASF). The respective companies and organisations
 own the trademarks mentioned in the offering. The `sourcemation/camel-k` image
 is a separate project and is maintained by
-[SourceMation](https://sourcemation.com).
+[Sourcemation](https://sourcemation.com).
 
 ## Extra notes
 
@@ -57,7 +57,7 @@ GID 0 (root).
 ### Image and its components Risk Analysis report
 
 A detailed risk analysis report of the image and its components can be found on
-the SourceMation platform.
+the Sourcemation platform.
 
 For more information, check out the [Camel-K Introduction page entries on
 apache.org](https://camel.apache.org).
@@ -67,4 +67,4 @@ apache.org](https://camel.apache.org).
 The base license for the solution (Camel-K v2.6.0) is the [Apache License
 Version 2.0](https://github.com/apache/camel-k/blob/main/LICENSE). The
 licenses for each component shipped as part of this image can be found on the
-image's appropriate SourceMation entry.
+image's appropriate Sourcemation entry.

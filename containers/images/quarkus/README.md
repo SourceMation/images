@@ -1,4 +1,4 @@
-# Quarkus packaged by SourceMation
+# Quarkus packaged by Sourcemation
 
 Quarkus is a framework for the Java programming language designed to provide a
 first-class support for containerization, creating microservices and running
@@ -32,16 +32,16 @@ PATH="/home/quarkus/.jbang/bin:/home/quarkus/.jbang/currentjdk/bin:/usr/local/sb
 
 We welcome your contributions! If you have new feature requests, want to report
 a bug, or wish to submit a pull request with your code or an image request, you
-can do so via the SourceMation GitHub repository for this image.
+can do so via the Sourcemation GitHub repository for this image.
 
-- [Open a new issue (for feature requests, bug reports, or image requests)](https://github.com/SourceMation/images/issues/new/choose)
-- [Submit a pull request](https://github.com/SourceMation/images/compare)
+- [Open a new issue (for feature requests, bug reports, or image requests)](https://github.com/Sourcemation/images/issues/new/choose)
+- [Submit a pull request](https://github.com/Sourcemation/images/compare)
 
 **Disclaimer:** The `sourcemation/quarkus` image is not affiliated with Red
 Hat, Inc. or the Quarkus community. The respective companies and organisations
 own the trademarks mentioned in the offering. The `sourcemation/quarkus` image
 is a separate project and is maintained by
-[SourceMation](https://sourcemation.com).
+[Sourcemation](https://sourcemation.com).
 
 ## Extra notes
 
@@ -52,7 +52,7 @@ provided by JBang as part of installing the Quarkus JAR, located in the
 ### Image and its components Risk Analysis report
 
 A detailed risk analysis report of the image and its components can be found on
-the SourceMation platform.
+the Sourcemation platform.
 
 For more information, check out the [official Quarkus
 website](https://quarkus.io/about/).
@@ -62,4 +62,4 @@ website](https://quarkus.io/about/).
 The base license for the solution (Quarkus) is the [Apache License, Version
 2.0](https://github.com/quarkusio/quarkus/blob/main/LICENSE). The licenses for
 each component shipped as part of this image can be found on the image's
-appropriate SourceMation entry.
+appropriate Sourcemation entry.

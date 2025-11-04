@@ -1,4 +1,4 @@
-# Ruby packaged by SourceMation
+# Ruby packaged by Sourcemation
 
 An open source purely object-oriented programming language with a focus on
 simplicity and readability.
@@ -45,24 +45,24 @@ Please note that the ports need to be either manually forwarded with the
 
 We welcome your contributions! If you have new feature requests, want to report
 a bug, or wish to submit a pull request with your code or an image request, you
-can do so via the SourceMation GitHub repository for this image.
+can do so via the Sourcemation GitHub repository for this image.
 
-- [Open a new issue (for feature requests, bug reports, or image requests)](https://github.com/SourceMation/images/issues/new/choose)
-- [Submit a pull request](https://github.com/SourceMation/images/compare)
+- [Open a new issue (for feature requests, bug reports, or image requests)](https://github.com/Sourcemation/images/issues/new/choose)
+- [Submit a pull request](https://github.com/Sourcemation/images/compare)
 
 **Disclaimer:** The `sourcemation/ruby` image is not affiliated with
 Yukihiro Matsumoto and the Ruby Community [the Ruby
 Community](https://www.ruby-lang.org/en/community/). The respective
 entities own the trademarks mentioned in the offering. The
 `sourcemation/ruby` image is a separate project and is maintained by
-[SourceMation](https://sourcemation.com).
+[Sourcemation](https://sourcemation.com).
 
 ## Extra notes
 
 ### Image and its components Risk Analysis report
 
 A detailed risk analysis report of the image and its components can be
-found on the [SourceMation
+found on the [Sourcemation
 platform](https://www.sourcemation.com/products/cceb8a81-f637-401f-9d6c-83584df8c517/deployments).
 
 For more information, check out the [overview of
@@ -73,5 +73,5 @@ Ruby](https://www.ruby-lang.org/en/about/) page.
 The base license for the solution (Ruby) is the [Ruby
 License](https://www.ruby-lang.org/en/about/license.txt). The licenses
 for each component shipped as part of this image can be found on [the
-image's appropriate SourceMation
+image's appropriate Sourcemation
 entry](https://www.sourcemation.com/products/cceb8a81-f637-401f-9d6c-83584df8c517/deployments).

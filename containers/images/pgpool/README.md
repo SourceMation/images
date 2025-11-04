@@ -1,8 +1,8 @@
-# Pgpool-II Container on Debian 12 Slim packed by SourceMation
+# Pgpool-II Container on Debian 13 Slim packed by Sourcemation
 
 This image, `sourcemation/pgpool`, is built on `sourcemation/postgresql-17` to provide a robust **Pgpool-II** environment. It's designed for handling connection pooling, load balancing, and high availability for your PostgreSQL database deployments. The image integrates essential Pgpool-II configurations and includes the Pgpool Command-line Protocol (PCP).
 
-Maintained by the SourceMation automation team, this Pgpool-II distribution (version 4.X.Y) is regularly updated to ensure it's current, secure, and compact. It's built on a minimal Debian base (`sourcemation/postgresql-17` itself is based on Debian Slim), and cryptographic signatures are used during the build process to guarantee the integrity of all source code and packages.
+Maintained by the Sourcemation automation team, this Pgpool-II distribution (version 4.X.Y) is regularly updated to ensure it's current, secure, and compact. It's built on a minimal Debian base (`sourcemation/postgresql-17` itself is based on Debian Slim), and cryptographic signatures are used during the build process to guarantee the integrity of all source code and packages.
 
 ***
 
@@ -43,20 +43,20 @@ The standard Pgpool-II port, **9999**, is exposed by default.
 ## Contributing and Issues
 
 We'd love for you to contribute! You can request new features, report bugs, or
-submit a pull request with your contribution to this image on the SourceMation
+submit a pull request with your contribution to this image on the Sourcemation
 GitHub repository.
 
-- [Creating issues, feature requests, and bug reports](https://github.com/SourceMation/images/issues/new/choose)
-- [Creating pull requests](https://github.com/SourceMation/images/compare)
+- [Creating issues, feature requests, and bug reports](https://github.com/Sourcemation/images/issues/new/choose)
+- [Creating pull requests](https://github.com/Sourcemation/images/compare)
 
 **Disclaimer:** The `sourcemation/pgpool` image is not affiliated with the pgpool. The respective companies and
-organisations own the trademarks mentioned in the offering. The `sourcemation/pgpool` image is a separate project and is maintained by [SourceMation](https://sourcemation.com).
+organisations own the trademarks mentioned in the offering. The `sourcemation/pgpool` image is a separate project and is maintained by [Sourcemation](https://sourcemation.com).
 
 ## Extra notes
 ### Image and its components Risk Analysis report
 
 A comprehensive risk analysis report detailing the image and its components can
-be accessed on the [SourceMation platform](https://www.sourcemation.com/).
+be accessed on the [Sourcemation platform](https://www.sourcemation.com/).
 
 For more information, check out the [overview of
 pgpool](https://pgpool.net/mediawiki/index.php/Main_Page) page.

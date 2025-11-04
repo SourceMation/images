@@ -1,4 +1,4 @@
-# Nginx Mainline by SourceMation
+# Nginx Mainline by Sourcemation
 
 Nginx (pronounced "engine-x") stands as a robust and high-performing solution
 for HTTP serving, reverse proxying, and load balancing tasks. Celebrated for
@@ -7,7 +7,7 @@ configuration syntax, and remarkably low consumption of system resources, Nginx
 has become a cornerstone of modern web infrastructure.
 
 This carefully crafted Docker image delivers a pristine and lightweight
-installation of the Nginx **mainline release**. It is built upon SourceMation’s
+installation of the Nginx **mainline release**. It is built upon Sourcemation’s
 optimized Debian 13 Slim base, ensuring a minimal footprint and enhanced
 security.
 
@@ -97,10 +97,10 @@ While other `VERSION` variables exist, they primarily serve internal image build
 
 We welcome your contributions! If you have new feature requests, want to report
 a bug, or wish to submit a pull request with your code or an image request, you
-can do so via the SourceMation GitHub repository for this image.
+can do so via the Sourcemation GitHub repository for this image.
 
-- [Open a new issue (for feature requests, bug reports, or image requests)](https://github.com/SourceMation/images/issues/new/choose)
-- [Submit a pull request](https://github.com/SourceMation/images/compare)
+- [Open a new issue (for feature requests, bug reports, or image requests)](https://github.com/Sourcemation/images/issues/new/choose)
+- [Submit a pull request](https://github.com/Sourcemation/images/compare)
 
 ## Important Considerations
 
@@ -113,7 +113,7 @@ Nginx-related packages as required, offering greater flexibility.
 ### Image Component Security Assessment
 
 Comprehensive risk analysis reports detailing the security posture of our
-images and their constituent components can be accessed on the [SourceMation
+images and their constituent components can be accessed on the [Sourcemation
 platform](https://www.sourcemation.com/).
 
 Please note: Risk analysis reports are not yet available for all images. For

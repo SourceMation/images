@@ -123,7 +123,7 @@ ARG BUILD_DATE
 ARG TARGETARCH
 
 LABEL name="erlang" \
-      vendor="SourceMation" \
+      vendor="Sourcemation" \
       url="https://sourcemation.com" \
       licenses="Apache-2.0" \
       created="$BUILD_DATE" \

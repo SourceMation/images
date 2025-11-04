@@ -1,4 +1,4 @@
-# RabbitMQ-Cluster-Operator packaged by SourceMation
+# RabbitMQ-Cluster-Operator packaged by Sourcemation
 
 RabbitMQ is a high-performant, scalable message broker for AMQP clients.
 
@@ -27,17 +27,17 @@ This image does not expose any ports. However, you can expose the ports you need
 ## Contributing and Issues
 
 We'd love for you to contribute! You can request new features, report bugs, or
-submit a pull request with your contribution to this image on the SourceMation
+submit a pull request with your contribution to this image on the Sourcemation
 GitHub repository.
 
-- [Creating issues, feature requests, and bug reports](https://github.com/SourceMation/images/issues/new/choose)
-- [Creating pull requests](https://github.com/SourceMation/images/compare)
+- [Creating issues, feature requests, and bug reports](https://github.com/Sourcemation/images/issues/new/choose)
+- [Creating pull requests](https://github.com/Sourcemation/images/compare)
 
 **Disclaimer:** The `sourcemation/rabbitmq-cluster-operator` image is not affiliated with 
 Broadcom, Inc. The respective companies and
 organisations own the trademarks mentioned in the offering. The
 `sourcemation/rabbitmq-cluster-operator` image is a separate project and is maintained by
-[SourceMation](https://sourcemation.com).
+[Sourcemation](https://sourcemation.com).
 
 ### Licenses
 

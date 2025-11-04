@@ -1,4 +1,4 @@
-FROM sourcemation/debian-12-slim:latest AS builder
+FROM sourcemation/debian-13-slim:latest AS builder
 
 ARG PGPOOL_VER="4.6.3"
 
@@ -52,15 +52,15 @@ ENV PGPOOL_CONF_VOLUME "/config"
 LABEL name="pgpool" \
   vendor="Linux Polska" \
   url="https://sourcemation.com"\
-  source="https://github.com/SourceMation/images/issues"\
+  source="https://github.com/Sourcemation/images/issues"\
   licenses="GPLv2" \
   created="$BUILD_DATE" \
   architecture="$TARGETARCH" \
-  summary="Pgpool-II on Debian 12 Slim Container" \
-  description="Provides pgpool-II on Debian 12 Slim Container" \
+  summary="Pgpool-II on Debian 13 Slim Container" \
+  description="Provides pgpool-II on Debian 13 Slim Container" \
   version="4.6.3" \
-  io.k8s.display-name="Pgpool-II on Debian 12 Slim Container" \
-  io.k8s.description="Provides pgpool-II on Debian 12 Slim Container" \
+  io.k8s.display-name="Pgpool-II on Debian 13 Slim Container" \
+  io.k8s.description="Provides pgpool-II on Debian 13 Slim Container" \
   io.openshift.tags="pgpool debian"
 
 # Copy install directory

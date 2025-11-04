@@ -1,8 +1,8 @@
-# RabbitMQ Default User Credential Updater packaged by SourceMation
+# RabbitMQ Default User Credential Updater packaged by Sourcemation
 
 > A utility tool for updating default RabbitMQ user credentials in containerized environments.
 
-This RabbitMQ Default User Credential Updater distribution is provided by the upstream SourceMation packaging team.
+This RabbitMQ Default User Credential Updater distribution is provided by the upstream Sourcemation packaging team.
 
 ## Usage
 
@@ -33,21 +33,21 @@ Please note that this is a utility container that connects to an existing Rabbit
 
 ## Contributing and Issues
 
-We'd love for you to contribute! You can request new features, report bugs, or submit a pull request with your contribution to this image on the SourceMation GitHub repository.
+We'd love for you to contribute! You can request new features, report bugs, or submit a pull request with your contribution to this image on the Sourcemation GitHub repository.
 
-- [Creating issues, feature requests, and bug reports](https://github.com/SourceMation/images/issues/new/choose)
-- [Creating pull requests](https://github.com/SourceMation/images/compare)
+- [Creating issues, feature requests, and bug reports](https://github.com/Sourcemation/images/issues/new/choose)
+- [Creating pull requests](https://github.com/Sourcemation/images/compare)
 
-**Disclaimer:** The `sourcemation/rabbitmq-default-user-credential-updater` image is not affiliated with the RabbitMQ team or Broadcom Inc. The respective companies and organisations own the trademarks mentioned in the offering. The `sourcemation/rabbitmq-default-user-credential-updater` image is a separate project and is maintained by [SourceMation](https://sourcemation.com).
+**Disclaimer:** The `sourcemation/rabbitmq-default-user-credential-updater` image is not affiliated with the RabbitMQ team or Broadcom Inc. The respective companies and organisations own the trademarks mentioned in the offering. The `sourcemation/rabbitmq-default-user-credential-updater` image is a separate project and is maintained by [Sourcemation](https://sourcemation.com).
 
 ## Extra notes
 
 ### Image and its components Risk Analysis report
 
-A detailed risk analysis report of the image and its components can be found on the [SourceMation platform](https://sourcemation.com/catalog/rabbitmq-default-user-credential-updater).
+A detailed risk analysis report of the image and its components can be found on the [Sourcemation platform](https://sourcemation.com/catalog/rabbitmq-default-user-credential-updater).
 
 For more information, check out the [overview of RabbitMQ](https://www.rabbitmq.com/) page.
 
 ### Licenses
 
-The base license for the solution (RabbitMQ Default User Credential Updater) is the [MPL-2.0](https://www.mozilla.org/en-US/MPL/2.0/). The licenses for each component shipped as part of this image can be found on [the image's appropriate SourceMation entry](https://sourcemation.com/catalog/rabbitmq-default-user-credential-updater).
+The base license for the solution (RabbitMQ Default User Credential Updater) is the [MPL-2.0](https://www.mozilla.org/en-US/MPL/2.0/). The licenses for each component shipped as part of this image can be found on [the image's appropriate Sourcemation entry](https://sourcemation.com/catalog/rabbitmq-default-user-credential-updater).

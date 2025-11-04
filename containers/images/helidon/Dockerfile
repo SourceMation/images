@@ -4,8 +4,8 @@ ARG BUILD_DATE
 ARG TARGETARCH
 
 LABEL name="helidon" \
-      vendor="SourceMation" \
-      url="https://SourceMation.com/"\
+      vendor="Sourcemation" \
+      url="https://Sourcemation.com/"\
       licenses="Apache-2.0" \
       created="$BUILD_DATE" \
       architecture="$TARGETARCH" \

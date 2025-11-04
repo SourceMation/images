@@ -1,4 +1,4 @@
-# Debian 11 Bullseye Slim Image by SourceMation
+# Debian 11 Bullseye Slim Image by Sourcemation
 
 Debian stands as a highly regarded, purely community-driven Linux distribution.
 Known for its stability, security, and versatility, it serves as a robust
@@ -26,15 +26,15 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 Your contributions are valued! Feel free to suggest enhancements or request new
 images by opening an issue, or submit your own contributions via pull requests
-to the SourceMation GitHub repository.
+to the Sourcemation GitHub repository.
 
-- [Creating issues (bugs) and images requests](https://github.com/SourceMation/images/issues/new/choose)
-- [Creating pull requests](https://github.com/SourceMation/images/compare)
+- [Creating issues (bugs) and images requests](https://github.com/Sourcemation/images/issues/new/choose)
+- [Creating pull requests](https://github.com/Sourcemation/images/compare)
 
 ### Security Assessment of the Image and its Components
 
 A comprehensive security analysis report detailing the image and its
-constituent packages is accessible on the [SourceMation platform](https://www.sourcemation.com/)
+constituent packages is accessible on the [Sourcemation platform](https://www.sourcemation.com/)
 
 
 For more information, check out the [Debian Official Website](https://www.debian.org/).

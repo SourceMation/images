@@ -4,7 +4,7 @@ ARG BUILD_DATE
 ARG TARGETARCH
 
 LABEL name="git" \
-      vendor="SourceMation" \
+      vendor="Sourcemation" \
       url="https://sourcemation.com/"\
       licenses="GPLv2" \
       created="$BUILD_DATE" \

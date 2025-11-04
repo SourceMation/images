@@ -1,4 +1,4 @@
-# Redis Exporter packaged by SourceMation
+# Redis Exporter packaged by Sourcemation
 
 The `redis-exporter` acts as a helpful informant for your Redis server,
 diligently gathering key performance indicators regarding its operation and
@@ -46,15 +46,15 @@ Please note that the ports need to be either manually forwarded with the
 ## Contributions and Issue Reporting
 
 Contributions are welcome! Propose new features by creating issues or submit
-pull requests on the SourceMation GitHub repository.
+pull requests on the Sourcemation GitHub repository.
 
-- [Open a new issue (for feature requests, bug reports, or image requests)](https://github.com/SourceMation/images/issues/new/choose)
-- [Creating pull requests](https://github.com/SourceMation/images/compare)
+- [Open a new issue (for feature requests, bug reports, or image requests)](https://github.com/Sourcemation/images/issues/new/choose)
+- [Creating pull requests](https://github.com/Sourcemation/images/compare)
 
 **Disclaimer:** The `sourcemation/redis` image is not affiliated with Redis
 Ltd. The respective companies and organisations own the trademarks mentioned in
 the offering. The `sourcemation/redis` image is a separate project and is
-maintained by [SourceMation](https://sourcemation.com).
+maintained by [Sourcemation](https://sourcemation.com).
 
 ## Extra notes
 
@@ -70,7 +70,7 @@ project/binary and its usage.**
 ### Image and its components Risk Analysis report
 
 A detailed risk analysis report of our images and its components might be found
-on the [SourceMation platform](https://www.sourcemation.com/).
+on the [Sourcemation platform](https://www.sourcemation.com/).
 
 For more information, check out the [GitHub project
 page](https://github.com/oliver006/redis_exporter)

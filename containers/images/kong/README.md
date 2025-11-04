@@ -1,4 +1,4 @@
-# Kong Community Edition packaged by SourceMation
+# Kong Community Edition packaged by Sourcemation
 
 This image uses the official Kong Community Edition package and deploys it on
 Rocky Linux 9. The following changes were made to the original image:
@@ -39,16 +39,16 @@ option or let Docker choose some for you with the `-P` option. Refer to the
 ## Contributions and Issue Reporting
 
 Contributions are welcome! Propose new features by creating issues or submit
-pull requests on the SourceMation GitHub repository.
+pull requests on the Sourcemation GitHub repository.
 
-- [Open a new issue (for feature requests, bug reports, or image requests)](https://github.com/SourceMation/images/issues/new/choose)
-- [Creating pull requests](https://github.com/SourceMation/images/compare)
+- [Open a new issue (for feature requests, bug reports, or image requests)](https://github.com/Sourcemation/images/issues/new/choose)
+- [Creating pull requests](https://github.com/Sourcemation/images/compare)
 
 
 **Disclaimer:** The `sourcemation/kong` image is not affiliated with Kong,
 Inc.. The respective companies and organisations own the trademarks mentioned
 in the offering. The `sourcemation/kong` image is a separate project and is
-maintained by [SourceMation](https://sourcemation.com).
+maintained by [Sourcemation](https://sourcemation.com).
 
 ## Extra notes
 
@@ -61,12 +61,12 @@ discussion](https://github.com/opencontainers/image-spec/issues/749)
   used in Kubernetes -> [Kubernetes
 Probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/)
 - Both the upstream Kong developers and the Rocky Linux developers do **not**
-  support these images. They are built for SourceMation.
+  support these images. They are built for Sourcemation.
 
 ### Image and its components Risk Analysis report
 
 A detailed risk analysis report of the image and its components can be found on
-the SourceMation platform.
+the Sourcemation platform.
 
 For more information, check out the [official Kong
 documentation](https://docs.konghq.com/).
@@ -76,4 +76,4 @@ documentation](https://docs.konghq.com/).
 The base license for the solution (Kong Community Edition) is the [Apache
 License, Version 2.0](https://github.com/Kong/kong/blob/master/LICENSE). The
 licenses for each component shipped as part of this image can be found on the
-image's appropriate SourceMation entry.
+image's appropriate Sourcemation entry.

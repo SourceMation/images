@@ -61,7 +61,7 @@ ARG BUILD_DATE
 ARG TARGETARCH
 
 LABEL name="golang-1.24" \
-      vendor="SourceMation" \
+      vendor="Sourcemation" \
       url="https://sourcemation.com"\
       licenses="BSD 3-Clause \"New\" or \"Revised\" License" \
       created="$BUILD_DATE" \
