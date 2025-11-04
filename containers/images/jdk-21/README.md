@@ -161,7 +161,7 @@ LC\_ALL='en\_US.UTF-8'
 ## Important Considerations
 
 This image was created with the intention of being a drop-in replacement for
-the Temurin JRE 21 image. **This image runs as the root user\! You should
+the Temurin JDK 21 image. **This image runs as the root user\! You should
 extend it to run your application as a non-root user.**
 
 ## Contributing and Issues
