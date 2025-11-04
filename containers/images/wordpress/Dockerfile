@@ -1,8 +1,8 @@
-FROM sourcemation/debian-12-slim:latest
+FROM sourcemation/debian-13-slim:latest
 
 ARG TARGETARCH
 ARG BUILD_DATE
-ARG LONGNAME="WordPress on Debian 12 Slim Container"
+ARG LONGNAME="WordPress on Debian 13 Slim Container"
 
 LABEL name="wordpress" \
       vendor="Sourcemation" \
@@ -16,7 +16,7 @@ LABEL name="wordpress" \
       version="6.8.3" \
       io.k8s.display-name="${LONGNAME}" \
       io.k8s.description="Provides ${LONGNAME}" \
-      io.openshift.tags="wordpress php apache debian-12-slim"
+      io.openshift.tags="wordpress php apache debian-13-slim"
 
 ENV APACHE_DOCUMENT_ROOT=/var/www/html \
     WORDPRESS_DB_HOST=mysql \
