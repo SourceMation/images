@@ -29,7 +29,7 @@ Here's how to run a pre-built Java application using this JDK 17 container
 image with a simple Dockerfile:
 
 ```Dockerfile
-from sourcemation/jdk-17
+FROM sourcemation/jdk-17
 
 # Copy your Java application JAR file into the image
 COPY your-application.jar /app/your-application.jar
