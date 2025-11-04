@@ -51,8 +51,10 @@ on:
           - hugo
           - java
           - jdk-21
+          - jdk-17
           - jenkins
           - jre-21
+          - jre-17
           - kafka
           - karaf
           - keycloak
