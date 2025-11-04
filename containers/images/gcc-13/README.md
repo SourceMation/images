@@ -4,7 +4,7 @@ This image provides the GNU Compiler Collection (GCC) version 13. It's ready to
 compile your C, C++, GO, Fortran, and other supported languages right out of
 the container.
 
-This image is built on top of Sourcemation Debian 12 Slim image:
+This image is built on top of Sourcemation Debian 13 Slim image:
 
 ```dockerfile
 from sourcemation/debian:12-slim

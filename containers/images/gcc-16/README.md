@@ -7,7 +7,7 @@ languages. This version is under active development and built from the latest
 source snapshot.
 
 
-Built upon the foundation of the Sourcemation Debian 12 Slim image.
+Built upon the foundation of the Sourcemation Debian 13 Slim image.
 
 ## Usage
 
@@ -93,7 +93,7 @@ project and is maintained by [Sourcemation](https://sourcemation.com).
 
 ## Extra notes
 
-This GCC 16 development snapshot image is built on a Debian 12 Slim base image,
+This GCC 16 development snapshot image is built on a Debian 13 Slim base image,
 a minimal consistent compilation environment. This image is loosely
 based on the Docker official image for `gcc` and is built using a separate,
 independent Sourcemation images build chain.

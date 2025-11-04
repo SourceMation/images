@@ -1,4 +1,4 @@
-FROM sourcemation/debian-12-slim:latest
+FROM sourcemation/debian-13-slim:latest
 
 ARG BUILD_DATE
 ARG TARGETARCH
@@ -12,13 +12,13 @@ LABEL name="gcc-14" \
       licenses="GPLv3+ with GCC Runtime Library Exception" \
       created="$BUILD_DATE" \
       architecture="$TARGETARCH" \
-      summary="GCC 14 on Debian 12 Slim Container" \
-      description="Provides GCC 14 on Debian 12 Slim Container" \
+      summary="GCC 14 on Debian 13 Slim Container" \
+      description="Provides GCC 14 on Debian 13 Slim Container" \
       version="14.3.0" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
-      io.k8s.display-name="GCC 14 on Debian 12 Slim Container" \
-      io.k8s.description="Provides GCC 14 on Debian 12 Slim Container" \
-      io.openshift.tags="gcc gcc-14 debian-12-slim"
+      io.k8s.display-name="GCC 14 on Debian 13 Slim Container" \
+      io.k8s.description="Provides GCC 14 on Debian 13 Slim Container" \
+      io.openshift.tags="gcc gcc-14 debian-13-slim"
 
 ENV GCC_VERSION="14.3.0"
 
