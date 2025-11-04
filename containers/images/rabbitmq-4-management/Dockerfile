@@ -9,13 +9,13 @@ LABEL name="rabbitmq-4-management" \
       licenses="MPLv2" \
       created="$BUILD_DATE" \
       architecture="$TARGETARCH" \
-      summary="RabbitMQ-4-Management Debian 12-slim" \
-      description="Provides RabbitMQ-4-Management on Debian 12-slim" \
+      summary="RabbitMQ-4-Management Debian 13-slim" \
+      description="Provides RabbitMQ-4-Management on Debian 13-slim" \
       version="4.1.4" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
-      io.k8s.display-name="RabbitMQ-4-Management on Debian 12-slim Container" \
-      io.k8s.description="Provides RabbitMQ-4-Management Debian 12-slim Container" \
-      io.openshift.tags="rabbitmq-4-management debian-12-slim"
+      io.k8s.display-name="RabbitMQ-4-Management on Debian 13-slim Container" \
+      io.k8s.description="Provides RabbitMQ-4-Management Debian 13-slim Container" \
+      io.openshift.tags="rabbitmq-4-management debian-13-slim"
 
 RUN set -eux \
 	&& gosu rabbitmq rabbitmq-plugins enable --offline rabbitmq_management \
