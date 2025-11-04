@@ -13,11 +13,11 @@ LABEL name="postgres-exporter" \
   licenses="GPLv2" \
   created="$BUILD_DATE" \
   architecture="$TARGETARCH" \
-  summary="Postgresql-exporter on Debian 12 Slim Container" \
-  description="Provides postgres-exporter on Debian 12 Slim Container" \
+  summary="Postgresql-exporter on Debian 13 Slim Container" \
+  description="Provides postgres-exporter on Debian 13 Slim Container" \
   version="0.18.1" \
-  io.k8s.display-name="Postgresql-exporter on Debian 12 Slim Container" \
-  io.k8s.description="Provides postgres-exporter on Debian 12 Slim Container" \
+  io.k8s.display-name="Postgresql-exporter on Debian 13 Slim Container" \
+  io.k8s.description="Provides postgres-exporter on Debian 13 Slim Container" \
   io.openshift.tags="postgres-exporter debian"
 
 RUN set -eux; \

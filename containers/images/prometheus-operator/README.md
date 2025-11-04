@@ -2,7 +2,7 @@
 
 Prometheus Operator is a Kubernetes native operator that automates the management of Prometheus instances, ServiceMonitors, PrometheusRules, and other monitoring components in Kubernetes clusters.
 
-This Prometheus Operator distribution is provided by the Sourcemation packaging team, built on a secure Debian 12 Slim base image with Prometheus Operator.
+This Prometheus Operator distribution is provided by the Sourcemation packaging team, built on a secure Debian 13 Slim base image with Prometheus Operator.
 
 ## Usage
 

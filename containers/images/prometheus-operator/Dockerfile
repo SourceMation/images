@@ -20,11 +20,11 @@ make operator
 mv operator ../bin/
 EOF
 
-FROM docker.io/sourcemation/debian-12-slim:latest
+FROM docker.io/sourcemation/debian-13-slim:latest
 
 ARG TARGETARCH="amd64"
 ARG BUILD_DATE
-ARG LONGNAME="Prometheus Operator on Debian 12 Slim Container"
+ARG LONGNAME="Prometheus Operator on Debian 13 Slim Container"
 
 LABEL name="prometheus-operator" \
   vendor="Sourcemation" \
@@ -38,7 +38,7 @@ LABEL name="prometheus-operator" \
   version="0.86.1" \
   io.k8s.display-name="${LONGNAME}" \
   io.k8s.description="Provides ${LONGNAME}" \
-  io.openshift.tags="prometheus-operator debian-12-slim"
+  io.openshift.tags="prometheus-operator debian-13-slim"
 
 # RUN update and setup user
 RUN set -e; \
