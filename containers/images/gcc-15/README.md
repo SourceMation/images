@@ -5,7 +5,7 @@ supplying an immediate environment for compiling projects written in C, C++,
 GO, Fortran, and other supported programming languages.
 
 
-Built upon the foundation of the Sourcemation Debian 12 Slim image.
+Built upon the foundation of the Sourcemation Debian 13 Slim image.
 
 
 ## Usage
@@ -87,7 +87,7 @@ and is maintained by Sourcemation.
 
 ## Extra notes
 
-This GCC 15 image is built on a Debian 12 Slim base image, which is a minimal
+This GCC 15 image is built on a Debian 13 Slim base image, which is a minimal
 consistent compilation environment. This image is loosely based on the Docker
 official image for gcc and is built using a separate, independent Sourcemation
 images build chain.

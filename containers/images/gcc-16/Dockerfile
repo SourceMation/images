@@ -1,4 +1,4 @@
-FROM sourcemation/debian-12-slim:latest
+FROM sourcemation/debian-13-slim:latest
 
 ARG BUILD_DATE
 ARG TARGETARCH
@@ -12,15 +12,15 @@ LABEL name="gcc-16" \
       licenses="GPLv3+ with GCC Runtime Library Exception" \
       created="$BUILD_DATE" \
       architecture="$TARGETARCH" \
-      summary="GCC 16 on Debian 12 Slim Container" \
-      description="Provides GCC 16 on Debian 12 Slim Container" \
-      version="20251012" \
+      summary="GCC 16 on Debian 13 Slim Container" \
+      description="Provides GCC 16 on Debian 13 Slim Container" \
+      version="20251102" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
-      io.k8s.display-name="GCC 16 on Debian 12 Slim Container" \
-      io.k8s.description="Provides GCC 16 on Debian 12 Slim Container" \
-      io.openshift.tags="gcc gcc-16 debian-12-slim"
+      io.k8s.display-name="GCC 16 on Debian 13 Slim Container" \
+      io.k8s.description="Provides GCC 16 on Debian 13 Slim Container" \
+      io.openshift.tags="gcc gcc-16 debian-13-slim"
 
-ENV GCC_VERSION="20251012"
+ENV GCC_VERSION="20251102"
 
 # abigail-tools - abidiff later to verify that it's not breaking the debian packages
 # Most of this packages are from buildpack-deps that is based on old Heroku stack,
