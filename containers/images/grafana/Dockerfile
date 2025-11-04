@@ -5,9 +5,9 @@ ARG BUILD_DATE
 ARG LONGNAME="Grafana on Debian 13 Slim Container"
 
 LABEL name="grafana" \
-      vendor="SourceMation" \
+      vendor="Sourcemation" \
       url="https://sourcemation.com" \
-      source="https://github.com/SourceMation/images/issues" \
+      source="https://github.com/Sourcemation/images/issues" \
       licenses="AGPL-3.0" \
       created="${BUILD_DATE}" \
       architecture="${TARGETARCH}" \

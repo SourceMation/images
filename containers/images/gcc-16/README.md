@@ -1,4 +1,4 @@
-# GCC 16 (Development Snapshot) packaged by SourceMation
+# GCC 16 (Development Snapshot) packaged by Sourcemation
 
 This container image delivers a development snapshot of the GNU Compiler
 Collection (GCC) version 16. It provides an immediate environment for compiling
@@ -7,7 +7,7 @@ languages. This version is under active development and built from the latest
 source snapshot.
 
 
-Built upon the foundation of the SourceMation Debian 12 Slim image.
+Built upon the foundation of the Sourcemation Debian 12 Slim image.
 
 ## Usage
 
@@ -80,27 +80,27 @@ Furthermore, this image employs `dpkg-divert` to rename the original `gcc` and
 ## Contributing and Issues
 
 We'd love for you to contribute! You can request new features, report bugs, or
-submit a pull request with your contribution to this image on the SourceMation
+submit a pull request with your contribution to this image on the Sourcemation
 GitHub repository.
 
-- [Creating issues, feature requests, and bug reports](https://github.com/SourceMation/images/issues/new/choose)
-- [Creating pull requests](https://github.com/SourceMation/images/compare)
+- [Creating issues, feature requests, and bug reports](https://github.com/Sourcemation/images/issues/new/choose)
+- [Creating pull requests](https://github.com/Sourcemation/images/compare)
 
 **Disclaimer:** The `sourcemation/gcc-16` image is not affiliated with the GNU
 Project. The respective companies and organisations own the trademarks
 mentioned in the offering. The `sourcemation/gcc-16` image is a separate
-project and is maintained by [SourceMation](https://sourcemation.com).
+project and is maintained by [Sourcemation](https://sourcemation.com).
 
 ## Extra notes
 
 This GCC 16 development snapshot image is built on a Debian 12 Slim base image,
 a minimal consistent compilation environment. This image is loosely
 based on the Docker official image for `gcc` and is built using a separate,
-independent SourceMation images build chain.
+independent Sourcemation images build chain.
 ## Image and its components Risk Analysis report
 
 A detailed risk analysis report of the images and their components can be found
-on the [SourceMation platform](https://www.sourcemation.com/).
+on the [Sourcemation platform](https://www.sourcemation.com/).
 
 For more information about GCC, check out the [official GCC
 website](https://gcc.gnu.org/).

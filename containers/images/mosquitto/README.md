@@ -1,4 +1,4 @@
-# Mosquitto packaged by SourceMation
+# Mosquitto packaged by Sourcemation
 
 This container image contains the Mosquitto MQTT broker and client tools
 installed from EPEL repositories.
@@ -142,15 +142,15 @@ option, like in the examples above, or let Docker choose some for you with the
 
 We welcome your contributions! If you have new feature requests, want to report
 a bug, or wish to submit a pull request with your code or an image request, you
-can do so via the SourceMation GitHub repository for this image.
+can do so via the Sourcemation GitHub repository for this image.
 
-- [Open a new issue (for feature requests, bug reports, or image requests)](https://github.com/SourceMation/images/issues/new/choose)
-- [Submit a pull request](https://github.com/SourceMation/images/compare)
+- [Open a new issue (for feature requests, bug reports, or image requests)](https://github.com/Sourcemation/images/issues/new/choose)
+- [Submit a pull request](https://github.com/Sourcemation/images/compare)
 
 **Disclaimer:** The `sourcemation/mosquitto` image is not affiliated with the
 The Eclipse Foundation. The respective companies and organisations own the
 trademarks mentioned in the offering. The `sourcemation/mosquitto` image is a
-separate project and is maintained by [SourceMation](https://sourcemation.com).
+separate project and is maintained by [Sourcemation](https://sourcemation.com).
 
 ## Extra notes
 
@@ -170,7 +170,7 @@ separate project and is maintained by [SourceMation](https://sourcemation.com).
 ### Image and its components Risk Analysis report
 
 A detailed risk analysis report of the image and its components can be found on
-the SourceMation platform.
+the Sourcemation platform.
 
 For more information, check out the [official Mosquitto
 website](https://mosquitto.org/).
@@ -181,4 +181,4 @@ The base licenses for the solution (Eclipse Mosquitto) are the [Eclipse Public
 License 2.0 and the Eclipse Distribution License
 1.0](https://github.com/eclipse-mosquitto/mosquitto/blob/master/LICENSE.txt).
 The licenses for each component shipped as part of this image can be found on
-the image's appropriate SourceMation entry.
+the image's appropriate Sourcemation entry.

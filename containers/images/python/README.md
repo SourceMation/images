@@ -1,4 +1,4 @@
-# Python packaged by SourceMation
+# Python packaged by Sourcemation
 
 Python is one of the most popular programming languages. Its simplicity,
 emphasis on readability and a dozen of modules make it the perfect choice for
@@ -58,23 +58,23 @@ Please note that the ports need to be either manually forwarded with the
 
 Your contributions are valued! Feel free to suggest enhancements or request new
 images by opening an issue, or submit your own contributions via pull requests
-to the SourceMation GitHub repository.
+to the Sourcemation GitHub repository.
 
-- [Creating issues (bugs) and images requests](https://github.com/SourceMation/images/issues/new/choose)
-- [Creating pull requests](https://github.com/SourceMation/images/compare)
+- [Creating issues (bugs) and images requests](https://github.com/Sourcemation/images/issues/new/choose)
+- [Creating pull requests](https://github.com/Sourcemation/images/compare)
 
 **Disclaimer:** The `sourcemation/python` image is not affiliated with
 the Python Software Foundation. The respective companies and
 organisations own the trademarks mentioned in the offering. The
 `sourcemation/python` image is a separate project and is maintained by
-[SourceMation](https://sourcemation.com).
+[Sourcemation](https://sourcemation.com).
 
 ## Extra notes
 
 ### Image and its components Risk Analysis report
 
 A detailed risk analysis report of the image and its components can be
-found on the [SourceMation
+found on the [Sourcemation
 platform](https://www.sourcemation.com/products/b9c4054f-f7f7-4e2e-83ea-f764e723cea2/report).
 
 For more information, check out the [overview on the
@@ -85,6 +85,6 @@ Python](https://www.python.org/doc/essays/blurb/) page.
 The base license for the solution (Python) is the [Python
 License](https://docs.python.org/3.9/license.html). The licenses for
 each component shipped as part of this image can be found on [the
-image's appropriate SourceMation
+image's appropriate Sourcemation
 entry](https://www.sourcemation.com/products/b9c4054f-f7f7-4e2e-83ea-f764e723cea2/report).
 

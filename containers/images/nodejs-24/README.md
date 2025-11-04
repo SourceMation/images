@@ -1,4 +1,4 @@
-# NodeJS 24 with Yarn Classic packed by SourceMation
+# NodeJS 24 with Yarn Classic packed by Sourcemation
 
 Leveraging its cross-platform nature and scalable architecture, Node.js® serves
 as a powerful JavaScript runtime, facilitating the development of a wide
@@ -51,22 +51,22 @@ YARN_VERSION=1.22.XX
 ## Contributing and Issues
 
 We'd love for you to contribute! You can request new features, report bugs, or
-submit a pull request with your contribution to this image on the SourceMation
+submit a pull request with your contribution to this image on the Sourcemation
 GitHub repository.
 
-- [Creating issues, feature requests, and bug reports](https://github.com/SourceMation/images/issues/new/choose)
-- [Creating pull requests](https://github.com/SourceMation/images/compare)
+- [Creating issues, feature requests, and bug reports](https://github.com/Sourcemation/images/issues/new/choose)
+- [Creating pull requests](https://github.com/Sourcemation/images/compare)
 
 Disclaimer: The sourcemation/nodejs image operates independently and is not
 affiliated with the [OpenJS Foundation](https://openjsf.org/). All trademarks
 mentioned belong to their respective owners. This sourcemation/nodejs image is
-a distinct project maintained by [SourceMation](https://sourcemation.com).
+a distinct project maintained by [Sourcemation](https://sourcemation.com).
 
 ## Extra notes
 ### Image and its components Risk Analysis report
 
 A comprehensive risk analysis report detailing the image and its components can
-be accessed on the [SourceMation platform](https://www.sourcemation.com/).
+be accessed on the [Sourcemation platform](https://www.sourcemation.com/).
 
 
 For further details, explore the [overview of NodeJS®](https://nodejs.org/)

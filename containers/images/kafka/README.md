@@ -1,4 +1,4 @@
-# Apache Kafka packaged by SourceMation
+# Apache Kafka packaged by Sourcemation
 
 Kafka is a utility for managing, transforming, forwarding and appropriately
 reacting to data being streamed as events. Comparable to other message brokers,
@@ -6,7 +6,7 @@ Kafka's durability make it a great choice for software, that processes messages
 at a large scale.
 
 This image is based on the official Apache Kafka image. It is built for
-SourceMation content delivery and open source analysis platform.
+Sourcemation content delivery and open source analysis platform.
 
 ## Usage
 
@@ -56,16 +56,16 @@ This image has the following volumes set:
 ## Contributing and Issues
 
 We'd love for you to contribute! You can request new features, report bugs, or
-submit a pull request with your contribution to this image on the SourceMation
+submit a pull request with your contribution to this image on the Sourcemation
 GitHub repository.
 
-- [Creating issues, feature requests, and bug reports](https://github.com/SourceMation/images/issues/new/choose)
-- [Creating pull requests](https://github.com/SourceMation/images/compare)
+- [Creating issues, feature requests, and bug reports](https://github.com/Sourcemation/images/issues/new/choose)
+- [Creating pull requests](https://github.com/Sourcemation/images/compare)
 
 **Disclaimer:** The `sourcemation/kafka` image is not affiliated with the
 Apache Software Foundation. The respective companies and organisations own the
 trademarks mentioned in the offering. The `sourcemation/kafka` image is a
-separate project and is maintained by [SourceMation](https://sourcemation.com).
+separate project and is maintained by [Sourcemation](https://sourcemation.com).
 
 ## Extra notes
 
@@ -81,7 +81,7 @@ The Kafka server runs as the system user `appuser`, UID and GID 1000.
 ### Image and its components Risk Analysis report
 
 A detailed risk analysis report of the image and its components can be found on
-the SourceMation platform.
+the Sourcemation platform.
 
 For more information about Kafka, check out the [Apache Kafka
 Introduction](https://kafka.apache.org/intro) page. For more advanced usage
@@ -95,4 +95,4 @@ Version 2.0](https://github.com/apache/kafka/blob/3.9.0/LICENSE-binary). Please
 visit that link for a more in-depth information about the licensing of the
 third-party components used as part of the upstream product. The licenses for
 additional components shipped as part of this image can be found on the image's
-appropriate SourceMation entry.
+appropriate Sourcemation entry.

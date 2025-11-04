@@ -1,4 +1,4 @@
-# External Secrets packed by SourceMation
+# External Secrets packed by Sourcemation
 
 This container image delivers the External Secrets, which is used to manage
 secrets, with external providers, in Kubernetes clusters. It's independent
@@ -56,7 +56,7 @@ helm install external-secrets \
 ## Why use this image?
 
 This image comes with all the goodies of publicly built images from
-SourceMation and is based on newer Debian 13 instead of older Debian 12 (both
+Sourcemation and is based on newer Debian 13 instead of older Debian 12 (both
 images are distroless). **This image is also regularly updated and rebuilt, so
 you can be sure that your static binary is up to date with the latest security
 fixes.**
@@ -79,10 +79,10 @@ using the fixed version of the image.**
 
 We welcome your contributions! If you have new feature requests, want to report
 a bug, or wish to submit a pull request with your code or an image request, you
-can do so via the SourceMation GitHub repository for this image.
+can do so via the Sourcemation GitHub repository for this image.
 
-- [Open a new issue (for feature requests, bug reports, or image requests)](https://github.com/SourceMation/images/issues/new/choose)
-- [Submit a pull request](https://github.com/SourceMation/images/compare)
+- [Open a new issue (for feature requests, bug reports, or image requests)](https://github.com/Sourcemation/images/issues/new/choose)
+- [Submit a pull request](https://github.com/Sourcemation/images/compare)
 
 ## Image and its components Risk Analysis report
 
@@ -90,7 +90,7 @@ The Sourcemation platform provides a detailed risk analysis report of the
 images and their components. However, some images might not have them ready;
 you can always create an issue to request them.
 
-Visit the [SourceMation website](https://sourcemation.com) to see the available
+Visit the [Sourcemation website](https://sourcemation.com) to see the available
 Open Source SCARM risk analysis reports.
 
 ## Licenses

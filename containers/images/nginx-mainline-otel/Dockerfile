@@ -4,7 +4,7 @@ ARG BUILD_DATE
 ARG TARGETARCH
 
 LABEL name="nginx-mainline" \
-      vendor="SourceMation" \
+      vendor="Sourcemation" \
       url="https://sourcemation.com/"\
       licenses="BSD-2-Clause License" \
       created="$BUILD_DATE" \

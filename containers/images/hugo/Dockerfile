@@ -8,9 +8,9 @@ ENV DART_SASS_VERSION=1.93.2
 ENV PATH="/usr/local/bin/src:${PATH}"
 
 LABEL name="hugo" \
-      vendor="SourceMation" \
+      vendor="Sourcemation" \
       url="https://sourcemation.com" \
-      source="https://github.com/SourceMation/images/issues" \
+      source="https://github.com/Sourcemation/images/issues" \
       licenses="Apache-2.0" \
       created="${BUILD_DATE}" \
       architecture="${TARGETARCH}" \

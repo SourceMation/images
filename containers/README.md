@@ -1,4 +1,4 @@
-# SourceMation containers build process
+# Sourcemation containers build process
 
 These containers are built with a GitHub Action workflow/action named Build
 Container. The repository contains all the necessary files and secrets to build

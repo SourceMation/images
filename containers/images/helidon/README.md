@@ -1,4 +1,4 @@
-# Helidon packaged by SourceMation
+# Helidon packaged by Sourcemation
 
 Helidon is a release of libraries for the Java programming language for writing
 microservices. This container image provides the essential development
@@ -66,22 +66,22 @@ By default, the image exposes the following ports:
 
 Your contributions are valued! Feel free to suggest enhancements or request new
 images by opening an issue, or submit your own contributions via pull requests
-to the SourceMation GitHub repository.
+to the Sourcemation GitHub repository.
 
-- [Creating issues (bugs) and images requests](https://github.com/SourceMation/images/issues/new/choose)
-- [Creating pull requests](https://github.com/SourceMation/images/compare)
+- [Creating issues (bugs) and images requests](https://github.com/Sourcemation/images/issues/new/choose)
+- [Creating pull requests](https://github.com/Sourcemation/images/compare)
 
 **Disclaimer:** The `sourcemation/helidon` image is not affiliated with Oracle,
 Inc. The respective companies and organisations own the trademarks mentioned in
 the offering. The `sourcemation/helidon` image is a separate project and is
-maintained by [SourceMation](https://sourcemation.com).
+maintained by [Sourcemation](https://sourcemation.com).
 
 ## Extra notes
 
 ### Image and its components Risk Analysis report
 
 A detailed risk analysis report of the image and its components can be found on
-the SourceMation platform.
+the Sourcemation platform.
 
 For more information, check out the [Getting started with Helidon
 CLI](https://helidon.io/docs/v4/about/cli) page.
@@ -91,4 +91,4 @@ CLI](https://helidon.io/docs/v4/about/cli) page.
 The base license for the solution (Helidon) is the [Apache License, Version
 2.0](https://github.com/helidon-io/helidon/blob/main/LICENSE.txt). The licenses
 for each component shipped as part of this image can be found on the image's
-appropriate SourceMation entry.
+appropriate Sourcemation entry.

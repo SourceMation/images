@@ -1,9 +1,9 @@
-# Redis packaged by SourceMation
+# Redis packaged by Sourcemation
 
 Redis is a performant in-memory key-value database. Its simplicity, accompanied
 by optimal data structures, contribute to the high operational speed.
 
-Built by SourceMation's automation team, this Redis release undergoes regular
+Built by Sourcemation's automation team, this Redis release undergoes regular
 updates, following the official `stable` release. The foundation is the latest
 `sourcemation/debian-12-slim` image at build time, ensuring a compact, secure,
 and current setup.
@@ -36,15 +36,15 @@ Please note that the ports need to be either manually forwarded with the
 ## Contributions and Issue Reporting
 
 Contributions are welcome! Propose new features by creating issues or submit
-pull requests on the SourceMation GitHub repository.
+pull requests on the Sourcemation GitHub repository.
 
-- [Open a new issue (for feature requests, bug reports, or image requests)](https://github.com/SourceMation/images/issues/new/choose)
-- [Creating pull requests](https://github.com/SourceMation/images/compare)
+- [Open a new issue (for feature requests, bug reports, or image requests)](https://github.com/Sourcemation/images/issues/new/choose)
+- [Creating pull requests](https://github.com/Sourcemation/images/compare)
 
 **Disclaimer:** The `sourcemation/redis` image is not affiliated with Redis
 Ltd. The respective companies and organisations own the trademarks mentioned in
 the offering. The `sourcemation/redis` image is a separate project and is
-maintained by [SourceMation](https://sourcemation.com).
+maintained by [Sourcemation](https://sourcemation.com).
 
 ## Extra notes
 
@@ -59,7 +59,7 @@ licensing](https://redis.io/blog/redis-adopts-dual-source-available-licensing/).
 ### Image and its components Risk Analysis report
 
 A detailed risk analysis report of the image and its components can be found on
-the [SourceMation
+the [Sourcemation
 platform](https://www.sourcemation.com/products/7e370e6a-baad-4b48-8e85-bdc7504cf06d/deployments).
 
 For more information, check out the [overview of

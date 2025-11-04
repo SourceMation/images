@@ -1,11 +1,11 @@
-# APIcast packaged by SourceMation
+# APIcast packaged by Sourcemation
 
 APIcast is a utility for managing API integrations with the [Red Hat 3scale
 Platform](https://www.redhat.com/en/technologies/jboss-middleware/3scale) with
 extensive customization and administration options and deployment flexibility.
 
 This APIcast distribution is a proprietary compilation provided by the
-[SourceMation](https://sourcemation.com) packaging team.
+[Sourcemation](https://sourcemation.com) packaging team.
 
 ## Usage
 
@@ -34,16 +34,16 @@ LD_LIBRARY_PATH=":/home/appuser/APIcast/local/lib:/home/appuser/APIcast/lua_modu
 
 We welcome your contributions! If you have new feature requests, want to report
 a bug, or wish to submit a pull request with your code or an image request, you
-can do so via the SourceMation GitHub repository for this image.
+can do so via the Sourcemation GitHub repository for this image.
 
-- [Open a new issue (for feature requests, bug reports, or image requests)](https://github.com/SourceMation/images/issues/new/choose)
-- [Submit a pull request](https://github.com/SourceMation/images/compare)
+- [Open a new issue (for feature requests, bug reports, or image requests)](https://github.com/Sourcemation/images/issues/new/choose)
+- [Submit a pull request](https://github.com/Sourcemation/images/compare)
 
 **Disclaimer:** The `sourcemation/apicast` image is not affiliated with,
 endorsed by, or supported by Red Hat, Inc. The respective companies and
 organisations own the trademarks mentioned in the offering. The
 `sourcemation/apicast` image is a separate project and is maintained by
-[SourceMation](https://sourcemation.com).
+[Sourcemation](https://sourcemation.com).
 
 ## Extra notes
 
@@ -71,7 +71,7 @@ The application runs as the user `appuser`, UID and GID no. 1000.
 ### Image and its components Risk Analysis report
 
 A detailed risk analysis report of the image and its components can be
-found on the [SourceMation
+found on the [Sourcemation
 platform](https://sourcemation.com).
 
 For more information, check out the [overview of
@@ -84,4 +84,4 @@ The base license for the solution (APIcast revision
 `c54aa0ba61fe1f41ae0653ea79745a87d27b8dd6`) is the [Apache License, Version
 2.0](https://github.com/3scale/APIcast/blob/c54aa0ba61fe1f41ae0653ea79745a87d27b8dd6/LICENSE).
 The licenses for each component shipped as part of this image can be found on
-the image's appropriate SourceMation entry.
+the image's appropriate Sourcemation entry.

@@ -5,7 +5,7 @@ ARG TARGETARCH
 ARG ZOOKEEPER_VERSION=3.9.4
 
 LABEL name="zookeeper" \
-      vendor="SourceMation" \
+      vendor="Sourcemation" \
       url="https://sourcemation.com/"\
       licenses="Apache-2.0" \
       created="$BUILD_DATE" \

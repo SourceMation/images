@@ -1,4 +1,4 @@
-# MongoDB packaged by SourceMation
+# MongoDB packaged by Sourcemation
 
 MongoDB is a high-performant, easily scalable NoSQL database management system.
 Its flexibility makes it a perfect choice for use cases ranging from handling
@@ -6,7 +6,7 @@ web application contents to big data processing.
 
 This MongoDB distribution (Community Edition) is provided by MongoDB,
 Inc., packaged as part of a Rocky Linux 9 image by
-[SourceMation](https://sourcemation.com).
+[Sourcemation](https://sourcemation.com).
 
 ## Usage
 
@@ -42,10 +42,10 @@ Please note that the ports need to be either manually forwarded with the
 
 Your contributions are valued! Feel free to suggest enhancements or request new
 images by opening an issue, or submit your own contributions via pull requests
-to the SourceMation GitHub repository.
+to the Sourcemation GitHub repository.
 
-- [Creating issues (bugs) and images requests](https://github.com/SourceMation/images/issues/new/choose)
-- [Creating pull requests](https://github.com/SourceMation/images/compare)
+- [Creating issues (bugs) and images requests](https://github.com/Sourcemation/images/issues/new/choose)
+- [Creating pull requests](https://github.com/Sourcemation/images/compare)
 
 
 ## Extra notes
@@ -53,12 +53,12 @@ to the SourceMation GitHub repository.
 **Disclaimer:** The `sourcemation/mongodb` image is not affiliated with
 MongoDB, Inc. The respective entities own the trademarks mentioned in
 the offering. The `sourcemation/mongodb` image is a separate project and
-is maintained by [SourceMation](https://sourcemation.com).
+is maintained by [Sourcemation](https://sourcemation.com).
 
 ### Image and its components Risk Analysis report
 
 A detailed risk analysis report of the image and its components can be
-found on the [SourceMation
+found on the [Sourcemation
 platform](https://www.sourcemation.com/products/b95ab2de-202b-45f2-a2a3-086e64968979/deployments).
 
 For more information, check out the [overview of
@@ -70,6 +70,6 @@ The base license for the solution (MongoDB) is the [Server Side Public
 License (SSPL)
 v1](https://www.mongodb.com/licensing/server-side-public-license) The
 licenses for each component shipped as part of this image can be found
-on [the image's appropriate SourceMation
+on [the image's appropriate Sourcemation
 entry](https://www.sourcemation.com/products/b95ab2de-202b-45f2-a2a3-086e64968979/deployments).
 

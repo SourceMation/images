@@ -27,9 +27,9 @@ ARG BUILD_DATE
 ARG LONGNAME="Prometheus Operator on Debian 13 Slim Container"
 
 LABEL name="prometheus-operator" \
-  vendor="SourceMation" \
+  vendor="Sourcemation" \
   url="https://sourcemation.com"\
-  source="https://github.com/SourceMation/images/issues"\
+  source="https://github.com/Sourcemation/images/issues"\
   licenses="Apache-2.0" \
   created="${BUILD_DATE}" \
   architecture="${TARGETARCH}" \

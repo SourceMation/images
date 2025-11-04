@@ -1,9 +1,9 @@
-# RabbitMQ packaged by SourceMation
+# RabbitMQ packaged by Sourcemation
 
 RabbitMQ is a high-performant, scalable message broker for AMQP clients.
 
 This image contains the RabbitMQ Server version 3.11.10 distribution packaged
-and provided by SourceMation.
+and provided by Sourcemation.
 
 ## Usage
 
@@ -45,23 +45,23 @@ Please note that the ports need to be either manually forwarded with the
 ## Contributing and Issues
 
 We'd love for you to contribute! You can request new features, report bugs, or
-submit a pull request with your contribution to this image on the SourceMation
+submit a pull request with your contribution to this image on the Sourcemation
 GitHub repository.
 
-- [Creating issues, feature requests, and bug reports](https://github.com/SourceMation/images/issues/new/choose)
-- [Creating pull requests](https://github.com/SourceMation/images/compare)
+- [Creating issues, feature requests, and bug reports](https://github.com/Sourcemation/images/issues/new/choose)
+- [Creating pull requests](https://github.com/Sourcemation/images/compare)
 
 **Disclaimer:** The `sourcemation/rabbitmq` image is not affiliated with
 Broadcom, Inc. The respective companies and organisations own the trademarks
 mentioned in the offering. The `sourcemation/rabbitmq` image is a separate
-project and is maintained by [SourceMation](https://sourcemation.com).
+project and is maintained by [Sourcemation](https://sourcemation.com).
 
 ## Extra notes
 
 ### Image and its components Risk Analysis report
 
 A detailed risk analysis report of the image and its components can be found on
-the [SourceMation
+the [Sourcemation
 platform](https://www.sourcemation.com/products/2630e078-ddb3-4845-aacd-d054190c7912/deployments).
 
 For more information, check out the [Getting Started tutorials on the RabbitMQ
@@ -73,4 +73,4 @@ The base license for the solution (RabbitMQ Server) is the [Mozilla Public
 License Version 2.0 and Apache License Version
 2.0](https://github.com/rabbitmq/rabbitmq-server/blob/v3.11.10/LICENSE) . The
 licenses for each component shipped as part of this image can be found on [the
-image's appropriate SourceMation entry](https://www.sourcemation.com/products/2630e078-ddb3-4845-aacd-d054190c7912/deployments).
+image's appropriate Sourcemation entry](https://www.sourcemation.com/products/2630e078-ddb3-4845-aacd-d054190c7912/deployments).

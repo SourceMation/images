@@ -1,4 +1,4 @@
-# OpenAPI Generator CLI packaged by SourceMation
+# OpenAPI Generator CLI packaged by Sourcemation
 
 This image provides a CLI for the OpenAPI Generator project. It is based on the
 Rocky Linux 9 base image.  The image uses `maven-3.8` as the default toolchain
@@ -67,17 +67,17 @@ GENERATOR_VERSION="XXX - set during build"
 ## Contributions and Issue Reporting
 
 Contributions are welcome! Propose new features by creating issues or submit
-pull requests on the SourceMation GitHub repository.
+pull requests on the Sourcemation GitHub repository.
 
-- [Open a new issue (for feature requests, bug reports, or image requests)](https://github.com/SourceMation/images/issues/new/choose)
-- [Creating pull requests](https://github.com/SourceMation/images/compare)
+- [Open a new issue (for feature requests, bug reports, or image requests)](https://github.com/Sourcemation/images/issues/new/choose)
+- [Creating pull requests](https://github.com/Sourcemation/images/compare)
 
 **Disclaimer:** The `sourcemation/openapi-generator-cli` image is not
 affiliated with the [OpenAPI Generator core
 team](https://openapi-generator.tech/docs/core-team). The respective companies
 and organisations own the trademarks mentioned in the offering. The
 `sourcemation/openapi-generator-cli` image is a separate project and is
-maintained by [SourceMation](https://sourcemation.com).
+maintained by [Sourcemation](https://sourcemation.com).
 
 ## Extra notes
 
@@ -87,7 +87,7 @@ maintained by [SourceMation](https://sourcemation.com).
 ### Image and its components Risk Analysis report
 
 A detailed risk analysis report of the image and its components can be found on
-the SourceMation platform.
+the Sourcemation platform.
 
 For more information, check out the [OpenAPI Generator official
 website](https://openapi-generator.tech/).
@@ -98,4 +98,4 @@ The base license for the solution (OpenAPI Generator) is the [Apache License,
 Version
 2.0](https://github.com/OpenAPITools/openapi-generator/blob/master/LICENSE).
 The licenses for each component shipped as part of this image can be found on
-the image's appropriate SourceMation entry.
+the image's appropriate Sourcemation entry.

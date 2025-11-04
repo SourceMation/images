@@ -5,9 +5,9 @@ ARG BUILD_DATE
 ARG LONGNAME="WordPress on Debian 12 Slim Container"
 
 LABEL name="wordpress" \
-      vendor="SourceMation" \
+      vendor="Sourcemation" \
       url="https://sourcemation.com" \
-      source="https://github.com/SourceMation/images/issues" \
+      source="https://github.com/Sourcemation/images/issues" \
       licenses="GPL-2.0-or-later" \
       created="${BUILD_DATE}" \
       architecture="${TARGETARCH}" \

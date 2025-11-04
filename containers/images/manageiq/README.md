@@ -95,17 +95,17 @@ default language is English and the locale is set to UTF-8.
 ## Contributing and Issues
 
 We'd love for you to contribute! You can request new features, report bugs, or
-submit a pull request with your contribution to this image on the SourceMation
+submit a pull request with your contribution to this image on the Sourcemation
 GitHub repository.
 
-- [Creating issues, feature requests, and bug reports](https://github.com/SourceMation/images/issues/new/choose)
-- [Creating pull requests](https://github.com/SourceMation/images/compare)
+- [Creating issues, feature requests, and bug reports](https://github.com/Sourcemation/images/issues/new/choose)
+- [Creating pull requests](https://github.com/Sourcemation/images/compare)
 
 **Disclaimer:** The `sourcemation/manageiq` image is not affiliated with the
 official GitHub organization. The respective companies and organisations
 own the trademarks mentioned in the offering. The `sourcemation/manageiq` image
 is a separate project and is maintained by
-[SourceMation](https://sourcemation.com).
+[Sourcemation](https://sourcemation.com).
 
 ## Extra notes
 
@@ -114,7 +114,7 @@ is a separate project and is maintained by
   - Installing the `pyvmomi` Python package, which is used to interact with VMware vSphere and ESXi hosts.
   - Installing the `passlib[bcrypt]` Python package, which is used for password hashing.
   - Installing the `community.vmware` Ansible collection, which provides modules and plugins for managing VMware infrastructure.
-- This image is tagged in same way as all SourceMation images with `latest` `verson-x` and `version-x-builddate` tags.
+- This image is tagged in same way as all Sourcemation images with `latest` `verson-x` and `version-x-builddate` tags.
 
 
 ## License

@@ -1,4 +1,4 @@
-# Metrics Server packaged by SourceMation
+# Metrics Server packaged by Sourcemation
 
 > Kubernetes Metrics Server is a scalable, efficient source of container resource metrics for Kubernetes built-in autoscaling pipelines.
 
@@ -54,24 +54,24 @@ The image comes with the following default arguments:
 ## Contributing and Issues
 
 We'd love for you to contribute! You can request new features, report bugs, or
-submit a pull request with your contribution to this image on the SourceMation
+submit a pull request with your contribution to this image on the Sourcemation
 GitHub repository.
 
-- [Creating issues, feature requests, and bug reports](https://github.com/SourceMation/images/issues/new/choose)
-- [Creating pull requests](https://github.com/SourceMation/images/compare)
+- [Creating issues, feature requests, and bug reports](https://github.com/Sourcemation/images/issues/new/choose)
+- [Creating pull requests](https://github.com/Sourcemation/images/compare)
 
 **Disclaimer:** The `sourcemation/metrics-server` image is not affiliated with
 the Kubernetes SIG Instrumentation team. The respective companies and
 organisations own the trademarks mentioned in the offering. The
 `sourcemation/metrics-server` image is a separate project and is maintained by
-[SourceMation](https://sourcemation.com).
+[Sourcemation](https://sourcemation.com).
 
 ## Extra notes
 
 ### Image and its components Risk Analysis report
 
 A detailed risk analysis report of the image and its components can be
-found on the [SourceMation
+found on the [Sourcemation
 platform](https://sourcemation.com/catalog/metrics-server).
 
 For more information, check out the [overview of
@@ -81,5 +81,5 @@ Metrics Server](https://github.com/kubernetes-sigs/metrics-server) page.
 
 The base license for the solution (Metrics Server) is the
 [Apache License 2.0](https://github.com/kubernetes-sigs/metrics-server/blob/master/LICENSE). The licenses for each component shipped as
-part of this image can be found on [the image's appropriate SourceMation
+part of this image can be found on [the image's appropriate Sourcemation
 entry](https://sourcemation.com/catalog/metrics-server).

@@ -5,9 +5,9 @@ ARG BUILD_DATE
 ARG LONGNAME="phpMyAdmin on Debian 13 Slim Container"
 
 LABEL name="phpmyadmin" \
-      vendor="SourceMation" \
+      vendor="Sourcemation" \
       url="https://sourcemation.com" \
-      source="https://github.com/SourceMation/images/issues" \
+      source="https://github.com/Sourcemation/images/issues" \
       licenses="GPL-2.0-only" \
       created="${BUILD_DATE}" \
       architecture="${TARGETARCH}" \

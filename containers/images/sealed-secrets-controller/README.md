@@ -1,4 +1,4 @@
-# Sealed Secrets Controller packed by SourceMation
+# Sealed Secrets Controller packed by Sourcemation
 
 This container image delivers the Sealed Secret Controller, which is used to
 manage sealed secrets in Kubernetes clusters. It's independent build of the one
@@ -41,7 +41,7 @@ helm install sealed-secrets bitnami/sealed-secrets \
 ## Why use this image?
 
 This image comes with all the goodies of publicly built images from
-SourceMation and is based on newer Debian 12 instead of older Debian 11 (both
+Sourcemation and is based on newer Debian 12 instead of older Debian 11 (both
 images are distroless). **This image is also regularly updated and rebuilt, so
 you can be sure that your static binary is up to date with the latest security
 fixes.**
@@ -51,10 +51,10 @@ fixes.**
 
 We welcome your contributions! If you have new feature requests, want to report
 a bug, or wish to submit a pull request with your code or an image request, you
-can do so via the SourceMation GitHub repository for this image.
+can do so via the Sourcemation GitHub repository for this image.
 
-- [Open a new issue (for feature requests, bug reports, or image requests)](https://github.com/SourceMation/images/issues/new/choose)
-- [Submit a pull request](https://github.com/SourceMation/images/compare)
+- [Open a new issue (for feature requests, bug reports, or image requests)](https://github.com/Sourcemation/images/issues/new/choose)
+- [Submit a pull request](https://github.com/Sourcemation/images/compare)
 
 ## Extra notes
 
@@ -77,7 +77,7 @@ The Sourcemation platform provides a detailed risk analysis report of the
 images and their components. However, some images might not have them ready;
 you can always create an issue to request them.
 
-Visit the [SourceMation website](https://sourcemation.com) to see the available
+Visit the [Sourcemation website](https://sourcemation.com) to see the available
 Open Source SCARM risk analysis reports.
 
 ## Licenses

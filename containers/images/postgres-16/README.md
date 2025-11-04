@@ -1,11 +1,11 @@
-# SourceMation's PostgreSQL 16 on Debian Slim
+# Sourcemation's PostgreSQL 16 on Debian Slim
 
 This container delivers PostgreSQL 16, a robust, open-source object-relational
 database system. Boasting over 35 years of active development, PostgreSQL is
 renowned for its reliability, feature-richness, and performance. This
 distribution operates on a lean Debian Slim base.
 
-Built by SourceMation's automation team, this PostgreSQL release (version
+Built by Sourcemation's automation team, this PostgreSQL release (version
 16.X.Y) undergoes regular updates. The foundation is the latest
 `sourcemation/debian-13-slim` image at build time, ensuring a compact, secure,
 and current setup. Cryptographic signatures are employed during the build to
@@ -80,21 +80,21 @@ Port `5432`, the standard PostgreSQL port, is exposed by default.
 ## Contributions and Issue Reporting
 
 Contributions are welcome! Propose new features by creating issues or submit
-pull requests on the SourceMation GitHub repository.
+pull requests on the Sourcemation GitHub repository.
 
-- [Open a new issue (for feature requests, bug reports, or image requests)](https://github.com/SourceMation/images/issues/new/choose)
-- [Creating pull requests](https://github.com/SourceMation/images/compare)
+- [Open a new issue (for feature requests, bug reports, or image requests)](https://github.com/Sourcemation/images/issues/new/choose)
+- [Creating pull requests](https://github.com/Sourcemation/images/compare)
 
 **Disclaimer:** The `sourcemation/postgres-16` image operates independently of
 the PostgreSQL Global Development Group. Trademarks mentioned are owned by
 their respective entities. This image is a distinct project maintained by
-[SourceMation](https://sourcemation.com).
+[Sourcemation](https://sourcemation.com).
 
 ## Additional Information
 
 ### Image Component Risk Analysis
 
-A detailed risk analysis of our images and their components is available on the [SourceMation platform](https://www.sourcemation.com/).
+A detailed risk analysis of our images and their components is available on the [Sourcemation platform](https://www.sourcemation.com/).
 
 Note: Risk analysis reports are not yet available for all images. Contact us for additional software components or queries.
 

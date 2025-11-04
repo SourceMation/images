@@ -1,4 +1,4 @@
-# Hugo Container on Debian 12 Slim packed by SourceMation
+# Hugo Container on Debian 12 Slim packed by Sourcemation
 
 This image, `sourcemation/hugo`, is built on a minimal Debian base to provide
 **Hugo** environment (extended+withdeploy) with Sass/Dart and NodeJS. Hugo is
@@ -7,7 +7,7 @@ its incredible speed and flexibility. Written in Go, it takes content files
 like markdown and uses powerful templating to render a complete,
 ready-to-deploy website in a fraction of a second.
 
-Maintained by the SourceMation automation team, this Hugo distribution is
+Maintained by the Sourcemation automation team, this Hugo distribution is
 regularly updated to ensure it's current, secure, and compact. It's built on a
 minimal Debian Slim base, and cryptographic signatures are used during the
 build process to guarantee the integrity of all source code and packages.
@@ -67,21 +67,21 @@ Please note that the ports need to be either manually forwarded with the
 ## Contributing and Issues
 
 We'd love for you to contribute! You can request new features, report bugs, or
-submit a pull request with your contribution to this image on the SourceMation
+submit a pull request with your contribution to this image on the Sourcemation
 GitHub repository.
 
-- [Creating issues, feature requests, and bug reports](https://github.com/SourceMation/images/issues/new/choose)
-- [Creating pull requests](https://github.com/SourceMation/images/compare)
+- [Creating issues, feature requests, and bug reports](https://github.com/Sourcemation/images/issues/new/choose)
+- [Creating pull requests](https://github.com/Sourcemation/images/compare)
 
 **Disclaimer:** The `sourcemation/hugo` image is not affiliated with Hugo. The respective companies and
-organisations own the trademarks mentioned in the offering. The `sourcemation/hugo` image is a separate project and is maintained by [SourceMation](https://sourcemation.com).
+organisations own the trademarks mentioned in the offering. The `sourcemation/hugo` image is a separate project and is maintained by [Sourcemation](https://sourcemation.com).
 
 ## Extra notes
 
 ### Image and its components Risk Analysis report
 
 A detailed risk analysis report of the image and its components can be
-found on the [SourceMation platform](https://sourcemation.com).
+found on the [Sourcemation platform](https://sourcemation.com).
 
 For more information, check out [project page](https://gohugo.io).
 
@@ -89,4 +89,4 @@ For more information, check out [project page](https://gohugo.io).
 
 The base license for Hugo is [Apache 2.0 License](https://gohugo.io/about/license/)
 The licenses for each component shipped as
-part of this image can be found on [SourceMation](https://sourcemation.com).
+part of this image can be found on [Sourcemation](https://sourcemation.com).

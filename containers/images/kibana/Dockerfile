@@ -5,9 +5,9 @@ ARG BUILD_DATE
 ARG LONGNAME="Kibana on Debian 13 Slim Container"
 
 LABEL name="kibana" \
-      vendor="SourceMation" \
+      vendor="Sourcemation" \
       url="https://sourcemation.com" \
-      source="https://github.com/SourceMation/images/issues" \
+      source="https://github.com/Sourcemation/images/issues" \
       licenses="Elastic-License-2.0" \
       created="${BUILD_DATE}" \
       architecture="${TARGETARCH}" \

@@ -1,4 +1,4 @@
-# Angular packaged by SourceMation
+# Angular packaged by Sourcemation
 
 Angular is one of the most popular JavaScript frameworks. Its performance,
 along with the ability to handle complex enterprise applications make it a top
@@ -7,7 +7,7 @@ choice for building Single Page Applications.
 This Angular distribution is provided by the upstream developers, hosted at
 [registry.npmjs.org](https://registry.npmjs.org/).
 
-The image uses SourceMation independent image stack as its base, which is a
+The image uses Sourcemation independent image stack as its base, which is a
 minimal Debian-based image with a small footprint, built from scratch. Also
 the default version of NodeJS is Node.js 24 which is the current active LTS.
 
@@ -39,24 +39,24 @@ Please note that the ports need to be either manually forwarded with the
 ## Contributing and Issues
 
 We'd love for you to contribute! You can request new features, report bugs, or
-submit a pull request with your contribution to this image on the SourceMation
+submit a pull request with your contribution to this image on the Sourcemation
 GitHub repository.
 
-- [Creating issues, feature requests, and bug reports](https://github.com/SourceMation/images/issues/new/choose)
-- [Creating pull requests](https://github.com/SourceMation/images/compare)
+- [Creating issues, feature requests, and bug reports](https://github.com/Sourcemation/images/issues/new/choose)
+- [Creating pull requests](https://github.com/Sourcemation/images/compare)
 
 
 **Disclaimer:** The `sourcemation/angular` image is not affiliated with Google
 LLC. The respective companies and organisations own the trademarks mentioned in
 the offering. The `sourcemation/angular` image is a separate project and is
-maintained by [SourceMation](https://sourcemation.com).
+maintained by [Sourcemation](https://sourcemation.com).
 
 ## Extra notes
 
 ### Image and its components Risk Analysis report
 
 A detailed risk analysis report of the image and its components can be found on
-the [SourceMation
+the [Sourcemation
 platform](https://www.sourcemation.com/products/0af955c3-bc56-4592-a769-744bb9b3a7b9/deployments).
 
 For more information, check out the [overview of Angular
@@ -67,5 +67,5 @@ CLI](https://angular.dev/tools/cli) page.
 The base license for the solution (Angular) is the [MIT
 License](https://github.com/angular/angular-cli/blob/main/LICENSE). The
 licenses for each component shipped as part of this image can be found on [the
-image's appropriate SourceMation
+image's appropriate Sourcemation
 entry](https://www.sourcemation.com/products/0af955c3-bc56-4592-a769-744bb9b3a7b9/deployments).

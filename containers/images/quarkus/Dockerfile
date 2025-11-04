@@ -7,7 +7,7 @@ ARG TARGETARCH
 ARG QUARKUS_VERSION=3.19.1
 
 LABEL name="quarkus" \
-      vendor="SourceMation" \
+      vendor="Sourcemation" \
       url="https://sourcemation.com"\
       licenses="Apache-2.0" \
       created="$BUILD_DATE" \

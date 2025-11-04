@@ -1,4 +1,4 @@
-# phpMyAdmin packaged by SourceMation
+# phpMyAdmin packaged by Sourcemation
 
 > phpMyAdmin is a free and open-source administration tool for MySQL and MariaDB. As a portable web application written primarily in PHP, it has become one of the most popular database management tools.
 
@@ -90,24 +90,24 @@ Please note that the ports need to be either manually forwarded with the
 ## Contributing and Issues
 
 We'd love for you to contribute! You can request new features, report bugs, or
-submit a pull request with your contribution to this image on the SourceMation
+submit a pull request with your contribution to this image on the Sourcemation
 GitHub repository.
 
-- [Creating issues, feature requests, and bug reports](https://github.com/SourceMation/images/issues/new/choose)
-- [Creating pull requests](https://github.com/SourceMation/images/compare)
+- [Creating issues, feature requests, and bug reports](https://github.com/Sourcemation/images/issues/new/choose)
+- [Creating pull requests](https://github.com/Sourcemation/images/compare)
 
 **Disclaimer:** The `sourcemation/phpmyadmin` image is not affiliated with
 the phpMyAdmin project. The respective companies and
 organisations own the trademarks mentioned in the offering. The
 `sourcemation/phpmyadmin` image is a separate project and is maintained by
-[SourceMation](https://sourcemation.com).
+[Sourcemation](https://sourcemation.com).
 
 ## Extra notes
 
 ### Image and its components Risk Analysis report
 
 A detailed risk analysis report of the image and its components can be
-found on the [SourceMation platform](https://sourcemation.com/).
+found on the [Sourcemation platform](https://sourcemation.com/).
 
 For more information, check out the [phpMyAdmin website](https://www.phpmyadmin.net/).
 
@@ -116,5 +116,5 @@ For more information, check out the [phpMyAdmin website](https://www.phpmyadmin.
 The base license for the solution (phpMyAdmin) is the
 [GNU General Public License v2.0](https://www.phpmyadmin.net/license/)).
 The licenses for each component shipped as
-part of this image can be found on [the image's appropriate SourceMation
+part of this image can be found on [the image's appropriate Sourcemation
 entry](https://sourcemation.com/).

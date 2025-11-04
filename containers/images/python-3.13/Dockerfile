@@ -9,8 +9,8 @@ ARG BUILD_DATE
 ARG TARGETARCH
 
 LABEL name="python-3.13" \
-      vendor="SourceMation" \
-      url="https://SourceMation.com/"\
+      vendor="Sourcemation" \
+      url="https://Sourcemation.com/"\
       licenses="PSF License Version 2" \
       created="$BUILD_DATE" \
       architecture="$TARGETARCH" \

@@ -1,8 +1,8 @@
-# OpenLDAP packaged by SourceMation
+# OpenLDAP packaged by Sourcemation
 
 > OpenLDAP is a free, open-source implementation of the Lightweight Directory Access Protocol (LDAP) developed by the OpenLDAP Project.
 
-This OpenLDAP distribution is provided by the SourceMation packaging team. It is built from the latest available source code to ensure up-to-date features and security, all on a secure **Debian 13 Slim** base image. The container is configured on its first run using environment variables.
+This OpenLDAP distribution is provided by the Sourcemation packaging team. It is built from the latest available source code to ensure up-to-date features and security, all on a secure **Debian 13 Slim** base image. The container is configured on its first run using environment variables.
 
 ## Usage
 
@@ -71,24 +71,24 @@ It is highly recommended to use volumes to make your data and configuration pers
 ## Contributing and Issues
 
 We'd love for you to contribute! You can request new features, report bugs, or
-submit a pull request with your contribution to this image on the SourceMation
+submit a pull request with your contribution to this image on the Sourcemation
 GitHub repository.
 
-- [Creating issues, feature requests, and bug reports](https://github.com/SourceMation/images/issues/new/choose)
-- [Creating pull requests](https://github.com/SourceMation/images/compare)
+- [Creating issues, feature requests, and bug reports](https://github.com/Sourcemation/images/issues/new/choose)
+- [Creating pull requests](https://github.com/Sourcemation/images/compare)
 
 **Disclaimer:** The `sourcemation/openldap` image is not affiliated with
 the OpenLDAP Project. The respective companies and
 organisations own the trademarks mentioned in the offering. The
 `sourcemation/openldap` image is a separate project and is maintained by
-[SourceMation](https://sourcemation.com).
+[Sourcemation](https://sourcemation.com).
 
 ## Extra notes
 
 ### Image and its components Risk Analysis report
 
 A detailed risk analysis report of the image and its components can be
-found on the [SourceMation
+found on the [Sourcemation
 platform](https://sourcemation.com/).
 
 For more information, check out the [OpenLDAP Software](https://www.openldap.org/software/) page.
@@ -97,5 +97,5 @@ For more information, check out the [OpenLDAP Software](https://www.openldap.org
 
 The base license for the solution (OpenLDAP) is the
 [OpenLDAP Public License 2.8](https://www.openldap.org/software/release/license.html). The licenses for each component shipped as
-part of this image can be found on [the image's appropriate SourceMation
+part of this image can be found on [the image's appropriate Sourcemation
 entry](https://sourcemation.com/).

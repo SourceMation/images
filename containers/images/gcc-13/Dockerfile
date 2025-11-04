@@ -7,7 +7,7 @@ ARG TARGETARCH
 
 # Do not split the description, otherwise we will see a blank space in the labels
 LABEL name="gcc-13" \
-      vendor="SourceMation" \
+      vendor="Sourcemation" \
       url="https://sourcemation.com/"\
       licenses="GPLv3+ with GCC Runtime Library Exception" \
       created="$BUILD_DATE" \
