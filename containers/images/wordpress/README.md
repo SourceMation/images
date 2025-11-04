@@ -51,7 +51,7 @@ After a minute, your WordPress site will be available at **http://localhost:8080
 
 ## Image tags and versions
 
-The `sourcemation/wordpress` image itself comes in `debian-12` flavor.
+The `sourcemation/wordpress` image itself comes in `debian-13` flavor.
 The tag `latest` refers to the Debian-based flavor.
 
 ## Environment Vars, Ports, Volumes
