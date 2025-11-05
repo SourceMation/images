@@ -11,13 +11,13 @@ LABEL name="nginx-mainline" \
       architecture="$TARGETARCH" \
       summary="Nginx Mainline on Debian 13 Slim Container with OTEL" \
       description="Provides Nginx Mainline on Debian 13 Slim Container with OTEL" \
-      version="1.29.2" \
+      version="1.29.3" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="Nginx mainline on Debian 13 Slim Container with OTEL" \
       io.k8s.description="Provides Nginx Mainline on Debian 13 Slim Container with OTEL" \
       io.openshift.tags="nginx debian-13-slim otel"
 
-ENV NGINX_VERSION="1.29.2"
+ENV NGINX_VERSION="1.29.3"
 ENV PKG_RELEASE="1~trixie"
 ENV OTEL_VERSION="0.1.2"
 

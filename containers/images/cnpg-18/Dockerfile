@@ -35,7 +35,7 @@ RUN set -xeu; \
 
 # Barman is install from pip, it will break system packages
 ENV PIP_BREAK_SYSTEM_PACKAGES=1
-ENV BARMAN_VERSION="3.14.0"
+ENV BARMAN_VERSION="3.16.1"
 
 # Install barman-cloud
 RUN set -xeu; \
