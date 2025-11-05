@@ -73,7 +73,7 @@ similar documentation that describes the image and how to use it.
 - servicemix
 
 ### Other problems
-- angular - not available right now
+- angular - need to create init.sh
 - azure-cli - not available right now (packages.microsoft.com/repos/azure-cli/dists/)
 - camel-k - on debian13 there is no openjdk-17-headless but openjdk-21 & 25
 - cassandra - on debian13 there is no openjdk-17-headless but openjdk-21 & 25
