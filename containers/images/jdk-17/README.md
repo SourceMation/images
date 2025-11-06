@@ -17,8 +17,12 @@ drop-in replacement for the Eclipse Temurin JDK 17 image.
 To quickly run the JDK 17 Docker image with default settings, use the following 
 command:
 
+```bash
+docker run -it --rm sourcemation/jdk-17
+```
 
-This launches an interactive shell inside a container with JDK 17 fully 
+
+This launches an interactive `jshell` inside a container with JDK 17 fully 
 installed and ready for development.
 
 ## Advanced Usage Scenarios

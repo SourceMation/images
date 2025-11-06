@@ -17,8 +17,12 @@ drop-in replacement for the Temurin JDK 21 image.
 To run the base image without any additional configuration, you can use the
 following:
 
+```bash
+docker run -it --rm sourcemation/jdk-21
+```
 
-This will start a shell inside a container with JDK 21 installed and ready to
+
+This will start a `jshell` inside a container with JDK 21 installed and ready to
 use.
 
 ## Advanced Usage Scenarios
