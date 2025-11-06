@@ -54,3 +54,9 @@ def test_run_compiled_java_app():
     result = subprocess.run(run_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
     assert result.returncode == 0, f"Failed to run compiled Java application: {result.stderr}"
     assert "Hello from JAVA!" in result.stdout, "Compiled Java application did not produce expected output"
+
+
+def test_has_jshell():
+    result = subprocess.run(['jshell', '--version'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    assert result.returncode == 0, "JShell is not installed or not found in system PATH"
+    assert "jshell" in result.stdout, "Unexpected output from 'jshell --version'"
