@@ -2,7 +2,7 @@
 FROM sourcemation/golang-1.24 AS builder
 
 ENV CAMEL_K_VER="v2.8.0"
-RUN apt-get update && apt-get install openjdk-17-jdk-headless git gcc make cmake which maven -y
+RUN apt-get update && apt-get install openjdk-21-jdk-headless git gcc make cmake which maven -y
 # THE MAKEFILE targets are taken from the camel-k Makefile and `images:` without final image build
 # REMOVE ./pkg/cmd/source/util_test.go as they make everything to hang out or fail
 RUN mkdir /build && cd /build && git clone --depth 1 -b ${CAMEL_K_VER} https://github.com/apache/camel-k.git &&\
@@ -13,7 +13,7 @@ RUN mkdir /build && cd /build && git clone --depth 1 -b ${CAMEL_K_VER} https://g
 # Installing delve
 RUN go install github.com/go-delve/delve/cmd/dlv@latest
 
-FROM sourcemation/debian-12-slim:latest
+FROM sourcemation/jdk-17:latest
 
 ARG BUILD_DATE
 ARG TARGETARCH
@@ -24,13 +24,13 @@ LABEL name="camel-k" \
       licenses="Apache-2.0" \
       created="$BUILD_DATE" \
       architecture="$TARGETARCH" \
-      summary="Apache Camel-K on Debian 12 Slim Container" \
-      description="Provides Camel-K on Debian 12 Slim Container" \
+      summary="Apache Camel-K on Debian 13 Slim Container" \
+      description="Provides Camel-K on Debian 13 Slim Container" \
       version="2.8.0" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
-      io.k8s.display-name="Apache Camel-K on Debian 12 Slim Container" \
-      io.k8s.description="Provides Camel-K on Debian 12 Slim Container" \
-      io.openshift.tags="camel-k debian-12"
+      io.k8s.display-name="Apache Camel-K on Debian 13 Slim Container" \
+      io.k8s.description="Provides Camel-K on Debian 13 Slim Container" \
+      io.openshift.tags="camel-k debian-13"
 
 ARG IMAGE_ARCH
 
@@ -42,10 +42,6 @@ ARG MVN_REPO="/etc/maven/m2"
 ARG MAVEN_OPTS=""
 
 USER 0
-RUN apt-get update && apt-get install -y openjdk-17-jdk-headless && \
-    rm -rf /var/lib/apt/lists/* && \
-    rm -rf /var/cache/apt/archives/*
-
 
 RUN echo "SYMLINKING delve to /usr/local/bin/" && ln -s /usr/bin/dlv /usr/local/bin/dlv
 
@@ -85,5 +81,5 @@ RUN chgrp -R 0 ${MVN_REPO} \
 USER 1001:0
 
 COPY --from=builder /build/camel-k/build/_output/bin/kamel* /usr/local/bin/kamel
+
 RUN version=$(kamel version | grep -oP "\d+\.\d+\.\d+") && echo "camel-k: $version" >> /var/tmp/sourcemation.yml
-CMD ["/usr/bin/jshell"]
