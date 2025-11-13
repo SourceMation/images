@@ -10,7 +10,19 @@ APP="activemq"
 # Updating repository metadata and downloading the latest available version
 # of the application
 echo "Checking the latest available version of the $APP"
-VERSION=$(git ls-remote --refs --tags https://github.com/apache/activemq.git | grep  -o 'activemq-6.[.0-9]*$' | sort --version-sort --reverse | tr -d 'activemq-' | head -n 1)
+
+# After dec 25 2025 we have to make this fail so it's clear that the newer version 6.2 was released
+
+current_date=$(date +%s)
+cutoff_date=$(date -d "2025-12-25" +%s)
+if [ "$current_date" -gt "$cutoff_date" ]; then
+    echo "Error: ActiveMQ 6.2 should have arrive you must init.sh again to update to the newer version."
+    exit 1
+fi
+
+
+
+VERSION=$(git ls-remote --refs --tags https://github.com/apache/activemq.git | grep  -o 'activemq-6.[.0-9]*$'| grep -v 'activemq-6.2' | sort --version-sort --reverse | tr -d 'activemq-' | head -n 1)
 # Exit with an error if the returned version contains anything other
 # than digits and dots
 [[ ! $VERSION =~ ^[0-9.]+$ ]] && exit 1
