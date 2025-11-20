@@ -29,7 +29,7 @@ This image uses the following environment variables:
 
 ```
 APP_NAME="erlang"
-APP_VERSION="27.3.4.4"
+APP_VERSION="27.3.4.6"
 PATH=/opt/erlang/bin:/opt/openssl/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 ```
 

@@ -16,7 +16,7 @@ LABEL name="cnpg-17" \
       architecture="$TARGETARCH" \
       summary="PostgreSQL 17 for CNPG on Debian 13 Slim Container" \
       description="Provides PostgreSQL 17 for CNPG on Debian Slim Container" \
-      version="17.6.2" \
+      version="17.7.3" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="PostgreSQL 17 for CNPG on Debian 13 Slim Container" \
       io.k8s.description="Provides PostgreSQL 17 for CPNG on Debian 13 Slim Container" \
@@ -35,7 +35,7 @@ RUN set -xeu; \
 
 # Barman is install from pip, it will break system packages
 ENV PIP_BREAK_SYSTEM_PACKAGES=1
-ENV BARMAN_VERSION="3.16.1"
+ENV BARMAN_VERSION="3.16.2"
 
 # Install barman-cloud
 RUN set -xeu; \

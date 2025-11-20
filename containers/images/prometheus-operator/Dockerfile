@@ -1,7 +1,7 @@
 FROM docker.io/sourcemation/golang-1.24 AS builder
 
 ARG TARGETARCH
-ARG VERSION=v0.86.1
+ARG VERSION=v0.86.2
 
 ADD https://github.com/prometheus-operator/prometheus-operator/archive/refs/tags/${VERSION}.tar.gz .
 
@@ -35,7 +35,7 @@ LABEL name="prometheus-operator" \
   architecture="${TARGETARCH}" \
   summary="${LONGNAME}" \
   description="Provides ${LONGNAME}" \
-  version="0.86.1" \
+  version="0.86.2" \
   io.k8s.display-name="${LONGNAME}" \
   io.k8s.description="Provides ${LONGNAME}" \
   io.openshift.tags="prometheus-operator debian-13-slim"

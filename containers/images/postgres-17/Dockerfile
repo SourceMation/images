@@ -11,7 +11,7 @@ LABEL name="postgres-17" \
       architecture="$TARGETARCH" \
       summary="PostgreSQL 17 on Debian 13 Slim Container" \
       description="Provides PostgreSQL 17 on Debian Slim Container" \
-      version="17.6.2" \
+      version="17.7.3" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="PostgreSQL 17 on Debian 13 Slim Container" \
       io.k8s.description="Provides PostgreSQL 17 on Debian 13 Slim Container" \
@@ -22,7 +22,7 @@ ENV LANG en_US.utf8
 ENV PG_MAJOR="17"
 ENV PATH="$PATH:/usr/lib/postgresql/$PG_MAJOR/bin"
 ENV PGDATA /var/lib/postgresql/data
-ENV PG_VERSION="17.6-2.pgdg13+1"
+ENV PG_VERSION="17.7-3.pgdg13+1"
 ENV GOSU_VERSION 1.17
 
 # explicitly set user/group IDs

@@ -45,7 +45,7 @@ LABEL name="rabbitmq-messaging-topology-operator" \
       architecture="$TARGETARCH" \
       summary="RabbitMQ Messaging Topology Operator" \
       description="Provides RabbitMQ Messaging Topology Operator" \
-      version="1.18.0" \
+      version="1.18.1" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="RabbitMQ Messaging Topology Operator Container" \
       io.k8s.description="Provides RabbitMQ Messaging Topology Operator Container" \
@@ -57,7 +57,7 @@ COPY --from=etc-builder /etc/passwd /etc/group /etc/
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 
 ENV APP_NAME="rabbitmq-messaging-topology-operator" \
-    APP_VERSION="1.18.0"
+    APP_VERSION="1.18.1"
 
 USER 1000:1000
 ENTRYPOINT ["manager"]

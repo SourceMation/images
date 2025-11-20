@@ -1,6 +1,6 @@
 FROM docker.io/sourcemation/debian-13-slim:latest AS ruby
 
-ARG VERSION=1.19.0
+ARG VERSION=1.19.1
 ARG RUBY_INSTALL=https://github.com/postmodern/ruby-install/releases/download/v0.10.1/ruby-install-0.10.1.tar.gz
 
 ADD ${RUBY_INSTALL} /tmp/
@@ -31,7 +31,7 @@ LABEL name="fluentd" \
   architecture="${TARGETARCH}" \
   summary="${LONGNAME}" \
   description="Provides ${LONGNAME}" \
-  version="1.19.0" \
+  version="1.19.1" \
   io.k8s.display-name="${LONGNAME}" \
   io.k8s.description="Provides ${LONGNAME}" \
   io.openshift.tags="fluentd debian-13-slim"

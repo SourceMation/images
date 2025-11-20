@@ -11,13 +11,13 @@ LABEL name="kubectl" \
       architecture="$TARGETARCH" \
       summary="Kubectl on Debian 13 Slim Container" \
       description="Provides kubectl on Debian 13 Slim Container" \
-      version="v1.34.1" \
+      version="v1.34.2" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="Kubectl on Debian 13 Slim Container" \
       io.k8s.description="Provides kubectl on Debian 13 Slim Container" \
       io.openshift.tags="kubectl debian-13"
 
-ENV KUBECTL_VERSION="v1.34.1"
+ENV KUBECTL_VERSION="v1.34.2"
 
 RUN apt-get update && apt-get install --no-install-recommends -y ca-certificates curl gettext git jq procps  && \
     apt-get clean &&\

@@ -1,6 +1,6 @@
 FROM sourcemation/golang-1.24 AS builder
 
-ARG VERSION=0.19.0
+ARG VERSION=0.20.0
 ARG TARGETOS=linux
 ARG TARGETARCH
 ARG CGO_ENABLED=0
@@ -37,7 +37,7 @@ LABEL name="external-dns" \
       architecture="$TARGETARCH" \
       summary="external-dns on Debian 13 Slim Container" \
       description="Provides external-dns on Debian 13 Slim Container" \
-      version="0.19.0" \
+      version="0.20.0" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="external-dns on Debian 13 Slim Container" \
       io.k8s.description="Provides external-dns on Debian 13 Slim Container" \
