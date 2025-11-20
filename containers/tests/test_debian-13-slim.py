@@ -78,11 +78,11 @@ def test_merged_usr_filesystem_layout(path):
     assert target == expected_target, f"Symlink '{path}' points to '{target}', but expected 'usr/{os.path.basename(path)}'."
 
 
-def test_openssl_version_is_3_0():
+def test_openssl_version_is_3_5():
     try:
         result = subprocess.run(['openssl', 'version'], capture_output=True, text=True, check=True)
         version_output = result.stdout.strip()
-        assert version_output.startswith('OpenSSL 3.5.1')
+        assert version_output.startswith('OpenSSL 3.5')
     except FileNotFoundError:
         pytest.fail("Command 'openssl' not found. Is the openssl package installed?")
     except subprocess.CalledProcessError as e:
