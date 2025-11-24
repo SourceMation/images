@@ -36,7 +36,7 @@ RUN apt-get update \
         tzdata \
         zlib1g \
     && curl -o /etc/apt/keyrings/mariadb-keyring.pgp 'https://mariadb.org/mariadb_release_signing_key.pgp' \
-    && echo "deb [signed-by=/etc/apt/keyrings/mariadb-keyring.pgp] https://deb.mariadb.org/12.0/debian trixie main" > /etc/apt/sources.list.d/mariadb.list \
+    && echo "deb [signed-by=/etc/apt/keyrings/mariadb-keyring.pgp] https://deb.mariadb.org/12.1/debian trixie main" > /etc/apt/sources.list.d/mariadb.list \
     && printf "Package: *\nPin: release o=MariaDB\nPin-Priority: 999" > /etc/apt/preferences.d/mariadb \
     && apt-get update \
     && apt-get install -y \
