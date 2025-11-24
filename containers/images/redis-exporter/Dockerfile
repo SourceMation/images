@@ -1,4 +1,4 @@
-FROM sourcemation/golang-1.24:latest AS builder
+FROM sourcemation/golang-1.25:latest AS builder
 
 ARG TARGETARCH
 
