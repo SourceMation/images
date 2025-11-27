@@ -11,7 +11,7 @@ LABEL name="apache-activemq" \
       architecture="$TARGETARCH" \
       summary="Apache ActiveMQ on EL9 Container" \
       description="Provides Apache ActiveMQ on Rocky Linux 9 Container" \
-      version="6.1.8" \
+      version="6.2.0" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="Apache ActiveMQ on EL9 Container" \
       io.k8s.description="Provides Apache ActiveMQ on Rocky Linux 9 Container" \
@@ -31,7 +31,7 @@ ENV PATH $PATH:$ACTIVEMQ_HOME/bin
 # Make the Web console accesible from outside the container
 ENV ACTIVEMQ_OPTS $ACTIVEMQ_OPTS_MEMORY -Djava.util.logging.config.file=logging.properties -Djava.security.auth.login.config=$ACTIVEMQ_CONF/login.config -Djetty.host=0.0.0.0
 #WORKDIR $ACTIVEMQ_HOME
-ENV ACTIVEMQ_VERSION=6.1.8
+ENV ACTIVEMQ_VERSION=6.2.0
 ENV JAVA_HOME=/usr/lib/jvm/jre-17-openjdk
 
 
