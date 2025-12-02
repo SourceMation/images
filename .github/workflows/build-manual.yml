@@ -15,6 +15,10 @@ on:
         type: choice
         # Remember to sort it :)
         options:
+          - redis-exporter-oneshot
+          - redis-oneshot
+          - redis-operator-oneshot
+          - redis-sentinel-oneshot
           - activemq
           - alertmanager
           - azure-cli

@@ -1,0 +1,2 @@
+DOCKER_TAG_SUFFIX="debian-13"
+TEST_IMAGE="false"
