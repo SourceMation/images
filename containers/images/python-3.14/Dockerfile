@@ -70,6 +70,7 @@ RUN set -eux; \
            --bundle ./python.tar.xz.sigstore \
            ./python.tar.xz ;\
     rm cosign; \
+    rm python.tar.xz.sigstore; \
     # Remove the .sigstore bundle after verification \
     rm -rvf $HOME/.sigstore; \
     mkdir -p /usr/src/python; \
