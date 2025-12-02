@@ -26,7 +26,7 @@ LABEL name="python-3.14" \
 # signatures. Is it good? Nah it's awful giving power to the corporate
 # overlords, but it's convenient so here we are.
 # https://www.python.org/downloads/metadata/sigstore/ There you will find the
-# REL_MANGER and OIDC_ISSUER values.
+# REL_MANAGER and OIDC_ISSUER values.
 
 ARG REL_MANAGER="hugo@python.org"
 ARG OIDC_ISSUER="https://github.com/login/oauth"
