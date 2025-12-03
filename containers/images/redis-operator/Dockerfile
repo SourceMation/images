@@ -1,5 +1,5 @@
 # Build the manager or agent binary
-FROM docker.io/sourcemation/golang-1.23:latest AS builder
+FROM docker.io/sourcemation/golang-1.25:latest AS builder
 ARG BUILDOS
 ARG BUILDPLATFORM
 ARG BUILDARCH
