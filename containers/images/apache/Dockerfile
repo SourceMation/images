@@ -1,6 +1,6 @@
 FROM sourcemation/debian-13-slim:latest as builder
 
-ARG APACHE_VER="2.4.65"
+ARG APACHE_VER="2.4.66"
 ENV APACHE_INSTALL_DIR /opt/apache2
 
 # Install packages
@@ -34,7 +34,7 @@ FROM sourcemation/debian-13-slim:latest
 
 ARG BUILD_DATE
 ARG TARGETARCH
-ARG APACHE_VER="2.4.65"
+ARG APACHE_VER="2.4.66"
 ENV APACHE_INSTALL_DIR /opt/apache2
 
 LABEL name="apache" \
@@ -46,7 +46,7 @@ LABEL name="apache" \
   architecture="$TARGETARCH" \
   summary="Apache on Debian 13 Slim Container" \
   description="Provides Apache on Debian 13 Slim Container" \
-  version="2.4.65" \
+  version="2.4.66" \
   io.k8s.display-name="Apache on Debian 13 Slim Container" \
   io.k8s.description="Provides Apache on Debian 13 Slim Container" \
   io.openshift.tags="apache debian"

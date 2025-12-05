@@ -11,7 +11,7 @@ LABEL name="rabbitmq-4-management" \
       architecture="$TARGETARCH" \
       summary="RabbitMQ-4-Management Debian 13-slim" \
       description="Provides RabbitMQ-4-Management on Debian 13-slim" \
-      version="4.2.0" \
+      version="4.2.1" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="RabbitMQ-4-Management on Debian 13-slim Container" \
       io.k8s.description="Provides RabbitMQ-4-Management Debian 13-slim Container" \
@@ -32,6 +32,6 @@ RUN set -eux \
 	&& rabbitmqadmin --version
 
 ENV APP_NAME="rabbitmq-4-management" \
-    APP_VERSION="4.2.0"
+    APP_VERSION="4.2.1"
 
 EXPOSE 15671 15672

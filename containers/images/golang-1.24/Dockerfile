@@ -2,10 +2,10 @@ FROM sourcemation/debian-13-slim:latest AS build
 
 ENV PATH /usr/local/go/bin:$PATH
 
-ENV GOLANG_VERSION="1.24.10"
+ENV GOLANG_VERSION="1.24.11"
 # The bellow URL is set in the init.sh script!
-ENV GO_URL="https://dl.google.com/go/go1.24.10.linux-amd64.tar.gz"
-ENV GO_SHA256="dd52b974e3d9c5a7bbfb222c685806def6be5d6f7efd10f9caa9ca1fa2f47955"
+ENV GO_URL="https://dl.google.com/go/go1.24.11.linux-amd64.tar.gz"
+ENV GO_SHA256="bceca00afaac856bc48b4cc33db7cd9eb383c81811379faed3bdbc80edb0af65"
 
 
 RUN set -eux; \
@@ -68,7 +68,7 @@ LABEL name="golang-1.24" \
       architecture="$TARGETARCH" \
       summary="Golang on debian-13-slim container" \
       description="Provides golang on Debian 13 Slim Container" \
-      version="1.24.10" \
+      version="1.24.11" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="Golang on Debian 13 Slim Container" \
       io.k8s.description="Provides golang on Debian 13 Slim Container" \
@@ -87,7 +87,7 @@ RUN set -eux; \
 	rm -rf /var/lib/apt/lists/*
 
 
-ENV GOLANG_VERSION="1.24.10"
+ENV GOLANG_VERSION="1.24.11"
 
 # don't auto-upgrade the gotoolchain
 # https://github.com/docker-library/golang/issues/472
