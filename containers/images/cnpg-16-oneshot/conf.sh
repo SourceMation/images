@@ -1,1 +1,1 @@
-DOCKER_TAG_SUFFIX="debian-11"
+DOCKER_TAG_SUFFIX="debian-12"
