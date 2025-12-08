@@ -123,6 +123,8 @@ on:
           - thanos
           - wordpress
           - zookeeper
+          - postgres-16-bookworm-oneshot
+          - cnpg-16-bookworm-oneshot
 #          - postgres-16-bullseye-oneshot
 #          - cnpg-16-oneshot
       push_image:
