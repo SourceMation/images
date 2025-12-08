@@ -2,7 +2,7 @@
 # Copyright Sourcemation
 # License: Apache License 2.0
 
-FROM sourcemation/postgres-16
+FROM sourcemation/postgres-16:16.11.1-debian-12
 
 ARG BUILD_DATE
 ARG TARGETARCH
