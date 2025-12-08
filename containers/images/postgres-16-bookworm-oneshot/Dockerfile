@@ -10,8 +10,9 @@ LABEL name="postgres-16" \
       created="$BUILD_DATE" \
       architecture="$TARGETARCH" \
       summary="PostgreSQL 16 on Debian 12 Slim Container" \
-      description="Provides PostgreSQL 16 on Debian 12 Slim Container" \
+      description="Provides PostgreSQL 16 on Debian Slim Container" \
       version="16.11.1" \
+      org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="PostgreSQL 16 on Debian 12 Slim Container" \
       io.k8s.description="Provides PostgreSQL 16 on Debian 12 Slim Container" \
       io.openshift.tags="postgresql debian-12-slim"
@@ -79,7 +80,6 @@ RUN set -eux; \
             libnss-wrapper \
             xz-utils \
             zstd \
-            ca-certificates \
     ; \
     rm -rf /var/lib/apt/lists/*
 
