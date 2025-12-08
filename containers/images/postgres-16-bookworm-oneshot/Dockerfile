@@ -100,14 +100,13 @@ RUN set -ex; \
     export PYTHONDONTWRITEBYTECODE=1; \
     \
     dpkgArch="$(dpkg --print-architecture)"; \
-    aptRepo="[ signed-by=/usr/local/share/keyrings/postgres.gpg.asc ] http://apt-archive.postgresql.org/pub/repos/apt/ bookworm-pgdg-archive main"; \
+    aptRepo="[ signed-by=/usr/local/share/keyrings/postgres.gpg.asc ] http://apt.postgresql.org/pub/repos/apt/ bookworm-pgdg main $PG_MAJOR"; \
     echo "deb $aptRepo" > /etc/apt/sources.list.d/pgdg.list; \
     apt-get update; \
-    apt-get install -y --no-install-recommends "postgresql-common" "postgresql-client-common"; \
+    apt-get install -y --no-install-recommends postgresql-common; \
     sed -ri 's/#(create_main_cluster) .*$/\1 = false/' /etc/postgresql-common/createcluster.conf; \
-    apt-get install -y --no-install-recommends --allow-downgrades\
+    apt-get install -y --no-install-recommends \
             "postgresql-$PG_MAJOR=$PG_VERSION" \
-            "postgresql-client-$PG_MAJOR=$PG_VERSION" \
     ; \
     \
     rm -rf /var/lib/apt/lists/*; \
