@@ -3,7 +3,7 @@ FROM docker.io/sourcemation/debian-13-slim:latest
 ARG TARGETARCH
 ARG BUILD_DATE
 ARG LONGNAME="etcd on Debian 13 Slim Container"
-ARG COPYFROM=etcd-v3.6.6-linux-amd64
+ARG COPYFROM=etcd-v3.6.7-linux-amd64
 
 LABEL name="etcd" \
   vendor="Sourcemation" \
@@ -14,7 +14,7 @@ LABEL name="etcd" \
   architecture="${TARGETARCH}" \
   summary="${LONGNAME}" \
   description="Provides ${LONGNAME}" \
-  version="3.6.6" \
+  version="3.6.7" \
   io.k8s.display-name="${LONGNAME}" \
   io.k8s.description="Provides ${LONGNAME}" \
   io.openshift.tags="etcd debian-13-slim"

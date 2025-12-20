@@ -18,7 +18,7 @@ This image uses the following environment variables:
 
 ```
 APP_NAME="rabbitmq-cluster-operator"
-APP_VERSION="2.17.2"
+APP_VERSION="2.18.0"
 HOME=/home/rabbitmq-cluster-operator
 ```
 

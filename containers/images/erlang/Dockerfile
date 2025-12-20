@@ -1,8 +1,8 @@
 FROM sourcemation/debian-13-slim:latest AS builder
 
-ARG ERLANG_VERSION=28.2
+ARG ERLANG_VERSION=28.3
 ARG ERLANG_DOWNLOAD_URL="https://github.com/erlang/otp/releases/download/OTP-${ERLANG_VERSION}/otp_src_${ERLANG_VERSION}.tar.gz"
-ARG ERLANG_SHA256=b0f6e1273a034e91c4fa6895e8cb84276baf5ca7a23b29da4f04ff9d0419a0c2
+ARG ERLANG_SHA256=1956ad6584678b631ab4f9b8aebe2dac037cd7401abb44564a01134ff0ac5bed
 ARG ERLANG_INSTALL_PATH_PREFIX=/opt/erlang
 
 ARG OPENSSL_VERSION=3.6.0
@@ -130,7 +130,7 @@ LABEL name="erlang" \
       architecture="$TARGETARCH" \
       summary="Erlang on Debian 13-slim" \
       description="Provides Erlang on Debian 13-slim" \
-      version="28.2" \
+      version="28.3" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="Erlang on Debian 13-slim Container" \
       io.k8s.description="Provides Erlang Debian 13-slim Container" \
@@ -154,7 +154,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && ldconfig
 
 ENV APP_NAME="erlang" \
-    APP_VERSION="28.2" \
+    APP_VERSION="28.3" \
     PATH=$ERLANG_INSTALL_PATH_PREFIX/bin:$OPENSSL_INSTALL_PATH_PREFIX/bin:$PATH
 
 CMD ["erl"]

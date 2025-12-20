@@ -1,6 +1,6 @@
 FROM sourcemation/jdk-21:latest AS builder
 
-ENV MAVEN_VERSION="3.9.11"
+ENV MAVEN_VERSION="3.9.12"
 ENV MAVEN_HOME=/usr/share/maven
 
 RUN set -eux; \
@@ -32,7 +32,7 @@ LABEL name="maven" \
       architecture="$TARGETARCH" \
       summary="Maven with JDK 21 on Debian 13 Slim Container" \
       description="Provides Maven with JDK 21 on Debian 13 Slim Container" \
-      version="3.9.11-jdk-21" \
+      version="3.9.12-jdk-21" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="Maven with JDK 21 on Debian 13 Slim Container" \
       io.k8s.description="Provides Maven with JDK 21 on Debian 13 Slim Container" \
@@ -51,7 +51,7 @@ COPY settings-docker.xml /usr/share/maven/ref/
 
 RUN ln -s ${MAVEN_HOME}/bin/mvn /usr/bin/mvn
 
-ENV MAVEN_VERSION="3.9.11"
+ENV MAVEN_VERSION="3.9.12"
 ENV USER_HOME_DIR="/root"
 ENV MAVEN_CONFIG="$USER_HOME_DIR/.m2"
 

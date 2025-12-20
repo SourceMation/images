@@ -34,7 +34,7 @@ LABEL name="rabbitmq-default-user-credential-updater" \
       architecture="$TARGETARCH" \
       summary="RabbitMQ Default User Credential Updater on Debian 13 Slim Container" \
       description="Provides RabbitMQ Default User Credential Updater on Debian 13 Slim Container" \
-      version="1.0.9" \
+      version="1.0.10" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="RabbitMQ Default User Credential Updater on Debian 13 Slim Container" \
       io.k8s.description="Provides RabbitMQ Default User Credential Updater on Debian 13 Slim Container" \
@@ -43,7 +43,7 @@ LABEL name="rabbitmq-default-user-credential-updater" \
 COPY --from=builder /go/bin/app/ /usr/local/bin/default-user-credential-updater
 
 ENV APP_NAME="rabbitmq-default-credential-updater" \
-    APP_VERSION="1.0.9"
+    APP_VERSION="1.0.10"
 
 USER 1000:1000
 ENTRYPOINT ["default-user-credential-updater"]

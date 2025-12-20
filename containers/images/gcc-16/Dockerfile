@@ -14,13 +14,13 @@ LABEL name="gcc-16" \
       architecture="$TARGETARCH" \
       summary="GCC 16 on Debian 13 Slim Container" \
       description="Provides GCC 16 on Debian 13 Slim Container" \
-      version="20251130" \
+      version="20251214" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="GCC 16 on Debian 13 Slim Container" \
       io.k8s.description="Provides GCC 16 on Debian 13 Slim Container" \
       io.openshift.tags="gcc gcc-16 debian-13-slim"
 
-ENV GCC_VERSION="20251130"
+ENV GCC_VERSION="20251214"
 
 # abigail-tools - abidiff later to verify that it's not breaking the debian packages
 # Most of this packages are from buildpack-deps that is based on old Heroku stack,

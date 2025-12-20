@@ -16,7 +16,7 @@ LABEL name="python-3.14" \
       architecture="$TARGETARCH" \
       summary="Python 3.14 on Debian 13 Slim Container" \
       description="Provides Python 3.14 on Debian 13 Slim Container" \
-      version="3.14.1" \
+      version="3.14.2" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="Python 3.14 on Debian 13 Slim Container" \
       io.k8s.description="Provides Python 3.14 on Debian 13 Slim Container" \
@@ -33,8 +33,8 @@ ARG OIDC_ISSUER="https://github.com/login/oauth"
 
 # ensure local python is preferred over distribution python
 ENV PATH /usr/local/bin:$PATH
-ENV PYTHON_VERSION="3.14.1"
-ENV PYTHON_SHA256="8dfa08b1959d9d15838a1c2dab77dc8d8ff4a553a1ed046dfacbc8095c6d42fc"
+ENV PYTHON_VERSION="3.14.2"
+ENV PYTHON_SHA256="ce543ab854bc256b61b71e9b27f831ffd1bfd60a479d639f8be7f9757cf573e9"
 
 # runtime dependencies
 RUN set -eux; \
