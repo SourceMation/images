@@ -1,6 +1,6 @@
 FROM sourcemation/debian-13-slim:latest AS builder
 
-ARG PGPOOL_VER="4.6.5"
+ARG PGPOOL_VER="4.7.0"
 
 ENV PGPOOL_INSTALL_DIR /opt/pgpool-II
 ENV PGPOOL_CONF_VOLUME /config
@@ -45,7 +45,7 @@ FROM sourcemation/postgres-17
 ARG BUILD_DATE
 ARG TARGETARCH
 
-ENV PGPOOL_VER="4.6.5"
+ENV PGPOOL_VER="4.7.0"
 ENV PGPOOL_INSTALL_DIR "/opt/pgpool-II"
 ENV PGPOOL_CONF_VOLUME "/config"
 
@@ -58,7 +58,7 @@ LABEL name="pgpool" \
   architecture="$TARGETARCH" \
   summary="Pgpool-II on Debian 13 Slim Container" \
   description="Provides pgpool-II on Debian 13 Slim Container" \
-  version="4.6.5" \
+  version="4.7.0" \
   io.k8s.display-name="Pgpool-II on Debian 13 Slim Container" \
   io.k8s.description="Provides pgpool-II on Debian 13 Slim Container" \
   io.openshift.tags="pgpool debian"
