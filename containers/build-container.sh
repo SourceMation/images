@@ -562,11 +562,14 @@ push_readme(){
     # push the README.md
     pushd "$container_dir"
     print_info "Pushing README.md to dockerhub"
-    docker pushrm "docker.io/sourcemation/${IMAGE_NAME}"
+    docker pushrm "docker.io/sourcemation/${IMAGE_NAME}" || {
+        echo "Pushing README.md to docker.io failed -> Continuing anyway"
+    }
 
     print_info "Pushing README.md to quay.io"
-    docker pushrm "quay.io/sourcemation/${IMAGE_NAME}"
-
+    docker pushrm "quay.io/sourcemation/${IMAGE_NAME}" || {
+        echo "Pushing README.md to quay.io failed -> Continuing anyway"
+    }
     popd
 }
 
