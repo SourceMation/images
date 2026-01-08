@@ -10,7 +10,7 @@ Running Ghost requires a separate database container (MySQL or MariaDB). The fol
 
 ### Step 1: Create a Docker Network
 
-This creates a dedicated network that allows the Matomo and database containers to communicate with each other by name.
+This creates a dedicated network that allows the Ghost and database containers to communicate with each other by name.
 
 ```bash
 docker network create ghost-net
@@ -110,7 +110,7 @@ For more information, check out the [Ghost website](https://ghost.org/).
 
 ### Licenses
 
-The base license for the solution (Matomo) is the
+The base license for the solution (Ghost) is the
 [MIT License](https://github.com/TryGhost/Ghost/blob/main/LICENSE).
 The licenses for each component shipped as
 part of this image can be found on [the image's appropriate Sourcemation
