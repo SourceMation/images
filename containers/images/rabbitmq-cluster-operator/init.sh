@@ -17,6 +17,7 @@ CLUSTER_OPERATOR_VERSION=$(curl -s ${CLUSTER_OPERATOR_VER_URL} |grep -o '"tag_na
 CLUSTER_OPERATOR_SRC="https://github.com/rabbitmq/cluster-operator/archive/refs/tags/v${CLUSTER_OPERATOR_VERSION}.tar.gz"
 
 curl -sL -o $APP_NAME.tar.gz $CLUSTER_OPERATOR_SRC
+rm -rf $APP_NAME
 mkdir $APP_NAME && tar -xf "$APP_NAME.tar.gz" -C $APP_NAME --strip-components=1
 
 pushd $APP_NAME
