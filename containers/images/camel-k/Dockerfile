@@ -1,5 +1,5 @@
 # Build stage
-FROM sourcemation/golang-1.24 AS builder
+FROM sourcemation/golang-1.25 AS builder
 
 ENV CAMEL_K_VER="v2.9.0"
 RUN apt-get update && apt-get install openjdk-21-jdk-headless git gcc make cmake which maven -y
