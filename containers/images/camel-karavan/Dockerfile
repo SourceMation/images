@@ -11,8 +11,10 @@ RUN gpg --import ee10ba76e3be503a07b7550b09e4d19f8fd25848.asc &&\
       gpg --verify camel-karavan-${KARAVAN_VERSION}.zip.asc camel-karavan-${KARAVAN_VERSION}.zip &&\
       unzip camel-karavan-${KARAVAN_VERSION}.zip &&\
       cd /build/camel-karavan-${KARAVAN_VERSION} &&\
-      mvn clean compile exec:java -Dexec.mainClass="org.apache.camel.karavan.generator.KaravanGenerator" -f karavan-generator &&\
+      cp -r karavan-core / && \
+      mvn clean compile exec:java -Dexec.mainClass="org.apache.camel.karavan.generator.KaravanGenerator" -f karavan-generator && \
       cd karavan-core &&\
+      curl https://raw.githubusercontent.com/apache/camel-karavan/refs/heads/main/karavan-vscode/metadata/kamelets.yaml -o test/metadata/kamelets.yaml && \
       npm install &&\
       cd  .. &&\
       mvn clean package -f karavan-app -Dquarkus.profile=public
@@ -39,7 +41,7 @@ LABEL name="camel-karavan" \
       io.openshift.tags="camel karavan rockylinux"
 
 
-RUN dnf -y install java-17-openjdk-headless java-21-openjdk-headless && dnf clean all && rm -rf /var/cache/dnf
+RUN dnf -y install java-21-openjdk-headless && dnf clean all && rm -rf /var/cache/dnf
 
 ENV JAVA_HOME="/usr/lib/jvm/jre-17-openjdk"
 ENV PATH $PATH:"$JAVA_HOME/bin"
@@ -52,8 +54,8 @@ ENV KARAVAN_VERSION="4.14.2"
 
 COPY --from=builder /build/camel-karavan-${KARAVAN_VERSION}/karavan-app/target/karavan-${KARAVAN_VERSION}-runner.jar /opt/app/karavan.jar
 # Double grep because there is a lot of component with versions like NUM.NUM.NUM
-RUN version=$(java -jar /opt/app/karavan.jar --version | grep -oP 'karavan (\d+)\.(\d+)\.(\d+) on JVM' | grep -oP "(\d+)\.(\d+)\.(\d+)") \
-    && echo "camel-karavan: ${version}" >> /var/tmp/sourcemation.yml
+#RUN version=$(java -jar /opt/app/karavan.jar --version | grep -oP 'karavan (\d+)\.(\d+)\.(\d+) on JVM' | grep -oP "(\d+)\.(\d+)\.(\d+)") \
+#    && echo "camel-karavan: ${version}" >> /var/tmp/sourcemation.yml
 
 EXPOSE 8080
 CMD exec "java" \
