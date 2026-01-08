@@ -27,7 +27,7 @@ def test_kibana_process_is_running():
 
         kibana_process_found = False
         for line in result.stdout.splitlines():
-            if line.startswith(KIBANA_USER) and "bin/node" in line and "cli/dist" in line:
+            if line.startswith(KIBANA_USER) and "bin/node" in line and "src/cli/kibana/dist" in line:
                 kibana_process_found = True
                 break
         
