@@ -13,21 +13,21 @@ LABEL name="ghost" \
       architecture="${TARGETARCH}" \
       summary="${LONGNAME}" \
       description="Provides ${LONGNAME}" \
-      version="6.10.3" \
+      version="6.11.0" \
       io.k8s.display-name="${LONGNAME}" \
       io.k8s.description="Provides ${LONGNAME}" \
       io.openshift.tags="ghost nodejs-22"
 
 
-ENV NODE_ENV=development
-ARG GHOST_VERSION=6.10.3
+ENV NODE_ENV=production
+ARG GHOST_VERSION=6.11.0
 ENV GHOST_INSTALL=/var/lib/ghost
 ENV GHOST_CONTENT=/var/lib/ghost/content
 
 RUN set -ex; \
     apt-get update; \
     apt-get upgrade -y; \
-    apt-get install -y --no-install-recommends gosu; \
+    apt-get install -y --no-install-recommends gosu g++ make python3; \
     npm install -g ghost-cli@latest; \
     rm -rf /var/lib/apt/lists/*; \
     mkdir -p ${GHOST_INSTALL}; \

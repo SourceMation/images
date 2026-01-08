@@ -58,7 +58,7 @@ build_container(){
         print_info "Architecture $BASE_ARCH is not supported for $IMAGE_NAME image!"
         exit 0
     fi
-    
+
     pushd "$container_dir"
     print_info "Building container $IMAGE_NAME"
     mkdir /tmp/docker-build-push/ || sudo rm -rf /tmp/docker-build-push/*
@@ -114,7 +114,7 @@ test_container(){
     fi
 
     if [ "${DOCKER_TAG_SUFFIX}" != "" ] && [ -f "tests/test_${IMAGE_NAME}${DOCKER_TAG_SUFFIX}.py" ]; then
-            CONTAINER_TEST_FILES+=" test_${IMAGE_NAME}${DOCKER_TAG_SUFFIX}.py"
+        CONTAINER_TEST_FILES+=" test_${IMAGE_NAME}${DOCKER_TAG_SUFFIX}.py"
     fi
 
     # Python do not like the modules with '.' in the name so we have to fix it
@@ -219,7 +219,7 @@ test_container(){
             ;;
         "metrics-server")
             ENTRYPOINT_CMD=--entrypoint=""
-           ;;
+            ;;
         "micronaut")
             CONTAINER_RUN_COMMAND=""
             ;;
@@ -313,88 +313,109 @@ test_container(){
             "${CONTAINER_FULL_NAME}"
     elif [ "${IMAGE_NAME}" == "phpmyadmin" ]; then
         docker network create "${CONTAINER_NAME}-net"
-        
+
         docker run -d --name "${CONTAINER_NAME}-db" \
-        --network "${CONTAINER_NAME}-net" \
-        -e MARIADB_ROOT_PASSWORD=root \
-        -e MARIADB_DATABASE=mariadb \
-        -e MARIADB_USER=mariadb \
-        -e MARIADB_PASSWORD=mariadb \
-        sourcemation/mariadb
+            --network "${CONTAINER_NAME}-net" \
+            -e MARIADB_ROOT_PASSWORD=root \
+            -e MARIADB_DATABASE=mariadb \
+            -e MARIADB_USER=mariadb \
+            -e MARIADB_PASSWORD=mariadb \
+            sourcemation/mariadb
 
         sleep 20
 
         docker run -d --name "${CONTAINER_NAME}" \
-        --network "${CONTAINER_NAME}-net" \
-        -e PMA_HOST="${CONTAINER_NAME}-db" \
-        "${CONTAINER_FULL_NAME}"
+            --network "${CONTAINER_NAME}-net" \
+            -e PMA_HOST="${CONTAINER_NAME}-db" \
+            "${CONTAINER_FULL_NAME}"
     elif [ "${IMAGE_NAME}" == "postgres-repmgr" ]; then
         docker network create "${CONTAINER_NAME}-net"
-        
+
         docker run -d --network "${CONTAINER_NAME}-net" --name "${CONTAINER_NAME}" \
-        -e POSTGRES_USER=postgres \
-        -e POSTGRES_PASSWORD=mysecretpassword \
-        -e REPMGR_ROLE=primary \
-        -e REPMGR_USER=repmgr \
-        -e REPMGR_PASSWORD=repmgrpass \
-        -e REPMGR_DB=repmgr \
-        -e NODE_ID=1 \
-        -e NODE_NAME="${CONTAINER_NAME}" \
-        "${CONTAINER_FULL_NAME}"
+            -e POSTGRES_USER=postgres \
+            -e POSTGRES_PASSWORD=mysecretpassword \
+            -e REPMGR_ROLE=primary \
+            -e REPMGR_USER=repmgr \
+            -e REPMGR_PASSWORD=repmgrpass \
+            -e REPMGR_DB=repmgr \
+            -e NODE_ID=1 \
+            -e NODE_NAME="${CONTAINER_NAME}" \
+            "${CONTAINER_FULL_NAME}"
 
         sleep 15
 
         docker run -d --network "${CONTAINER_NAME}-net" --name "${CONTAINER_NAME}-standby" \
-        -e POSTGRES_USER=postgres \
-        -e POSTGRES_PASSWORD=mysecretpassword \
-        -e REPMGR_ROLE=standby \
-        -e REPMGR_USER=repmgr \
-        -e REPMGR_PASSWORD=repmgrpass \
-        -e REPMGR_DB=repmgr \
-        -e REPMGR_UPSTREAM_NAME="${CONTAINER_NAME}" \
-        -e NODE_ID=2 \
-        -e NODE_NAME="${CONTAINER_NAME}-standby" \
-        "${CONTAINER_FULL_NAME}"
+            -e POSTGRES_USER=postgres \
+            -e POSTGRES_PASSWORD=mysecretpassword \
+            -e REPMGR_ROLE=standby \
+            -e REPMGR_USER=repmgr \
+            -e REPMGR_PASSWORD=repmgrpass \
+            -e REPMGR_DB=repmgr \
+            -e REPMGR_UPSTREAM_NAME="${CONTAINER_NAME}" \
+            -e NODE_ID=2 \
+            -e NODE_NAME="${CONTAINER_NAME}-standby" \
+            "${CONTAINER_FULL_NAME}"
     elif [ "${IMAGE_NAME}" == "keycloak-config-cli" ]; then
         docker run -d --name "keycloak-${CONTAINER_NAME}" \
-        -e KC_BOOTSTRAP_ADMIN_USERNAME=admin \
-        -e KC_BOOTSTRAP_ADMIN_PASSWORD=admin \
-        -p 8080:8080 \
-        -it sourcemation/keycloak
+            -e KC_BOOTSTRAP_ADMIN_USERNAME=admin \
+            -e KC_BOOTSTRAP_ADMIN_PASSWORD=admin \
+            -p 8080:8080 \
+            -it sourcemation/keycloak
 
         sleep 45
 
         KEYCLOAK_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' keycloak-${CONTAINER_NAME})
 
         docker run -d -it \
-        -e KEYCLOAK_URL="http://${KEYCLOAK_IP}:8080/" \
-        -e KEYCLOAK_USER="admin" \
-        -e KEYCLOAK_PASSWORD="admin" \
-        -e IMPORT_FILES_LOCATIONS='/config/*' \
-        -v $(pwd)/${container_dir}/config.json:/config/config.json \
-        --entrypoint="entrypoint.sh" \
-        --name "$CONTAINER_NAME" \
-        "${CONTAINER_FULL_NAME}" "/bin/bash"
-    elif [ "${IMAGE_NAME}" == "wordpress" ]; then
+            -e KEYCLOAK_URL="http://${KEYCLOAK_IP}:8080/" \
+            -e KEYCLOAK_USER="admin" \
+            -e KEYCLOAK_PASSWORD="admin" \
+            -e IMPORT_FILES_LOCATIONS='/config/*' \
+            -v $(pwd)/${container_dir}/config.json:/config/config.json \
+            --entrypoint="entrypoint.sh" \
+            --name "$CONTAINER_NAME" \
+            "${CONTAINER_FULL_NAME}" "/bin/bash"
+    elif [ "${IMAGE_NAME}" == "ghost" ]; then
+        CONTAINER_STARTUP_TIMEOUT=60
         docker network create "${CONTAINER_NAME}-net"
-        
+
         docker run -d --name "${CONTAINER_NAME}-db" \
-        --network "${CONTAINER_NAME}-net" \
-        -e MARIADB_ROOT_PASSWORD=root \
-        -e MARIADB_DATABASE=wordpress \
-        -e MARIADB_USER=wordpress \
-        -e MARIADB_PASSWORD=wordpress \
-        sourcemation/mariadb
+            --network "${CONTAINER_NAME}-net" \
+            -e MARIADB_ROOT_PASSWORD=root \
+            -e MARIADB_DATABASE=ghost \
+            sourcemation/mariadb
 
         sleep 20
 
         docker run -d --name "${CONTAINER_NAME}" \
-        --network "${CONTAINER_NAME}-net" \
-        -e WORDPRESS_DB_HOST="${CONTAINER_NAME}-db" \
-        -e WORDPRESS_DB_USER=wordpress \
-        -e WORDPRESS_DB_PASSWORD=wordpress \
-        -e WORDPRESS_DB_NAME=wordpress \
-        "${CONTAINER_FULL_NAME}"
+            --network "${CONTAINER_NAME}-net" \
+            -e url="http://localhost:2368" \
+            -e database__client="mysql" \
+            -e database__connection__host="${CONTAINER_NAME}-db" \
+            -e database__connection__user="root" \
+            -e database__connection__password="root" \
+            -e database__connection__database="ghost" \
+            "${CONTAINER_FULL_NAME}"
+    elif [ "${IMAGE_NAME}" == "wordpress" ]; then
+        docker network create "${CONTAINER_NAME}-net"
+
+        docker run -d --name "${CONTAINER_NAME}-db" \
+            --network "${CONTAINER_NAME}-net" \
+            -e MARIADB_ROOT_PASSWORD=root \
+            -e MARIADB_DATABASE=wordpress \
+            -e MARIADB_USER=wordpress \
+            -e MARIADB_PASSWORD=wordpress \
+            sourcemation/mariadb
+
+        sleep 20
+
+        docker run -d --name "${CONTAINER_NAME}" \
+            --network "${CONTAINER_NAME}-net" \
+            -e WORDPRESS_DB_HOST="${CONTAINER_NAME}-db" \
+            -e WORDPRESS_DB_USER=wordpress \
+            -e WORDPRESS_DB_PASSWORD=wordpress \
+            -e WORDPRESS_DB_NAME=wordpress \
+            "${CONTAINER_FULL_NAME}"
     else
         print_info "Running Docker Container from Image: ${CONTAINER_FULL_NAME}"
         # shellcheck disable=SC2086
@@ -437,6 +458,10 @@ test_container(){
     elif [ "${IMAGE_NAME}" == "keycloak-config-cli" ]; then
         docker stop "keycloak-${CONTAINER_NAME}"
         docker rm "keycloak-${CONTAINER_NAME}"
+    elif [ "${IMAGE_NAME}" == "ghost" ]; then
+        docker stop "${CONTAINER_NAME}-db"
+        docker rm "${CONTAINER_NAME}-db"
+        docker network rm "${CONTAINER_NAME}-net"
     elif [ "${IMAGE_NAME}" == "wordpress" ]; then
         docker stop "${CONTAINER_NAME}-db"
         docker rm "${CONTAINER_NAME}-db"
@@ -541,36 +566,36 @@ push_container_image(){
 
 push_readme(){
 
-    # We do not push readme for suffixes
-    if [ "$DOCKER_TAG_SUFFIX" != "" ]; then
-        return 0
-    fi
+# We do not push readme for suffixes
+if [ "$DOCKER_TAG_SUFFIX" != "" ]; then
+    return 0
+fi
 
-    # preapre the binary
-    if [ "$BASE_ARCH" == "x86_64" ];then
-        bin_arch="amd64"
-    else
-        # README.md is the same for all images; we do not need to push it for
-        # each architecture, it's eating precious compute time/cloud credits
-        return 0
-    fi
-    binary_url="https://github.com/christian-korneck/docker-pushrm/releases/download/v1.9.0/docker-pushrm_linux_${bin_arch}"
-    mkdir -p ~/.docker/cli-plugins
-    curl -L  "${binary_url}" -o ~/.docker/cli-plugins/docker-pushrm
-    chmod +x ~/.docker/cli-plugins/docker-pushrm
+# preapre the binary
+if [ "$BASE_ARCH" == "x86_64" ];then
+    bin_arch="amd64"
+else
+    # README.md is the same for all images; we do not need to push it for
+    # each architecture, it's eating precious compute time/cloud credits
+    return 0
+fi
+binary_url="https://github.com/christian-korneck/docker-pushrm/releases/download/v1.9.0/docker-pushrm_linux_${bin_arch}"
+mkdir -p ~/.docker/cli-plugins
+curl -L  "${binary_url}" -o ~/.docker/cli-plugins/docker-pushrm
+chmod +x ~/.docker/cli-plugins/docker-pushrm
 
-    # push the README.md
-    pushd "$container_dir"
-    print_info "Pushing README.md to dockerhub"
-    docker pushrm "docker.io/sourcemation/${IMAGE_NAME}" || {
-        echo "Pushing README.md to docker.io failed -> Continuing anyway"
-    }
+# push the README.md
+pushd "$container_dir"
+print_info "Pushing README.md to dockerhub"
+docker pushrm "docker.io/sourcemation/${IMAGE_NAME}" || {
+    echo "Pushing README.md to docker.io failed -> Continuing anyway"
+}
 
-    print_info "Pushing README.md to quay.io"
-    docker pushrm "quay.io/sourcemation/${IMAGE_NAME}" || {
-        echo "Pushing README.md to quay.io failed -> Continuing anyway"
-    }
-    popd
+print_info "Pushing README.md to quay.io"
+docker pushrm "quay.io/sourcemation/${IMAGE_NAME}" || {
+    echo "Pushing README.md to quay.io failed -> Continuing anyway"
+}
+popd
 }
 
 
