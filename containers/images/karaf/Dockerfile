@@ -11,14 +11,14 @@ LABEL name="apache-karaf" \
       architecture="$TARGETARCH" \
       summary="Apache Karaf on EL9 Container" \
       description="Provides Apache Karaf on Rocky Linux 9 Container" \
-      version="4.4.8" \
+      version="4.4.9" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="Apache Karaf on EL9 Container" \
       io.k8s.description="Provides Apache Karaf on Rocky Linux 9 Container" \
       io.openshift.tags="karaf rockylinux"
 
 
-RUN dnf -y install java-11-openjdk-headless java-17-openjdk-headless java-21-openjdk-headless && dnf clean all && rm -rf /var/cache/dnf
+RUN dnf -y install java-11-openjdk-headless java-17-openjdk-headless java-21-openjdk-headless gnupg2 && dnf clean all && rm -rf /var/cache/dnf
 
 
 # Karaf environment variables with PATH
@@ -27,16 +27,17 @@ ENV KARAF_HOME $KARAF_INSTALL_PATH/apache-karaf
 ENV KARAF_EXEC exec
 ENV PATH $PATH:$KARAF_HOME/bin
 
-ENV KARAF_VERSION=4.4.8
+ENV KARAF_VERSION=4.4.9
 
 RUN set -euo pipefail; cd /opt; \
-    curl -LO https://dlcdn.apache.org/karaf/${KARAF_VERSION}/apache-karaf-${KARAF_VERSION}.tar.gz && \
-    # Missing https://github.com/apache/karaf/issues/1993 that's why we are using dlcdn.apache.org \
-    #curl https://dlcdn.apache.org/karaf/${KARAF_VERSION}/apache-karaf-${KARAF_VERSION}.tar.gz.sha512 && \
-    #sha512sum -c apache-karaf-${KARAF_VERSION}.tar.gz.sha512; \
-    tar -xzf apache-karaf-${KARAF_VERSION}.tar.gz; \
-    mv apache-karaf-${KARAF_VERSION} apache-karaf; \
-    rm -f apache-karaf-${KARAF_VERSION}.tar.gz
+    curl -LO https://archive.apache.org/dist/karaf/KEYS && \
+    gpg --import KEYS && \
+    curl -LO https://archive.apache.org/dist/karaf/${KARAF_VERSION}/apache-karaf-${KARAF_VERSION}.tar.gz && \
+    curl -LO https://archive.apache.org/dist/karaf/${KARAF_VERSION}/apache-karaf-${KARAF_VERSION}.tar.gz.asc && \
+    gpg --verify apache-karaf-${KARAF_VERSION}.tar.gz.asc apache-karaf-${KARAF_VERSION}.tar.gz && \
+    tar -xzf apache-karaf-${KARAF_VERSION}.tar.gz && \
+    mv apache-karaf-${KARAF_VERSION} apache-karaf && \
+    rm -f apache-karaf-${KARAF_VERSION}.tar.gz apache-karaf-${KARAF_VERSION}.tar.gz.asc KEYS
 
 RUN set -x && \
   ln -s $KARAF_INSTALL_PATH/apache-karaf* $KARAF_HOME
