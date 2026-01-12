@@ -7,7 +7,7 @@ ENV CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH}
 COPY ./external-secrets /external-secrets
 
 RUN apt-get update && \
-    apt-get install -y ca-certificates && \
+    apt-get install -y --no-install-recommends ca-certificates && \
     cd /external-secrets && \
     go mod download && \
     go build -o external-secrets main.go

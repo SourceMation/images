@@ -11,7 +11,7 @@ RUN set -eux \
         ca-certificates \
         wget --progress=dot:giga \
         tar \
-    && apt-get install -y \
+    && apt-get install -y --no-install-recommends \
         bison \
         flex \
         file \

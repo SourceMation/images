@@ -5,7 +5,7 @@ COPY ./sealed-secrets /sealed-secrets
 
 
 RUN apt-get update && \
-    apt-get install -y make git ca-certificates && \
+    apt-get install -y --no-install-recommends make git ca-certificates && \
     cd /sealed-secrets && \
     make all
 

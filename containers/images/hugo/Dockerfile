@@ -24,13 +24,13 @@ LABEL name="hugo" \
 
 ARG NODEJS_INSTALL_SUM=872150825071bb403b6e210c66d9487a791047d0299026de429eb1f626fd969f
 
-RUN apt-get update && apt-get install -y curl ca-certificates gnupg git gcc g++ \
+RUN apt-get update && apt-get install -y --no-install-recommends curl ca-certificates gnupg git gcc g++ \
     && curl -sSL -o /tmp/setup_24.x https://deb.nodesource.com/setup_24.x \
     && echo "${NODEJS_INSTALL_SUM} /tmp/setup_24.x" | sha256sum -c - \
     && bash /tmp/setup_24.x \
     && rm -f /tmp/setup_24.x \
     && apt-get update \
-    && apt-get install -y nodejs \
+    && apt-get install -y --no-install-recommends nodejs \
     && apt-get clean \
     && if [ "${TARGETARCH}" = "amd64" ]; then DARTFILEARCH="x64"; else DARTFILEARCH="${TARGETARCH}"; fi \
     && curl -sSL -o /tmp/dart-sass-${DART_SASS_VERSION}-linux-${DARTFILEARCH}.tar.gz https://github.com/sass/dart-sass/releases/download/${DART_SASS_VERSION}/dart-sass-${DART_SASS_VERSION}-linux-${DARTFILEARCH}.tar.gz \
@@ -38,7 +38,7 @@ RUN apt-get update && apt-get install -y curl ca-certificates gnupg git gcc g++ 
     && cp -r /tmp/dart-sass/* /usr/local/bin \
     && curl -sSL -o /tmp/hugo_extended_withdeploy_${HUGO_VERSION}_linux-${TARGETARCH}.deb https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_withdeploy_${HUGO_VERSION}_linux-${TARGETARCH}.deb \
     && echo "$(curl -sSL https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_checksums.txt | awk -v HUGO_FILE=hugo_extended_withdeploy_${HUGO_VERSION}_linux-${TARGETARCH}.deb '$2 ~ HUGO_FILE {print $1}') /tmp/hugo_extended_withdeploy_${HUGO_VERSION}_linux-${TARGETARCH}.deb" | sha256sum -c - \
-    && apt-get install -y /tmp/hugo_extended_withdeploy_${HUGO_VERSION}_linux-${TARGETARCH}.deb \
+    && apt-get install -y --no-install-recommends /tmp/hugo_extended_withdeploy_${HUGO_VERSION}_linux-${TARGETARCH}.deb \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/*
 
 WORKDIR /src
