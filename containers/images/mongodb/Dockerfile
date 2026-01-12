@@ -25,8 +25,9 @@ RUN groupadd -g 999 mongodb
 RUN useradd -g 999 -u 999 mongodb
 
 # Install sudo to have root permission as a mongodb user
-RUN dnf update -y
-RUN dnf install -y mongodb-org
+RUN dnf update -y \
+    && dnf install -y mongodb-org \
+    && dnf clean all
 
 # WARNING: vm.max_map_count is too low
 # AND

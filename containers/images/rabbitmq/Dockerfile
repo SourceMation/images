@@ -22,7 +22,7 @@ ENV LANG=C.UTF-8 LANGUAGE=C.UTF-8 LC_ALL=C.UTF-8
 COPY rabbitmq.repo /etc/yum.repos.d/rabbitmq.repo
 
 RUN dnf update -y && dnf clean all
-RUN dnf install -y erlang rabbitmq-server hostname logrotate
+RUN dnf install -y erlang rabbitmq-server hostname logrotate && dnf clean all
 
 
 RUN set -eux; \

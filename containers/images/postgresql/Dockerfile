@@ -23,7 +23,7 @@ RUN set -eux; \
     useradd -u 26 -g postgres -p postgres -s /bin/sh -d /var/lib/postgresql -c "PostgreSQL Server" postgres; \
     mkdir -p /var/lib/postgresql/pg-data; \
     chown -R postgres:postgres /var/lib/postgresql; \
-    dnf update -y && dnf install -y glibc-langpack-en glibc-langpack-pl
+    dnf update -y && dnf install -y glibc-langpack-en glibc-langpack-pl && dnf clean all
 
 # make the "en_US.UTF-8" locale so postgres will be utf-8 enabled by default
 ENV LANG=pl_PL.utf8 \
