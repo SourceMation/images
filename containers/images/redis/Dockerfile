@@ -5,7 +5,7 @@ ARG TARGETARCH
 
 ARG REDIS_VERSION="stable"
 
-RUN apt-get update && apt-get install -y sudo tzdata make curl build-essential libc6-dev bash libssl-dev
+RUN apt-get update && apt-get install -y sudo tzdata make curl build-essential libc6-dev bash libssl-dev && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /tmp
 
@@ -54,10 +54,10 @@ ENV REDIS_PORT=6379
 COPY --from=builder /usr/local/bin/redis-server /usr/local/bin/redis-server
 COPY --from=builder /usr/local/bin/redis-cli /usr/local/bin/redis-cli
 
-RUN apt-get update && apt-get upgrade -y
+RUN apt-get update && apt-get upgrade -y && rm -rf /var/lib/apt/lists/*
 
 RUN groupadd -r -g 1000 redis && useradd -r -g redis -u 1000 redis && \
-    apt-get update && apt-get install -y bash libssl3
+    apt-get update && apt-get install -y bash libssl3 && rm -rf /var/lib/apt/lists/*
 
 COPY redis.conf /etc/redis/redis.conf
 

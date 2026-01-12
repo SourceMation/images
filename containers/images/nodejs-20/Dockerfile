@@ -76,7 +76,8 @@ RUN set -eux; echo "Installing development packages - buildpacks-deps style ;)!"
         unzip \
         wget \
         xz-utils \
-        zlib1g-dev;
+        zlib1g-dev; \
+    rm -rf /var/lib/apt/lists/*;
 
 # gpg keys listed at https://github.com/nodejs/node#release-keys
 
@@ -112,7 +113,7 @@ RUN ARCH= && dpkgArch="$(dpkg --print-architecture)" \
   && ln -s /usr/local/bin/node /usr/local/bin/nodejs \
   && rm -rf /tmp/* \
   && echo "Removing OpenSSL headers to save space" \
-  && cd /usr/local/include/node/openssl/archs -mindepth 1 -maxdepth 1 ! -name "$OPENSSL_ARCH" -exec rm -rfv {} \;  && \
+  && find /usr/local/include/node/openssl/archs -mindepth 1 -maxdepth 1 ! -name "$OPENSSL_ARCH" -exec rm -rfv {} \;  && \
   echo "OK, installed nodejs $NODE_VERSION"
 
 
