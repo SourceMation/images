@@ -17,7 +17,7 @@ LABEL name="ruby" \
       io.k8s.description="Provides Ruby on Rocky Linux 9 Container" \
       io.openshift.tags="ruby rockylinux"
 
-RUN yum module -y enable ruby:3.3 &&  yum install -y ruby irb && dnf update -y && dnf clean all
+RUN yum module -y enable ruby:3.3 &&  yum install -y ruby irb && yum update -y && yum clean all
 
 ENV APP_VERSION="3.3.10" \
     APP_NAME="ruby"
