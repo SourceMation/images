@@ -113,8 +113,8 @@ RUN set -ex; \
     { rm *.tar.* || true; }; \
     \
 # download the patched config.guess and config.sub from gist as git savannah.gnu.org is down/flaky consistently...
-    wget --progress=dot:giga -O config.sub "https://gist.githubusercontent.com/AlexBaranowski/187ac45796d6c1702da8c826554ec45a/raw/fcc2ca7b6a4abcebac6e3104572e5b22b54beee5/config.sub" ; \
-    wget --progress=dot:giga -O config.guess "https://gist.githubusercontent.com/AlexBaranowski/9cb5af9049348266afa7220469cb3ac7/raw/09680facc6ddbaa053e9a5652aef5ca1ff764ac2/config.guess"; \
+    curl -fL -o config.sub "https://gist.githubusercontent.com/AlexBaranowski/187ac45796d6c1702da8c826554ec45a/raw/fcc2ca7b6a4abcebac6e3104572e5b22b54beee5/config.sub" ; \
+    curl -fL -o config.guess "https://gist.githubusercontent.com/AlexBaranowski/9cb5af9049348266afa7220469cb3ac7/raw/09680facc6ddbaa053e9a5652aef5ca1ff764ac2/config.guess"; \
 # explicitly update autoconf config.guess and config.sub so they support more arches/libcs
     for f in config.guess config.sub; do \
 #   wget --progress=dot:giga -O "$f" "https://git.savannah.gnu.org/cgit/config.git/plain/$f?id=7d3d27baf8107b630586c962c057e22149653deb"; \

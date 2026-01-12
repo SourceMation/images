@@ -3,11 +3,12 @@ FROM sourcemation/rocky-9:latest AS builder
 
 COPY ee10ba76e3be503a07b7550b09e4d19f8fd25848.asc /
 ENV KARAVAN_VERSION="4.14.2"
-RUN dnf module enable -y nodejs:22 && dnf install -y gpg maven-openjdk21 unzip npm wget --progress=dot:giga && dnf clean all && rm -rf /var/cache/dnf
+RUN dnf module enable -y nodejs:22 && dnf install -y gpg maven-openjdk21 unzip npm wget && dnf clean all && rm -rf /var/cache/dnf
 RUN gpg --import ee10ba76e3be503a07b7550b09e4d19f8fd25848.asc &&\
       mkdir /build &&\
       cd /build &&\
-      wget --progress=dot:giga https://github.com/apache/camel-karavan/releases/download/${KARAVAN_VERSION}/camel-karavan-${KARAVAN_VERSION}.zip https://github.com/apache/camel-karavan/releases/download/${KARAVAN_VERSION}/camel-karavan-${KARAVAN_VERSION}.zip.asc &&\
+      curl -L -o camel-karavan-${KARAVAN_VERSION}.zip https://github.com/apache/camel-karavan/releases/download/${KARAVAN_VERSION}/camel-karavan-${KARAVAN_VERSION}.zip &&\
+      curl -L -o camel-karavan-${KARAVAN_VERSION}.zip.asc https://github.com/apache/camel-karavan/releases/download/${KARAVAN_VERSION}/camel-karavan-${KARAVAN_VERSION}.zip.asc &&\
       gpg --verify camel-karavan-${KARAVAN_VERSION}.zip.asc camel-karavan-${KARAVAN_VERSION}.zip &&\
       unzip camel-karavan-${KARAVAN_VERSION}.zip &&\
       cd /build/camel-karavan-${KARAVAN_VERSION} &&\
