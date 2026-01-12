@@ -9,7 +9,7 @@ RUN set -eux \
         ca-certificates \
         tar \
         gzip \
-        wget \
+        wget --progress=dot:giga \
     && apt-get install -y \
         gcc \
         g++ \
@@ -20,7 +20,7 @@ RUN set -eux \
 
 # Install Apache
 RUN set -eux \
-    && wget -O /tmp/apache.tar.gz "https://dlcdn.apache.org/httpd/httpd-${APACHE_VER}.tar.gz" \
+    && wget --progress=dot:giga -O /tmp/apache.tar.gz "https://dlcdn.apache.org/httpd/httpd-${APACHE_VER}.tar.gz" \
     && gzip -d /tmp/apache.tar.gz \
     && mkdir /tmp/apache \
     && tar -xf /tmp/apache.tar -C /tmp/apache --strip-components 1\

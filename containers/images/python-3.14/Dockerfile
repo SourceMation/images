@@ -56,13 +56,13 @@ RUN set -eux; \
                 dpkg-dev gcc gnupg libbluetooth-dev libbz2-dev libc6-dev \
                 libdb-dev libffi-dev libgdbm-dev liblzma-dev libncursesw5-dev \
                 libreadline-dev libsqlite3-dev libssl-dev make tk-dev uuid-dev \
-                wget xz-utils zlib1g-dev libzstd-dev; \
-    wget -O python.tar.xz "https://www.python.org/ftp/python/$PYTHON_VERSION/Python-$PYTHON_VERSION.tar.xz"; \
+                wget --progress=dot:giga xz-utils zlib1g-dev libzstd-dev; \
+    wget --progress=dot:giga -O python.tar.xz "https://www.python.org/ftp/python/$PYTHON_VERSION/Python-$PYTHON_VERSION.tar.xz"; \
     echo "Checking the Python Checksum"; \
     echo "$PYTHON_SHA256 *python.tar.xz" | sha256sum -c -; \
-    wget -O python.tar.xz.sigstore "https://www.python.org/ftp/python/$PYTHON_VERSION/Python-$PYTHON_VERSION.tar.xz.sigstore"; \
+    wget --progress=dot:giga -O python.tar.xz.sigstore "https://www.python.org/ftp/python/$PYTHON_VERSION/Python-$PYTHON_VERSION.tar.xz.sigstore"; \
     echo "Verifying the Python Signature"; \
-    wget -O cosign "https://github.com/sigstore/cosign/releases/latest/download/cosign-linux-${TARGETARCH}"; \
+    wget --progress=dot:giga -O cosign "https://github.com/sigstore/cosign/releases/latest/download/cosign-linux-${TARGETARCH}"; \
     chmod +x cosign; \
     ./cosign verify-blob \
            --new-bundle-format \

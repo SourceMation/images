@@ -9,7 +9,7 @@ ENV PGPOOL_CONF_VOLUME /config
 RUN set -eux \
     && apt-get update && apt-get install -y --no-install-recommends \
         ca-certificates \
-        wget \
+        wget --progress=dot:giga \
         tar \
     && apt-get install -y \
         bison \
@@ -29,7 +29,7 @@ COPY start.sh ${PGPOOL_INSTALL_DIR}/bin/
 
 # Install Pgpool-II
 RUN set -eux \
-    && wget -O /tmp/pgpool.tar.gz "https://pgpool.net/mediawiki/images/pgpool-II-${PGPOOL_VER}.tar.gz" \
+    && wget --progress=dot:giga -O /tmp/pgpool.tar.gz "https://pgpool.net/mediawiki/images/pgpool-II-${PGPOOL_VER}.tar.gz" \
     && tar -zxf /tmp/pgpool.tar.gz -C /tmp/pgpool --strip-components 1 \
     && cd /tmp/pgpool \
     && patch -p1 < fix_compile_error.patch \

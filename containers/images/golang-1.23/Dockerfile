@@ -14,10 +14,10 @@ RUN set -eux; \
                 ca-certificates \
                 dirmngr \
                 gnupg \
-                wget ; \
+                wget --progress=dot:giga ; \
 	now="$(date '+%s')"; \
-	wget -O go.tgz.asc "$GO_URL.asc"; \
-	wget -O go.tgz "$GO_URL" --progress=dot:giga; \
+	wget --progress=dot:giga -O go.tgz.asc "$GO_URL.asc"; \
+	wget --progress=dot:giga -O go.tgz "$GO_URL" --progress=dot:giga; \
 	echo "$GO_SHA256 *go.tgz" | sha256sum -c -; \
 	\
 # https://github.com/golang/go/issues/14739#issuecomment-324767697
