@@ -55,35 +55,3 @@ similar documentation that describes the image and how to use it.
   recreate the images without Jenkins, or you can use the Jenkinsfile to
   replicate the Jenkins pipeline in your own Jenkins instance.
 
-## Problematic images
-### Based on Rocky9
-- activemq
-- apicast
-- camel-karavan
-- helidon
-- java
-- jenkins
-- kafka
-- karaf
-- kong
-- micronaut
-- mongodb
-- mosquitto
-- nodejs
-- openapi-generator-cli
-- postgresql
-- python
-- quarkus
-- rabbitmq
-- rocky-9
-- rocky-9-minimal
-- ruby
-- servicemix
-
-### Other problems
-- azure-cli - not available right now (packages.microsoft.com/repos/azure-cli/dists/)
-- camel-k - on debian13 there is no openjdk-17-headless but openjdk-21 & 25
-- cassandra - on debian13 there is no openjdk-17-headless but openjdk-21 & 25
-- hugo - Checksum NODEJS problem
-- manageiq - base image is not ours
-- mysql - GPG key problem (no new key)
