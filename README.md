@@ -7,11 +7,19 @@ you can test, use and deploy in your projects and solutions.
 
 ## Issues and PRs
 
-Your contributions are welcome. If you have an idea for a new image or
-encounter a problem with the existing images, please open an issue or a pull
-request. Our team is monitoring the repository and will respond to your
-requests.
+Your contributions are welcome! Please check our [CONTRIBUTING.md](CONTRIBUTING.md) for detailed instructions on how to set up your environment and submit changes.
 
+If you have an idea for a new image or encounter a problem with the existing images, please open an issue or a pull request.
+
+### Quick Start for Contributors
+
+To fix a problematic image (e.g., `activemq`) or test your changes locally:
+
+```bash
+cd containers
+export TEST_IMAGE=true PUSH_IMAGE=false PUSH_README=false
+./build-container.sh <image-name>
+```
 
 We have provided a template for the issues and pull requests for your
 convenience. Please use it, but do not feel limited by it. If you have a
@@ -73,7 +81,6 @@ similar documentation that describes the image and how to use it.
 - servicemix
 
 ### Other problems
-- angular - need to create init.sh
 - azure-cli - not available right now (packages.microsoft.com/repos/azure-cli/dists/)
 - camel-k - on debian13 there is no openjdk-17-headless but openjdk-21 & 25
 - cassandra - on debian13 there is no openjdk-17-headless but openjdk-21 & 25
