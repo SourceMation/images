@@ -58,6 +58,4 @@ COPY --from=builder /build/camel-karavan-${KARAVAN_VERSION}/karavan-app/target/k
 #    && echo "camel-karavan: ${version}" >> /var/tmp/sourcemation.yml
 
 EXPOSE 8080
-CMD exec "java" \
-    ${JAVA_OPTS} \
-    "-jar" "/opt/app/karavan.jar"
+CMD ["sh", "-c", "exec java ${JAVA_OPTS} -jar /opt/app/karavan.jar"]

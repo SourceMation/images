@@ -71,4 +71,4 @@ USER appuser
 
 WORKDIR /opt/kafka/bin
 
-CMD '/etc/kafka/docker/run'
+CMD ["/etc/kafka/docker/run"]

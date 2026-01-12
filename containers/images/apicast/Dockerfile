@@ -75,4 +75,4 @@ ENV PATH="/home/appuser/APIcast/lua_modules/bin:/usr/local/openresty/luajit/bin/
 RUN chown -R appuser:appuser /home/appuser
 USER appuser
 
-CMD apicast -h
+CMD ["apicast", "-h"]

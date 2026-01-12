@@ -51,4 +51,4 @@ VOLUME /var/www/html
 
 ENTRYPOINT ["entrypoint.sh"]
 
-CMD . /etc/apache2/envvars && exec /usr/sbin/apache2 -DFOREGROUND
+CMD ["/bin/sh", "-c", ". /etc/apache2/envvars && exec /usr/sbin/apache2 -DFOREGROUND"]
