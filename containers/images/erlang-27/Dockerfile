@@ -37,7 +37,7 @@ RUN curl -fSL -o openssl.tar.gz "${OPENSSL_DOWNLOAD_URL}" \
         --libdir="$OPENSSL_INSTALL_PATH_PREFIX/lib" \
         -Wl,-rpath="$OPENSSL_INSTALL_PATH_PREFIX/lib" \
         enable-fips \
-    && make -j$(nproc) \
+    && make "-j$(nproc)" \
     && make install_sw install_ssldirs install_fips \
     && ldconfig \
     && rmdir "$OPENSSL_CONFIG_DIR/certs" "$OPENSSL_CONFIG_DIR/private" \
@@ -93,7 +93,7 @@ RUN curl -fSL -o otp_src.tar.gz "${ERLANG_DOWNLOAD_URL}" \
         --without-tftp \
         --without-wx \
         --enable-jit \
-    && make -j$(nproc) GEN_OPT_FLGS="-O2 -fno-strict-aliasing" \
+    && make "-j$(nproc)" GEN_OPT_FLGS="-O2 -fno-strict-aliasing" \
     && make install \
     \
 # Remove unnecessary files

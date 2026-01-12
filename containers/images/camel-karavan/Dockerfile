@@ -1,7 +1,7 @@
 # Build stage
 FROM sourcemation/rocky-9:latest AS builder
 
-ADD ee10ba76e3be503a07b7550b09e4d19f8fd25848.asc /
+COPY ee10ba76e3be503a07b7550b09e4d19f8fd25848.asc /
 ENV KARAVAN_VERSION="4.14.2"
 RUN dnf module enable -y nodejs:22 && dnf install -y gpg maven-openjdk21 unzip npm wget --progress=dot:giga && dnf clean all && rm -rf /var/cache/dnf
 RUN gpg --import ee10ba76e3be503a07b7550b09e4d19f8fd25848.asc &&\

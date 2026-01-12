@@ -9,8 +9,8 @@ RUN set -eux \
         ca-certificates \
         tar \
         gzip \
-        wget --progress=dot:giga \
-    && apt-get install -y \
+        wget \
+    && apt-get install -y --no-install-recommends \
         gcc \
         g++ \
         make \
