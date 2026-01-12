@@ -41,9 +41,9 @@ RUN yum install --enablerepo='crb' -y  lua5.1 lua5.1-devel luajit luajit-devel l
     openssl-devel libev-devel \
     kernel-headers kernel-devel kernel-debug \
     redis systemtap \
-    python3-pip elfutils-devel perl-Crypt-JWT && yum clean all
-RUN yum install -y luarocks --setopt=install_weak_deps=0 --setopt=tsflags=nodocs  && rpm -evh --nodeps lua && yum clean all
-RUN ln -s /usr/bin/lua-5.1 /usr/bin/lua
+    python3-pip elfutils-devel perl-Crypt-JWT && yum clean all \
+    && yum install -y luarocks --setopt=install_weak_deps=0 --setopt=tsflags=nodocs  && rpm -evh --nodeps lua && yum clean all \
+    && ln -s /usr/bin/lua-5.1 /usr/bin/lua
 
 # Configure Lua environment
 RUN mkdir -p /usr/share/lua/5.1/luarocks/ share/lua/5.1/luarocks/

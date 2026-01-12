@@ -63,8 +63,8 @@ RUN set -eux \
 COPY --from=builder $APACHE_INSTALL_DIR $APACHE_INSTALL_DIR
 RUN chown -R 1001:1001 ${APACHE_INSTALL_DIR}
 
-RUN sed -Ei "s|#ServerName.*|ServerName localhost|g" "${APACHE_INSTALL_DIR}/conf/httpd.conf"
-RUN sed -i "s|Listen 80|Listen 8080|g" "${APACHE_INSTALL_DIR}/conf/httpd.conf"
+RUN sed -Ei "s|#ServerName.*|ServerName localhost|g" "${APACHE_INSTALL_DIR}/conf/httpd.conf" \
+    && sed -i "s|Listen 80|Listen 8080|g" "${APACHE_INSTALL_DIR}/conf/httpd.conf"
 
 # END INSTALL
 USER 1001

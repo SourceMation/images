@@ -51,8 +51,8 @@ RUN echo "SYMLINKING delve to /usr/local/bin/" && ln -s /usr/bin/dlv /usr/local/
 COPY --from=builder /go/bin/dlv /usr/local/bin/dlv
 
 # Maven configuration
-RUN mkdir -p ${MAVEN_HOME}
-RUN mkdir -p ${MVN_REPO}
+RUN mkdir -p ${MAVEN_HOME} \
+    && mkdir -p ${MVN_REPO}
 
 
 # Prepare the maven wrapper required in the build Pod strategy
@@ -71,9 +71,8 @@ RUN ${MVNW_DIR}/mvnw --version
 #COPY --from=builder /build/camel-k/build/_maven_output ${MVN_REPO}
 
 # Fix https://github.com/moby/moby/issues/37965
-RUN true
-
-RUN chgrp -R 0 ${MVN_REPO} \
+RUN true \
+    && chgrp -R 0 ${MVN_REPO} \
     && chown -R 1001:0 ${MVN_REPO} \
     && chmod -R 775 ${MVN_REPO} \
     && chgrp -R 0 ${MAVEN_HOME} \

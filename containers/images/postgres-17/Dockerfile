@@ -131,10 +131,8 @@ RUN set -eux; \
     sed -ri "s!^#?(listen_addresses)\s*=\s*\S+.*!\1 = '*'!" /usr/share/postgresql/postgresql.conf.sample; \
     grep -F "listen_addresses = '*'" /usr/share/postgresql/postgresql.conf.sample
 
-RUN install --verbose --directory --owner postgres --group postgres --mode 3777 /var/run/postgresql
-
-# this 1777 will be replaced by 0700 at runtime (allows semi-arbitrary "--user" values)
-RUN install --verbose --directory --owner postgres --group postgres --mode 1777 "$PGDATA"
+RUN install --verbose --directory --owner postgres --group postgres --mode 3777 /var/run/postgresql \
+    && install --verbose --directory --owner postgres --group postgres --mode 1777 "$PGDATA"
 
 COPY docker-entrypoint.sh docker-ensure-initdb.sh /usr/local/bin/
 RUN ln -sT docker-ensure-initdb.sh /usr/local/bin/docker-enforce-initdb.sh

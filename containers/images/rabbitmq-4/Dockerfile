@@ -80,10 +80,9 @@ RUN	apt-get update \
     && rm "$RABBITMQ_DATA_DIR/.erlang.cookie"
 
 # Enable Prometheus-style metrics by default (https://github.com/docker-library/rabbitmq/issues/419)
-RUN gosu rabbitmq rabbitmq-plugins enable --offline rabbitmq_prometheus
-
-# Added for backwards compatibility - users can simply COPY custom plugins to /plugins
-RUN ln -sf /opt/rabbitmq/plugins /plugins
+RUN gosu rabbitmq rabbitmq-plugins enable --offline rabbitmq_prometheus \
+    # Added for backwards compatibility - users can simply COPY custom plugins to /plugins
+    && ln -sf /opt/rabbitmq/plugins /plugins
 
 # set home so that any `--user` knows where to put the erlang cookie
 ENV HOME=$RABBITMQ_DATA_DIR

@@ -21,8 +21,8 @@ ENV HOME="/"
 
 COPY additions/mongodb-org-8.0.repo /etc/yum.repos.d/
 
-RUN groupadd -g 999 mongodb 
-RUN useradd -g 999 -u 999 mongodb
+RUN groupadd -g 999 mongodb \
+    && useradd -g 999 -u 999 mongodb
 
 # Install sudo to have root permission as a mongodb user
 RUN dnf update -y \
@@ -40,24 +40,24 @@ RUN dnf update -y \
 # WARNING: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
 COPY additions/one_time_script.sh /opt/
 COPY additions/start.sh /home/mongodb/start.sh
-RUN chmod +x /home/mongodb/start.sh
-RUN chmod +x /opt/one_time_script.sh
+RUN chmod +x /home/mongodb/start.sh \
+    && chmod +x /opt/one_time_script.sh
 
 ENV APP_VERSION="8.0.17" \
     APP_NAME="mongodb"
 
 EXPOSE 27017
 
-RUN cp /etc/mongod.conf /home/mongodb/mongod.conf
-RUN sed -iE "s|/var/lib/mongo|/home/mongodb/database/|g" /home/mongodb/mongod.conf
-RUN sed -iE "s|/var/log/mongodb/mongod.log|/dev/stdout|g" /home/mongodb/mongod.conf
+RUN cp /etc/mongod.conf /home/mongodb/mongod.conf \
+    && sed -iE "s|/var/lib/mongo|/home/mongodb/database/|g" /home/mongodb/mongod.conf \
+    && sed -iE "s|/var/log/mongodb/mongod.log|/dev/stdout|g" /home/mongodb/mongod.conf
 
 RUN chown -R mongodb:mongodb /opt /home/mongodb/
 USER 999
 ENV HOME="/home/mongodb"
 WORKDIR /home/mongodb
-RUN mkdir /home/mongodb/database
-RUN mkdir /home/mongodb/logs
-RUN touch /home/mongodb/logs/mongod.log
+RUN mkdir /home/mongodb/database \
+    && mkdir /home/mongodb/logs \
+    && touch /home/mongodb/logs/mongod.log
 
 ENTRYPOINT ["/home/mongodb/start.sh"]
