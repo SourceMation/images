@@ -1,5 +1,8 @@
 # Sourcemation containers build process
 
+> [!TIP]
+> Looking to contribute? Check out our [CONTRIBUTING.md](../CONTRIBUTING.md) for a quick start guide.
+
 These containers are built with a GitHub Action workflow/action named Build
 Container. The repository contains all the necessary files and secrets to build
 the container.
