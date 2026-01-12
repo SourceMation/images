@@ -1,4 +1,5 @@
 FROM sourcemation/golang-1.25:latest
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 ARG BUILD_DATE
 ARG TARGETARCH

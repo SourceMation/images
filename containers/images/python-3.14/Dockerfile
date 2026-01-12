@@ -1,4 +1,5 @@
 FROM sourcemation/debian-13-slim
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # This Dockerfile originates from the official Docker Hub image. We have made modifications
 # to improve readability and maintainability. Importantly, our images are automatically

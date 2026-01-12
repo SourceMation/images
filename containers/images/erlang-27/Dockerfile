@@ -1,4 +1,5 @@
 FROM sourcemation/debian-13-slim:latest AS builder
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 ARG ERLANG_VERSION=27.3.4.6
 ARG ERLANG_DOWNLOAD_URL="https://github.com/erlang/otp/releases/download/OTP-${ERLANG_VERSION}/otp_src_${ERLANG_VERSION}.tar.gz"
@@ -118,6 +119,7 @@ RUN erl -noshell -eval 'ok = crypto:start(), ok = io:format("~p~n~n~p~n~n", [cry
 
 # Create a minimal runtime image
 FROM sourcemation/debian-13-slim:latest
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 ARG BUILD_DATE
 ARG TARGETARCH

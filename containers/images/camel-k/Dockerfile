@@ -1,5 +1,6 @@
 # Build stage
 FROM sourcemation/golang-1.25 AS builder
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 ENV CAMEL_K_VER="v2.9.0"
 RUN apt-get update && apt-get install openjdk-21-jdk-headless git gcc make cmake which maven -y
@@ -14,6 +15,7 @@ RUN mkdir /build && cd /build && git clone --depth 1 -b ${CAMEL_K_VER} https://g
 RUN go install github.com/go-delve/delve/cmd/dlv@latest
 
 FROM sourcemation/jdk-17:latest
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 ARG BUILD_DATE
 ARG TARGETARCH

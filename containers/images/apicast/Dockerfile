@@ -1,4 +1,5 @@
 FROM sourcemation/rocky-9:latest
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 ARG BUILD_DATE
 ARG TARGETARCH

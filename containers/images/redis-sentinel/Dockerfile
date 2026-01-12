@@ -1,4 +1,5 @@
 FROM docker.io/sourcemation/debian-13-slim:latest as builder
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 ARG TARGETARCH
 
@@ -27,6 +28,7 @@ RUN VERSION=$(echo ${REDIS_SENTINEL_VERSION} | sed -e "s/^v//g"); \
     make -C redis-${VERSION} install
 
 FROM docker.io/sourcemation/debian-13-slim:latest
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 ARG BUILD_DATE
 ARG TARGETARCH

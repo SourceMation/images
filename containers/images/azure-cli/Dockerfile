@@ -1,4 +1,5 @@
 FROM sourcemation/debian-12-slim:latest
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 ARG BUILD_DATE
 ARG TARGETARCH

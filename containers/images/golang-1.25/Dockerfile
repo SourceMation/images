@@ -1,4 +1,5 @@
 FROM sourcemation/debian-13-slim:latest AS build
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 ENV PATH="/usr/local/go/bin:$PATH"
 
@@ -56,6 +57,7 @@ RUN set -eux; \
 
 
 FROM sourcemation/debian-13-slim:latest
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 ARG BUILD_DATE
 ARG TARGETARCH

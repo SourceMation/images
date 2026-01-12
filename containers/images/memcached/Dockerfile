@@ -1,4 +1,5 @@
 FROM sourcemation/debian-13-slim:latest AS builder
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 ARG TARGETARCH
 ARG VERSION=1.6.40
@@ -38,6 +39,7 @@ RUN ./configure --build=${TARGETARCH}-linux-gnu ${CONFIGURE_OPTS}
 RUN make -j"$(nproc)"
 
 FROM sourcemation/debian-13-slim:latest
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 ARG BUILD_DATE
 ARG TARGETARCH
