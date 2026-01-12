@@ -4,8 +4,8 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ARG BUILD_DATE
 ARG TARGETARCH
 
-ENV HUGO_VERSION=0.154.2
-ENV DART_SASS_VERSION=1.97.1
+ENV HUGO_VERSION=0.154.5
+ENV DART_SASS_VERSION=1.97.2
 ENV PATH="/usr/local/bin/src:${PATH}"
 
 LABEL name="hugo" \
@@ -17,7 +17,7 @@ LABEL name="hugo" \
       architecture="${TARGETARCH}" \
       summary="Hugo (extended+withdeploy) on Debian 12 Slim Container" \
       description="Provides Hugo (extended+withdeploy) on Debian 12 Slim Container" \
-      version="0.154.2" \
+      version="0.154.5" \
       io.k8s.display-name="Hugo (extended+withdeploy) on Debian 12 Slim Container" \
       io.k8s.description="Provides Hugo (extended+withdeploy) on Debian 12 Slim Contaner" \
       io.openshift.tags="Hugo debian-12-slim"
@@ -38,7 +38,7 @@ RUN apt-get update && apt-get install -y curl ca-certificates gnupg git gcc g++ 
     && cp -r /tmp/dart-sass/* /usr/local/bin \
     && curl -sSL -o /tmp/hugo_extended_withdeploy_${HUGO_VERSION}_linux-${TARGETARCH}.deb https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_withdeploy_${HUGO_VERSION}_linux-${TARGETARCH}.deb \
     && echo "$(curl -sSL https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_checksums.txt | awk -v HUGO_FILE=hugo_extended_withdeploy_${HUGO_VERSION}_linux-${TARGETARCH}.deb '$2 ~ HUGO_FILE {print $1}') /tmp/hugo_extended_withdeploy_${HUGO_VERSION}_linux-${TARGETARCH}.deb" | sha256sum -c - \
-    && apt install -y /tmp/hugo_extended_withdeploy_${HUGO_VERSION}_linux-${TARGETARCH}.deb \
+    && apt-get install -y /tmp/hugo_extended_withdeploy_${HUGO_VERSION}_linux-${TARGETARCH}.deb \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/*
 
 WORKDIR /src
