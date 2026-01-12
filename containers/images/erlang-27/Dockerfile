@@ -53,11 +53,11 @@ RUN curl -fSL -o otp_src.tar.gz "${ERLANG_DOWNLOAD_URL}" \
     && tar -xzf otp_src.tar.gz -C erlang --strip-components=1 \
     && rm otp_src.tar.gz \
     && cd erlang \
-    && export ERL_TOP=$(pwd) \
-    && export CFLAGS="$(dpkg-buildflags --get CFLAGS)" \
+    && ERL_TOP=$(pwd); export ERL_TOP \
+    && CFLAGS="$(dpkg-buildflags --get CFLAGS)"; export CFLAGS \
     && export CFLAGS="$CFLAGS -Wl,-rpath=$OPENSSL_INSTALL_PATH_PREFIX/lib" \
-    && export hostArch="$(dpkg-architecture --query DEB_HOST_GNU_TYPE)" \
-	&& export buildArch="$(dpkg-architecture --query DEB_BUILD_GNU_TYPE)" \
+    && hostArch="$(dpkg-architecture --query DEB_HOST_GNU_TYPE)"; export hostArch \
+	&& buildArch="$(dpkg-architecture --query DEB_BUILD_GNU_TYPE)"; export buildArch \
     && ./configure \
         --prefix="$ERLANG_INSTALL_PATH_PREFIX" \
         --host="$hostArch" \

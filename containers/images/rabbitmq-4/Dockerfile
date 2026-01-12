@@ -18,7 +18,7 @@ RUN apt-get update \
 RUN curl -fsL -o "$RABBITMQ_PATH.tar.xz.asc" "$RABBITMQ_SOURCE_URL.asc" \
     && curl -fsL -o "$RABBITMQ_PATH.tar.xz" "$RABBITMQ_SOURCE_URL" \
     \
-    && export GNUPGHOME="$(mktemp -d)" \
+    && GNUPGHOME="$(mktemp -d)"; export GNUPGHOME \
     && gpg --batch --keyserver hkps://keys.openpgp.org --recv-keys "$RABBITMQ_PGP_KEY_ID" \
     && gpg --batch --verify "$RABBITMQ_PATH.tar.xz.asc" "$RABBITMQ_PATH.tar.xz" \
     && gpgconf --kill all \

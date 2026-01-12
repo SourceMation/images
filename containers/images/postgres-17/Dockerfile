@@ -50,7 +50,7 @@ RUN set -eux; \
     dpkgArch="$(dpkg --print-architecture | awk -F- '{ print $NF }')"; \
     wget --progress=dot:giga -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch"; \
     wget --progress=dot:giga -O /usr/local/bin/gosu.asc "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch.asc"; \
-    export GNUPGHOME="$(mktemp -d)"; \
+    GNUPGHOME="$(mktemp -d)"; export GNUPGHOME; \
     gpg --batch --keyserver hkps://keys.openpgp.org --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4; \
     gpg --batch --verify /usr/local/bin/gosu.asc /usr/local/bin/gosu; \
     gpgconf --kill all; \
@@ -88,7 +88,7 @@ RUN mkdir /docker-entrypoint-initdb.d
 
 RUN set -ex; \
     key='B97B0AFCAA1A47F044F244A07FCC7D46ACCC4CF8'; \
-    export GNUPGHOME="$(mktemp -d)"; \
+    GNUPGHOME="$(mktemp -d)"; export GNUPGHOME; \
     mkdir -p /usr/local/share/keyrings/; \
     gpg --batch --keyserver keyserver.ubuntu.com --recv-keys "$key"; \
     gpg --batch --export --armor "$key" > /usr/local/share/keyrings/postgres.gpg.asc; \

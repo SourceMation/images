@@ -87,7 +87,7 @@ RUN ARCH= && dpkgArch="$(dpkg --print-architecture)" \
     arm64) ARCH='arm64' OPENSSL_ARCH='linux-aarch64';; \
     *) echo "unsupported architecture"; exit 1 ;; \
   esac \
-  && export GNUPGHOME="$(mktemp -d)" \
+  && GNUPGHOME="$(mktemp -d)"; export GNUPGHOME \
   && set -ex \
   && for key in \
     C0D6248439F1D5604AAFFB4021D900FFDB233756 \
@@ -119,13 +119,10 @@ RUN ARCH= && dpkgArch="$(dpkg --print-architecture)" \
 
 
 RUN set -ex \
-  && export GNUPGHOME="$(mktemp -d)" \
-  && for key in \
-    6A010C5166006599AA17F08146C2130DFD2497F5 \
-  ; do \
-      gpg --batch --keyserver-options timeout=5 --keyserver hkps://keys.openpgp.org --recv-keys "$key" || \
-      gpg --batch --keyserver-options timeout=10 --keyserver keyserver.ubuntu.com --recv-keys "$key" ; \
-  done \
+  && GNUPGHOME="$(mktemp -d)"; export GNUPGHOME \
+  && key="6A010C5166006599AA17F08146C2130DFD2497F5" \
+  && { gpg --batch --keyserver-options timeout=5 --keyserver hkps://keys.openpgp.org --recv-keys "$key" || \
+      gpg --batch --keyserver-options timeout=10 --keyserver keyserver.ubuntu.com --recv-keys "$key" ; } \
   && curl -LO "https://yarnpkg.com/downloads/$YARN_VERSION/yarn-v$YARN_VERSION.tar.gz" \
   && curl -LO "https://yarnpkg.com/downloads/$YARN_VERSION/yarn-v$YARN_VERSION.tar.gz.asc" \
   && gpg --batch --verify yarn-v$YARN_VERSION.tar.gz.asc yarn-v$YARN_VERSION.tar.gz \
