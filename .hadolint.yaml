@@ -8,3 +8,5 @@ ignored:
   - DL3033 # Specify version with yum install
   - DL3041 # Specify version with dnf install
   - DL3003 # Use WORKDIR to switch to a directory
+  - SC2086 # Double quote to prevent globbing and word splitting - we want this - variables that may contain multiple items ex. package lists
+
