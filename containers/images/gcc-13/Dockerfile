@@ -71,7 +71,7 @@ RUN set -eux; \
         make \
         patch \
         unzip \
-        wget --progress=dot:giga \
+        wget \
         xz-utils \
         zlib1g-dev; \
     rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*;

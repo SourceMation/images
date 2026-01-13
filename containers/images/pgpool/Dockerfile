@@ -9,7 +9,7 @@ ENV PGPOOL_CONF_VOLUME /config
 RUN set -eux \
     && apt-get update && apt-get install -y --no-install-recommends \
         ca-certificates \
-        wget --progress=dot:giga \
+        wget \
         tar \
     && apt-get install -y --no-install-recommends \
         bison \

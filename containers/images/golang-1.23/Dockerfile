@@ -14,7 +14,7 @@ RUN set -eux; \
                 ca-certificates \
                 dirmngr \
                 gnupg \
-                wget --progress=dot:giga ; \
+                wget ; \
 	now="$(date '+%s')"; \
 	wget --progress=dot:giga -O go.tgz.asc "$GO_URL.asc"; \
 	wget --progress=dot:giga -O go.tgz "$GO_URL" --progress=dot:giga; \
