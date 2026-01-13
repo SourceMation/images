@@ -34,10 +34,10 @@ RUN dnf install -y epel-release && \
 
 RUN groupadd --system --gid 993 mosquitto && \
     useradd --system --uid 993 --gid 993 --home-dir /etc/mosquitto --shell /sbin/nologin --comment "Mosquitto Broker" mosquitto && \
-    mkdir -m 740 -p /var/log/mosquitto && chown mosquitto:mosquitto /var/log/mosquitto && \
-    mkdir -m 740 -p /run/mosquitto && chown mosquitto:mosquitto /run/mosquitto && \
-    mkdir -m 740 -p /mosquitto/log && chown mosquitto:mosquitto /mosquitto/log && \
-    mkdir -m 740 -p /mosquitto/data && chown mosquitto:mosquitto /mosquitto/data
+    mkdir -p /var/log/mosquitto && chmod 740 /var/log/mosquitto && chown mosquitto:mosquitto /var/log/mosquitto && \
+    mkdir -p /run/mosquitto && chmod 740 /run/mosquitto && chown mosquitto:mosquitto /run/mosquitto && \
+    mkdir -p /mosquitto/log && chmod 740 /mosquitto/log && chown mosquitto:mosquitto /mosquitto/log && \
+    mkdir -p /mosquitto/data && chmod 740 /mosquitto/data && chown mosquitto:mosquitto /mosquitto/data
 
 VOLUME ["/mosquitto/data", "/mosquitto/log"]
 
