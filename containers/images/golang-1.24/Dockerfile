@@ -17,7 +17,7 @@ RUN set -eux; \
                 wget ; \
 	now="$(date '+%s')"; \
 	wget --progress=dot:giga -O go.tgz.asc "$GO_URL.asc"; \
-	wget --progress=dot:giga -O go.tgz "$GO_URL" --progress=dot:giga; \
+	wget --progress=dot:giga -O go.tgz "$GO_URL"; \
 	echo "$GO_SHA256 *go.tgz" | sha256sum -c -; \
 	\
 # https://github.com/golang/go/issues/14739#issuecomment-324767697
