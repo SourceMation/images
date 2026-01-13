@@ -63,8 +63,8 @@ RUN set -xe; \
 		python3-psycopg2 \
 		python3-setuptools \
 	; \
-	pip3 install --upgrade pip; \
-	pip3 install --no-deps -r requirements.txt; \
+	pip3 install --no-cache-dir --upgrade pip; \
+	pip3 install --no-cache-dir --no-deps -r requirements.txt; \
 	rm -rf /var/lib/apt/lists/*;
 
 # make the sample config easier to munge (and "correct by default")

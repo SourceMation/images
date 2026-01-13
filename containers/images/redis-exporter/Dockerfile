@@ -11,7 +11,8 @@ WORKDIR /tmp
 RUN apt-get update && apt-get install -y --no-install-recommends curl ca-certificates git; \
     git clone --branch ${REDIS_EXPORTER_VERSION} https://github.com/oliver006/redis_exporter.git && \
     cd redis_exporter && \
-    BUILD_DATE=$(date +%F-%T) CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build -o /redis_exporter \
+    export BUILD_DATE=$(date +%F-%T) CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} && \
+    go build -o /redis_exporter \
     -ldflags  "-s -w -extldflags \"-static\" -X main.BuildVersion=${REDIS_EXPORTER_VERSION} -X main.BuildDate=$BUILD_DATE"
 
 # Smoke test

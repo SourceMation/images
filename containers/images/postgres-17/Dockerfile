@@ -68,7 +68,10 @@ RUN set -eux; \
 # if this file exists, we're likely in "debian:xxx-slim", and locales are thus being excluded so we need to remove that exclusion (since we need locales)
             grep -q '/usr/share/locale' /etc/dpkg/dpkg.cfg.d/docker; \
             sed -ri '/\/usr\/share\/locale/d' /etc/dpkg/dpkg.cfg.d/docker; \
-            ! grep -q '/usr/share/locale' /etc/dpkg/dpkg.cfg.d/docker; \
+    fi; \
+    if grep -q '/usr/share/locale' /etc/dpkg/dpkg.cfg.d/docker; then \
+        echo "Failed to remove locale exclusion from /etc/dpkg/dpkg.cfg.d/docker"; \
+        exit 1; \
     fi; \
     apt-get update; apt-get install -y --no-install-recommends locales; rm -rf /var/lib/apt/lists/*; \
     echo 'en_US.UTF-8 UTF-8' >> /etc/locale.gen; \
@@ -100,7 +103,6 @@ RUN set -ex; \
 # see note below about "*.pyc" files
     export PYTHONDONTWRITEBYTECODE=1; \
     \
-    dpkgArch="$(dpkg --print-architecture)"; \
     aptRepo="[ signed-by=/usr/local/share/keyrings/postgres.gpg.asc ] http://apt.postgresql.org/pub/repos/apt/ trixie-pgdg main $PG_MAJOR"; \
     echo "deb $aptRepo" > /etc/apt/sources.list.d/pgdg.list; \
     apt-get update; \
