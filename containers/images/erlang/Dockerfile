@@ -37,7 +37,7 @@ RUN curl -fSL -o openssl.tar.gz "${OPENSSL_DOWNLOAD_URL}" \
         --libdir="$OPENSSL_INSTALL_PATH_PREFIX/lib" \
         -Wl,-rpath="$OPENSSL_INSTALL_PATH_PREFIX/lib" \
         enable-fips \
-    && make -j$(nproc) \
+    && make "-j$(nproc)" \
     && make install_sw install_ssldirs install_fips \
     && ldconfig \
     && rmdir "$OPENSSL_CONFIG_DIR/certs" "$OPENSSL_CONFIG_DIR/private" \
@@ -53,11 +53,11 @@ RUN curl -fSL -o otp_src.tar.gz "${ERLANG_DOWNLOAD_URL}" \
     && tar -xzf otp_src.tar.gz -C erlang --strip-components=1 \
     && rm otp_src.tar.gz \
     && cd erlang \
-    && export ERL_TOP=$(pwd) \
-    && export CFLAGS="$(dpkg-buildflags --get CFLAGS)" \
+    && ERL_TOP=$(pwd); export ERL_TOP \
+    && CFLAGS="$(dpkg-buildflags --get CFLAGS)"; export CFLAGS \
     && export CFLAGS="$CFLAGS -Wl,-rpath=$OPENSSL_INSTALL_PATH_PREFIX/lib" \
-    && export hostArch="$(dpkg-architecture --query DEB_HOST_GNU_TYPE)" \
-	&& export buildArch="$(dpkg-architecture --query DEB_BUILD_GNU_TYPE)" \
+    && hostArch="$(dpkg-architecture --query DEB_HOST_GNU_TYPE)"; export hostArch \
+	&& buildArch="$(dpkg-architecture --query DEB_BUILD_GNU_TYPE)"; export buildArch \
     && ./configure \
         --prefix="$ERLANG_INSTALL_PATH_PREFIX" \
         --host="$hostArch" \
@@ -93,7 +93,7 @@ RUN curl -fSL -o otp_src.tar.gz "${ERLANG_DOWNLOAD_URL}" \
         --without-tftp \
         --without-wx \
         --enable-jit \
-    && make -j$(nproc) GEN_OPT_FLGS="-O2 -fno-strict-aliasing" \
+    && make "-j$(nproc)" GEN_OPT_FLGS="-O2 -fno-strict-aliasing" \
     && make install \
     \
 # Remove unnecessary files
