@@ -7,18 +7,16 @@ ADD https://github.com/prometheus-operator/prometheus-operator/archive/refs/tags
 
 ENV GOARCH=${TARGETARCH}
 
-RUN << EOF
-set -eu
-apt-get update
-apt-get -y upgrade
-apt-get -y install ca-certificates
-tar -xzf ${VERSION}.tar.gz -C src --strip 1
-cd src
-go mod download -x 
-go mod verify
-make operator
-mv operator ../bin/
-EOF
+RUN set -eu && \
+    apt-get update && \
+    apt-get -y upgrade && \
+    apt-get -y install --no-install-recommends ca-certificates && \
+    tar -xzf ${VERSION}.tar.gz -C src --strip 1 && \
+    cd src && \
+    go mod download -x  && \
+    go mod verify && \
+    make operator && \
+    mv operator ../bin/
 
 FROM docker.io/sourcemation/debian-13-slim:latest
 

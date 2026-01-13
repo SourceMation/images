@@ -3,18 +3,15 @@ FROM docker.io/sourcemation/debian-13-slim:latest AS ruby
 ARG VERSION=1.19.1
 ARG RUBY_INSTALL=https://github.com/postmodern/ruby-install/releases/download/v0.10.1/ruby-install-0.10.1.tar.gz
 
-ADD ${RUBY_INSTALL} /tmp/
-
-RUN << EOF
-apt-get update
-apt-get install curl -y
-mkdir /tmp/ruby-install/
-tar -xf /tmp/*tar.gz --strip 1 -C /tmp/ruby-install
-/tmp/ruby-install/bin/ruby-install -i /opt/ruby ruby
-PATH="$PATH:/opt/ruby/bin"
-gem update --system
-gem install fluentd -v ${VERSION}
-EOF
+RUN apt-get update && \
+    apt-get install --no-install-recommends curl ca-certificates -y && \
+    mkdir /tmp/ruby-install/ && \
+    curl -fL -o /tmp/ruby-install.tar.gz ${RUBY_INSTALL} && \
+    tar -xf /tmp/ruby-install.tar.gz --strip 1 -C /tmp/ruby-install && \
+    /tmp/ruby-install/bin/ruby-install -i /opt/ruby ruby && \
+    PATH="$PATH:/opt/ruby/bin" && \
+    gem update --system && \
+    gem install fluentd -v ${VERSION}
 
 FROM docker.io/sourcemation/debian-13-slim:latest
 
@@ -42,14 +39,12 @@ COPY --from=ruby /opt/ruby    /opt/ruby
 ENV PATH="$PATH:/opt/ruby/bin"
 
 # RUN update and setup user
-RUN << EOF
-set -e
-apt-get update
-apt-get upgrade -y
-apt-get install libssl3 libyaml-0-2 -y
-rm -rf /var/lib/apt/lists/*
-fluentd --setup /etc/fluent
-EOF
+RUN set -e && \
+    apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install --no-install-recommends libssl3 libyaml-0-2 -y && \
+    rm -rf /var/lib/apt/lists/* && \
+    fluentd --setup /etc/fluent
 # END INSTALL
 
 USER       nobody
