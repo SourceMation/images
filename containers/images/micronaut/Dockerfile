@@ -34,6 +34,6 @@ EXPOSE 8080
 RUN curl -s "https://get.sdkman.io" -o sdkman.sh &&\
     sha256sum --check <( echo "ad5de2f3e29160f985ee80cd94f612aeb747a399d1cead283e28af0a911304db sdkman.sh") && \
     bash sdkman.sh && \
-    source "/home/micronaut/.sdkman/bin/sdkman-init.sh" && \
+    . "/home/micronaut/.sdkman/bin/sdkman-init.sh" && \
     sdk install micronaut 4.8.0 && \
     sdk install java 21.0.6-graal
