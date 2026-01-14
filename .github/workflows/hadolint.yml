@@ -17,9 +17,4 @@ jobs:
           # We use --entrypoint hadolint to ensure we are calling the binary directly.
           # We mount the current directory to /src and work from there so relative paths from find work.
           find . -name "Dockerfile" -print0 | xargs -0 docker run --rm --entrypoint hadolint -v "$(pwd):/src" -w /src hadolint/hadolint -c .hadolint.yaml
-          if [ $? -ne 0 ]; then
-            echo "[FAIL] Hadolint found issues in the Dockerfiles :()"
-            exit 1
-          else
-            echo "[PASS] All Dockerfiles passed Hadolint checks! :)"
-          fi
+          echo "[PASS] All Dockerfiles passed Hadolint checks! :)"
