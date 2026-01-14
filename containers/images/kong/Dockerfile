@@ -20,6 +20,7 @@ LABEL name="kong" \
 RUN set -ex; \
     curl -1sLf 'https://packages.konghq.com/public/gateway-39/config.rpm.txt?distro=el&codename=9' > /etc/yum.repos.d/kong-gateway-39.repo \
     && yum install -y kong \
+    && yum clean all \
     && chown kong:0 /usr/local/bin/kong \
     && chown -R kong:0 /usr/local/kong \
     && ln -s /usr/local/openresty/luajit/bin/luajit /usr/local/bin/luajit \

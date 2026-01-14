@@ -19,16 +19,16 @@ LABEL name="git" \
 
 ENV LANG=C.UTF-8 DEBIAN_FRONTEND=noninteractive HOME=/home/git
 
-RUN apt update \
-    && apt install -y \
+RUN apt-get update \
+    && apt-get install -y \
         --no-install-recommends \
         --no-install-suggests \
         ca-certificates \
         openssl \
         curl \
         git \
-    && apt clean \
-    && apt autoremove -y \
+    && apt-get clean \
+    && apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/* \
         /var/cache/apt/archives/* \
         /var/log/* \

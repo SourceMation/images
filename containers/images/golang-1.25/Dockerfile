@@ -1,4 +1,5 @@
 FROM sourcemation/debian-13-slim:latest AS build
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 ENV PATH="/usr/local/go/bin:$PATH"
 
@@ -15,8 +16,8 @@ RUN set -eux; \
                 gnupg \
                 wget ; \
 	now="$(date '+%s')"; \
-	wget -O go.tgz.asc "$GO_URL.asc"; \
-	wget -O go.tgz "$GO_URL" --progress=dot:giga; \
+	wget --progress=dot:giga -O go.tgz.asc "$GO_URL.asc"; \
+	wget --progress=dot:giga -O go.tgz "$GO_URL"; \
 	echo "$GO_SHA256 *go.tgz" | sha256sum -c -; \
 	\
 # https://github.com/golang/go/issues/14739#issuecomment-324767697
@@ -56,6 +57,7 @@ RUN set -eux; \
 
 
 FROM sourcemation/debian-13-slim:latest
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 ARG BUILD_DATE
 ARG TARGETARCH

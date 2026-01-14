@@ -1,4 +1,5 @@
 FROM sourcemation/rocky-9:latest
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 ARG BUILD_DATE
 ARG TARGETARCH
@@ -18,19 +19,20 @@ LABEL name="apicast" \
       io.openshift.tags="apicast rockylinux api gateway"
 
 # Install dependencies
-RUN yum install -y yum-utils gcc git epel-release
+RUN yum install -y yum-utils gcc git epel-release && yum clean all
 
 # Enable OpenResty repo (see RHEL section at https://openresty.org/en/linux-packages.html)
 RUN yum-config-manager --add-repo https://openresty.org/package/centos/openresty2.repo
 
 # Upgrade yum
-RUN yum update -y
+RUN yum update -y && yum clean all
 
 # Install OpenResty
 RUN export OPENRESTY_RPM_VERSION="1.21.4.3-1.el9" \
   && yum install -y \
      openresty-${OPENRESTY_RPM_VERSION} \
-     openresty-resty-${OPENRESTY_RPM_VERSION}
+     openresty-resty-${OPENRESTY_RPM_VERSION} \
+  && yum clean all
 
 # Install LuaRocks
 RUN yum install --enablerepo='crb' -y  lua5.1 lua5.1-devel luajit luajit-devel libyaml-devel make gcc-c++ make m4 which iputils bind-utils expat-devel m4\
@@ -39,9 +41,9 @@ RUN yum install --enablerepo='crb' -y  lua5.1 lua5.1-devel luajit luajit-devel l
     openssl-devel libev-devel \
     kernel-headers kernel-devel kernel-debug \
     redis systemtap \
-    python3-pip elfutils-devel perl-Crypt-JWT
-RUN yum install -y luarocks --setopt=install_weak_deps=0 --setopt=tsflags=nodocs  && rpm -evh --nodeps lua
-RUN ln -s /usr/bin/lua-5.1 /usr/bin/lua
+    python3-pip elfutils-devel perl-Crypt-JWT && yum clean all \
+    && yum install -y luarocks --setopt=install_weak_deps=0 --setopt=tsflags=nodocs  && rpm -evh --nodeps lua && yum clean all \
+    && ln -s /usr/bin/lua-5.1 /usr/bin/lua
 
 # Configure Lua environment
 RUN mkdir -p /usr/share/lua/5.1/luarocks/ share/lua/5.1/luarocks/
@@ -75,4 +77,4 @@ ENV PATH="/home/appuser/APIcast/lua_modules/bin:/usr/local/openresty/luajit/bin/
 RUN chown -R appuser:appuser /home/appuser
 USER appuser
 
-CMD apicast -h
+CMD ["apicast", "-h"]

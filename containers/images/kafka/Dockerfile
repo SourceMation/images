@@ -1,4 +1,5 @@
 FROM sourcemation/rocky-9:latest AS jsa-builder
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # UPDATE init.sh to include new scripts
 ENV kafka_url=https://downloads.apache.org/kafka/3.9.0/kafka_2.13-3.9.0.tgz
@@ -6,7 +7,7 @@ ENV kafka_url=https://downloads.apache.org/kafka/3.9.0/kafka_2.13-3.9.0.tgz
 COPY jsa_launch /etc/kafka/docker/jsa_launch
 
 # Apache Software Foundation dev keys: https://downloads.apache.org/kafka/KEYS
-ADD KEYS /
+COPY KEYS /
 
 RUN dnf install -y --setopt=install_weak_deps=0 --setopt=tsflags=nodocs gpg hostname procps-ng java-21-openjdk-headless && dnf clean all && \
     gpg --import KEYS &&\
@@ -19,6 +20,7 @@ RUN dnf install -y --setopt=install_weak_deps=0 --setopt=tsflags=nodocs gpg host
 RUN /etc/kafka/docker/jsa_launch
 
 FROM sourcemation/rocky-9:latest
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 ARG BUILD_DATE
 ARG TARGETARCH
@@ -71,4 +73,4 @@ USER appuser
 
 WORKDIR /opt/kafka/bin
 
-CMD '/etc/kafka/docker/run'
+CMD ["/etc/kafka/docker/run"]

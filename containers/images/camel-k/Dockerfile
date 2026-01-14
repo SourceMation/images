@@ -1,8 +1,9 @@
 # Build stage
 FROM sourcemation/golang-1.25 AS builder
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 ENV CAMEL_K_VER="v2.9.0"
-RUN apt-get update && apt-get install openjdk-21-jdk-headless git gcc make cmake which maven -y
+RUN apt-get update && apt-get install --no-install-recommends openjdk-21-jdk-headless git gcc make cmake which maven -y
 # THE MAKEFILE targets are taken from the camel-k Makefile and `images:` without final image build
 # REMOVE ./pkg/cmd/source/util_test.go as they make everything to hang out or fail
 RUN mkdir /build && cd /build && git clone --depth 1 -b ${CAMEL_K_VER} https://github.com/apache/camel-k.git &&\
@@ -14,6 +15,7 @@ RUN mkdir /build && cd /build && git clone --depth 1 -b ${CAMEL_K_VER} https://g
 RUN go install github.com/go-delve/delve/cmd/dlv@latest
 
 FROM sourcemation/jdk-17:latest
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 ARG BUILD_DATE
 ARG TARGETARCH
@@ -49,8 +51,8 @@ RUN echo "SYMLINKING delve to /usr/local/bin/" && ln -s /usr/bin/dlv /usr/local/
 COPY --from=builder /go/bin/dlv /usr/local/bin/dlv
 
 # Maven configuration
-RUN mkdir -p ${MAVEN_HOME}
-RUN mkdir -p ${MVN_REPO}
+RUN mkdir -p ${MAVEN_HOME} \
+    && mkdir -p ${MVN_REPO}
 
 
 # Prepare the maven wrapper required in the build Pod strategy
@@ -69,9 +71,8 @@ RUN ${MVNW_DIR}/mvnw --version
 #COPY --from=builder /build/camel-k/build/_maven_output ${MVN_REPO}
 
 # Fix https://github.com/moby/moby/issues/37965
-RUN true
-
-RUN chgrp -R 0 ${MVN_REPO} \
+RUN true \
+    && chgrp -R 0 ${MVN_REPO} \
     && chown -R 1001:0 ${MVN_REPO} \
     && chmod -R 775 ${MVN_REPO} \
     && chgrp -R 0 ${MAVEN_HOME} \

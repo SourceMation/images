@@ -18,7 +18,7 @@ RUN apt-get update \
 RUN curl -fsL -o "$RABBITMQ_PATH.tar.xz.asc" "$RABBITMQ_SOURCE_URL.asc" \
     && curl -fsL -o "$RABBITMQ_PATH.tar.xz" "$RABBITMQ_SOURCE_URL" \
     \
-    && export GNUPGHOME="$(mktemp -d)" \
+    && GNUPGHOME="$(mktemp -d)"; export GNUPGHOME \
     && gpg --batch --keyserver hkps://keys.openpgp.org --recv-keys "$RABBITMQ_PGP_KEY_ID" \
     && gpg --batch --verify "$RABBITMQ_PATH.tar.xz.asc" "$RABBITMQ_PATH.tar.xz" \
     && gpgconf --kill all \
@@ -80,10 +80,9 @@ RUN	apt-get update \
     && rm "$RABBITMQ_DATA_DIR/.erlang.cookie"
 
 # Enable Prometheus-style metrics by default (https://github.com/docker-library/rabbitmq/issues/419)
-RUN gosu rabbitmq rabbitmq-plugins enable --offline rabbitmq_prometheus
-
-# Added for backwards compatibility - users can simply COPY custom plugins to /plugins
-RUN ln -sf /opt/rabbitmq/plugins /plugins
+RUN gosu rabbitmq rabbitmq-plugins enable --offline rabbitmq_prometheus \
+    # Added for backwards compatibility - users can simply COPY custom plugins to /plugins
+    && ln -sf /opt/rabbitmq/plugins /plugins
 
 # set home so that any `--user` knows where to put the erlang cookie
 ENV HOME=$RABBITMQ_DATA_DIR

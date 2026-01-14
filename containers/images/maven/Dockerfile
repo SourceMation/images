@@ -9,7 +9,7 @@ RUN set -eux; \
   && rm -rf /var/lib/apt/lists/*
 RUN set -eux; curl -LO https://dlcdn.apache.org/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz \
   && curl -LO https://dlcdn.apache.org/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz.asc \
-  && export GNUPGHOME="$(mktemp -d)"; \
+  && GNUPGHOME="$(mktemp -d)"; export GNUPGHOME; \
   for key in 88BE34F94BDB2B5357044E2E3A387D43964143E3 29BEA2A645F2D6CED7FB12E02B172E3E156466E8 6A814B1F869C2BBEAB7CB7271A2A1C94BDE89688 84789D24DF77A32433CE1F079EB80E92EB2135B1; do \
       gpg --batch --keyserver hkps://keyserver.ubuntu.com --recv-keys "$key" ; \
   done; \

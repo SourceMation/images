@@ -1,10 +1,11 @@
 FROM docker.io/sourcemation/debian-13-slim:latest as builder
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 ARG TARGETARCH
 
 ARG REDIS_SENTINEL_VERSION="stable"
 
-RUN apt-get update && apt-get install -y sudo tzdata make curl build-essential libc6-dev bash libssl-dev
+RUN apt-get update && apt-get install -y --no-install-recommends sudo tzdata make curl build-essential libc6-dev bash libssl-dev && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /tmp
 
@@ -27,6 +28,7 @@ RUN VERSION=$(echo ${REDIS_SENTINEL_VERSION} | sed -e "s/^v//g"); \
     make -C redis-${VERSION} install
 
 FROM docker.io/sourcemation/debian-13-slim:latest
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 ARG BUILD_DATE
 ARG TARGETARCH
@@ -50,10 +52,10 @@ LABEL name="redis-sentinel" \
 COPY --from=builder /usr/local/bin/redis-cli /usr/local/bin/redis-cli
 COPY --from=builder /usr/local/bin/redis-sentinel /usr/local/bin/redis-sentinel
 
-RUN apt-get update && apt-get upgrade -y
+RUN apt-get update && apt-get upgrade -y && rm -rf /var/lib/apt/lists/*
 
 RUN groupadd -r -g 1000 redis && useradd -r -g redis -u 1000 redis && \
-    apt-get update && apt-get install -y bash libssl3
+    apt-get update && apt-get install -y --no-install-recommends bash libssl3 && rm -rf /var/lib/apt/lists/*
 
 COPY sentinel.conf /etc/redis/sentinel.conf
 

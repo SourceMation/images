@@ -25,7 +25,8 @@ RUN set -eux; \
     apt-get install -y --no-install-recommends \
       ca-certificates \
       tar \
-      wget; 
+      wget; \
+    rm -rf /var/lib/apt/lists/*;
 RUN wget --progress=dot:giga -O /tmp/postgres-exporter.tar.gz ${BINARY_URL}; \
     tar --extract \
         --file /tmp/postgres-exporter.tar.gz \

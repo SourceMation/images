@@ -7,16 +7,14 @@ ADD https://github.com/kubernetes/kube-state-metrics/archive/refs/tags/${VERSION
 
 ENV GOARCH=${TARGETARCH}
 
-RUN << EOF
-set -eu
-apt-get update
-apt-get -y upgrade
-apt-get -y install ca-certificates
-tar -xzf ${VERSION}.tar.gz -C src --strip 1
-cd src
-make build-local
-mv kube-state-metrics ../bin/
-EOF
+RUN set -eu && \
+    apt-get update && \
+    apt-get -y upgrade && \
+    apt-get -y install --no-install-recommends ca-certificates && \
+    tar -xzf ${VERSION}.tar.gz -C src --strip 1 && \
+    cd src && \
+    make build-local && \
+    mv kube-state-metrics ../bin/
 
 FROM sourcemation/debian-13-slim:latest
 
@@ -39,12 +37,10 @@ LABEL name="kube-state-metrics" \
   io.openshift.tags="kube-state-metrics debian-13-slim"
 
 # RUN update and setup user
-RUN << EOF 
-    set -e
-    apt-get update
-    apt-get upgrade -y
+RUN set -e && \
+    apt-get update && \
+    apt-get upgrade -y && \
     rm -rf /var/lib/apt/lists/*
-EOF
 
 # INSTAL OR COPY --from=builder /builder/path /path
 COPY --from=builder /go/bin/kube-state-metrics      /usr/local/bin/

@@ -1,4 +1,5 @@
 FROM sourcemation/debian-13-slim:latest
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 ARG BUILD_DATE
 ARG TARGETARCH
@@ -47,9 +48,9 @@ RUN set -eux; \
     apt-get install -y --no-install-recommends ca-certificates wget; \
     rm -rf /var/lib/apt/lists/*; \
     dpkgArch="$(dpkg --print-architecture | awk -F- '{ print $NF }')"; \
-    wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch"; \
-    wget -O /usr/local/bin/gosu.asc "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch.asc"; \
-    export GNUPGHOME="$(mktemp -d)"; \
+    wget --progress=dot:giga -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch"; \
+    wget --progress=dot:giga -O /usr/local/bin/gosu.asc "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch.asc"; \
+    GNUPGHOME="$(mktemp -d)"; export GNUPGHOME; \
     gpg --batch --keyserver hkps://keys.openpgp.org --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4; \
     gpg --batch --verify /usr/local/bin/gosu.asc /usr/local/bin/gosu; \
     gpgconf --kill all; \
@@ -67,7 +68,10 @@ RUN set -eux; \
 # if this file exists, we're likely in "debian:xxx-slim", and locales are thus being excluded so we need to remove that exclusion (since we need locales)
             grep -q '/usr/share/locale' /etc/dpkg/dpkg.cfg.d/docker; \
             sed -ri '/\/usr\/share\/locale/d' /etc/dpkg/dpkg.cfg.d/docker; \
-            ! grep -q '/usr/share/locale' /etc/dpkg/dpkg.cfg.d/docker; \
+    fi; \
+    if grep -q '/usr/share/locale' /etc/dpkg/dpkg.cfg.d/docker; then \
+        echo "Failed to remove locale exclusion from /etc/dpkg/dpkg.cfg.d/docker"; \
+        exit 1; \
     fi; \
     apt-get update; apt-get install -y --no-install-recommends locales; rm -rf /var/lib/apt/lists/*; \
     echo 'en_US.UTF-8 UTF-8' >> /etc/locale.gen; \
@@ -87,7 +91,7 @@ RUN mkdir /docker-entrypoint-initdb.d
 
 RUN set -ex; \
     key='B97B0AFCAA1A47F044F244A07FCC7D46ACCC4CF8'; \
-    export GNUPGHOME="$(mktemp -d)"; \
+    GNUPGHOME="$(mktemp -d)"; export GNUPGHOME; \
     mkdir -p /usr/local/share/keyrings/; \
     gpg --batch --keyserver keyserver.ubuntu.com --recv-keys "$key"; \
     gpg --batch --export --armor "$key" > /usr/local/share/keyrings/postgres.gpg.asc; \
@@ -99,7 +103,6 @@ RUN set -ex; \
 # see note below about "*.pyc" files
     export PYTHONDONTWRITEBYTECODE=1; \
     \
-    dpkgArch="$(dpkg --print-architecture)"; \
     aptRepo="[ signed-by=/usr/local/share/keyrings/postgres.gpg.asc ] http://apt.postgresql.org/pub/repos/apt/ trixie-pgdg main $PG_MAJOR"; \
     echo "deb $aptRepo" > /etc/apt/sources.list.d/pgdg.list; \
     apt-get update; \
@@ -130,10 +133,8 @@ RUN set -eux; \
     sed -ri "s!^#?(listen_addresses)\s*=\s*\S+.*!\1 = '*'!" /usr/share/postgresql/postgresql.conf.sample; \
     grep -F "listen_addresses = '*'" /usr/share/postgresql/postgresql.conf.sample
 
-RUN install --verbose --directory --owner postgres --group postgres --mode 3777 /var/run/postgresql
-
-# this 1777 will be replaced by 0700 at runtime (allows semi-arbitrary "--user" values)
-RUN install --verbose --directory --owner postgres --group postgres --mode 1777 "$PGDATA"
+RUN install --verbose --directory --owner postgres --group postgres --mode 3777 /var/run/postgresql \
+    && install --verbose --directory --owner postgres --group postgres --mode 1777 "$PGDATA"
 
 COPY docker-entrypoint.sh docker-ensure-initdb.sh /usr/local/bin/
 RUN ln -sT docker-ensure-initdb.sh /usr/local/bin/docker-enforce-initdb.sh

@@ -35,11 +35,9 @@ RUN set -ex; \
 
 WORKDIR ${GHOST_INSTALL}
 
-RUN gosu node ghost install "${GHOST_VERSION}" --db mysql --no-prompt --no-stack --no-setup --no-start --dir ${GHOST_INSTALL}
-
-RUN gosu node ghost config --no-prompt --ip '::' --port 2368 --url 'http://localhost:2368'
-
-RUN mv ${GHOST_CONTENT} ${GHOST_INSTALL}/content.orig && \
+RUN gosu node ghost install "${GHOST_VERSION}" --db mysql --no-prompt --no-stack --no-setup --no-start --dir ${GHOST_INSTALL} \
+    && gosu node ghost config --no-prompt --ip '::' --port 2368 --url 'http://localhost:2368' \
+    && mv ${GHOST_CONTENT} ${GHOST_INSTALL}/content.orig && \
     mkdir -p ${GHOST_CONTENT} && \
     chown node:node ${GHOST_CONTENT}
 

@@ -1,4 +1,5 @@
 FROM sourcemation/rocky-9:latest
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 ARG BUILD_DATE
 ARG TARGETARCH
@@ -25,8 +26,8 @@ RUN dnf module enable maven:3.8 -y && \
 # Using alternatives to set the default java and javac - javac is already set,
 # by maven module but we are setting it again - just to be sure
 
-RUN alternatives --set java java-21-openjdk.$(uname -m) && \
-    alternatives --set javac java-21-openjdk.$(uname -m)
+RUN alternatives --set java "java-21-openjdk.$(uname -m)" && \
+    alternatives --set javac "java-21-openjdk.$(uname -m)"
 
 ENV JAVA_HOME /usr/lib/jvm/java-21
 

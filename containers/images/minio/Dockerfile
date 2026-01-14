@@ -8,16 +8,14 @@ ADD https://github.com/minio/minio/archive/refs/tags/${VERSION}.tar.gz .
 ENV GOARCH=${TARGETARCH}
 ENV GOOS=linux
 
-RUN << EOF
-set -eu
-apt-get update
-apt-get -y upgrade
-apt-get -y install ca-certificates git
-tar -xzf ${VERSION}.tar.gz -C src --strip 1
-cd src
-make build
-mv minio ../bin/
-EOF
+RUN set -eu && \
+    apt-get update && \
+    apt-get -y upgrade && \
+    apt-get -y install --no-install-recommends ca-certificates git && \
+    tar -xzf ${VERSION}.tar.gz -C src --strip 1 && \
+    cd src && \
+    make build && \
+    mv minio ../bin/
 
 FROM sourcemation/debian-13-slim:latest
 

@@ -1,4 +1,5 @@
 FROM sourcemation/debian-13-slim
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # This Dockerfile originates from the official Docker Hub image. We have made modifications
 # to improve readability and maintainability. Importantly, our images are automatically
@@ -48,10 +49,10 @@ RUN set -eux; \
                 libdb-dev libffi-dev libgdbm-dev liblzma-dev libncursesw5-dev \
                 libreadline-dev libsqlite3-dev libssl-dev make tk-dev uuid-dev \
                 wget xz-utils zlib1g-dev; \
-    wget -O python.tar.xz "https://www.python.org/ftp/python/$PYTHON_VERSION/Python-$PYTHON_VERSION.tar.xz"; \
+    wget --progress=dot:giga -O python.tar.xz "https://www.python.org/ftp/python/$PYTHON_VERSION/Python-$PYTHON_VERSION.tar.xz"; \
     echo "Checking the Python Checksum"; \
     echo "$PYTHON_SHA256 *python.tar.xz" | sha256sum -c -; \
-    wget -O python.tar.xz.asc "https://www.python.org/ftp/python/$PYTHON_VERSION/Python-$PYTHON_VERSION.tar.xz.asc"; \
+    wget --progress=dot:giga -O python.tar.xz.asc "https://www.python.org/ftp/python/$PYTHON_VERSION/Python-$PYTHON_VERSION.tar.xz.asc"; \
     GNUPGHOME="$(mktemp -d)"; export GNUPGHOME; \
     gpg --batch --keyserver hkps://keys.openpgp.org --recv-keys "$GPG_KEY"; \
     gpg --batch --verify python.tar.xz.asc python.tar.xz; \

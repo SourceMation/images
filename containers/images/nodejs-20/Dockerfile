@@ -1,4 +1,5 @@
 FROM sourcemation/debian-13-slim:latest
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 ARG BUILD_DATE
 ARG TARGETARCH
@@ -75,7 +76,8 @@ RUN set -eux; echo "Installing development packages - buildpacks-deps style ;)!"
         unzip \
         wget \
         xz-utils \
-        zlib1g-dev;
+        zlib1g-dev; \
+    rm -rf /var/lib/apt/lists/*;
 
 # gpg keys listed at https://github.com/nodejs/node#release-keys
 
@@ -85,7 +87,7 @@ RUN ARCH= && dpkgArch="$(dpkg --print-architecture)" \
     arm64) ARCH='arm64' OPENSSL_ARCH='linux-aarch64';; \
     *) echo "unsupported architecture"; exit 1 ;; \
   esac \
-  && export GNUPGHOME="$(mktemp -d)" \
+  && GNUPGHOME="$(mktemp -d)"; export GNUPGHOME \
   && set -ex \
   && for key in \
     C0D6248439F1D5604AAFFB4021D900FFDB233756 \
@@ -111,18 +113,15 @@ RUN ARCH= && dpkgArch="$(dpkg --print-architecture)" \
   && ln -s /usr/local/bin/node /usr/local/bin/nodejs \
   && rm -rf /tmp/* \
   && echo "Removing OpenSSL headers to save space" \
-  && cd /usr/local/include/node/openssl/archs -mindepth 1 -maxdepth 1 ! -name "$OPENSSL_ARCH" -exec rm -rfv {} \;  && \
+  && find /usr/local/include/node/openssl/archs -mindepth 1 -maxdepth 1 ! -name "$OPENSSL_ARCH" -exec rm -rfv {} \;  && \
   echo "OK, installed nodejs $NODE_VERSION"
 
 
 RUN set -ex \
-  && export GNUPGHOME="$(mktemp -d)" \
-  && for key in \
-    6A010C5166006599AA17F08146C2130DFD2497F5 \
-  ; do \
-      gpg --batch --keyserver-options timeout=5 --keyserver hkps://keys.openpgp.org --recv-keys "$key" || \
-      gpg --batch --keyserver-options timeout=10 --keyserver keyserver.ubuntu.com --recv-keys "$key" ; \
-  done \
+  && GNUPGHOME="$(mktemp -d)"; export GNUPGHOME \
+  && key="6A010C5166006599AA17F08146C2130DFD2497F5" \
+  && { gpg --batch --keyserver-options timeout=5 --keyserver hkps://keys.openpgp.org --recv-keys "$key" || \
+      gpg --batch --keyserver-options timeout=10 --keyserver keyserver.ubuntu.com --recv-keys "$key" ; } \
   && curl -LO "https://yarnpkg.com/downloads/$YARN_VERSION/yarn-v$YARN_VERSION.tar.gz" \
   && curl -LO "https://yarnpkg.com/downloads/$YARN_VERSION/yarn-v$YARN_VERSION.tar.gz.asc" \
   && gpg --batch --verify yarn-v$YARN_VERSION.tar.gz.asc yarn-v$YARN_VERSION.tar.gz \

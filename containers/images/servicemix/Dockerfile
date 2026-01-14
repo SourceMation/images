@@ -1,4 +1,5 @@
 FROM sourcemation/rocky-9:latest
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 ARG BUILD_DATE
 ARG TARGETARCH
@@ -21,7 +22,7 @@ ENV SERVICEMIX_RELEASE="7.0.1"
 ENV JAVA_HOME="/usr/lib/jvm/jre-1.8.0"
 
 # Apache Software Foundation dev keys: https://downloads.apache.org/servicemix/KEYS
-ADD KEYS /
+COPY KEYS /
 
 RUN dnf install -y --setopt=install_weak_deps=0 --setopt=tsflags=nodocs gpg hostname procps-ng java-1.8.0-openjdk-headless unzip && dnf clean all &&\
     gpg --import KEYS &&\

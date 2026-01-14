@@ -1,10 +1,11 @@
 FROM sourcemation/golang-1.25:latest
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 ARG BUILD_DATE
 ARG TARGETARCH
 
-ENV HUGO_VERSION=0.154.2
-ENV DART_SASS_VERSION=1.97.1
+ENV HUGO_VERSION=0.154.5
+ENV DART_SASS_VERSION=1.97.2
 ENV PATH="/usr/local/bin/src:${PATH}"
 
 LABEL name="hugo" \
@@ -16,20 +17,20 @@ LABEL name="hugo" \
       architecture="${TARGETARCH}" \
       summary="Hugo (extended+withdeploy) on Debian 12 Slim Container" \
       description="Provides Hugo (extended+withdeploy) on Debian 12 Slim Container" \
-      version="0.154.2" \
+      version="0.154.5" \
       io.k8s.display-name="Hugo (extended+withdeploy) on Debian 12 Slim Container" \
       io.k8s.description="Provides Hugo (extended+withdeploy) on Debian 12 Slim Contaner" \
       io.openshift.tags="Hugo debian-12-slim"
 
 ARG NODEJS_INSTALL_SUM=872150825071bb403b6e210c66d9487a791047d0299026de429eb1f626fd969f
 
-RUN apt-get update && apt-get install -y curl ca-certificates gnupg git gcc g++ \
+RUN apt-get update && apt-get install -y --no-install-recommends curl ca-certificates gnupg git gcc g++ \
     && curl -sSL -o /tmp/setup_24.x https://deb.nodesource.com/setup_24.x \
     && echo "${NODEJS_INSTALL_SUM} /tmp/setup_24.x" | sha256sum -c - \
     && bash /tmp/setup_24.x \
     && rm -f /tmp/setup_24.x \
     && apt-get update \
-    && apt-get install -y nodejs \
+    && apt-get install -y --no-install-recommends nodejs \
     && apt-get clean \
     && if [ "${TARGETARCH}" = "amd64" ]; then DARTFILEARCH="x64"; else DARTFILEARCH="${TARGETARCH}"; fi \
     && curl -sSL -o /tmp/dart-sass-${DART_SASS_VERSION}-linux-${DARTFILEARCH}.tar.gz https://github.com/sass/dart-sass/releases/download/${DART_SASS_VERSION}/dart-sass-${DART_SASS_VERSION}-linux-${DARTFILEARCH}.tar.gz \
@@ -37,7 +38,7 @@ RUN apt-get update && apt-get install -y curl ca-certificates gnupg git gcc g++ 
     && cp -r /tmp/dart-sass/* /usr/local/bin \
     && curl -sSL -o /tmp/hugo_extended_withdeploy_${HUGO_VERSION}_linux-${TARGETARCH}.deb https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_withdeploy_${HUGO_VERSION}_linux-${TARGETARCH}.deb \
     && echo "$(curl -sSL https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_checksums.txt | awk -v HUGO_FILE=hugo_extended_withdeploy_${HUGO_VERSION}_linux-${TARGETARCH}.deb '$2 ~ HUGO_FILE {print $1}') /tmp/hugo_extended_withdeploy_${HUGO_VERSION}_linux-${TARGETARCH}.deb" | sha256sum -c - \
-    && apt install -y /tmp/hugo_extended_withdeploy_${HUGO_VERSION}_linux-${TARGETARCH}.deb \
+    && apt-get install -y --no-install-recommends /tmp/hugo_extended_withdeploy_${HUGO_VERSION}_linux-${TARGETARCH}.deb \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/*
 
 WORKDIR /src
