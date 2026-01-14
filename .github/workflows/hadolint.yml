@@ -1,0 +1,19 @@
+name: Hadolint
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Lint Dockerfiles
+        run: |
+          # Find all Dockerfiles and pass them to hadolint running in a container.
+          # We use --entrypoint hadolint to ensure we are calling the binary directly.
+          # We mount the current directory to /src and work from there so relative paths from find work.
+          find . -name "Dockerfile" -print0 | xargs -0 docker run --rm --entrypoint hadolint -v "$(pwd):/src" -w /src hadolint/hadolint -c .hadolint.yaml

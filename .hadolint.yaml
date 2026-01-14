@@ -6,8 +6,9 @@ ignored:
   - DL3016 # Pin versions in npm
   - DL3018 # Pin versions in apk add
   - DL3033 # Specify version with yum install
-  - DL3036 # Specify version with golang install
+  - DL3062 # Pin versions in go install
   - DL3041 # Specify version with dnf install
   - DL3003 # Use WORKDIR to switch to a directory
   - SC2086 # Double quote to prevent globbing and word splitting - we want this - variables that may contain multiple items ex. package lists
   - SC1091 # Cannot follow not constant source. We want to allow dynamic sourcing of scripts in the Dockerfile
+  - SC3001 # In POSIX sh, process substitution is undefined.
