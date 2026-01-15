@@ -3,6 +3,7 @@ FROM sourcemation/golang-1.25 AS builder
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 ENV CAMEL_K_VER="v2.9.0"
+# Using openjdk-21-jdk-headless as openjdk-17 is not available in Debian 13 (Trixie)
 RUN apt-get update && apt-get install --no-install-recommends openjdk-21-jdk-headless git gcc make cmake which maven -y
 # THE MAKEFILE targets are taken from the camel-k Makefile and `images:` without final image build
 # REMOVE ./pkg/cmd/source/util_test.go as they make everything to hang out or fail
@@ -14,7 +15,7 @@ RUN mkdir /build && cd /build && git clone --depth 1 -b ${CAMEL_K_VER} https://g
 # Installing delve
 RUN go install github.com/go-delve/delve/cmd/dlv@latest
 
-FROM sourcemation/jdk-17:latest
+FROM sourcemation/jdk-21:latest
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 ARG BUILD_DATE
@@ -32,7 +33,7 @@ LABEL name="camel-k" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="Apache Camel-K on Debian 13 Slim Container" \
       io.k8s.description="Provides Camel-K on Debian 13 Slim Container" \
-      io.openshift.tags="camel-k debian-13"
+      io.openshift.tags="camel-k debian-13-slim"
 
 ARG IMAGE_ARCH
 
