@@ -1,8 +1,8 @@
-FROM sourcemation/debian-12-slim:latest
+FROM sourcemation/jre-17:latest
 
 ARG TARGETARCH
 ARG BUILD_DATE
-ARG LONGNAME="Cassandra on Debian 12 Slim Container"
+ARG LONGNAME="Cassandra on Debian 13 Slim Container"
 
 LABEL name="cassandra" \
       vendor="Sourcemation" \
@@ -16,7 +16,7 @@ LABEL name="cassandra" \
       version="5.0.6" \
       io.k8s.display-name="${LONGNAME}" \
       io.k8s.description="Provides ${LONGNAME}" \
-      io.openshift.tags="cassandra debian-12-slim"
+      io.openshift.tags="cassandra debian-13-slim"
 
 ENV CASSANDRA_HOME=/opt/cassandra
 ENV PATH="${CASSANDRA_HOME}/bin:${PATH}"
@@ -24,7 +24,7 @@ ENV PATH="${CASSANDRA_HOME}/bin:${PATH}"
 RUN set -ex; \
     apt-get update; \
     apt-get upgrade -y; \
-    apt-get install -y --no-install-recommends openjdk-17-jre-headless gosu procps; \
+    apt-get install -y --no-install-recommends gosu procps; \
     rm -rf /var/lib/apt/lists/*; \
     groupadd --gid 999 cassandra; \
     useradd --uid 999 --gid 999 --shell /bin/bash -d ${CASSANDRA_HOME} --create-home cassandra
