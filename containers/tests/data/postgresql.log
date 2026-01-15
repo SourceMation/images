@@ -1,0 +1,28 @@
+2025-10-21 08:00:01.123 UTC [5432]: [1-1] user=,db=,app=,client= LOG:  starting PostgreSQL 16.1 on x86_64-pc-linux-gnu, compiled by gcc (GCC) 11.4.0, 64-bit
+2025-10-21 08:00:01.124 UTC [5432]: [2-1] user=,db=,app=,client= LOG:  listening on IPv4 address "0.0.0.0", port 5432
+2025-10-21 08:00:01.124 UTC [5432]: [3-1] user=,db=,app=,client= LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2025-10-21 08:00:01.145 UTC [5434]: [1-1] user=,db=,app=,client= LOG:  database system is ready to accept connections
+2025-10-21 08:01:15.300 UTC [5440]: [1-1] user=postgres,db=postgres,app=psql,client=[local] LOG:  connection received: host=[local]
+2025-10-21 08:01:15.305 UTC [5440]: [2-1] user=postgres,db=postgres,app=psql,client=[local] LOG:  connection authorized: user=postgres database=postgres application_name=psql
+2025-10-21 08:02:05.112 UTC [5440]: [3-1] user=postgres,db=postgres,app=psql,client=[local] LOG:  statement: CREATE TABLE transactions (id SERIAL PRIMARY KEY, amount NUMERIC, status TEXT);
+2025-10-21 08:03:10.550 UTC [5455]: [1-1] user=app_user,db=finance_db,app=payment_service,client=192.168.1.10 LOG:  connection authorized: user=app_user database=finance_db
+2025-10-21 08:03:10.600 UTC [5455]: [2-1] user=app_user,db=finance_db,app=payment_service,client=192.168.1.10 LOG:  statement: BEGIN;
+2025-10-21 08:03:10.605 UTC [5455]: [3-1] user=app_user,db=finance_db,app=payment_service,client=192.168.1.10 LOG:  statement: INSERT INTO transactions (amount, status) VALUES (150.00, 'pending');
+2025-10-21 08:03:10.610 UTC [5455]: [4-1] user=app_user,db=finance_db,app=payment_service,client=192.168.1.10 LOG:  statement: UPDATE accounts SET balance = balance - 150.00 WHERE id = 42;
+2025-10-21 08:03:10.620 UTC [5455]: [5-1] user=app_user,db=finance_db,app=payment_service,client=192.168.1.10 LOG:  statement: COMMIT;
+2025-10-21 08:05:22.900 UTC [5455]: [6-1] user=app_user,db=finance_db,app=payment_service,client=192.168.1.10 LOG:  statement: SELECT count(*) FROM large_table_history;
+2025-10-21 08:05:23.450 UTC [5455]: [7-1] user=app_user,db=finance_db,app=payment_service,client=192.168.1.10 LOG:  duration: 550.123 ms  statement: SELECT count(*) FROM large_table_history;
+2025-10-21 08:10:05.100 UTC [5460]: [1-1] user=analytics,db=finance_db,app=metabase,client=192.168.1.50 LOG:  statement: SELECT * FROM transactions WHER amount > 1000;
+2025-10-21 08:10:05.105 UTC [5460]: [2-1] user=analytics,db=finance_db,app=metabase,client=192.168.1.50 ERROR:  syntax error at or near "WHER" at character 28
+2025-10-21 08:10:05.105 UTC [5460]: [3-1] user=analytics,db=finance_db,app=metabase,client=192.168.1.50 STATEMENT:  SELECT * FROM transactions WHER amount > 1000;
+2025-10-21 08:12:45.000 UTC [5455]: [8-1] user=app_user,db=finance_db,app=payment_service,client=192.168.1.10 LOG:  statement: BEGIN;
+2025-10-21 08:12:45.010 UTC [5455]: [9-1] user=app_user,db=finance_db,app=payment_service,client=192.168.1.10 LOG:  statement: INSERT INTO users (id, email) VALUES (1, 'duplicate@test.com');
+2025-10-21 08:12:45.015 UTC [5455]: [10-1] user=app_user,db=finance_db,app=payment_service,client=192.168.1.10 ERROR:  duplicate key value violates unique constraint "users_pkey"
+2025-10-21 08:12:45.015 UTC [5455]: [11-1] user=app_user,db=finance_db,app=payment_service,client=192.168.1.10 DETAIL:  Key (id)=(1) already exists.
+2025-10-21 08:12:45.015 UTC [5455]: [12-1] user=app_user,db=finance_db,app=payment_service,client=192.168.1.10 STATEMENT:  INSERT INTO users (id, email) VALUES (1, 'duplicate@test.com');
+2025-10-21 08:12:45.020 UTC [5455]: [13-1] user=app_user,db=finance_db,app=payment_service,client=192.168.1.10 LOG:  statement: ROLLBACK;
+2025-10-21 08:15:00.005 UTC [5462]: [1-1] user=[unknown],db=[unknown],app=[unknown],client=10.0.0.5 FATAL:  password authentication failed for user "hackerman"
+2025-10-21 08:15:00.005 UTC [5462]: [2-1] user=[unknown],db=[unknown],app=[unknown],client=10.0.0.5 DETAIL:  Role "hackerman" does not exist.
+2025-10-21 08:15:00.005 UTC [5462]: [3-1] user=[unknown],db=[unknown],app=[unknown],client=10.0.0.5 CONNECTION MATCHED: pg_hba.conf line 96: "host    all             all             127.0.0.1/32            scram-sha-256"
+2025-10-21 08:30:00.200 UTC [5436]: [1-1] user=,db=,app=,client= LOG:  checkpoint starting: time
+2025-10-21 08:30:02.450 UTC [5436]: [2-1] user=,db=,app=,client= LOG:  checkpoint complete: wrote 15 buffers (0.1%); 0 WAL file(s) added, 0 removed, 1 recycled; write=0.105 s, sync=0.003 s, total=0.250 s; sync files=10, longest=0.001 s, average=0.000 s; distance=65536 kB, estimate=65536 kB; lsn=0/19460F8, redo lsn=0/19460C0
