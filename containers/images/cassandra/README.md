@@ -68,7 +68,7 @@ docker exec -it cassandra-seed-1 nodetool status
 
 ## Image tags and versions
 
-The `sourcemation/cassandra` image itself comes in `debian-12` flavor.
+The `sourcemation/cassandra` image itself comes in `debian-13` flavor.
 The tag `latest` refers to the Debian-based flavor.
 
 ## Environment Vars, Ports, Volumes
