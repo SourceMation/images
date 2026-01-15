@@ -44,7 +44,7 @@ If you are looking to help with images listed as "Problematic" in the main `READ
 3. (Optional) Add `init.sh` if you need to download assets or modify the `Dockerfile` before building.
 4. (Optional) Add `conf.sh` if you need custom build configurations (e.g., multi-tagging, custom entrypoints).
 5. Add a test file in `containers/tests/test_<image-name>.py`.
-6. The image will be automatically picked up by the `.github/workflows/auto-refresh-images.yml` workflow.
+6. Add the image name to the list in `.github/workflows/auto-refresh-images.yml`.
 7. Test it locally as described above.
 
 ## Multiple Systems and Tags
