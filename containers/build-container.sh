@@ -229,6 +229,12 @@ test_container(){
         "mosquitto")
             CONTAINER_RUN_COMMAND=""
             ;;
+        "pgbadger")
+            ENTRYPOINT_CMD=--entrypoint=""
+            ;;
+        "phpmyadmin")
+            CONTAINER_RUN_COMMAND=""
+            ;;
         nginx*)
             CONTAINER_RUN_COMMAND=""
             ;;
