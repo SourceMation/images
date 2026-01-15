@@ -47,9 +47,7 @@ is a separate project and is maintained by
 
 ## Extra notes
 
-This Camel-K distribution is shipped with the OpenJDK 17 builds
-provided by the downstream Debian packaging team. OpenJDK 17 is being
-used as the default JRE with Maven preconfigured to use it.
+This Camel-K distribution is based on `debian-13` (Trixie) and ships with OpenJDK 21 provided by the `sourcemation/jdk-21` image.
 
 The application runs as the unnamed system user UID 1001 belonging to the group
 GID 0 (root).
@@ -64,7 +62,7 @@ apache.org](https://camel.apache.org).
 
 ### Licenses
 
-The base license for the solution (Camel-K v2.6.0) is the [Apache License
+The base license for the solution (Camel-K v2.9.0) is the [Apache License
 Version 2.0](https://github.com/apache/camel-k/blob/main/LICENSE). The
 licenses for each component shipped as part of this image can be found on the
 image's appropriate Sourcemation entry.
