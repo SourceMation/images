@@ -10,14 +10,21 @@ packed into the `debian-13-slim` Sourcemation container.
 Run a temporary container with pgBadger to analyze a log file:
 
 ```bash
-docker run --rm -v /path/to/your/postgresql.log:/log.txt sourcemation/pgbadger /log.txt -o /report.html
+docker run --rm -v /path/to/your/postgresql.log:/log.txt  -v $(pwd):/output sourcemation/pgbadger /log.txt -o /output/report.html
 ```
 
 Or pipe the log content:
 
 ```bash
-cat postgresql.log | docker run --rm -i sourcemation/pgbadger - -o - > report.html
+cat postgresql.log | docker run --rm -i -v sourcemation/pgbadger - -o - > report.txt
 ```
+
+Or pipe the log content and generate HTML report in the current directory:
+
+```bash
+cat postgresql.log | docker run --rm -i -v $(pwd):/output sourcemation/pgbadger - -o /output/report.html
+```
+
 
 ## Image tags and versions
 
