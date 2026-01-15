@@ -24,7 +24,7 @@ docker run --rm -it \
 
 ## Image tags and versions
 
-The `sourcemation/azure-cli` image itself comes in `debian-12` flavor. The tag `latest` refers to the Debian-based flavor.
+The `sourcemation/azure-cli` image itself comes in `debian-13` flavor. The tag `latest` refers to the Debian-based flavor.
 
 ## Ports
 
