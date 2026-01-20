@@ -9,7 +9,7 @@ This OAuth2 Proxy distribution is compiled and packaged by Sourcemation, based o
 Run a temporary container with the OAuth2 Proxy
 
 ```docker
-docker run --rm -it sourcemation/oauth2-proxy:debian-13 --help
+docker run --rm -it sourcemation/oauth2-proxy:latest --help
 ```
 
 ### Advanced usage examples
@@ -19,7 +19,7 @@ To run with a config file:
 ```bash
 docker run --rm -it \
   -v $(pwd)/oauth2-proxy.cfg:/etc/oauth2-proxy.cfg \
-  sourcemation/oauth2-proxy:debian-13 \
+  sourcemation/oauth2-proxy:latest \
   --config /etc/oauth2-proxy.cfg
 ```
 
