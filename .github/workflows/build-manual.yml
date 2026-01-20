@@ -53,6 +53,7 @@ on:
           - jdk-21
           - jdk-17
           - jenkins
+          - jmx-exporter
           - jre-21
           - jre-17
           - kafka
