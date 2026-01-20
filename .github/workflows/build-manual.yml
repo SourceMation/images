@@ -86,6 +86,7 @@ on:
           - nodejs-22
           - nodejs-24
           - node_exporter
+          - oauth2-proxy
           - openapi-generator-cli
           - openldap
           - pgbadger
