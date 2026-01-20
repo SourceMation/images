@@ -73,6 +73,7 @@ on:
           - micronaut
           - minio
           - mongodb
+          - mongodb-exporter
           - mosquitto
           - mysql
           - nginx-mainline
