@@ -13,14 +13,14 @@ LABEL name="ghost" \
       architecture="${TARGETARCH}" \
       summary="${LONGNAME}" \
       description="Provides ${LONGNAME}" \
-      version="6.11.0" \
+      version="6.13.2" \
       io.k8s.display-name="${LONGNAME}" \
       io.k8s.description="Provides ${LONGNAME}" \
       io.openshift.tags="ghost nodejs-22"
 
 
 ENV NODE_ENV=production
-ARG GHOST_VERSION=6.11.0
+ARG GHOST_VERSION=6.13.2
 ENV GHOST_INSTALL=/var/lib/ghost
 ENV GHOST_CONTENT=/var/lib/ghost/content
 

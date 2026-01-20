@@ -12,7 +12,7 @@ LABEL name="nodejs-20" \
       architecture="$TARGETARCH" \
       summary="NodeJS 20 on Debian 13 Slim Container" \
       description="Provides NodeJS 20 on Debian 13 Slim Container" \
-      version="20.19.6" \
+      version="20.20.0" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="NodeJS 20 on Debian 13 Slim Container" \
       io.k8s.description="Provides NodeJS 20  on Debian 13 Slim Container" \
@@ -22,7 +22,7 @@ LABEL name="nodejs-20" \
 RUN groupadd --gid 1000 node \
   && useradd --uid 1000 --gid node --shell /bin/bash --create-home node
 
-ENV NODE_VERSION="20.19.6"
+ENV NODE_VERSION="20.20.0"
 ENV YARN_VERSION="1.22.22"
 
 # Most of this packages are from buildpack-deps that is based on old Heroku

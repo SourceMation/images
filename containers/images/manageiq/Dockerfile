@@ -1,4 +1,4 @@
-ARG IMAGE_REF=radjabov-1
+ARG IMAGE_REF=spassky-1
 FROM docker.io/manageiq/manageiq-ui-worker:${IMAGE_REF}
 
 ARG BUILD_DATE
@@ -12,7 +12,7 @@ LABEL name="manageiq" \
       architecture="$TARGETARCH" \
       summary="ManageIQ on Debian Container" \
       description="Provides ManageIQ on UBI Container" \
-      version="radjabov-1" \
+      version="spassky-1" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="ManageIQ on UBI Container" \
       io.k8s.description="ManageIQ on UBI 12 Container" \

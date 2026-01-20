@@ -1,7 +1,7 @@
 FROM docker.io/sourcemation/debian-13-slim:latest AS ruby
 
 ARG VERSION=1.19.1
-ARG RUBY_INSTALL=https://github.com/postmodern/ruby-install/releases/download/v0.10.1/ruby-install-0.10.1.tar.gz
+ARG RUBY_INSTALL=https://github.com/postmodern/ruby-install/releases/download/v0.10.2/ruby-install-0.10.2.tar.gz
 
 RUN apt-get update && \
     apt-get install --no-install-recommends curl ca-certificates -y && \
