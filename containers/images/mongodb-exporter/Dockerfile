@@ -1,4 +1,4 @@
-FROM sourcemation/golang-1.23:latest AS builder
+FROM sourcemation/golang-1.25:latest AS builder
 
 ARG TARGETARCH
 ARG MONGODB_EXPORTER_VERSION="v2.35.0"
