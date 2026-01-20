@@ -2,7 +2,8 @@
 
 > A process for exposing JMX Beans via HTTP for Prometheus consumption.
 
-This distribution contains the JMX Exporter (Java Agent and HTTP Server) from the Prometheus project.
+This container image contains the JMX Exporter (Java Agent and HTTP Server)
+from the Prometheus project.
 
 ## Usage
 
@@ -28,7 +29,8 @@ COPY --from=sourcemation/jmx-exporter:latest /opt/jmx_exporter/jmx_prometheus_ja
 
 ## Image tags and versions
 
-The `sourcemation/jmx-exporter` image is based on `sourcemation/jre-21`.
+The `sourcemation/jmx-exporter` image is based on `sourcemation/jre-21`, the
+build is based on the `sourcemation/maven` image.
 
 ## Environment Vars, Ports, Volumes
 
@@ -53,10 +55,11 @@ organisations own the trademarks mentioned in the offering. The
 
 ### Image and its components Risk Analysis report
 
-A detailed risk analysis report of the image and its components can be
-found on the [Sourcemation platform](https://sourcemation.com).
+A detailed risk analysis report of the image and its components can be found on
+the [Sourcemation platform](https://sourcemation.com).
 
-For more information, check out the [JMX Exporter documentation](https://github.com/prometheus/jmx_exporter).
+For more information, check out the [JMX Exporter
+documentation](https://github.com/prometheus/jmx_exporter).
 
 ### Licenses
 
