@@ -114,7 +114,7 @@ RUN ARCH= && dpkgArch="$(dpkg --print-architecture)" \
   && ln -s /usr/local/bin/node /usr/local/bin/nodejs \
   && rm -rf /tmp/* \
   && echo "Removing OpenSSL headers to save space" \
-  && find /usr/local/include/node/openssl/archs -mindepth 1 -maxdepth 1 ! -name "$OPENSSL_ARCH" -exec rm -rfv {} \;  \
+  && find /usr/local/include/node/openssl/archs -mindepth 1 -maxdepth 1 ! -name "$OPENSSL_ARCH" -exec rm -rfv {} \;  && \
   echo "OK, installed nodejs $NODE_VERSION"
 
 
