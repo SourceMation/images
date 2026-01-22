@@ -29,11 +29,12 @@ RUN echo "# This file intentionally left blank. ManageIQ maintains its own SSL c
       mod_ssl                 \
       python3-pip             \
       &&                      \
-    dnf clean all && \
-    /usr/bin/python3 -m pip install pyvmomi && \
-    /usr/bin/python3 -m pip install  passlib[bcrypt] && \
-    ansible-galaxy collection install community.vmware --upgrade && \
-    rm -rf /var/cache/dnf
+        dnf clean all && \
+        /usr/bin/python3 -m pip install pyvmomi && \
+        /usr/bin/python3 -m pip install passlib[bcrypt] && \
+        /usr/bin/python3 -m pip install ansible-core && \
+        ansible-galaxy collection install community.vmware --upgrade && \
+        rm -rf /var/cache/dnf
 
 ## Overwrite entrypoint from pods repo
 COPY manageiq/container-assets/entrypoint /usr/local/bin
