@@ -5,7 +5,7 @@ ARG TARGETARCH
 
 ARG REDIS_SENTINEL_VERSION="stable"
 
-RUN apt-get update && apt-get install -y --no-install-recommends sudo tzdata make curl build-essential libc6-dev bash libssl-dev && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y --no-install-recommends sudo tzdata make curl build-essential libc6-dev bash libssl-dev ca-certificates && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /tmp
 
