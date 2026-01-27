@@ -115,36 +115,19 @@ digraph build_order {
 
   // External base images
   "docker.io/manageiq/manageiq-ui-worker" [shape=ellipse, style=dashed];
-  "docker.io/sourcemation/debian-13-slim" [shape=ellipse, style=dashed];
-  "docker.io/sourcemation/golang-1.24" [shape=ellipse, style=dashed];
-  "docker.io/sourcemation/golang-1.25" [shape=ellipse, style=dashed];
   "gcr.io/distroless/static" [shape=ellipse, style=dashed];
   "gcr.io/distroless/static-debian13" [shape=ellipse, style=dashed];
   "golang" [shape=ellipse, style=dashed];
-  "quay.io/sourcemation/nodejs-24" [shape=ellipse, style=dashed];
   "scratch" [shape=ellipse, style=dashed];
 
   // Dependencies: base -> dependent
   "docker.io/manageiq/manageiq-ui-worker" -> "sourcemation/manageiq";
   "docker.io/manageiq/manageiq-ui-worker" -> "sourcemation/manageiq/manageiq";
-  "docker.io/sourcemation/debian-13-slim" -> "sourcemation/alertmanager";
-  "docker.io/sourcemation/debian-13-slim" -> "sourcemation/etcd";
-  "docker.io/sourcemation/debian-13-slim" -> "sourcemation/fluentd";
-  "docker.io/sourcemation/debian-13-slim" -> "sourcemation/node_exporter";
-  "docker.io/sourcemation/debian-13-slim" -> "sourcemation/prometheus";
-  "docker.io/sourcemation/debian-13-slim" -> "sourcemation/prometheus-operator";
-  "docker.io/sourcemation/debian-13-slim" -> "sourcemation/redis";
-  "docker.io/sourcemation/debian-13-slim" -> "sourcemation/redis-sentinel";
-  "docker.io/sourcemation/debian-13-slim" -> "sourcemation/thanos";
-  "docker.io/sourcemation/golang-1.24" -> "sourcemation/kube-state-metrics";
-  "docker.io/sourcemation/golang-1.25" -> "sourcemation/prometheus-operator";
-  "docker.io/sourcemation/golang-1.25" -> "sourcemation/redis-operator";
   "gcr.io/distroless/static" -> "sourcemation/redis-operator";
   "gcr.io/distroless/static" -> "sourcemation/redis-operator/redis-operator";
   "gcr.io/distroless/static-debian13" -> "sourcemation/external-secrets";
   "gcr.io/distroless/static-debian13" -> "sourcemation/sealed-secrets-controller";
   "golang" -> "sourcemation/redis-operator/redis-operator";
-  "quay.io/sourcemation/nodejs-24" -> "sourcemation/angular";
   "scratch" -> "sourcemation/debian-11-slim";
   "scratch" -> "sourcemation/debian-12-slim";
   "scratch" -> "sourcemation/debian-13-slim";
@@ -155,12 +138,15 @@ digraph build_order {
   "scratch" -> "sourcemation/rocky-9";
   "scratch" -> "sourcemation/rocky-9-minimal";
   "sourcemation/debian-12-slim" -> "sourcemation/gcc-13";
+  "sourcemation/debian-13-slim" -> "sourcemation/alertmanager";
   "sourcemation/debian-13-slim" -> "sourcemation/apache";
   "sourcemation/debian-13-slim" -> "sourcemation/azure-cli";
   "sourcemation/debian-13-slim" -> "sourcemation/elasticsearch";
   "sourcemation/debian-13-slim" -> "sourcemation/erlang";
   "sourcemation/debian-13-slim" -> "sourcemation/erlang-27";
+  "sourcemation/debian-13-slim" -> "sourcemation/etcd";
   "sourcemation/debian-13-slim" -> "sourcemation/external-dns";
+  "sourcemation/debian-13-slim" -> "sourcemation/fluentd";
   "sourcemation/debian-13-slim" -> "sourcemation/gcc-14";
   "sourcemation/debian-13-slim" -> "sourcemation/gcc-15";
   "sourcemation/debian-13-slim" -> "sourcemation/gcc-16";
@@ -184,6 +170,7 @@ digraph build_order {
   "sourcemation/debian-13-slim" -> "sourcemation/mysql";
   "sourcemation/debian-13-slim" -> "sourcemation/nginx-mainline";
   "sourcemation/debian-13-slim" -> "sourcemation/nginx-stable";
+  "sourcemation/debian-13-slim" -> "sourcemation/node_exporter";
   "sourcemation/debian-13-slim" -> "sourcemation/nodejs-20";
   "sourcemation/debian-13-slim" -> "sourcemation/nodejs-22";
   "sourcemation/debian-13-slim" -> "sourcemation/nodejs-24";
@@ -194,6 +181,8 @@ digraph build_order {
   "sourcemation/debian-13-slim" -> "sourcemation/postgres-16";
   "sourcemation/debian-13-slim" -> "sourcemation/postgres-17";
   "sourcemation/debian-13-slim" -> "sourcemation/postgres-18";
+  "sourcemation/debian-13-slim" -> "sourcemation/prometheus";
+  "sourcemation/debian-13-slim" -> "sourcemation/prometheus-operator";
   "sourcemation/debian-13-slim" -> "sourcemation/python-3.11";
   "sourcemation/debian-13-slim" -> "sourcemation/python-3.12";
   "sourcemation/debian-13-slim" -> "sourcemation/python-3.13";
@@ -201,18 +190,24 @@ digraph build_order {
   "sourcemation/debian-13-slim" -> "sourcemation/python-3.8";
   "sourcemation/debian-13-slim" -> "sourcemation/rabbitmq-cluster-operator";
   "sourcemation/debian-13-slim" -> "sourcemation/rabbitmq-messaging-topology-operator";
+  "sourcemation/debian-13-slim" -> "sourcemation/redis";
+  "sourcemation/debian-13-slim" -> "sourcemation/redis-sentinel";
+  "sourcemation/debian-13-slim" -> "sourcemation/thanos";
   "sourcemation/debian-13-slim" -> "sourcemation/wordpress";
   "sourcemation/erlang-27" -> "sourcemation/rabbitmq-4";
+  "sourcemation/golang-1.24" -> "sourcemation/kube-state-metrics";
   "sourcemation/golang-1.24" -> "sourcemation/metrics-server";
   "sourcemation/golang-1.24" -> "sourcemation/minio";
   "sourcemation/golang-1.25" -> "sourcemation/camel-k";
   "sourcemation/golang-1.25" -> "sourcemation/external-dns";
   "sourcemation/golang-1.25" -> "sourcemation/external-secrets";
   "sourcemation/golang-1.25" -> "sourcemation/hugo";
+  "sourcemation/golang-1.25" -> "sourcemation/prometheus-operator";
   "sourcemation/golang-1.25" -> "sourcemation/rabbitmq-cluster-operator";
   "sourcemation/golang-1.25" -> "sourcemation/rabbitmq-default-user-credential-updater";
   "sourcemation/golang-1.25" -> "sourcemation/rabbitmq-messaging-topology-operator";
   "sourcemation/golang-1.25" -> "sourcemation/redis-exporter";
+  "sourcemation/golang-1.25" -> "sourcemation/redis-operator";
   "sourcemation/golang-1.25" -> "sourcemation/sealed-secrets-controller";
   "sourcemation/jdk-21" -> "sourcemation/camel-k";
   "sourcemation/jdk-21" -> "sourcemation/keycloak";
@@ -226,6 +221,7 @@ digraph build_order {
   "sourcemation/nginx-stable" -> "sourcemation/nginx-stable-otel";
   "sourcemation/nginx-stable" -> "sourcemation/nginx-stable-perl";
   "sourcemation/nodejs-22" -> "sourcemation/ghost";
+  "sourcemation/nodejs-24" -> "sourcemation/angular";
   "sourcemation/postgres-16" -> "sourcemation/cnpg-16";
   "sourcemation/postgres-17" -> "sourcemation/cnpg-17";
   "sourcemation/postgres-17" -> "sourcemation/pgpool";

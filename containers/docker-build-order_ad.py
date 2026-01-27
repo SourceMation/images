@@ -100,6 +100,13 @@ def discover_dockerfiles(root: str, names: List[str]) -> List[Tuple[str, str]]:
 def normalize_local_ref(dep: str, org: str, local_images: Set[str], local_short: Set[str]) -> Optional[str]:
     dep0 = strip_tag_digest(dep)
 
+    # Strip registry prefix if present (e.g. docker.io/sourcemation/foo -> sourcemation/foo)
+    parts = dep0.split('/', 1)
+    if len(parts) == 2:
+        domain = parts[0]
+        if "." in domain or ":" in domain or domain == "localhost":
+             dep0 = parts[1]
+
     # Exact match (full org/name)
     if dep0 in local_images:
         return dep0

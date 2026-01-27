@@ -1,13 +1,10 @@
-sourcemation/alertmanager
-
-sourcemation/angular
-
 sourcemation/debian-11-slim
 
 sourcemation/debian-12-slim
 └── sourcemation/gcc-13
 
 sourcemation/debian-13-slim
+├── sourcemation/alertmanager
 ├── sourcemation/apache
 ├── sourcemation/azure-cli
 ├── sourcemation/elasticsearch
@@ -15,13 +12,16 @@ sourcemation/debian-13-slim
 ├── sourcemation/erlang-27
 │   └── sourcemation/rabbitmq-4
 │       └── sourcemation/rabbitmq-4-management
+├── sourcemation/etcd
 ├── sourcemation/external-dns
+├── sourcemation/fluentd
 ├── sourcemation/gcc-14
 ├── sourcemation/gcc-15
 ├── sourcemation/gcc-16
 ├── sourcemation/git
 ├── sourcemation/golang-1.23
 ├── sourcemation/golang-1.24
+│   ├── sourcemation/kube-state-metrics
 │   ├── sourcemation/metrics-server
 │   └── sourcemation/minio
 ├── sourcemation/golang-1.25
@@ -29,10 +29,12 @@ sourcemation/debian-13-slim
 │   ├── sourcemation/external-dns (shared)
 │   ├── sourcemation/external-secrets
 │   ├── sourcemation/hugo
+│   ├── sourcemation/prometheus-operator
 │   ├── sourcemation/rabbitmq-cluster-operator
 │   ├── sourcemation/rabbitmq-default-user-credential-updater
 │   ├── sourcemation/rabbitmq-messaging-topology-operator
 │   ├── sourcemation/redis-exporter
+│   ├── sourcemation/redis-operator
 │   └── sourcemation/sealed-secrets-controller
 ├── sourcemation/grafana
 ├── sourcemation/jdk-17
@@ -47,7 +49,7 @@ sourcemation/debian-13-slim
 ├── sourcemation/jre-21
 │   └── sourcemation/zookeeper
 ├── sourcemation/kibana
-├── sourcemation/kube-state-metrics
+├── sourcemation/kube-state-metrics (shared)
 ├── sourcemation/kubectl
 ├── sourcemation/mariadb
 ├── sourcemation/matomo
@@ -61,10 +63,12 @@ sourcemation/debian-13-slim
 ├── sourcemation/nginx-stable
 │   ├── sourcemation/nginx-stable-otel
 │   └── sourcemation/nginx-stable-perl
+├── sourcemation/node_exporter
 ├── sourcemation/nodejs-20
 ├── sourcemation/nodejs-22
 │   └── sourcemation/ghost
 ├── sourcemation/nodejs-24
+│   └── sourcemation/angular
 ├── sourcemation/openldap
 ├── sourcemation/pgbadger
 ├── sourcemation/pgpool
@@ -78,6 +82,8 @@ sourcemation/debian-13-slim
 ├── sourcemation/postgres-18
 │   ├── sourcemation/cnpg-18
 │   └── sourcemation/postgres-repmgr
+├── sourcemation/prometheus
+├── sourcemation/prometheus-operator (shared)
 ├── sourcemation/python-3.11
 ├── sourcemation/python-3.12
 ├── sourcemation/python-3.13
@@ -85,29 +91,16 @@ sourcemation/debian-13-slim
 ├── sourcemation/python-3.8
 ├── sourcemation/rabbitmq-cluster-operator (shared)
 ├── sourcemation/rabbitmq-messaging-topology-operator (shared)
+├── sourcemation/redis
+├── sourcemation/redis-sentinel
+├── sourcemation/thanos
 └── sourcemation/wordpress
-
-sourcemation/etcd
-
-sourcemation/fluentd
 
 sourcemation/manageiq
 
 sourcemation/manageiq/manageiq
 
-sourcemation/node_exporter
-
-sourcemation/prometheus
-
-sourcemation/prometheus-operator
-
-sourcemation/redis
-
-sourcemation/redis-operator
-
 sourcemation/redis-operator/redis-operator
-
-sourcemation/redis-sentinel
 
 sourcemation/rocky-9
 ├── sourcemation/activemq
@@ -131,5 +124,3 @@ sourcemation/rocky-9
 └── sourcemation/servicemix
 
 sourcemation/rocky-9-minimal
-
-sourcemation/thanos
