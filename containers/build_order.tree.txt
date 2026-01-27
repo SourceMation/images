@@ -1,0 +1,135 @@
+sourcemation/alertmanager
+
+sourcemation/angular
+
+sourcemation/debian-11-slim
+
+sourcemation/debian-12-slim
+└── sourcemation/gcc-13
+
+sourcemation/debian-13-slim
+├── sourcemation/apache
+├── sourcemation/azure-cli
+├── sourcemation/elasticsearch
+├── sourcemation/erlang
+├── sourcemation/erlang-27
+│   └── sourcemation/rabbitmq-4
+│       └── sourcemation/rabbitmq-4-management
+├── sourcemation/external-dns
+├── sourcemation/gcc-14
+├── sourcemation/gcc-15
+├── sourcemation/gcc-16
+├── sourcemation/git
+├── sourcemation/golang-1.23
+├── sourcemation/golang-1.24
+│   ├── sourcemation/metrics-server
+│   └── sourcemation/minio
+├── sourcemation/golang-1.25
+│   ├── sourcemation/camel-k
+│   ├── sourcemation/external-dns (shared)
+│   ├── sourcemation/external-secrets
+│   ├── sourcemation/hugo
+│   ├── sourcemation/rabbitmq-cluster-operator
+│   ├── sourcemation/rabbitmq-default-user-credential-updater
+│   ├── sourcemation/rabbitmq-messaging-topology-operator
+│   ├── sourcemation/redis-exporter
+│   └── sourcemation/sealed-secrets-controller
+├── sourcemation/grafana
+├── sourcemation/jdk-17
+├── sourcemation/jdk-21
+│   ├── sourcemation/camel-k (shared)
+│   ├── sourcemation/keycloak
+│   ├── sourcemation/keycloak-25
+│   ├── sourcemation/keycloak-config-cli
+│   └── sourcemation/maven
+├── sourcemation/jre-17
+│   └── sourcemation/cassandra
+├── sourcemation/jre-21
+│   └── sourcemation/zookeeper
+├── sourcemation/kibana
+├── sourcemation/kube-state-metrics
+├── sourcemation/kubectl
+├── sourcemation/mariadb
+├── sourcemation/matomo
+├── sourcemation/memcached
+├── sourcemation/metrics-server (shared)
+├── sourcemation/minio (shared)
+├── sourcemation/mysql
+├── sourcemation/nginx-mainline
+│   ├── sourcemation/nginx-mainline-otel
+│   └── sourcemation/nginx-mainline-perl
+├── sourcemation/nginx-stable
+│   ├── sourcemation/nginx-stable-otel
+│   └── sourcemation/nginx-stable-perl
+├── sourcemation/nodejs-20
+├── sourcemation/nodejs-22
+│   └── sourcemation/ghost
+├── sourcemation/nodejs-24
+├── sourcemation/openldap
+├── sourcemation/pgbadger
+├── sourcemation/pgpool
+├── sourcemation/phpmyadmin
+├── sourcemation/postgres-16
+│   └── sourcemation/cnpg-16
+├── sourcemation/postgres-17
+│   ├── sourcemation/cnpg-17
+│   ├── sourcemation/pgpool (shared)
+│   └── sourcemation/postgres-exporter
+├── sourcemation/postgres-18
+│   ├── sourcemation/cnpg-18
+│   └── sourcemation/postgres-repmgr
+├── sourcemation/python-3.11
+├── sourcemation/python-3.12
+├── sourcemation/python-3.13
+├── sourcemation/python-3.14
+├── sourcemation/python-3.8
+├── sourcemation/rabbitmq-cluster-operator (shared)
+├── sourcemation/rabbitmq-messaging-topology-operator (shared)
+└── sourcemation/wordpress
+
+sourcemation/etcd
+
+sourcemation/fluentd
+
+sourcemation/manageiq
+
+sourcemation/manageiq/manageiq
+
+sourcemation/node_exporter
+
+sourcemation/prometheus
+
+sourcemation/prometheus-operator
+
+sourcemation/redis
+
+sourcemation/redis-operator
+
+sourcemation/redis-operator/redis-operator
+
+sourcemation/redis-sentinel
+
+sourcemation/rocky-9
+├── sourcemation/activemq
+├── sourcemation/apicast
+├── sourcemation/camel-karavan
+├── sourcemation/helidon
+├── sourcemation/java
+├── sourcemation/kafka
+├── sourcemation/karaf
+├── sourcemation/kong
+├── sourcemation/micronaut
+├── sourcemation/mongodb
+├── sourcemation/mosquitto
+├── sourcemation/nodejs
+├── sourcemation/openapi-generator-cli
+├── sourcemation/postgresql
+├── sourcemation/python
+├── sourcemation/quarkus
+├── sourcemation/rabbitmq
+├── sourcemation/ruby
+└── sourcemation/servicemix
+
+sourcemation/rocky-9-minimal
+
+sourcemation/thanos
