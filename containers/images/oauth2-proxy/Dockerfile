@@ -24,7 +24,7 @@ ARG TARGETARCH
 
 LABEL name="oauth2-proxy" \
       vendor="Sourcemation" \
-      url="https://sourcemation.com"\
+      url="https://sourcemation.com" \
       licenses="MIT" \
       created="$BUILD_DATE" \
       architecture="$TARGETARCH" \
@@ -39,7 +39,7 @@ LABEL name="oauth2-proxy" \
 ENV OAUTH2_PROXY_VERSION="v7.14.2"
 
 RUN apt-get update && apt-get install --no-install-recommends -y ca-certificates && \
-    apt-get clean &&\
+    apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 # Copy binary from builder

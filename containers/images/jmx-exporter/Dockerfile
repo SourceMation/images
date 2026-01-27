@@ -16,7 +16,7 @@ ARG TARGETARCH
 
 LABEL name="jmx-exporter" \
       vendor="Sourcemation" \
-      url="https://sourcemation.com"\
+      url="https://sourcemation.com" \
       licenses="Apache-2.0" \
       created="$BUILD_DATE" \
       architecture="$TARGETARCH" \

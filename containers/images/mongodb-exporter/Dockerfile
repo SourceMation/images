@@ -24,7 +24,7 @@ ARG TARGETARCH
 
 LABEL name="mongodb-exporter" \
       vendor="Sourcemation" \
-      url="https://sourcemation.com"\
+      url="https://sourcemation.com" \
       licenses="Apache-2.0" \
       created="$BUILD_DATE" \
       architecture="$TARGETARCH" \
@@ -39,7 +39,7 @@ LABEL name="mongodb-exporter" \
 ENV MONGODB_EXPORTER_VERSION="v2.35.0"
 
 RUN apt-get update && apt-get install --no-install-recommends -y ca-certificates && \
-    apt-get clean &&\
+    apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 # Copy binary from builder

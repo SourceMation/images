@@ -235,9 +235,7 @@ test_container(){
         "phpmyadmin")
             CONTAINER_RUN_COMMAND=""
             ;;
-        "nginx-ingress-controller")
-            CONTAINER_RUN_COMMAND="/bin/bash"
-            ;;
+
         nginx*)
             CONTAINER_RUN_COMMAND=""
             ;;

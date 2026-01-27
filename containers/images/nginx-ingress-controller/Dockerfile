@@ -29,7 +29,7 @@ ARG TARGETARCH
 
 LABEL name="nginx-ingress-controller" \
       vendor="Sourcemation" \
-      url="https://sourcemation.com"\
+      url="https://sourcemation.com" \
       licenses="Apache-2.0" \
       created="$BUILD_DATE" \
       architecture="$TARGETARCH" \
@@ -49,7 +49,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     ca-certificates \
     libcap2-bin \
     dumb-init && \
-    apt-get clean &&\
+    apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 # Copy binary from builder
