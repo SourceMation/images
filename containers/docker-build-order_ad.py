@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import json
 import argparse
 import os
 import re
@@ -325,6 +326,7 @@ def main():
     ap.add_argument("--out-flat", default="build_order.txt", help="Flat output file (topological order).")
     ap.add_argument("--out-tree", default="build_order.tree.txt", help="Tree/forest output file.")
     ap.add_argument("--out-dot", default="build_order.dot", help="Graphviz DOT output file.")
+    ap.add_argument("--out-json", help="JSON dependency output file.")
     args = ap.parse_args()
 
     images_dir = os.path.abspath(args.images_dir)
@@ -383,6 +385,14 @@ def main():
     dot_txt = render_dot(local_images, deps_local, deps_external)
     with open(args.out_dot, "w", encoding="utf-8") as f:
         f.write(dot_txt)
+
+    # JSON output
+    if args.out_json:
+        # Convert sets to lists for JSON
+        json_deps = {k: sorted(list(v)) for k, v in deps_local.items()}
+        with open(args.out_json, "w", encoding="utf-8") as f:
+            json.dump(json_deps, f, indent=2)
+        print(f"Wrote JSON dependencies to: {args.out_json}")
 
     print(f"Wrote flat build order to: {args.out_flat} ({len(order)} images)")
     print(f"Wrote tree build forest to: {args.out_tree}")
