@@ -1,7 +1,7 @@
 FROM sourcemation/golang-1.25:latest AS builder
 
 ARG TARGETARCH
-ARG NATS_VERSION="v2.12.3"
+ARG NATS_VERSION="v2.12.4"
 
 WORKDIR /app
 
@@ -27,13 +27,13 @@ LABEL name="nats" \
       architecture="$TARGETARCH" \
       summary="NATS Server on Debian 13 Slim Container" \
       description="Provides NATS Server on Debian 13 Slim Container" \
-      version="v2.12.3" \
+      version="v2.12.4" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="NATS Server on Debian 13 Slim Container" \
       io.k8s.description="Provides NATS Server on Debian 13 Slim Container" \
       io.openshift.tags="nats nats-server debian-13"
 
-ENV NATS_VERSION="v2.12.3"
+ENV NATS_VERSION="v2.12.4"
 
 COPY --from=builder /app/nats-server /bin/nats-server
 COPY nats-server.conf /etc/nats/nats-server.conf
