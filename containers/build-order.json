@@ -1,0 +1,325 @@
+{
+  "sourcemation/activemq": [
+    "sourcemation/rocky-9"
+  ],
+  "sourcemation/alertmanager": [
+    "sourcemation/debian-13-slim"
+  ],
+  "sourcemation/angular": [
+    "sourcemation/nodejs-24"
+  ],
+  "sourcemation/apache": [
+    "sourcemation/debian-13-slim"
+  ],
+  "sourcemation/apicast": [
+    "sourcemation/rocky-9"
+  ],
+  "sourcemation/azure-cli": [
+    "sourcemation/debian-13-slim"
+  ],
+  "sourcemation/camel-k": [
+    "sourcemation/golang-1.25",
+    "sourcemation/jdk-21"
+  ],
+  "sourcemation/camel-karavan": [
+    "sourcemation/rocky-9"
+  ],
+  "sourcemation/cassandra": [
+    "sourcemation/jre-17"
+  ],
+  "sourcemation/cnpg-16": [
+    "sourcemation/postgres-16"
+  ],
+  "sourcemation/cnpg-17": [
+    "sourcemation/postgres-17"
+  ],
+  "sourcemation/cnpg-18": [
+    "sourcemation/postgres-18"
+  ],
+  "sourcemation/debian-11-slim": [],
+  "sourcemation/debian-12-slim": [],
+  "sourcemation/debian-13-slim": [],
+  "sourcemation/elasticsearch": [
+    "sourcemation/debian-13-slim"
+  ],
+  "sourcemation/erlang": [
+    "sourcemation/debian-13-slim"
+  ],
+  "sourcemation/erlang-27": [
+    "sourcemation/debian-13-slim"
+  ],
+  "sourcemation/etcd": [
+    "sourcemation/debian-13-slim"
+  ],
+  "sourcemation/external-dns": [
+    "sourcemation/debian-13-slim",
+    "sourcemation/golang-1.25"
+  ],
+  "sourcemation/external-secrets": [
+    "sourcemation/golang-1.25"
+  ],
+  "sourcemation/fluentd": [
+    "sourcemation/debian-13-slim"
+  ],
+  "sourcemation/gcc-13": [
+    "sourcemation/debian-12-slim"
+  ],
+  "sourcemation/gcc-14": [
+    "sourcemation/debian-13-slim"
+  ],
+  "sourcemation/gcc-15": [
+    "sourcemation/debian-13-slim"
+  ],
+  "sourcemation/gcc-16": [
+    "sourcemation/debian-13-slim"
+  ],
+  "sourcemation/ghost": [
+    "sourcemation/nodejs-22"
+  ],
+  "sourcemation/git": [
+    "sourcemation/debian-13-slim"
+  ],
+  "sourcemation/golang-1.23": [
+    "sourcemation/debian-13-slim"
+  ],
+  "sourcemation/golang-1.24": [
+    "sourcemation/debian-13-slim"
+  ],
+  "sourcemation/golang-1.25": [
+    "sourcemation/debian-13-slim"
+  ],
+  "sourcemation/grafana": [
+    "sourcemation/debian-13-slim"
+  ],
+  "sourcemation/helidon": [
+    "sourcemation/rocky-9"
+  ],
+  "sourcemation/hugo": [
+    "sourcemation/golang-1.25"
+  ],
+  "sourcemation/java": [
+    "sourcemation/rocky-9"
+  ],
+  "sourcemation/jdk-17": [
+    "sourcemation/debian-13-slim"
+  ],
+  "sourcemation/jdk-21": [
+    "sourcemation/debian-13-slim"
+  ],
+  "sourcemation/jre-17": [
+    "sourcemation/debian-13-slim"
+  ],
+  "sourcemation/jre-21": [
+    "sourcemation/debian-13-slim"
+  ],
+  "sourcemation/kafka": [
+    "sourcemation/rocky-9"
+  ],
+  "sourcemation/karaf": [
+    "sourcemation/rocky-9"
+  ],
+  "sourcemation/keycloak": [
+    "sourcemation/jdk-21"
+  ],
+  "sourcemation/keycloak-25": [
+    "sourcemation/jdk-21"
+  ],
+  "sourcemation/keycloak-config-cli": [
+    "sourcemation/jdk-21"
+  ],
+  "sourcemation/kibana": [
+    "sourcemation/debian-13-slim"
+  ],
+  "sourcemation/kong": [
+    "sourcemation/rocky-9"
+  ],
+  "sourcemation/kube-state-metrics": [
+    "sourcemation/debian-13-slim",
+    "sourcemation/golang-1.24"
+  ],
+  "sourcemation/kubectl": [
+    "sourcemation/debian-13-slim"
+  ],
+  "sourcemation/manageiq": [],
+  "sourcemation/manageiq/manageiq": [],
+  "sourcemation/mariadb": [
+    "sourcemation/debian-13-slim"
+  ],
+  "sourcemation/matomo": [
+    "sourcemation/debian-13-slim"
+  ],
+  "sourcemation/maven": [
+    "sourcemation/jdk-21"
+  ],
+  "sourcemation/memcached": [
+    "sourcemation/debian-13-slim"
+  ],
+  "sourcemation/metrics-server": [
+    "sourcemation/debian-13-slim",
+    "sourcemation/golang-1.24"
+  ],
+  "sourcemation/micronaut": [
+    "sourcemation/rocky-9"
+  ],
+  "sourcemation/minio": [
+    "sourcemation/debian-13-slim",
+    "sourcemation/golang-1.24"
+  ],
+  "sourcemation/mongodb": [
+    "sourcemation/rocky-9"
+  ],
+  "sourcemation/mosquitto": [
+    "sourcemation/rocky-9"
+  ],
+  "sourcemation/mysql": [
+    "sourcemation/debian-13-slim"
+  ],
+  "sourcemation/nginx-mainline": [
+    "sourcemation/debian-13-slim"
+  ],
+  "sourcemation/nginx-mainline-otel": [
+    "sourcemation/nginx-mainline"
+  ],
+  "sourcemation/nginx-mainline-perl": [
+    "sourcemation/nginx-mainline"
+  ],
+  "sourcemation/nginx-stable": [
+    "sourcemation/debian-13-slim"
+  ],
+  "sourcemation/nginx-stable-otel": [
+    "sourcemation/nginx-stable"
+  ],
+  "sourcemation/nginx-stable-perl": [
+    "sourcemation/nginx-stable"
+  ],
+  "sourcemation/node_exporter": [
+    "sourcemation/debian-13-slim"
+  ],
+  "sourcemation/nodejs": [
+    "sourcemation/rocky-9"
+  ],
+  "sourcemation/nodejs-20": [
+    "sourcemation/debian-13-slim"
+  ],
+  "sourcemation/nodejs-22": [
+    "sourcemation/debian-13-slim"
+  ],
+  "sourcemation/nodejs-24": [
+    "sourcemation/debian-13-slim"
+  ],
+  "sourcemation/openapi-generator-cli": [
+    "sourcemation/rocky-9"
+  ],
+  "sourcemation/openldap": [
+    "sourcemation/debian-13-slim"
+  ],
+  "sourcemation/pgbadger": [
+    "sourcemation/debian-13-slim"
+  ],
+  "sourcemation/pgpool": [
+    "sourcemation/debian-13-slim",
+    "sourcemation/postgres-17"
+  ],
+  "sourcemation/phpmyadmin": [
+    "sourcemation/debian-13-slim"
+  ],
+  "sourcemation/postgres-16": [
+    "sourcemation/debian-13-slim"
+  ],
+  "sourcemation/postgres-17": [
+    "sourcemation/debian-13-slim"
+  ],
+  "sourcemation/postgres-18": [
+    "sourcemation/debian-13-slim"
+  ],
+  "sourcemation/postgres-exporter": [
+    "sourcemation/postgres-17"
+  ],
+  "sourcemation/postgres-repmgr": [
+    "sourcemation/postgres-18"
+  ],
+  "sourcemation/postgresql": [
+    "sourcemation/rocky-9"
+  ],
+  "sourcemation/prometheus": [
+    "sourcemation/debian-13-slim"
+  ],
+  "sourcemation/prometheus-operator": [
+    "sourcemation/debian-13-slim",
+    "sourcemation/golang-1.25"
+  ],
+  "sourcemation/python": [
+    "sourcemation/rocky-9"
+  ],
+  "sourcemation/python-3.11": [
+    "sourcemation/debian-13-slim"
+  ],
+  "sourcemation/python-3.12": [
+    "sourcemation/debian-13-slim"
+  ],
+  "sourcemation/python-3.13": [
+    "sourcemation/debian-13-slim"
+  ],
+  "sourcemation/python-3.14": [
+    "sourcemation/debian-13-slim"
+  ],
+  "sourcemation/python-3.8": [
+    "sourcemation/debian-13-slim"
+  ],
+  "sourcemation/quarkus": [
+    "sourcemation/rocky-9"
+  ],
+  "sourcemation/rabbitmq": [
+    "sourcemation/rocky-9"
+  ],
+  "sourcemation/rabbitmq-4": [
+    "sourcemation/erlang-27"
+  ],
+  "sourcemation/rabbitmq-4-management": [
+    "sourcemation/rabbitmq-4"
+  ],
+  "sourcemation/rabbitmq-cluster-operator": [
+    "sourcemation/debian-13-slim",
+    "sourcemation/golang-1.25"
+  ],
+  "sourcemation/rabbitmq-default-user-credential-updater": [
+    "sourcemation/golang-1.25"
+  ],
+  "sourcemation/rabbitmq-messaging-topology-operator": [
+    "sourcemation/debian-13-slim",
+    "sourcemation/golang-1.25"
+  ],
+  "sourcemation/redis": [
+    "sourcemation/debian-13-slim"
+  ],
+  "sourcemation/redis-exporter": [
+    "sourcemation/golang-1.25"
+  ],
+  "sourcemation/redis-operator": [
+    "sourcemation/golang-1.25"
+  ],
+  "sourcemation/redis-operator/redis-operator": [],
+  "sourcemation/redis-sentinel": [
+    "sourcemation/debian-13-slim"
+  ],
+  "sourcemation/rocky-9": [],
+  "sourcemation/rocky-9-minimal": [],
+  "sourcemation/ruby": [
+    "sourcemation/rocky-9"
+  ],
+  "sourcemation/sealed-secrets-controller": [
+    "sourcemation/golang-1.25"
+  ],
+  "sourcemation/servicemix": [
+    "sourcemation/rocky-9"
+  ],
+  "sourcemation/thanos": [
+    "sourcemation/debian-13-slim"
+  ],
+  "sourcemation/wordpress": [
+    "sourcemation/debian-13-slim"
+  ],
+  "sourcemation/zookeeper": [
+    "sourcemation/jre-21"
+  ]
+}
