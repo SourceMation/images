@@ -235,6 +235,7 @@ test_container(){
         "phpmyadmin")
             CONTAINER_RUN_COMMAND=""
             ;;
+
         nginx*)
             CONTAINER_RUN_COMMAND=""
             ;;

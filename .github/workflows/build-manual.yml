@@ -53,6 +53,7 @@ on:
           - jdk-21
           - jdk-17
           - jenkins
+          - jmx-exporter
           - jre-21
           - jre-17
           - kafka
@@ -73,8 +74,11 @@ on:
           - micronaut
           - minio
           - mongodb
+          - mongodb-exporter
           - mosquitto
           - mysql
+          - nats
+          - nginx-ingress-controller
           - nginx-mainline
           - nginx-mainline-otel
           - nginx-mainline-perl
@@ -86,6 +90,7 @@ on:
           - nodejs-22
           - nodejs-24
           - node_exporter
+          - oauth2-proxy
           - openapi-generator-cli
           - openldap
           - pgbadger
