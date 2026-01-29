@@ -1,2 +1,2 @@
-# Set entrypoint to empty string to allow running /bin/bash for tests
-ENTRYPOINT_CMD="--entrypoint="
+# Set entrypoint to /bin/bash to keep container running for tests
+ENTRYPOINT_CMD="--entrypoint=/bin/bash"
