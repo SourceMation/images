@@ -12,13 +12,13 @@ LABEL name="jdk-17" \
       architecture="$TARGETARCH" \
       summary="JDK 17 on Debian 13 Slim Container" \
       description="Provides JDK 17 on Debian 13 Slim Container" \
-      version="jdk-17.0.17-10" \
+      version="jdk-17.0.18-8" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="JDK 17 on Debian 13 Slim Container" \
       io.k8s.description="Provides JDK 17 on Debian 13 Slim Container" \
       io.openshift.tags="jdk jdk-17 debian-13-slim"
 
-ENV JAVA_VERSION="jdk-17.0.17+10"
+ENV JAVA_VERSION="jdk-17.0.18+8"
 ENV JAVA_HOME=/opt/java/openjdk
 ENV PATH=$JAVA_HOME/bin:$PATH
 # Default to UTF-8 file.encoding

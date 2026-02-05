@@ -3,7 +3,7 @@ FROM sourcemation/postgres-17
 ARG BUILD_DATE
 ARG TARGETARCH
 
-ENV PGEXPORTER_VER="0.18.1"
+ENV PGEXPORTER_VER="0.19.0"
 ENV BINARY_URL="https://github.com/prometheus-community/postgres_exporter/releases/download/v${PGEXPORTER_VER}/postgres_exporter-${PGEXPORTER_VER}.linux-${TARGETARCH}.tar.gz"
 
 LABEL name="postgres-exporter" \
@@ -15,7 +15,7 @@ LABEL name="postgres-exporter" \
   architecture="$TARGETARCH" \
   summary="Postgresql-exporter on Debian 13 Slim Container" \
   description="Provides postgres-exporter on Debian 13 Slim Container" \
-  version="0.18.1" \
+  version="0.19.0" \
   io.k8s.display-name="Postgresql-exporter on Debian 13 Slim Container" \
   io.k8s.description="Provides postgres-exporter on Debian 13 Slim Container" \
   io.openshift.tags="postgres-exporter debian"

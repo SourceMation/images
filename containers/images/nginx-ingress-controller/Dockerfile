@@ -1,7 +1,7 @@
 FROM sourcemation/golang-1.25:latest AS builder
 
 ARG TARGETARCH
-ARG INGRESS_NGINX_VERSION="controller-v1.14.1"
+ARG INGRESS_NGINX_VERSION="controller-v1.14.3"
 
 WORKDIR /app
 
@@ -35,13 +35,13 @@ LABEL name="nginx-ingress-controller" \
       architecture="$TARGETARCH" \
       summary="NGINX Ingress Controller on Debian 13 Slim Container" \
       description="Provides NGINX Ingress Controller on Debian 13 Slim Container" \
-      version="v1.14.1" \
+      version="v1.14.3" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="NGINX Ingress Controller on Debian 13 Slim Container" \
       io.k8s.description="Provides NGINX Ingress Controller on Debian 13 Slim Container" \
       io.openshift.tags="nginx-ingress-controller debian-13"
 
-ENV INGRESS_NGINX_VERSION="controller-v1.14.1"
+ENV INGRESS_NGINX_VERSION="controller-v1.14.3"
 
 # Install nginx and other dependencies
 RUN apt-get update && apt-get install --no-install-recommends -y \

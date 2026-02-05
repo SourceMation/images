@@ -4,7 +4,7 @@ ARG TARGETARCH
 
 ARG EXPORTER_URL="https://github.com/oliver006/redis_exporter/releases/download"
 
-ARG REDIS_EXPORTER_VERSION="v1.80.1"
+ARG REDIS_EXPORTER_VERSION="v1.80.2"
 
 WORKDIR /tmp
 
@@ -31,7 +31,7 @@ LABEL name="redis-exporter" \
       architecture="$TARGETARCH" \
       summary="Redis Exporter" \
       description="Provides Redis Exporter" \
-      version="1.80.1" \
+      version="1.80.2" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="Redis Exporter" \
       io.k8s.description="Provides Redis Exporter" \

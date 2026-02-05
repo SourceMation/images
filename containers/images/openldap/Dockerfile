@@ -1,6 +1,6 @@
 FROM sourcemation/debian-13-slim:latest AS builder
 
-ARG VERSION=2.6.10
+ARG VERSION=2.6.12
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential libtool libsasl2-dev libssl-dev libdb-dev curl groff \
@@ -43,7 +43,7 @@ LABEL name="openldap" \
       architecture="${TARGETARCH}" \
       summary="${LONGNAME}" \
       description="Provides ${LONGNAME}" \
-      version="2.6.10" \
+      version="2.6.12" \
       io.k-display-name="${LONGNAME}" \
       io.k8s.description="Provides ${LONGNAME}" \
       io.openshift.tags="openldap debian-13-slim"

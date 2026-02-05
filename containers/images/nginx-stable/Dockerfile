@@ -11,13 +11,13 @@ LABEL name="nginx-stable" \
       architecture="$TARGETARCH" \
       summary="Nginx Stable on Debian 13 Slim Container" \
       description="Provides Nginx Stable on Debian 13 Slim Container" \
-      version="1.28.1" \
+      version="1.28.2" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="Nginx stable on Debian 13 Slim Container" \
       io.k8s.description="Provides Nginx Stable on Debian 13 Slim Container" \
       io.openshift.tags="nginx debian-13-slim"
 
-ENV NGINX_VERSION="1.28.1"
+ENV NGINX_VERSION="1.28.2"
 ENV PKG_RELEASE="1~trixie"
 ENV NJS_VERSION="0.9.5"
 ENV NJS_RELEASE="1~trixie"

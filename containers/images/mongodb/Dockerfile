@@ -11,7 +11,7 @@ LABEL name="mongodb" \
       architecture="$TARGETARCH" \
       summary="MongoDB on EL9 Container" \
       description="Provides MongoDB on Rocky Linux 9 Container" \
-      version="8.0.17" \
+      version="8.0.18" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="MongoDB on EL9 Container" \
       io.k8s.description="Provides MongoDB on Rocky Linux 9 Container" \
@@ -43,7 +43,7 @@ COPY additions/start.sh /home/mongodb/start.sh
 RUN chmod +x /home/mongodb/start.sh \
     && chmod +x /opt/one_time_script.sh
 
-ENV APP_VERSION="8.0.17" \
+ENV APP_VERSION="8.0.18" \
     APP_NAME="mongodb"
 
 EXPOSE 27017

@@ -11,13 +11,13 @@ LABEL name="nginx-stable" \
       architecture="$TARGETARCH" \
       summary="Nginx Stable on Debian 13 Slim Container with Perl" \
       description="Provides Nginx Stable on Debian 13 Slim Container with Perl" \
-      version="1.28.1" \
+      version="1.28.2" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="Nginx stable on Debian 13 Slim Container with Perl" \
       io.k8s.description="Provides Nginx Stable on Debian 13 Slim Container with Perl" \
       io.openshift.tags="nginx debian-13-slim perl"
 
-ENV NGINX_VERSION="1.28.1"
+ENV NGINX_VERSION="1.28.2"
 ENV DYNPKG_RELEASE="1~trixie"
 
 RUN set -xeu; \
