@@ -120,8 +120,8 @@ RUN ARCH= && dpkgArch="$(dpkg --print-architecture)" \
 RUN set -ex \
   && GNUPGHOME="$(mktemp -d)"; export GNUPGHOME \
   && key="6A010C5166006599AA17F08146C2130DFD2497F5" \
-  && { gpg --batch --keyserver-options timeout=5 --keyserver hkps://keys.openpgp.org --recv-keys "$key" || \
-      gpg --batch --keyserver-options timeout=10 --keyserver keyserver.ubuntu.com --recv-keys "$key" ; } \
+  && { gpg --batch --keyserver-options timeout=10 --keyserver keyserver.ubuntu.com --recv-keys "$key" || \
+      gpg --batch --keyserver-options timeout=5 --keyserver hkps://keys.openpgp.org --recv-keys "$key" ; } \
   && curl -LO "https://yarnpkg.com/downloads/$YARN_VERSION/yarn-v$YARN_VERSION.tar.gz" \
   && curl -LO "https://yarnpkg.com/downloads/$YARN_VERSION/yarn-v$YARN_VERSION.tar.gz.asc" \
   && gpg --batch --verify yarn-v$YARN_VERSION.tar.gz.asc yarn-v$YARN_VERSION.tar.gz \
