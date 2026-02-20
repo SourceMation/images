@@ -12,7 +12,7 @@ LABEL name="postgres-16" \
       architecture="$TARGETARCH" \
       summary="PostgreSQL 16 on Debian 13 Slim Container" \
       description="Provides PostgreSQL 16 on Debian Slim Container" \
-      version="16.11.1" \
+      version="16.12.1" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="PostgreSQL 16 on Debian 13 Slim Container" \
       io.k8s.description="Provides PostgreSQL 16 on Debian 13 Slim Container" \
@@ -23,7 +23,7 @@ ENV LANG en_US.utf8
 ENV PG_MAJOR="16"
 ENV PATH="$PATH:/usr/lib/postgresql/$PG_MAJOR/bin"
 ENV PGDATA /var/lib/postgresql/data
-ENV PG_VERSION="16.11-1.pgdg13+1"
+ENV PG_VERSION="16.12-1.pgdg13+1"
 ENV GOSU_VERSION 1.17
 
 # explicitly set user/group IDs
