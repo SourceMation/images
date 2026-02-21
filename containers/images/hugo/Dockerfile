@@ -22,7 +22,7 @@ LABEL name="hugo" \
       io.k8s.description="Provides Hugo (extended+withdeploy) on Debian 12 Slim Contaner" \
       io.openshift.tags="Hugo debian-12-slim"
 
-ARG NODEJS_INSTALL_SUM=872150825071bb403b6e210c66d9487a791047d0299026de429eb1f626fd969f
+ARG NODEJS_INSTALL_SUM=6e3d580f5bd7ccf2aa1e8df8d35c60d78e873c3ff8beb282c9bebd914904ad72
 
 RUN apt-get update && apt-get install -y --no-install-recommends curl ca-certificates gnupg git gcc g++ \
     && curl -sSL -o /tmp/setup_24.x https://deb.nodesource.com/setup_24.x \

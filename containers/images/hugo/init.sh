@@ -20,13 +20,19 @@ echo "Checking the latest available version of $APP"
 HUGO_VERSION=$(git ls-remote --refs --tags https://github.com/gohugoio/hugo.git | grep  -Eo 'refs/tags/v[0-9]+\.[0-9]+\.[0-9]+$' | sort --version-sort --reverse | tr -d 'refs/tags/v' | head -n 1)
 # Exit with an error if the returned version contains anything other
 # than digits and dots
-[[ ! $DART_SASS_VERSION =~ ^[0-9.]+$ ]] && exit 1
+[[ ! $HUGO_VERSION =~ ^[0-9.]+$ ]] && exit 1
 echo "HUGO_VERSION = $HUGO_VERSION"
+
+echo "Checking the current SHA256 sum for NodeSource setup_24.x"
+NODEJS_INSTALL_SUM=$(curl -sSL https://deb.nodesource.com/setup_24.x | sha256sum | awk '{print $1}')
+[[ ! $NODEJS_INSTALL_SUM =~ ^[a-f0-9]{64}$ ]] && exit 1
+echo "NODEJS_INSTALL_SUM = $NODEJS_INSTALL_SUM"
 
 # Replacing versions in Dockerfile
 sed -i "s/DART_SASS_VERSION=.*/DART_SASS_VERSION=$DART_SASS_VERSION/" Dockerfile || exit 1
 
 sed -i "s/version=\"[^\"]*\"/version=\"$HUGO_VERSION\"/" Dockerfile || exit 1
 sed -i "s/HUGO_VERSION=.*/HUGO_VERSION=$HUGO_VERSION/" Dockerfile || exit 1
+sed -i "s/NODEJS_INSTALL_SUM=.*/NODEJS_INSTALL_SUM=$NODEJS_INSTALL_SUM/" Dockerfile || exit 1
 
 echo "Finished setting up the $APP $HUGO_VERSION image (with supporting $DART_SASS $DART_SASS_VERSION)"
