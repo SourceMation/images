@@ -633,12 +633,13 @@ check_variables_set_build_container
 check_command_available "docker"
 check_file_exists "$container_file"
 check_file_exists "$container_dir/README.md"
-[[ "$PUSH_README" != "true" && "$PUSH_IMAGE" != "true" ]] || login_to_quayio
-[[ "$PUSH_README" != "true" && "$PUSH_IMAGE" != "true" ]] || login_to_dockerhub
 [ "$BUILD_CONTAINER" != "true" ] || prepare_build # Run init.sh if it exists
 read_configs # This is always needed
 [ "$BUILD_CONTAINER" != "true" ] || build_container
 [ "$TEST_IMAGE" != "true" ] || test_container
+# We login only when we have to - there is limit for pulls on DockerHub, and we do not want to waste it on the build
+[[ "$PUSH_README" != "true" && "$PUSH_IMAGE" != "true" ]] || login_to_quayio
+[[ "$PUSH_README" != "true" && "$PUSH_IMAGE" != "true" ]] || login_to_dockerhub
 [ "$PUSH_IMAGE" != "true" ] || push_container_image
 [[ "$PUSH_README" != "true" && "$PUSH_IMAGE" != "true" ]] || push_readme
 cleanup
