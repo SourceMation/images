@@ -36,7 +36,7 @@ RUN apt-get update \
         tzdata \
         zlib1g \
     && curl -o /etc/apt/keyrings/mariadb-keyring.pgp 'https://mariadb.org/mariadb_release_signing_key.pgp' \
-    && echo "deb [signed-by=/etc/apt/keyrings/mariadb-keyring.pgp] https://deb.mariadb.org/12.1/debian trixie main" > /etc/apt/sources.list.d/mariadb.list \
+    && echo "deb [signed-by=/etc/apt/keyrings/mariadb-keyring.pgp] https://deb.mariadb.org/12.2/debian trixie main" > /etc/apt/sources.list.d/mariadb.list \
     && printf "Package: *\nPin: release o=MariaDB\nPin-Priority: 999" > /etc/apt/preferences.d/mariadb \
     && apt-get update \
     && apt-get install -y \
@@ -57,6 +57,9 @@ RUN apt-get update \
     && mkdir -p /var/run/mysqld /var/lib/mysql /var/log/mysql /docker-entrypoint-initdb.d \
     && chown -R mysql:mysql /var/run/mysqld /var/lib/mysql /var/log/mysql /docker-entrypoint-initdb.d \
     && chmod 1777 /var/run/mysqld
+
+ENV APP_NAME="mariadb" \
+    APP_VERSION="12.2.2"
 
 COPY docker.cnf /etc/mysql/mariadb.conf.d/10-docker.cnf
 COPY docker-entrypoint.sh /usr/local/bin/
