@@ -131,6 +131,7 @@ RUN set -ex; \
         --build="$gnuArch" \
         --disable-multilib \
         --enable-languages=c,c++,fortran,go \
+        --enable-checking=release \
         $extraConfigureArgs \
     ; \
     make -j "$(nproc)"; \

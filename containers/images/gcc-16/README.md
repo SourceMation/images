@@ -59,7 +59,7 @@ your project files and build artifacts.
 The following environment variables are defined within the image:
 
 ```bash
-GCC_VERSION="20250427" # This may vary based on the precise snapshot version
+GCC_VERSION="20260308" # This may vary based on the precise snapshot version
 GPG_KEYS="B215C1633BCA0477615F1B35A5B3A004745C015A (...)" # A collection of keys for verifying the GPG signature of the GCC tarball
 ```
 
@@ -92,6 +92,12 @@ mentioned in the offering. The `sourcemation/gcc-16` image is a separate
 project and is maintained by [Sourcemation](https://sourcemation.com).
 
 ## Extra notes
+
+Since 11 March 2026, all builds are forced to use `--enable-checking=release`.
+This option performs internal consistency checks appropriate for a release version
+of the compiler, balancing safety and performance. You can find more info
+on the [official GCC configuration page](https://gcc.gnu.org/install/configure.html).
+The GCC snapshot version was also updated to 20260308.
 
 This GCC 16 development snapshot image is built on a Debian 13 Slim base image,
 a minimal consistent compilation environment. This image is loosely
