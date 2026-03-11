@@ -175,6 +175,8 @@ jobs:
       APIKEY__QUAY_IO: ${{ secrets.QUAY_API }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
       - name: Install prerequisites - docker
         run: |
           sudo apt-get update
@@ -210,6 +212,8 @@ jobs:
       APIKEY__QUAY_IO: ${{ secrets.QUAY_API }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
       - name: Install prerequisites - docker
         run: |
           sudo apt-get update
@@ -235,6 +239,8 @@ jobs:
     if: always() && ${{ inputs.next_containers != '' }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
       - name: Build containers
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}

@@ -5,7 +5,7 @@
 # Date: 2025-09-24
 # -----------------------------------
 
-set -eu
+set -euo pipefail
 
 echo "-> Preparing openssl variables"
 OPENSSL_VER_SRC="https://api.github.com/repos/openssl/openssl/releases/latest"

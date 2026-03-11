@@ -108,6 +108,8 @@ test_container(){
     CONTAINER_STARTUP_TIMEOUT=${CONTAINER_STARTUP_TIMEOUT:-10}
     # default test
     CONTAINER_TEST_FILES="test_linux.py"
+    # default pip packages
+    CONTAINER_PIP_PACKAGES="pytest pytest-dependency pytest-order requests psycopg2-binary redis pymongo pika cassandra-driver pymemcache"
     # Extra tests
     if [ -f "tests/test_${IMAGE_NAME}.py" ]; then
         CONTAINER_TEST_FILES+=" test_${IMAGE_NAME}.py"
@@ -257,6 +259,9 @@ test_container(){
         postgres-*)
             CONTAINER_RUN_COMMAND=""
             CONTAINER_RUN_PARAMETERS="-e POSTGRES_HOST_AUTH_METHOD=trust"
+            ;;
+        "python-3.14")
+            CONTAINER_PIP_PACKAGES="pytest pytest-dependency pytest-order requests psycopg2-binary redis pymongo pika pymemcache"
             ;;
         "prometheus")
             CONTAINER_RUN_COMMAND="--storage.tsdb.path=/prometheus --config.file=/etc/prometheus/prometheus.yml --web.enable-lifecycle"
@@ -443,7 +448,7 @@ test_container(){
 
     print_info 'Installing Python and PyTest in the Container'
     docker exec -u 0 "$CONTAINER_NAME" dnf install -y python3-pip procps iproute || docker exec -u 0 "$CONTAINER_NAME" microdnf install -y python3-pip procps iproute || docker exec -u 0 "$CONTAINER_NAME" bash -c 'apt-get update && apt-get install -y python3-pip procps iproute2'
-    docker exec -u 0 "$CONTAINER_NAME" pip3 install pytest pytest-dependency pytest-order requests psycopg2-binary redis pymongo pika cassandra-driver pymemcache|| docker exec -u 0 "$CONTAINER_NAME" pip3 install pytest pytest-dependency pytest-order requests psycopg2-binary redis pymongo pika cassandra-driver pymemcache --break-system-packages
+    docker exec -u 0 "$CONTAINER_NAME" pip3 install ${CONTAINER_PIP_PACKAGES} || docker exec -u 0 "$CONTAINER_NAME" pip3 install ${CONTAINER_PIP_PACKAGES} --break-system-packages
 
     print_info 'Executing PyTest Scripts'
     docker exec -u 0 "$CONTAINER_NAME" /bin/bash -c "cd /tmp/tests && python3 -m pytest -vv ${CONTAINER_TEST_FILES}" || print_fail "PyTest execution failed"
@@ -633,12 +638,13 @@ check_variables_set_build_container
 check_command_available "docker"
 check_file_exists "$container_file"
 check_file_exists "$container_dir/README.md"
-[[ "$PUSH_README" != "true" && "$PUSH_IMAGE" != "true" ]] || login_to_quayio
-[[ "$PUSH_README" != "true" && "$PUSH_IMAGE" != "true" ]] || login_to_dockerhub
 [ "$BUILD_CONTAINER" != "true" ] || prepare_build # Run init.sh if it exists
 read_configs # This is always needed
 [ "$BUILD_CONTAINER" != "true" ] || build_container
 [ "$TEST_IMAGE" != "true" ] || test_container
+# We login only when we have to - there is limit for pulls on DockerHub, and we do not want to waste it on the build
+[[ "$PUSH_README" != "true" && "$PUSH_IMAGE" != "true" ]] || login_to_quayio
+[[ "$PUSH_README" != "true" && "$PUSH_IMAGE" != "true" ]] || login_to_dockerhub
 [ "$PUSH_IMAGE" != "true" ] || push_container_image
 [[ "$PUSH_README" != "true" && "$PUSH_IMAGE" != "true" ]] || push_readme
 cleanup

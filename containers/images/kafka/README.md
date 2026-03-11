@@ -90,8 +90,8 @@ Quickstart](https://kafka.apache.org/quickstart) page.
 
 ### Licenses
 
-The base license for the solution (Apache Kafka 3.9.0) is the [Apache License,
-Version 2.0](https://github.com/apache/kafka/blob/3.9.0/LICENSE-binary). Please
+The base license for the solution (Apache Kafka 4.2.0) is the [Apache License,
+Version 2.0](https://github.com/apache/kafka/blob/4.2.0/LICENSE-binary). Please
 visit that link for a more in-depth information about the licensing of the
 third-party components used as part of the upstream product. The licenses for
 additional components shipped as part of this image can be found on the image's

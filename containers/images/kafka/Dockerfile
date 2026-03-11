@@ -2,7 +2,7 @@ FROM sourcemation/rocky-9:latest AS jsa-builder
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # UPDATE init.sh to include new scripts
-ENV kafka_url=https://downloads.apache.org/kafka/3.9.0/kafka_2.13-3.9.0.tgz
+ENV kafka_url=https://downloads.apache.org/kafka/4.2.0/kafka_2.13-4.2.0.tgz
 
 COPY jsa_launch /etc/kafka/docker/jsa_launch
 
@@ -33,7 +33,7 @@ LABEL name="kafka" \
       architecture="$TARGETARCH" \
       summary="Apache Kafka on EL9 Container" \
       description="Provides Apache Kafka on Rocky Linux 9 Container" \
-      version="3.9.0" \
+      version="4.2.0" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="Apache Kafka on EL9 Container" \
       io.k8s.description="Provides Apache Kafka on Rocky Linux 9 Container" \
@@ -52,9 +52,9 @@ RUN tar xfz kafka.tgz -C /opt/kafka --strip-components 1 && \
     chown appuser:appuser -R /usr/logs /opt/kafka /mnt/shared/config &&\
     chown appuser:root -R /var/lib/kafka /etc/kafka/secrets /etc/kafka &&\
     chmod -R ug+w /etc/kafka /var/lib/kafka /etc/kafka/secrets && \
-    cp /opt/kafka/config/log4j.properties /etc/kafka/docker/log4j.properties && \
-    cp /opt/kafka/config/tools-log4j.properties /etc/kafka/docker/tools-log4j.properties &&\
-    cp /opt/kafka/config/kraft/server.properties /etc/kafka/docker/server.properties &&\
+    cp /opt/kafka/config/log4j2.yaml /etc/kafka/docker/log4j2.yaml && \
+    cp /opt/kafka/config/tools-log4j2.yaml /etc/kafka/docker/tools-log4j2.yaml &&\
+    cp /opt/kafka/config/server.properties /etc/kafka/docker/server.properties &&\
     rm kafka.tgz
 
 # TODO - Add the kafka.jsa file

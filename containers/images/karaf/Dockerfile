@@ -12,7 +12,7 @@ LABEL name="apache-karaf" \
       architecture="$TARGETARCH" \
       summary="Apache Karaf on EL9 Container" \
       description="Provides Apache Karaf on Rocky Linux 9 Container" \
-      version="4.4.9" \
+      version="4.4.10" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="Apache Karaf on EL9 Container" \
       io.k8s.description="Provides Apache Karaf on Rocky Linux 9 Container" \
@@ -28,7 +28,7 @@ ENV KARAF_HOME $KARAF_INSTALL_PATH/apache-karaf
 ENV KARAF_EXEC exec
 ENV PATH $PATH:$KARAF_HOME/bin
 
-ENV KARAF_VERSION=4.4.9
+ENV KARAF_VERSION=4.4.10
 
 RUN set -euo pipefail; cd /opt; \
     curl -LO https://archive.apache.org/dist/karaf/KEYS && \
