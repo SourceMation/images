@@ -1,4 +1,20 @@
 #!/usr/bin/env python3
+"""
+docker-build-order_ad.py
+Computes a topological build order for Docker/Containerfile images in a directory tree.
+Outputs a flat ordered list, an ASCII dependency forest, and a Graphviz DOT graph.
+
+Supports:
+  - Multi-stage builds (FROM ... AS <alias>)
+  - ARG-based image references (static default substitution only)
+  - COPY --from=<image> references
+  - Registry-prefix stripping (docker.io/, localhost/, etc.)
+
+Limitations / known gaps:
+  - Backslash line continuation (e.g. FROM \\<newline>  ubuntu) is NOT handled.
+    Instructions split across multiple lines will be silently ignored.
+    In practice this is extremely rare in real-world Dockerfiles.
+"""
 import json
 import argparse
 import os
@@ -18,6 +34,21 @@ def strip_full_line_comment(line: str) -> str:
     if not s or s.startswith("#"):
         return ""
     return line.rstrip("\n")
+
+
+def strip_inline_comment(value: str) -> str:
+    """Strip a trailing inline comment from a Dockerfile value string.
+
+    Docker does not officially support inline comments, but many authors write
+    things like:  ARG VERSION=1.0  # bump when upgrading
+    This helper strips ' #...' suffixes so ARG substitution works as intended.
+    Only strips when '#' is preceded by at least one space to avoid clobbering
+    legitimate hash characters embedded in values (e.g. git SHAs without a space).
+    """
+    idx = value.find(" #")
+    if idx != -1:
+        return value[:idx].rstrip()
+    return value
 
 
 def docker_var_subst(s: str, args_defaults: Dict[str, str]) -> str:
@@ -112,10 +143,6 @@ def normalize_local_ref(dep: str, org: str, local_images: Set[str], local_short:
     if dep0 in local_images:
         return dep0
 
-    # If it starts with org/ and matches known local images
-    if dep0.startswith(org + "/") and dep0 in local_images:
-        return dep0
-
     # Short-name match: dep == rel_dir (folder path)
     if dep0 in local_short:
         full = f"{org}/{dep0}".replace("\\", "/")
@@ -143,7 +170,7 @@ def parse_dockerfile(path: str, org: str, local_images: Set[str], local_short: S
                 name = m_arg.group("name")
                 val = m_arg.group("val")
                 if val is not None:
-                    args_defaults[name] = val.strip()
+                    args_defaults[name] = strip_inline_comment(val.strip())
                 continue
 
             m_from = FROM_RE.match(line)
@@ -222,13 +249,9 @@ def print_forest_as_tree(local_images: Set[str], deps_local: Dict[str, Set[str]]
                 parents[img].add(dep)
 
     roots = [img for img in sorted(local_images) if not parents.get(img)]
-
-    # If cycles exist, we may have no roots for some nodes; show them as extra roots
-    seen_in_roots = set(roots)
-    for img in sorted(local_images):
-        if img not in seen_in_roots and img not in parents:
-            roots.append(img)
-            seen_in_roots.add(img)
+    # Note: images involved in a cycle all have parents (each other), so they
+    # won't appear in roots. They are already flagged in the WARNING header
+    # that main() prepends to the tree output.
 
     lines: List[str] = []
     seen_global: Set[str] = set()
@@ -321,6 +344,10 @@ def main():
     )
     ap.add_argument("images_dir", help="Root directory containing image subdirs (Dockerfile/Containerfile).")
     ap.add_argument("org", help="Local image namespace/prefix, e.g. 'sourcemation'.")
+    # action="append" with a non-None default is intentional: the default list
+    # ["Dockerfile", "Containerfile"] is always searched, and every --dockerfile X
+    # the caller passes is appended on top.  This lets users add custom names
+    # (e.g. --dockerfile Dockerfile.prod) without losing the standard ones.
     ap.add_argument("--dockerfile", action="append", default=["Dockerfile", "Containerfile"],
                     help="Dockerfile names to look for (can be passed multiple times). Default: Dockerfile + Containerfile")
     ap.add_argument("--out-flat", default="build_order.txt", help="Flat output file (topological order).")
