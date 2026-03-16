@@ -12,7 +12,7 @@ LABEL name="nodejs-24" \
       architecture="$TARGETARCH" \
       summary="NodeJS 24 on Debian 13 Slim Container" \
       description="Provides NodeJS 24 on Debian 13 Slim Container" \
-      version="24.13.0" \
+      version="24.14.0" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="NodeJS 24 on Debian 13 Slim Container" \
       io.k8s.description="Provides NodeJS 24 on Debian 13 Slim Container" \
@@ -22,7 +22,7 @@ LABEL name="nodejs-24" \
 RUN groupadd --gid 1000 node \
   && useradd --uid 1000 --gid node --shell /bin/bash --create-home node
 
-ENV NODE_VERSION="24.13.0"
+ENV NODE_VERSION="24.14.0"
 ENV YARN_VERSION="1.22.22"
 
 # Most of this packages are from buildpack-deps that is based on old Heroku
@@ -121,8 +121,8 @@ RUN ARCH= && dpkgArch="$(dpkg --print-architecture)" \
 RUN set -ex \
   && GNUPGHOME="$(mktemp -d)"; export GNUPGHOME \
   && key="6A010C5166006599AA17F08146C2130DFD2497F5" \
-  && { gpg --batch --keyserver-options timeout=5 --keyserver hkps://keys.openpgp.org --recv-keys "$key" || \
-      gpg --batch --keyserver-options timeout=10 --keyserver keyserver.ubuntu.com --recv-keys "$key" ; } \
+  && { gpg --batch --keyserver-options timeout=10 --keyserver keyserver.ubuntu.com --recv-keys "$key" || \
+      gpg --batch --keyserver-options timeout=5 --keyserver hkps://keys.openpgp.org --recv-keys "$key" ; } \
   && curl -LO "https://yarnpkg.com/downloads/$YARN_VERSION/yarn-v$YARN_VERSION.tar.gz" \
   && curl -LO "https://yarnpkg.com/downloads/$YARN_VERSION/yarn-v$YARN_VERSION.tar.gz.asc" \
   && gpg --batch --verify yarn-v$YARN_VERSION.tar.gz.asc yarn-v$YARN_VERSION.tar.gz \

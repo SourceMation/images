@@ -18,6 +18,15 @@ declare -A env_defaults
 env_defaults=(
 # Replace CLUSTER_ID with a unique base64 UUID using "bin/kafka-storage.sh random-uuid"
   ["CLUSTER_ID"]="5L6g3nShT-eMCtK--X86sw"
+  ["KAFKA_PROCESS_ROLES"]="broker,controller"
+  ["KAFKA_NODE_ID"]="1"
+  ["KAFKA_CONTROLLER_QUORUM_VOTERS"]="1@localhost:9093"
+  ["KAFKA_CONTROLLER_LISTENER_NAMES"]="CONTROLLER"
+  ["KAFKA_LISTENERS"]="PLAINTEXT://0.0.0.0:9092,CONTROLLER://0.0.0.0:9093"
+  ["KAFKA_ADVERTISED_LISTENERS"]="PLAINTEXT://localhost:9092"
+  ["KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR"]="1"
+  ["KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR"]="1"
+  ["KAFKA_TRANSACTION_STATE_LOG_MIN_ISR"]="1"
 )
 
 for key in "${!env_defaults[@]}"; do

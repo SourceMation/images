@@ -47,12 +47,27 @@ If you are looking to help with images listed as "Problematic" in the main `READ
 6. Add the image name to the list in `.github/workflows/build-manual.yml`.
 7. Test it locally as described above.
 
-## Multiple Systems and Tags
+## Using `conf.sh`
 
-If your image supports multiple base OS or requires specific tags, use the `conf.sh` file:
-```bash
-DOCKER_TAG_SUFFIX="debian-11"
-```
+The `conf.sh` file is sourced by the build script and can be used to override various build and test parameters. This is preferred over modifying the main `build-container.sh` script.
+
+Common use cases:
+- **Multiple Tags:** If your image supports multiple base OS or requires specific tags:
+  ```bash
+  DOCKER_TAG_SUFFIX="debian-11"
+  ```
+- **Custom Entrypoint for Tests:** If your image has an entrypoint that interferes with tests (e.g., immediately exits), you can override it:
+  ```bash
+  ENTRYPOINT_CMD="--entrypoint="
+  ```
+- **Custom Test Command:** Override the command run inside the container during testing:
+  ```bash
+  CONTAINER_RUN_COMMAND="/bin/sh"
+  ```
+- **Startup Timeout:** Increase the time allowed for the container to start:
+  ```bash
+  CONTAINER_STARTUP_TIMEOUT=60
+  ```
 
 ## Pull Request Process
 

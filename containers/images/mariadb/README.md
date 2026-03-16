@@ -65,6 +65,9 @@ The `sourcemation/mariadb` image itself comes in `debian-13` flavor. The tag `la
 This image uses the following environment variables:
 
 ```bash
+APP_NAME="mariadb"
+APP_VERSION="12.2.2"
+
 MARIADB_ROOT_PASSWORD=<password>     # Set root password
 MARIADB_RANDOM_ROOT_PASSWORD=no
 MARIADB_ALLOW_EMPTY_PASSWORD=no
@@ -123,4 +126,4 @@ For more information, check out the [overview of MariaDB](https://mariadb.org/) 
 
 ### Licenses
 
-The base license for the solution (MariaDB) is the [GPLv2](https://github.com/MariaDB/server/blob/11.4/COPYING). The licenses for each component shipped as part of this image can be found on [the image's appropriate Sourcemation entry](https://sourcemation.com).
+The base license for the solution (MariaDB) is the [GPLv2](https://github.com/MariaDB/server/blob/12.2/COPYING). The licenses for each component shipped as part of this image can be found on [the image's appropriate Sourcemation entry](https://sourcemation.com).

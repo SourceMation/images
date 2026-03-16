@@ -12,13 +12,13 @@ LABEL name="jre-21" \
       architecture="$TARGETARCH" \
       summary="JRE 21 on Debian 13 Slim Container" \
       description="Provides JRE 21 on Debian 13 Slim Container" \
-      version="jdk-21.0.9-10" \
+      version="jdk-21.0.10-7" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="JRE 21 on Debian 13 Slim Container" \
       io.k8s.description="Provides JRE 21 on Debian 13 Slim Container" \
       io.openshift.tags="jre jre-21 debian-13-slim"
 
-ENV JAVA_VERSION="jdk-21.0.9+10"
+ENV JAVA_VERSION="jdk-21.0.10+7"
 ENV JAVA_HOME=/opt/java/openjdk
 ENV PATH=$JAVA_HOME/bin:$PATH
 # Default to UTF-8 file.encoding

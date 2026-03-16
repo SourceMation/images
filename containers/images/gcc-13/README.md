@@ -88,6 +88,11 @@ project and is maintained by [Sourcemation](https://sourcemation.com).
 
 ## Extra notes
 
+Since 11 March 2026, all builds are forced to use `--enable-checking=release`.
+This option performs internal consistency checks appropriate for a release version
+of the compiler, balancing safety and performance. You can find more info
+on the [official GCC configuration page](https://gcc.gnu.org/install/configure.html).
+
 This GCC 13 image is built on a stable Linux distribution to provide a
 consistent compilation environment. This image is loosely based on the Docker
 official image for `gcc` and is built using a separate, independent SourceMaton
