@@ -350,14 +350,24 @@ def main():
     # (e.g. --dockerfile Dockerfile.prod) without losing the standard ones.
     ap.add_argument("--dockerfile", action="append", default=["Dockerfile", "Containerfile"],
                     help="Dockerfile names to look for (can be passed multiple times). Default: Dockerfile + Containerfile")
-    ap.add_argument("--out-flat", default="build_order.txt", help="Flat output file (topological order).")
-    ap.add_argument("--out-tree", default="build_order.tree.txt", help="Tree/forest output file.")
-    ap.add_argument("--out-dot", default="build_order.dot", help="Graphviz DOT output file.")
-    ap.add_argument("--out-json", help="JSON dependency output file.")
+    ap.add_argument("--out-dir", default="build-orders",
+                    help="Directory where all output files are written. Created if it does not exist. Default: build-orders")
+    ap.add_argument("--out-flat", default="build_order.txt", help="Flat output filename (topological order).")
+    ap.add_argument("--out-tree", default="build_order.tree.txt", help="Tree/forest output filename.")
+    ap.add_argument("--out-dot", default="build_order.dot", help="Graphviz DOT output filename.")
+    ap.add_argument("--out-json", help="JSON dependency output filename.")
     args = ap.parse_args()
 
     images_dir = os.path.abspath(args.images_dir)
     org = args.org.strip().strip("/")
+
+    out_dir = args.out_dir
+    os.makedirs(out_dir, exist_ok=True)
+
+    out_flat = os.path.join(out_dir, args.out_flat)
+    out_tree = os.path.join(out_dir, args.out_tree)
+    out_dot  = os.path.join(out_dir, args.out_dot)
+    out_json = os.path.join(out_dir, args.out_json) if args.out_json else None
 
     discovered = discover_dockerfiles(images_dir, args.dockerfile)
     if not discovered:
@@ -392,7 +402,7 @@ def main():
             if n not in order:
                 order.append(n)
 
-    with open(args.out_flat, "w", encoding="utf-8") as f:
+    with open(out_flat, "w", encoding="utf-8") as f:
         for img in order:
             f.write(img + "\n")
 
@@ -405,25 +415,25 @@ def main():
         tree_txt += "\n"
     tree_txt += print_forest_as_tree(local_images, deps_local)
 
-    with open(args.out_tree, "w", encoding="utf-8") as f:
+    with open(out_tree, "w", encoding="utf-8") as f:
         f.write(tree_txt)
 
     # DOT (includes external bases)
     dot_txt = render_dot(local_images, deps_local, deps_external)
-    with open(args.out_dot, "w", encoding="utf-8") as f:
+    with open(out_dot, "w", encoding="utf-8") as f:
         f.write(dot_txt)
 
     # JSON output
-    if args.out_json:
+    if out_json:
         # Convert sets to lists for JSON
         json_deps = {k: sorted(list(v)) for k, v in deps_local.items()}
-        with open(args.out_json, "w", encoding="utf-8") as f:
+        with open(out_json, "w", encoding="utf-8") as f:
             json.dump(json_deps, f, indent=2)
-        print(f"Wrote JSON dependencies to: {args.out_json}")
+        print(f"Wrote JSON dependencies to: {out_json}")
 
-    print(f"Wrote flat build order to: {args.out_flat} ({len(order)} images)")
-    print(f"Wrote tree build forest to: {args.out_tree}")
-    print(f"Wrote graphviz dot to: {args.out_dot}")
+    print(f"Wrote flat build order to: {out_flat} ({len(order)} images)")
+    print(f"Wrote tree build forest to: {out_tree}")
+    print(f"Wrote graphviz dot to: {out_dot}")
 
 
 if __name__ == "__main__":
