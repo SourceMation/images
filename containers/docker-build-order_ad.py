@@ -19,6 +19,8 @@ import json
 import argparse
 import os
 import re
+import shutil
+import subprocess
 from collections import defaultdict, deque
 from dataclasses import dataclass
 from typing import Dict, List, Optional, Set, Tuple
@@ -337,6 +339,27 @@ def render_dot(local_images: Set[str],
     out.append("}")
     return "\n".join(out) + "\n"
 
+def generate_png_from_dotfile(dir_path: str, dotfile: str):
+    if not os.path.exists(dotfile):
+        print(f"DOT file not found: {dotfile}")
+        return
+    # check for dot executable, the Pycharm marks which as depracated, the docs are silent about that
+    if shutil.which('dot') is None:
+        print("Graphviz 'dot' executable not found. Please install Graphviz to generate PNG output.")
+        return
+    print(f"dir_path = {dir_path}")
+    pngfile = os.path.join(dir_path, "build_order.png")
+
+    cmd = f'dot -Tpng {dotfile} -o {pngfile}'
+    print(f"cmd = '{cmd}')")
+    result = subprocess.run(cmd.split(" "), check=True,
+                            capture_output=True,
+                            text=True)
+    if result.returncode != 0:
+        print(f"Failed to generate PNG output: {pngfile}")
+        return
+
+    print(f"PNG output generated in {pngfile}")
 
 def main():
     ap = argparse.ArgumentParser(
@@ -420,7 +443,7 @@ def main():
 
     print(f"Wrote tree build forest to: {out_tree}")
     print(f"Wrote graphviz dot to: {out_dot}")
-
+    generate_png_from_dotfile(out_dir, out_dot)
 
 if __name__ == "__main__":
     main()
