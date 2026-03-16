@@ -2,7 +2,7 @@
 """
 docker-build-order_ad.py
 Computes a topological build order for Docker/Containerfile images in a directory tree.
-Outputs a flat ordered list, an ASCII dependency forest, and a Graphviz DOT graph.
+Outputs an ASCII dependency forest, JSON file and a Graphviz DOT graph.
 
 Supports:
   - Multi-stage builds (FROM ... AS <alias>)
@@ -340,10 +340,10 @@ def render_dot(local_images: Set[str],
 
 def main():
     ap = argparse.ArgumentParser(
-        description="Compute docker build order (multi-stage aware) and write flat + tree + dot outputs."
+        description="Compute docker build order (multi-stage aware) and write tree + dot outputs."
     )
     ap.add_argument("images_dir", help="Root directory containing image subdirs (Dockerfile/Containerfile).")
-    ap.add_argument("org", help="Local image namespace/prefix, e.g. 'sourcemation'.")
+    ap.add_argument("--org", default="sourcemation" ,help="Local image namespace/prefix, e.g. 'sourcemation'.")
     # action="append" with a non-None default is intentional: the default list
     # ["Dockerfile", "Containerfile"] is always searched, and every --dockerfile X
     # the caller passes is appended on top.  This lets users add custom names
@@ -352,10 +352,9 @@ def main():
                     help="Dockerfile names to look for (can be passed multiple times). Default: Dockerfile + Containerfile")
     ap.add_argument("--out-dir", default="build-orders",
                     help="Directory where all output files are written. Created if it does not exist. Default: build-orders")
-    ap.add_argument("--out-flat", default="build_order.txt", help="Flat output filename (topological order).")
     ap.add_argument("--out-tree", default="build_order.tree.txt", help="Tree/forest output filename.")
     ap.add_argument("--out-dot", default="build_order.dot", help="Graphviz DOT output filename.")
-    ap.add_argument("--out-json", help="JSON dependency output filename.")
+    ap.add_argument("--out-json", default= "build_order.json",help="JSON dependency output filename.")
     args = ap.parse_args()
 
     images_dir = os.path.abspath(args.images_dir)
@@ -364,7 +363,6 @@ def main():
     out_dir = args.out_dir
     os.makedirs(out_dir, exist_ok=True)
 
-    out_flat = os.path.join(out_dir, args.out_flat)
     out_tree = os.path.join(out_dir, args.out_tree)
     out_dot  = os.path.join(out_dir, args.out_dot)
     out_json = os.path.join(out_dir, args.out_json) if args.out_json else None
@@ -394,17 +392,8 @@ def main():
         deps_local[img] = set(d.local_deps)
         deps_external[img] = set(d.external_deps)
 
-    # Flat order (local-only topo sort)
-    order, leftover = topo_sort(local_images, deps_local)
-    if leftover:
-        # deterministic fallback: append remaining nodes
-        for n in sorted(leftover):
-            if n not in order:
-                order.append(n)
-
-    with open(out_flat, "w", encoding="utf-8") as f:
-        for img in order:
-            f.write(img + "\n")
+    # Cycle detection (leftover = nodes still with indegree > 0 after topo sort)
+    _, leftover = topo_sort(local_images, deps_local)
 
     # Tree/forest (local deps)
     tree_txt = ""
@@ -423,15 +412,12 @@ def main():
     with open(out_dot, "w", encoding="utf-8") as f:
         f.write(dot_txt)
 
-    # JSON output
-    if out_json:
-        # Convert sets to lists for JSON
-        json_deps = {k: sorted(list(v)) for k, v in deps_local.items()}
-        with open(out_json, "w", encoding="utf-8") as f:
-            json.dump(json_deps, f, indent=2)
-        print(f"Wrote JSON dependencies to: {out_json}")
+    # Convert sets to lists for JSON
+    json_deps = {k: sorted(list(v)) for k, v in deps_local.items()}
+    with open(out_json, "w", encoding="utf-8") as f:
+        json.dump(json_deps, f, indent=2)
+    print(f"Wrote JSON dependencies to: {out_json}")
 
-    print(f"Wrote flat build order to: {out_flat} ({len(order)} images)")
     print(f"Wrote tree build forest to: {out_tree}")
     print(f"Wrote graphviz dot to: {out_dot}")
 
