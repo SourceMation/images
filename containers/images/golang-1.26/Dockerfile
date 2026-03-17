@@ -4,7 +4,7 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ENV PATH="/usr/local/go/bin:$PATH"
 
 ENV GOLANG_VERSION="1.26.1"
-# The bellow URL is set in the init.sh script!
+# The below URL is set in the init.sh script!
 ENV GO_URL="https://dl.google.com/go/go1.26.1.linux-amd64.tar.gz"
 ENV GO_SHA256="031f088e5d955bab8657ede27ad4e3bc5b7c1ba281f05f245bcc304f327c987a"
 
@@ -50,7 +50,7 @@ RUN set -eux; \
 	\
 # smoke test
 	go version; \
-# make sure our reproducibile timestamp is probably still correct (best-effort inline reproducibility test)
+# make sure our reproducible timestamp is probably still correct (best-effort inline reproducibility test)
 	epoch="$(stat -c '%Y' /target/usr/local/go)"; \
 	[ "$SOURCE_DATE_EPOCH" = "$epoch" ]; \
 	find /target -newer /target/usr/local/go -exec sh -c 'ls -ld "$@" && exit "$#"' -- '{}' +
@@ -62,7 +62,7 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ARG BUILD_DATE
 ARG TARGETARCH
 
-LABEL name="golang-1.25" \
+LABEL name="golang-1.26" \
       vendor="Sourcemation" \
       url="https://sourcemation.com"\
       licenses="BSD 3-Clause \"New\" or \"Revised\" License" \

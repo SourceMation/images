@@ -5,6 +5,8 @@
 # e-mail: aleksander.baranowski@linuxpolska.pl
 # ---------------------------------------------------
 
+set -euo pipefail
+
 APP="golang-1.26"
 
 # Updating repository metadata and downloading the latest available version
@@ -25,7 +27,7 @@ fi
 URL="https://dl.google.com/go/go$VERSION.linux-$MY_ARCH.tar.gz"
 
 # Now get the SHA256 sum
-SHA256_SUM=$(curl -s $URL | sha256sum | awk '{print $1}')
+SHA256_SUM=$(curl -fsSL "$URL" | sha256sum | awk '{print $1}')
 
 
 # Replacing the version number in the Dockerfile

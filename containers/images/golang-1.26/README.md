@@ -96,7 +96,7 @@ A detailed risk analysis report of our images and its components might be found
 on the [Sourcemation platform](https://www.sourcemation.com/).
 
 However, not all images have a risk analysis report yet. If you need risk report
-for you images, have any questions, please contact us.
+for your images or have any questions, please contact us.
 
 ### Licenses
 
