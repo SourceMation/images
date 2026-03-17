@@ -44,15 +44,15 @@ class GraphNode:
 
 
 def create_parser():
-    parser = argparse.ArgumentParser(description='Determine the order to build Docker images')
+    parser = argparse.ArgumentParser(description="Determine the order to build Docker images")
     # Add single argument that is directory to search for Dockerfiles
-    parser.add_argument('directory', type=str, help='Directory to search for Dockerfiles')
-    parser.add_argument('org_name', type=str, help='Organization name to filter Dockerfiles')
+    parser.add_argument("directory", type=str, help="Directory to search for Dockerfiles")
+    parser.add_argument("org_name", type=str, help="Organization name to filter Dockerfiles")
     return parser
 
 
 def find_dockerfiles(directory):
-    allowed_names = {'Dockerfile', 'Containerfile'}
+    allowed_names = {"Dockerfile", "Containerfile"}
     dockerfiles = []
     for root, dirs, files in os.walk(directory):
         for file_name in files:
@@ -62,11 +62,11 @@ def find_dockerfiles(directory):
 
 
 def get_all_base_images_from_dockerfile(dockerfile):
-    with open(dockerfile, 'r') as f:
+    with open(dockerfile, "r") as f:
         lines = f.readlines()
     base_images = []
     for line in lines:
-        if line.startswith('FROM'):
+        if line.startswith("FROM"):
             base_images.append(line.split()[1])
     return base_images
 
@@ -78,7 +78,7 @@ def get_container_name_from_path(path) -> str:
     :return: str
     Fragile as hell, but it's a simple script
     """
-    return path.split('/')[-2]
+    return path.split("/")[-2]
 
 
 def parse_from_dockerfile(from_line) -> tuple[Optional[str], Optional[str], Optional[str]]:
@@ -89,22 +89,22 @@ def parse_from_dockerfile(from_line) -> tuple[Optional[str], Optional[str], Opti
     The ORG and TAG are optional
     :raises: ValueError when there is @ in the image
     """
-    if '@' in from_line:
+    if "@" in from_line:
         raise ValueError(f"Invalid image format: {from_line} we do not images with @ (digest)")
     org, image, image_tag = None, None, None
-    
-    if '/' in from_line:
-        if (from_line.count('/') == 1):
-            org, from_line = from_line.split('/')
+
+    if "/" in from_line:
+        if from_line.count("/") == 1:
+            org, from_line = from_line.split("/")
         else:
             # This is a bit fragile, but we need to split the last part of the paths
             # docker.io/my_org/my_image:tag
             # whatever.io/whatver/whatever/my_org/my_image:tag
-            org, from_line = from_line.rsplit('/', 1)
-            org = org.split('/')[-1]
+            org, from_line = from_line.rsplit("/", 1)
+            org = org.split("/")[-1]
 
-    if ':' in from_line:
-        image, image_tag = from_line.split(':')
+    if ":" in from_line:
+        image, image_tag = from_line.split(":")
     else:
         image = from_line
 
@@ -127,7 +127,7 @@ def create_build_tree(dockerfiles_nodes, org_name):
     # Remove all images that do not have any base_image, print them and then remove
     no_base_images = [dn for dn in dockerfiles_nodes if not dn.base_images]
     for dn in no_base_images:
-        print(f'WARNING: Removing: {dn.path}')
+        print(f"WARNING: Removing: {dn.path}")
     dockerfiles_nodes = [dn for dn in dockerfiles_nodes if dn.base_images]
 
     # Let's start by finding only the `FROM scratch`
@@ -216,19 +216,19 @@ def print_graph_and_save_build_order(nodes, filename=None):
     build_order = []
 
     for line in saved_output:
-        build_order.append(line.split('->')[-1])
+        build_order.append(line.split("->")[-1])
 
-    with open(filename, 'w') as f:
+    with open(filename, "w") as f:
         for line in build_order:
-            f.write(line + '\n')
-    print (f"Build order: {filename}")
+            f.write(line + "\n")
+    print(f"Build order: {filename}")
 
 
 def main():
     parser = create_parser()
     args = parser.parse_args()
     if not os.path.isdir(args.directory):
-        parser.error(f'{args.directory} is not a directory')
+        parser.error(f"{args.directory} is not a directory")
 
     dockerfiles_paths = find_dockerfiles(args.directory)
     dockerfiles_nodes = []
@@ -237,11 +237,11 @@ def main():
         dockerfiles_nodes.append(DockerfileNode(docker_file, base_images))
 
     for node in dockerfiles_nodes:
-        print(f'Found: {node.path}: {node.base_images}')
+        print(f"Found: {node.path}: {node.base_images}")
 
     build_order = create_build_tree(dockerfiles_nodes, args.org_name)
     print_graph_and_save_build_order(build_order, "build_order.txt")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

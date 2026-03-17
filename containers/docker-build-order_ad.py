@@ -58,6 +58,7 @@ def docker_var_subst(s: str, args_defaults: Dict[str, str]) -> str:
     def repl(m):
         var = m.group(1) or m.group(2)
         return args_defaults.get(var, m.group(0))
+
     return re.sub(r"\$\{([A-Za-z_][A-Za-z0-9_]*)\}|\$([A-Za-z_][A-Za-z0-9_]*)", repl, s)
 
 
@@ -135,11 +136,11 @@ def normalize_local_ref(dep: str, org: str, local_images: Set[str], local_short:
     dep0 = strip_tag_digest(dep)
 
     # Strip registry prefix if present (e.g. docker.io/sourcemation/foo -> sourcemation/foo)
-    parts = dep0.split('/', 1)
+    parts = dep0.split("/", 1)
     if len(parts) == 2:
         domain = parts[0]
         if "." in domain or ":" in domain or domain == "localhost":
-             dep0 = parts[1]
+            dep0 = parts[1]
 
     # Exact match (full org/name)
     if dep0 in local_images:
@@ -295,9 +296,7 @@ def dot_escape(s: str) -> str:
     return s.replace("\\", "\\\\").replace('"', '\\"')
 
 
-def render_dot(local_images: Set[str],
-               deps_local: Dict[str, Set[str]],
-               deps_external: Dict[str, Set[str]]) -> str:
+def render_dot(local_images: Set[str], deps_local: Dict[str, Set[str]], deps_external: Dict[str, Set[str]]) -> str:
     """
     DOT graph where edges are: base -> dependent
     Includes external bases as separate nodes (dashed ellipse).
@@ -316,7 +315,7 @@ def render_dot(local_images: Set[str],
     out: List[str] = []
     out.append("digraph build_order {")
     out.append("  rankdir=LR;")
-    out.append('  node [fontsize=10];')
+    out.append("  node [fontsize=10];")
 
     # Local nodes
     out.append("  // Local images")
@@ -339,45 +338,52 @@ def render_dot(local_images: Set[str],
     out.append("}")
     return "\n".join(out) + "\n"
 
+
 def generate_png_from_dotfile(dir_path: str, dotfile: str):
     if not os.path.exists(dotfile):
         print(f"DOT file not found: {dotfile}")
         return
     # check for dot executable, the Pycharm marks which as depracated, the docs are silent about that
-    if shutil.which('dot') is None:
+    if shutil.which("dot") is None:
         print("Graphviz 'dot' executable not found. Please install Graphviz to generate PNG output.")
         return
     print(f"dir_path = {dir_path}")
     pngfile = os.path.join(dir_path, "build_order.png")
 
-    cmd = f'dot -Tpng {dotfile} -o {pngfile}'
+    cmd = f"dot -Tpng {dotfile} -o {pngfile}"
     print(f"cmd = '{cmd}')")
-    result = subprocess.run(cmd.split(" "), check=True,
-                            capture_output=True,
-                            text=True)
+    result = subprocess.run(cmd.split(" "), check=True, capture_output=True, text=True)
     if result.returncode != 0:
         print(f"Failed to generate PNG output: {pngfile}")
         return
 
     print(f"PNG output generated in {pngfile}")
 
+
 def main():
     ap = argparse.ArgumentParser(
         description="Compute docker build order (multi-stage aware) and write tree + dot outputs."
     )
     ap.add_argument("images_dir", help="Root directory containing image subdirs (Dockerfile/Containerfile).")
-    ap.add_argument("--org", default="sourcemation" ,help="Local image namespace/prefix, e.g. 'sourcemation'.")
+    ap.add_argument("--org", default="sourcemation", help="Local image namespace/prefix, e.g. 'sourcemation'.")
     # action="append" with a non-None default is intentional: the default list
     # ["Dockerfile", "Containerfile"] is always searched, and every --dockerfile X
     # the caller passes is appended on top.  This lets users add custom names
     # (e.g. --dockerfile Dockerfile.prod) without losing the standard ones.
-    ap.add_argument("--dockerfile", action="append", default=["Dockerfile", "Containerfile"],
-                    help="Dockerfile names to look for (can be passed multiple times). Default: Dockerfile + Containerfile")
-    ap.add_argument("--out-dir", default="build-orders",
-                    help="Directory where all output files are written. Created if it does not exist. Default: build-orders")
+    ap.add_argument(
+        "--dockerfile",
+        action="append",
+        default=["Dockerfile", "Containerfile"],
+        help="Dockerfile names to look for (can be passed multiple times). Default: Dockerfile + Containerfile",
+    )
+    ap.add_argument(
+        "--out-dir",
+        default="build-orders",
+        help="Directory where all output files are written. Created if it does not exist. Default: build-orders",
+    )
     ap.add_argument("--out-tree", default="build_order.tree.txt", help="Tree/forest output filename.")
     ap.add_argument("--out-dot", default="build_order.dot", help="Graphviz DOT output filename.")
-    ap.add_argument("--out-json", default= "build_order.json",help="JSON dependency output filename.")
+    ap.add_argument("--out-json", default="build_order.json", help="JSON dependency output filename.")
     args = ap.parse_args()
 
     images_dir = os.path.abspath(args.images_dir)
@@ -387,7 +393,7 @@ def main():
     os.makedirs(out_dir, exist_ok=True)
 
     out_tree = os.path.join(out_dir, args.out_tree)
-    out_dot  = os.path.join(out_dir, args.out_dot)
+    out_dot = os.path.join(out_dir, args.out_dot)
     out_json = os.path.join(out_dir, args.out_json) if args.out_json else None
 
     discovered = discover_dockerfiles(images_dir, args.dockerfile)
@@ -443,9 +449,14 @@ def main():
 
     print(f"Wrote tree build forest to: {out_tree}")
     print(f"Wrote graphviz dot to: {out_dot}")
-    generate_png_from_dotfile(out_dir, out_dot)
+    # this can fail, we do not care about that
+    try:
+        generate_png_from_dotfile(out_dir, out_dot)
+    except Exception as e:
+        print("------ subprocess error while generating PNG from DOT file ------")
+        print(f"Error details: {e}")
+        print(f"Failed to generate PNG from DOT file. Do not worry everything else works :)")
+
 
 if __name__ == "__main__":
     main()
-
-
