@@ -122,7 +122,11 @@ class GitHubBuildSlot:
                 "ref": self.ref,
             },
         }
-        resp = requests.post(url, json=payload, headers=self._headers)
+        try:
+            resp = requests.post(url, json=payload, headers=self._headers, timeout=30)
+        except requests.RequestException as exc:
+            self._log(f"Dispatch request failed for '{container_name}': {exc}")
+            return None
         if resp.status_code != 204:
             self._log(f"Dispatch failed for '{container_name}': " f"HTTP {resp.status_code} — {resp.text}")
             return None
@@ -141,7 +145,12 @@ class GitHubBuildSlot:
         """
         url = f"{GITHUB_API}/repos/{self.owner}/{self.repo}/actions/workflows/{self.workflow_file}/runs"
         for _ in range(RUN_SEARCH_TRIES):
-            resp = requests.get(url, headers=self._headers, params={"per_page": 5})
+            try:
+                resp = requests.get(url, headers=self._headers, params={"per_page": 5}, timeout=30)
+            except requests.RequestException as exc:
+                self._log(f"Error while polling for run ID: {exc}")
+                time.sleep(5)
+                continue
             if resp.status_code == 200:
                 for run in resp.json().get("workflow_runs", []):
                     # GitHub returns ISO-8601 UTC, e.g. "2026-03-16T12:00:00Z"
