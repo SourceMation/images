@@ -1,4 +1,4 @@
-FROM sourcemation/golang-1.25:latest AS builder
+FROM sourcemation/golang-1.26:latest AS builder
 
 COPY ./sealed-secrets /sealed-secrets
 
@@ -22,7 +22,7 @@ LABEL name="sealed-secrets-controller" \
       architecture="$TARGETARCH" \
       summary="Sealed Secrets Controller on Debian 13 Distroless image" \
       description="Provides Sealed Secrets Controller on Debian 13 Distroless image" \
-      version="v0.36.0" \
+      version="v0.36.1" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="Sealed Secrets Controller on Debian 13 Distroless" \
       io.k8s.description="Provides Sealed Secrets Controller on Debian 13 Distroless image" \

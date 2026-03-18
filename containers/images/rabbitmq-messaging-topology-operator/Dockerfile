@@ -1,4 +1,4 @@
-FROM sourcemation/golang-1.25:latest AS builder
+FROM sourcemation/golang-1.26:latest AS builder
 
 WORKDIR /workspace
 
@@ -10,9 +10,8 @@ COPY rabbitmq-messaging-topology-operator/go.sum go.sum
 RUN go mod download
 
 # Copy the go source
-COPY rabbitmq-messaging-topology-operator/main.go main.go
+COPY rabbitmq-messaging-topology-operator/cmd/main.go main.go
 COPY rabbitmq-messaging-topology-operator/api/ api/
-COPY rabbitmq-messaging-topology-operator/controllers/ controllers/
 COPY rabbitmq-messaging-topology-operator/internal/ internal/
 COPY rabbitmq-messaging-topology-operator/rabbitmqclient/ rabbitmqclient/
 
@@ -45,7 +44,7 @@ LABEL name="rabbitmq-messaging-topology-operator" \
       architecture="$TARGETARCH" \
       summary="RabbitMQ Messaging Topology Operator" \
       description="Provides RabbitMQ Messaging Topology Operator" \
-      version="1.18.3" \
+      version="1.19.0" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="RabbitMQ Messaging Topology Operator Container" \
       io.k8s.description="Provides RabbitMQ Messaging Topology Operator Container" \
@@ -57,7 +56,7 @@ COPY --from=etc-builder /etc/passwd /etc/group /etc/
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 
 ENV APP_NAME="rabbitmq-messaging-topology-operator" \
-    APP_VERSION="1.18.3"
+    APP_VERSION="1.19.0"
 
 USER 1000:1000
 ENTRYPOINT ["manager"]
