@@ -80,6 +80,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: build_order
+          path: containers/build-orders/
 
       - name: Build containers
         env:
