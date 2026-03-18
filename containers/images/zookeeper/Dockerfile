@@ -2,7 +2,7 @@ FROM sourcemation/jre-21:latest
 
 ARG BUILD_DATE
 ARG TARGETARCH
-ARG ZOOKEEPER_VERSION=3.9.4
+ARG ZOOKEEPER_VERSION=3.9.5
 
 LABEL name="zookeeper" \
       vendor="Sourcemation" \
@@ -12,7 +12,7 @@ LABEL name="zookeeper" \
       architecture="$TARGETARCH" \
       summary="Apache ZooKeeper on Debian 13 Slim Container" \
       description="Provides Apache ZooKeeper on Debian 13 Slim Container" \
-      version="3.9.4" \
+      version="3.9.5" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="Apache ZooKeeper on Debian 13 Slim Container" \
       io.k8s.description="Provides Apache ZooKeeper on Debian 13 Slim Container" \

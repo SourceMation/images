@@ -15,13 +15,13 @@ LABEL name="gcc-16" \
       architecture="$TARGETARCH" \
       summary="GCC 16 on Debian 13 Slim Container" \
       description="Provides GCC 16 on Debian 13 Slim Container" \
-      version="20260308" \
+      version="20260315" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="GCC 16 on Debian 13 Slim Container" \
       io.k8s.description="Provides GCC 16 on Debian 13 Slim Container" \
       io.openshift.tags="gcc gcc-16 debian-13-slim"
 
-ENV GCC_VERSION="20260308"
+ENV GCC_VERSION="20260315"
 
 
 # abigail-tools - abidiff later to verify that it's not breaking the debian packages

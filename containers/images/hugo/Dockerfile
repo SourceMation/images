@@ -4,8 +4,8 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ARG BUILD_DATE
 ARG TARGETARCH
 
-ENV HUGO_VERSION=0.157.0
-ENV DART_SASS_VERSION=1.97.3
+ENV HUGO_VERSION=0.158.0
+ENV DART_SASS_VERSION=1.98.0
 ENV PATH="/usr/local/bin/src:${PATH}"
 
 LABEL name="hugo" \
@@ -17,7 +17,7 @@ LABEL name="hugo" \
       architecture="${TARGETARCH}" \
       summary="Hugo (extended+withdeploy) on Debian 12 Slim Container" \
       description="Provides Hugo (extended+withdeploy) on Debian 12 Slim Container" \
-      version="0.157.0" \
+      version="0.158.0" \
       io.k8s.display-name="Hugo (extended+withdeploy) on Debian 12 Slim Container" \
       io.k8s.description="Provides Hugo (extended+withdeploy) on Debian 12 Slim Contaner" \
       io.openshift.tags="Hugo debian-12-slim"

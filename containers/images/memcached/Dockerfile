@@ -2,7 +2,7 @@ FROM sourcemation/debian-13-slim:latest AS builder
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 ARG TARGETARCH
-ARG VERSION=1.6.40
+ARG VERSION=1.6.41
 ARG MEMCACHED_DOWNLOAD_URL=https://memcached.org/files/memcached-${VERSION}.tar.gz
 ARG MEMCACHED_DOWNLOAD_SHA1_URL=https://memcached.org/files/memcached-${VERSION}.tar.gz.sha1
 ARG CONFIGURE_OPTS="--enable-seccomp --enable-extstore --enable-proxy --enable-sasl --enable-sasl-pwdb --enable-tls"
@@ -52,7 +52,7 @@ LABEL name="memcached" \
       architecture="$TARGETARCH" \
       summary="Memcached on Debian 13 Slim Container" \
       description="Provides Memcached on Debian 13 Slim Container" \
-      version="1.6.40" \
+      version="1.6.41" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="Memcached on Debian 13 Slim Container" \
       io.k8s.description="Provides Memcached Server on Debian 13 Slim Container" \
