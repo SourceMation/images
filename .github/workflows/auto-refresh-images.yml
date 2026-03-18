@@ -61,13 +61,13 @@ jobs:
       - name: Generate build order
         run: |
           cd containers
-          ./docker-build-order.py images/ sourcemation
+          ./docker-build-order.py images/
 
       - name: Upload build order
         uses: actions/upload-artifact@v4
         with:
           name: build_order
-          path: containers/build_order.txt
+          path: containers/build-orders/build_order.json
 
   build-containers:
     needs: generate-build-order
@@ -85,11 +85,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          string=$(cat build_order.txt | tr '\n' ',' | sed 's/,$//')
-          container=$(echo "$string" | cut -d',' -f1)
-          to_build_list=$(echo "$string" | cut -d',' -f2-)
-
-          echo "Container to build: $container"
-          echo "Next container to build: $to_build_list"
-          echo "Building container: $container"
-          gh workflow run build-manual.yml  --repo SourceMation/images -f container_name=$container  -f next_containers="$to_build_list"
+          cd containers
+          ./build-dispatcher.py --slots 8  build-orders/build_order.json
