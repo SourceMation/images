@@ -59,7 +59,7 @@ website](https://quarkus.io/about/).
 
 ### Licenses
 
-The base license for the solution (Quarkus version 3.32.3 is the [Apache License, Version
+The base license for the solution (Quarkus version 3.34.0 is the [Apache License, Version
 2.0](https://github.com/quarkusio/quarkus/blob/main/LICENSE). The licenses for
 each component shipped as part of this image can be found on the image's
 appropriate Sourcemation entry.

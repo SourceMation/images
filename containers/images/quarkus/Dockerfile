@@ -5,7 +5,7 @@ ARG BUILD_DATE
 ARG TARGETARCH
 
 # YOU MUST CHANGE IT MANUALLY HERE AND IN THE LABEL!
-ARG QUARKUS_VERSION=3.32.3
+ARG QUARKUS_VERSION=3.34.0
 
 LABEL name="quarkus" \
       vendor="Sourcemation" \
@@ -15,7 +15,7 @@ LABEL name="quarkus" \
       architecture="$TARGETARCH" \
       summary="Quarkus development container on RL9" \
       description="Provides Quarkus development container on Rocky Linux 9" \
-      version="3.32.3" \
+      version="3.34.0" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="Quarkus on EL9 Container" \
       io.k8s.description="Provides Quarkus on Rocky Linux 9" \
