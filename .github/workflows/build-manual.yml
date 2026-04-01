@@ -51,10 +51,12 @@ on:
           - helidon
           - hugo
           - java
+          - jdk-25
           - jdk-21
           - jdk-17
           - jenkins
           - jmx-exporter
+          - jre-25
           - jre-21
           - jre-17
           - kafka
