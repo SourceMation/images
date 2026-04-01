@@ -130,6 +130,9 @@ on:
           - sealed-secrets-controller
           - servicemix
           - thanos
+          - tomcat-9
+          - tomcat-10
+          - tomcat-11
           - wordpress
           - zookeeper
 #          - postgres-16-bullseye-oneshot

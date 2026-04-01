@@ -150,6 +150,10 @@ test_container(){
             CONTAINER_RUN_COMMAND="apicast start --dev"
             CONTAINER_RUN_PARAMETERS="--ulimit nofile=64000:64000 --ulimit nproc=64000:64000 -p 8080:8080"
             ;;
+        "tomcat-9" | "tomcat-10" | "tomcat-11")
+            CONTAINER_RUN_COMMAND=""
+            CONTAINER_RUN_PARAMETERS="-p 8080:8080"
+            ;;
         "camel-k")
             CONTAINER_RUN_COMMAND=""
             ;;
