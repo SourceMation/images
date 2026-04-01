@@ -141,7 +141,7 @@ docker run --rm myjdkapp
 This will output:
 
 ```
-Hello from JDK 25\!
+Hello from JDK 25!
 ```
 
 ## Key Environment Variables
@@ -151,15 +151,15 @@ to en\_US. JAVA\_VERSION can help you identify the Java version, and
 JAVA\_HOME is set to /opt/java/openjdk.
 
 ```bash
-JAVA\_VERSION=jdk-25.0.2+10 \# or a newer version depending on the build
-JAVA\_HOME=/opt/java/openjdk
-PATH=$JAVA\_HOME/bin:$PATH
+JAVA_VERSION=jdk-25.0.2+10 # or a newer version depending on the build
+JAVA_HOME=/opt/java/openjdk
+PATH=$JAVA_HOME/bin:$PATH
 
 # Encoding
 
-LANG='en\_US.UTF-8'
-LANGUAGE='en\_US:en'
-LC\_ALL='en\_US.UTF-8'
+LANG='en_US.UTF-8'
+LANGUAGE='en_US:en'
+LC_ALL='en_US.UTF-8'
 ```
 
 ## Important Considerations

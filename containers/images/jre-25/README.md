@@ -22,7 +22,7 @@ This will start a shell inside a container with JRE 25 installed and ready to
 use.
 
 ## Advanced Usage Scenarios
-Running a Java Application
+### Running a Java Application
 
 The following Dockerfile demonstrates how to run a Java application using the
 JRE 25 image:
