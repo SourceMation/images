@@ -102,7 +102,7 @@ def test_server_is_responding():
 
         # Since we moved webapps to webapps.dist, we expect a 404
         assert response.status_code == 404
-        # The default 404 page should contain "Apache Tomcat/9.0"
+        # The default 404 page should indicate that it's a Tomcat server
         assert "Apache Tomcat" in response.text or "Tomcat" in response.text
         
     except requests.RequestException as e:
