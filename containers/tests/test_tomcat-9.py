@@ -44,6 +44,39 @@ def test_tomcat_is_listening_on_port():
         except (subprocess.CalledProcessError, FileNotFoundError):
             pytest.fail(f"Failed to check listening ports: {e}")
 
+def test_example_app_deployment():
+    # Deploy the example app
+    try:
+        # Copy the example app directory from the host (/tmp/tests/example-app)
+        # to the tomcat webapps directory (/usr/local/tomcat/webapps)
+        # Note: the test script is run inside the container, and tests are in /tmp/tests
+        import shutil
+        dest = os.path.join(CATALINA_HOME, 'webapps/example-app')
+        if os.path.exists(dest):
+            shutil.rmtree(dest)
+        shutil.copytree('/tmp/tests/example-app', dest)
+        
+        # Give it a moment to deploy
+        url = f"http://localhost:{TOMCAT_PORT}/example-app/"
+        response = None
+        for _ in range(15):
+            try:
+                response = requests.get(url, timeout=5)
+                if response.status_code == 200:
+                    break
+            except requests.ConnectionError:
+                pass
+            time.sleep(2)
+        else:
+            pytest.fail("Example application did not deploy correctly.")
+
+        assert response.status_code == 200
+        assert "Hello from Tomcat!" in response.text
+        assert "The time is" in response.text
+        
+    except Exception as e:
+        pytest.fail(f"Failed to test example app deployment: {e}")
+
 def test_server_is_responding():
     url = f"http://localhost:{TOMCAT_PORT}/"
     try:

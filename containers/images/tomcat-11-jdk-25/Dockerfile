@@ -8,9 +8,9 @@ WORKDIR $CATALINA_HOME
 ENV TOMCAT_NATIVE_LIBDIR=$CATALINA_HOME/native-jni-lib
 ENV LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}$TOMCAT_NATIVE_LIBDIR
 
-ENV TOMCAT_MAJOR=9
-ENV TOMCAT_VERSION=9.0.116
-ENV TOMCAT_SHA512=a0992861f7615f0a79d372e84969a1bb48f603ef1687380d9a3579164dae7a1dea6b440e1bad27447f91a676528b2951634a0707616707f1df73cd27534ea5f9
+ENV TOMCAT_MAJOR=11
+ENV TOMCAT_VERSION=11.0.20
+ENV TOMCAT_SHA512=8edf12ae9ffb837d1fa1542beae9a80b40419c341963eabed074f2f11d8168e0a82307d5fdc010102db5ee2b983b404816b13435f8c6810b7684fe7b3c19191d
 
 RUN set -eux; \
 	apt-get update; \
@@ -74,7 +74,6 @@ RUN set -eux; \
 			--prefix="$CATALINA_HOME" \
 			--with-apr="$aprConfig" \
 			--with-java-home="$JAVA_HOME" \
-			--with-ssl \
 		; \
 		nproc="$(nproc)"; \
 		make -j "$nproc"; \
@@ -98,24 +97,24 @@ RUN set -eux; \
 	chmod 1777 logs temp work
 
 # FINAL STAGE
-FROM sourcemation/jre-25:latest
+FROM sourcemation/jdk-25:latest
 
 ARG BUILD_DATE
 ARG TARGETARCH
 
-LABEL name="tomcat-9" \
+LABEL name="tomcat-11" \
       vendor="Sourcemation" \
       url="https://sourcemation.com/"\
       licenses="Apache-2.0" \
       created="$BUILD_DATE" \
       architecture="$TARGETARCH" \
-      summary="Apache Tomcat 9 on JRE 25 Container" \
-      description="Provides Apache Tomcat 9 on JRE 25 Container" \
-      version="9.0.116" \
+      summary="Apache Tomcat 11 on JDK 25 Container" \
+      description="Provides Apache Tomcat 11 on JDK 25 Container" \
+      version="11.0.20" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
-      io.k8s.display-name="Apache Tomcat 9 on JRE 25 Container" \
-      io.k8s.description="Provides Apache Tomcat 9 on JRE 25 Container" \
-      io.openshift.tags="tomcat tomcat-9 jre-25"
+      io.k8s.display-name="Apache Tomcat 11 on JDK 25 Container" \
+      io.k8s.description="Provides Apache Tomcat 11 on JDK 25 Container" \
+      io.openshift.tags="tomcat tomcat-11 jdk-25"
 
 ENV CATALINA_HOME=/usr/local/tomcat
 ENV PATH=$CATALINA_HOME/bin:$PATH
@@ -145,7 +144,7 @@ RUN set -eux; \
 		exit 1; \
 	fi
 
-RUN echo "tomcat: 9.0.116" >> /var/tmp/sourcemation.yml
+RUN echo "tomcat: 11.0.20" >> /var/tmp/sourcemation.yml
 
 EXPOSE 8080
 CMD ["catalina.sh", "run"]

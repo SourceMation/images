@@ -98,7 +98,7 @@ RUN set -eux; \
 	chmod 1777 logs temp work
 
 # FINAL STAGE
-FROM sourcemation/jre-25:latest
+FROM sourcemation/jdk-25:latest
 
 ARG BUILD_DATE
 ARG TARGETARCH
@@ -109,13 +109,13 @@ LABEL name="tomcat-9" \
       licenses="Apache-2.0" \
       created="$BUILD_DATE" \
       architecture="$TARGETARCH" \
-      summary="Apache Tomcat 9 on JRE 25 Container" \
-      description="Provides Apache Tomcat 9 on JRE 25 Container" \
+      summary="Apache Tomcat 9 on JDK 25 Container" \
+      description="Provides Apache Tomcat 9 on JDK 25 Container" \
       version="9.0.116" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
-      io.k8s.display-name="Apache Tomcat 9 on JRE 25 Container" \
-      io.k8s.description="Provides Apache Tomcat 9 on JRE 25 Container" \
-      io.openshift.tags="tomcat tomcat-9 jre-25"
+      io.k8s.display-name="Apache Tomcat 9 on JDK 25 Container" \
+      io.k8s.description="Provides Apache Tomcat 9 on JDK 25 Container" \
+      io.openshift.tags="tomcat tomcat-9 jdk-25"
 
 ENV CATALINA_HOME=/usr/local/tomcat
 ENV PATH=$CATALINA_HOME/bin:$PATH

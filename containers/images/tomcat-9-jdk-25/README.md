@@ -1,15 +1,13 @@
-# Apache Tomcat 9 on JRE 25 Container
+# Apache Tomcat 9 on JDK 25 Container
 
-This container image provides Apache Tomcat 9 based on JRE 25 (Sourcemation).
+This container image provides Apache Tomcat 9 based on JDK 25 (Sourcemation).
 
 ## Features
 
 - Apache Tomcat 9.0.x
-- JRE 25 (Adoptium Temurin)
+- JDK 25 (Adoptium Temurin)
 - Tomcat Native (APR) support
-- CA certificates injection via `sourcemation/jre-25` entrypoint
-
-A JDK 25 based variant is also available with the `-jdk-25` tag suffix (e.g., `sourcemation/tomcat-9:latest-jdk-25`).
+- CA certificates injection via `sourcemation/jdk-25` entrypoint
 
 ## Usage
 
