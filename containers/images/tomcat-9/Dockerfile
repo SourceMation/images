@@ -148,7 +148,7 @@ RUN set -eux; \
         echo >&2 "$nativeLines"; \
         exit 1; \
     fi; \
-    echo "tomcat: 9.0.116" >> /var/tmp/sourcemation.yml
+    echo "tomcat: $TOMCAT_VERSION" >> /var/tmp/sourcemation.yml
 
 EXPOSE 8080
 CMD ["catalina.sh", "run"]
