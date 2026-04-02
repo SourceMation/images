@@ -29,7 +29,7 @@ fi
 
 # Update Dockerfile
 sed -i "s/version=\"[^\"]*\"/version=\"$TOMCAT_VERSION\"/" Dockerfile || exit 1
-sed -i "s/ENV TOMCAT_VERSION=[0-9.]*/ENV TOMCAT_VERSION=$TOMCAT_VERSION/" Dockerfile || exit 1
+sed -i "s/ENV TOMCAT_VERSION=[0-9.]*[a-z]*/ENV TOMCAT_VERSION=$TOMCAT_VERSION/" Dockerfile || exit 1
 sed -i "s/ENV TOMCAT_SHA512=[0-9a-fA-F]*/ENV TOMCAT_SHA512=$TOMCAT_SHA512/" Dockerfile || exit 1
 
 echo "Init script completed successfully"

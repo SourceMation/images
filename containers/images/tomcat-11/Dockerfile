@@ -126,6 +126,7 @@ LABEL name="tomcat-11" \
 ENV CATALINA_HOME=/usr/local/tomcat
 ENV PATH=$CATALINA_HOME/bin:$PATH
 WORKDIR $CATALINA_HOME
+ENV TOMCAT_VERSION=11.0.20
 
 # let "Tomcat Native" live somewhere isolated
 ENV TOMCAT_NATIVE_LIBDIR=$CATALINA_HOME/native-jni-lib
