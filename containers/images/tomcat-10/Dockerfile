@@ -1,6 +1,8 @@
 # BUILD STAGE
 FROM sourcemation/jdk-25:latest AS builder
 
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+
 ENV CATALINA_HOME=/usr/local/tomcat
 RUN mkdir -p "$CATALINA_HOME"
 WORKDIR $CATALINA_HOME
@@ -30,6 +32,7 @@ RUN set -eux; \
 		local target="$1"; \
 		local path="$2"; \
 		local alt_path="${3:-}"; \
+		local success=; \
 		local urls=( \
 			"https://dlcdn.apache.org/$path" \
 			"https://archive.apache.org/dist/$path" \
@@ -39,10 +42,11 @@ RUN set -eux; \
 		fi; \
 		for url in "${urls[@]}"; do \
 			if curl -fsSL -o "$target" "$url" && [ -s "$target" ]; then \
-				return 0; \
+				success=1; \
+				break; \
 			fi; \
 		done; \
-		return 1; \
+		[ -n "$success" ]; \
 	}; \
 	\
 	get_resource 'tomcat.tar.gz' "tomcat/tomcat-$TOMCAT_MAJOR/v$TOMCAT_VERSION/bin/apache-tomcat-$TOMCAT_VERSION.tar.gz" "$TOMCAT_VERSION/tomcat-$TOMCAT_VERSION.tar.gz"; \
@@ -94,10 +98,13 @@ RUN set -eux; \
 	\
 	find ./bin/ -name '*.sh' -exec sed -ri 's|^#!/bin/sh$|#!/usr/bin/env bash|' '{}' +; \
 	chmod -R +rX .; \
-	chmod 1777 logs temp work
+	chmod 1777 logs temp work; \
+	rm -rf /var/lib/apt/lists/*
 
 # FINAL STAGE
 FROM sourcemation/jre-25:latest
+
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 ARG BUILD_DATE
 ARG TARGETARCH
@@ -132,19 +139,15 @@ RUN set -eux; \
 		xargs -rt apt-get install -y --no-install-recommends < "$TOMCAT_NATIVE_LIBDIR/.dependencies.txt"; \
 	fi; \
 	rm -rf /var/lib/apt/lists/*; \
-	catalina.sh version
-
-# verify Tomcat Native is working properly
-RUN set -eux; \
+	catalina.sh version; \
 	nativeLines="$(catalina.sh configtest 2>&1)"; \
 	nativeLines="$(echo "$nativeLines" | grep 'Apache Tomcat Native')"; \
 	nativeLines="$(echo "$nativeLines" | sort -u)"; \
 	if ! echo "$nativeLines" | grep -E 'INFO: Loaded( APR based)? Apache Tomcat Native library' >&2; then \
 		echo >&2 "$nativeLines"; \
 		exit 1; \
-	fi
-
-RUN echo "tomcat: 10.1.53" >> /var/tmp/sourcemation.yml
+	fi; \
+	echo "tomcat: 10.1.53" >> /var/tmp/sourcemation.yml
 
 EXPOSE 8080
 CMD ["catalina.sh", "run"]

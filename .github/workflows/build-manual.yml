@@ -131,8 +131,11 @@ on:
           - servicemix
           - thanos
           - tomcat-9
+          - tomcat-9-jdk-25
           - tomcat-10
+          - tomcat-10-jdk-25
           - tomcat-11
+          - tomcat-11-jdk-25
           - wordpress
           - zookeeper
 #          - postgres-16-bullseye-oneshot

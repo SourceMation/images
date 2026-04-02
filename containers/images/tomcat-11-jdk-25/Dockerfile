@@ -1,10 +1,30 @@
-# BUILD STAGE
-FROM sourcemation/jdk-25:latest AS builder
+FROM sourcemation/jdk-25:latest
+
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+
+ARG BUILD_DATE
+ARG TARGETARCH
+
+LABEL name="tomcat-11" \
+      vendor="Sourcemation" \
+      url="https://sourcemation.com/"\
+      licenses="Apache-2.0" \
+      created="$BUILD_DATE" \
+      architecture="$TARGETARCH" \
+      summary="Apache Tomcat 11 on JDK 25 Container" \
+      description="Provides Apache Tomcat 11 on JDK 25 Container" \
+      version="11.0.20" \
+      org.opencontainers.image.source="https://github.com/Sourcemation/images" \
+      io.k8s.display-name="Apache Tomcat 11 on JDK 25 Container" \
+      io.k8s.description="Provides Apache Tomcat 11 on JDK 25 Container" \
+      io.openshift.tags="tomcat tomcat-11 jdk-25"
 
 ENV CATALINA_HOME=/usr/local/tomcat
+ENV PATH=$CATALINA_HOME/bin:$PATH
 RUN mkdir -p "$CATALINA_HOME"
 WORKDIR $CATALINA_HOME
 
+# let "Tomcat Native" live somewhere isolated
 ENV TOMCAT_NATIVE_LIBDIR=$CATALINA_HOME/native-jni-lib
 ENV LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}$TOMCAT_NATIVE_LIBDIR
 
@@ -13,6 +33,8 @@ ENV TOMCAT_VERSION=11.0.20
 ENV TOMCAT_SHA512=8edf12ae9ffb837d1fa1542beae9a80b40419c341963eabed074f2f11d8168e0a82307d5fdc010102db5ee2b983b404816b13435f8c6810b7684fe7b3c19191d
 
 RUN set -eux; \
+	\
+	savedAptMark="$(apt-mark showmanual)"; \
 	apt-get update; \
 	apt-get install -y --no-install-recommends \
 		ca-certificates \
@@ -30,6 +52,7 @@ RUN set -eux; \
 		local target="$1"; \
 		local path="$2"; \
 		local alt_path="${3:-}"; \
+		local success=; \
 		local urls=( \
 			"https://dlcdn.apache.org/$path" \
 			"https://archive.apache.org/dist/$path" \
@@ -39,10 +62,11 @@ RUN set -eux; \
 		fi; \
 		for url in "${urls[@]}"; do \
 			if curl -fsSL -o "$target" "$url" && [ -s "$target" ]; then \
-				return 0; \
+				success=1; \
+				break; \
 			fi; \
 		done; \
-		return 1; \
+		[ -n "$success" ]; \
 	}; \
 	\
 	get_resource 'tomcat.tar.gz' "tomcat/tomcat-$TOMCAT_MAJOR/v$TOMCAT_VERSION/bin/apache-tomcat-$TOMCAT_VERSION.tar.gz" "$TOMCAT_VERSION/tomcat-$TOMCAT_VERSION.tar.gz"; \
@@ -82,6 +106,8 @@ RUN set -eux; \
 	rm -rf "$nativeBuildDir"; \
 	rm bin/tomcat-native.tar.gz; \
 	\
+	apt-mark auto '.*' > /dev/null; \
+	[ -z "$savedAptMark" ] || apt-mark manual $savedAptMark > /dev/null; \
 	find "$TOMCAT_NATIVE_LIBDIR" -type f -executable -exec ldd '{}' ';' \
 		| awk '/=>/ { print $(NF-1) }' \
 		| xargs -rt readlink -e \
@@ -90,61 +116,26 @@ RUN set -eux; \
 		| cut -d: -f1 \
 		| sort -u \
 		| tee "$TOMCAT_NATIVE_LIBDIR/.dependencies.txt" \
+		| xargs -r apt-mark manual \
 	; \
 	\
-	find ./bin/ -name '*.sh' -exec sed -ri 's|^#!/bin/sh$|#!/usr/bin/env bash|' '{}' +; \
-	chmod -R +rX .; \
-	chmod 1777 logs temp work
-
-# FINAL STAGE
-FROM sourcemation/jdk-25:latest
-
-ARG BUILD_DATE
-ARG TARGETARCH
-
-LABEL name="tomcat-11" \
-      vendor="Sourcemation" \
-      url="https://sourcemation.com/"\
-      licenses="Apache-2.0" \
-      created="$BUILD_DATE" \
-      architecture="$TARGETARCH" \
-      summary="Apache Tomcat 11 on JDK 25 Container" \
-      description="Provides Apache Tomcat 11 on JDK 25 Container" \
-      version="11.0.20" \
-      org.opencontainers.image.source="https://github.com/Sourcemation/images" \
-      io.k8s.display-name="Apache Tomcat 11 on JDK 25 Container" \
-      io.k8s.description="Provides Apache Tomcat 11 on JDK 25 Container" \
-      io.openshift.tags="tomcat tomcat-11 jdk-25"
-
-ENV CATALINA_HOME=/usr/local/tomcat
-ENV PATH=$CATALINA_HOME/bin:$PATH
-WORKDIR $CATALINA_HOME
-
-# let "Tomcat Native" live somewhere isolated
-ENV TOMCAT_NATIVE_LIBDIR=$CATALINA_HOME/native-jni-lib
-ENV LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}$TOMCAT_NATIVE_LIBDIR
-
-COPY --from=builder $CATALINA_HOME $CATALINA_HOME
-
-RUN set -eux; \
-	apt-get update; \
-	if [ -f "$TOMCAT_NATIVE_LIBDIR/.dependencies.txt" ]; then \
-		xargs -rt apt-get install -y --no-install-recommends < "$TOMCAT_NATIVE_LIBDIR/.dependencies.txt"; \
-	fi; \
+	apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \
 	rm -rf /var/lib/apt/lists/*; \
-	catalina.sh version
-
-# verify Tomcat Native is working properly
-RUN set -eux; \
+	\
+	find ./bin/ -name '*.sh' -exec sed -ri 's|^#!/bin/sh$|#!/usr/bin/env bash|' '{}' +; \
+	\
+	chmod -R +rX .; \
+	chmod 1777 logs temp work; \
+	\
+	catalina.sh version; \
 	nativeLines="$(catalina.sh configtest 2>&1)"; \
 	nativeLines="$(echo "$nativeLines" | grep 'Apache Tomcat Native')"; \
 	nativeLines="$(echo "$nativeLines" | sort -u)"; \
 	if ! echo "$nativeLines" | grep -E 'INFO: Loaded( APR based)? Apache Tomcat Native library' >&2; then \
 		echo >&2 "$nativeLines"; \
 		exit 1; \
-	fi
-
-RUN echo "tomcat: 11.0.20" >> /var/tmp/sourcemation.yml
+	fi; \
+	echo "tomcat: $TOMCAT_VERSION" >> /var/tmp/sourcemation.yml
 
 EXPOSE 8080
 CMD ["catalina.sh", "run"]
