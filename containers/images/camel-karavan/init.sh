@@ -11,7 +11,8 @@ APP="Camel Karavan"
 
 echo "Checking the latest version of $APP"
 
-KARAVAN_VERSION=$(git ls-remote --refs --tags https://github.com/apache/camel-karavan.git |  grep -o  '[.+0-9]*$' | sort --version-sort -r | head -1)
+# The 4.18.1 is pre-release version without any RC etc. The build fails on it.
+KARAVAN_VERSION=$(git ls-remote --refs --tags https://github.com/apache/camel-karavan.git | grep -F -v '4.18.1' |  grep -o  '[.+0-9]*$' | sort --version-sort -r | head -1)
 
 # Exit with an error if the returned version contains anything other
 # than digits and dots
