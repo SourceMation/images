@@ -34,13 +34,13 @@ similar documentation that describes the image and how to use it.
 
 
 - `containers` - Container images that are base blocks for your applications. Available on Docker Hub and Quay.io.
-- `vmi` - Virtual Machine Images that can be used in your virtualization
+- ~~`vmi`~~ - Virtual Machine Images that can be used in your virtualization
   environment. They are available on the GitHub releases page on separate
   repositories and tags.
-- `wsl` - Windows Subsystem for Linux images that can be used in your Windows
+- ~~`wsl`~~ - Windows Subsystem for Linux images that can be used in your Windows
   environment. They are deployed on the GitHub releases page on separate
   repositories and tags.
-- `vagrant` - Vagrant images can be used in your Vagrant environment. They are
+- ~~`vagrant`~~ - Vagrant images can be used in your Vagrant environment. They are
   deployed on HashiCorp Cloud Platform.
 
 ## Technologies

@@ -1,4 +1,4 @@
-name: Bi-Monthly Refresh Images
+name: Bi-weekly Refresh Images
 
 on:
   schedule:
