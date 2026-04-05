@@ -21,7 +21,7 @@ rm -rf $APP_NAME
 mkdir $APP_NAME && tar -xf "$APP_NAME.tar.gz" -C $APP_NAME --strip-components=1
 
 pushd $APP_NAME
-cp -R go.mod go.sum main.go api controllers internal pkg $SPATH
+cp -R go.mod go.sum cmd api internal pkg $SPATH
 popd
 
 sed -i "s/version=\"[^\"]*\"/version=\"$CLUSTER_OPERATOR_VERSION\"/" Dockerfile || exit 1

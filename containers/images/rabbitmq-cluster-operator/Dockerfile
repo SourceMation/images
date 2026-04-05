@@ -1,5 +1,5 @@
 # Build the manager binary
-FROM --platform=$BUILDPLATFORM sourcemation/golang-1.25:latest AS builder
+FROM --platform=$BUILDPLATFORM sourcemation/golang-1.26:latest AS builder
 
 WORKDIR /workspace
 
@@ -11,9 +11,8 @@ COPY go.sum go.sum
 RUN go mod download
 
 # Copy the go source
-COPY main.go main.go
+COPY cmd/ cmd/
 COPY api/ api/
-COPY controllers/ controllers/
 COPY internal/ internal/
 COPY pkg/ pkg/
 
@@ -22,7 +21,7 @@ ARG TARGETOS
 ARG TARGETARCH
 ENV GOOS=$TARGETOS
 ENV GOARCH=$TARGETARCH
-RUN CGO_ENABLED=0 GO111MODULE=on go build -a -tags timetzdata -o manager main.go
+RUN CGO_ENABLED=0 GO111MODULE=on go build -a -tags timetzdata -o manager ./cmd
 
 # ---------------------------------------
 FROM sourcemation/debian-13-slim:latest AS etc-builder
@@ -44,7 +43,7 @@ LABEL name="rabbitmq-cluster-operator" \
       architecture="$TARGETARCH" \
       summary="RabbitMQ Cluster Operator" \
       description="Provides RabbitMQ Cluster Operator" \
-      version="2.19.2" \
+      version="2.20.0" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="RabbitMQ Cluster Operator Container" \
       io.k8s.description="Provides RabbitMQ Cluster Operator Container" \
@@ -56,9 +55,9 @@ COPY --from=etc-builder /etc/passwd /etc/group /etc/
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 
 ENV APP_NAME="rabbitmq-cluster-operator" \
-    APP_VERSION="2.19.2" \
+    APP_VERSION="2.20.0" \
     PATH=/usr/local/bin:$PATH
 
 USER 1000:1000
 
-ENTRYPOINT ["manager"]
+ENTRYPOINT ["/usr/local/bin/manager"]
