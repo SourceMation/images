@@ -86,7 +86,7 @@ guide.
 
 ### Licenses
 
-The base license for the solution (Micronaut version 4.10.10) is the [Apache
+The base license for the solution (Micronaut version 4.10.11) is the [Apache
 License, Version
 2.0](https://github.com/micronaut-projects/micronaut-core/blob/4.5.x/LICENSE).
 The licenses for each component shipped as part of this image can be found on

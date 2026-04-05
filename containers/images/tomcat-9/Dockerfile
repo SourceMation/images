@@ -11,8 +11,8 @@ ENV TOMCAT_NATIVE_LIBDIR=$CATALINA_HOME/native-jni-lib
 ENV LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}$TOMCAT_NATIVE_LIBDIR
 
 ENV TOMCAT_MAJOR=9
-ENV TOMCAT_VERSION=9.0.116
-ENV TOMCAT_SHA512=a0992861f7615f0a79d372e84969a1bb48f603ef1687380d9a3579164dae7a1dea6b440e1bad27447f91a676528b2951634a0707616707f1df73cd27534ea5f9
+ENV TOMCAT_VERSION=9.0.117
+ENV TOMCAT_SHA512=82b15278a7bfa2685c80e07963c43246df4fd742d574b608a68f5ce67c6ffde0eff3e224cc9809925cc6bf7002a190c3bf420f50c0e4052467d3e665efc84a54
 
 RUN set -eux; \
     apt-get update; \
@@ -118,7 +118,7 @@ LABEL name="tomcat-9" \
       architecture="$TARGETARCH" \
       summary="Apache Tomcat 9 on JRE 25 Container" \
       description="Provides Apache Tomcat 9 on JRE 25 Container" \
-      version="9.0.116" \
+      version="9.0.117" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="Apache Tomcat 9 on JRE 25 Container" \
       io.k8s.description="Provides Apache Tomcat 9 on JRE 25 Container" \
@@ -127,7 +127,7 @@ LABEL name="tomcat-9" \
 ENV CATALINA_HOME=/usr/local/tomcat
 ENV PATH=$CATALINA_HOME/bin:$PATH
 WORKDIR $CATALINA_HOME
-ENV TOMCAT_VERSION=9.0.116
+ENV TOMCAT_VERSION=9.0.117
 
 # let "Tomcat Native" live somewhere isolated
 ENV TOMCAT_NATIVE_LIBDIR=$CATALINA_HOME/native-jni-lib

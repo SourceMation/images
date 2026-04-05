@@ -1,7 +1,7 @@
 FROM sourcemation/golang-1.25:latest AS builder
 
 ARG TARGETARCH
-ARG OAUTH2_PROXY_VERSION="v7.15.0"
+ARG OAUTH2_PROXY_VERSION="v7.15.1"
 
 WORKDIR /app
 
@@ -30,13 +30,13 @@ LABEL name="oauth2-proxy" \
       architecture="$TARGETARCH" \
       summary="OAuth2 Proxy on Debian 13 Slim Container" \
       description="Provides oauth2-proxy on Debian 13 Slim Container" \
-      version="v7.15.0" \
+      version="v7.15.1" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="OAuth2 Proxy on Debian 13 Slim Container" \
       io.k8s.description="Provides oauth2-proxy on Debian 13 Slim Container" \
       io.openshift.tags="oauth2-proxy debian-13"
 
-ENV OAUTH2_PROXY_VERSION="v7.15.0"
+ENV OAUTH2_PROXY_VERSION="v7.15.1"
 
 RUN apt-get update && apt-get install --no-install-recommends -y ca-certificates && \
     apt-get clean && \
