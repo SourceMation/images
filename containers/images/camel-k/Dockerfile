@@ -2,7 +2,7 @@
 FROM sourcemation/golang-1.25 AS builder
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
-ENV CAMEL_K_VER="v2.9.1"
+ENV CAMEL_K_VER="v2.10.0"
 # Using openjdk-21-jdk-headless as openjdk-17 is not available in Debian 13 (Trixie)
 RUN apt-get update && apt-get install --no-install-recommends openjdk-21-jdk-headless git gcc make cmake which maven -y
 # THE MAKEFILE targets are taken from the camel-k Makefile and `images:` without final image build
@@ -29,7 +29,7 @@ LABEL name="camel-k" \
       architecture="$TARGETARCH" \
       summary="Apache Camel-K on Debian 13 Slim Container" \
       description="Provides Camel-K on Debian 13 Slim Container" \
-      version="2.9.1" \
+      version="2.10.0" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="Apache Camel-K on Debian 13 Slim Container" \
       io.k8s.description="Provides Camel-K on Debian 13 Slim Container" \

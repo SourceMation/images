@@ -3,10 +3,10 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 ENV PATH="/usr/local/go/bin:$PATH"
 
-ENV GOLANG_VERSION="1.25.8"
+ENV GOLANG_VERSION="1.25.9"
 # The bellow URL is set in the init.sh script!
-ENV GO_URL="https://dl.google.com/go/go1.25.8.linux-amd64.tar.gz"
-ENV GO_SHA256="ceb5e041bbc3893846bd1614d76cb4681c91dadee579426cf21a63f2d7e03be6"
+ENV GO_URL="https://dl.google.com/go/go1.25.9.linux-amd64.tar.gz"
+ENV GO_SHA256="00859d7bd6defe8bf84d9db9e57b9a4467b2887c18cd93ae7460e713db774bc1"
 
 
 RUN set -eux; \
@@ -70,7 +70,7 @@ LABEL name="golang-1.25" \
       architecture="$TARGETARCH" \
       summary="Golang on debian-13-slim container" \
       description="Provides golang on Debian 13 Slim Container" \
-      version="1.25.8" \
+      version="1.25.9" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="Golang on Debian 13 Slim Container" \
       io.k8s.description="Provides golang on Debian 13 Slim Container" \
@@ -89,7 +89,7 @@ RUN set -eux; \
 	rm -rf /var/lib/apt/lists/*
 
 
-ENV GOLANG_VERSION="1.25.8"
+ENV GOLANG_VERSION="1.25.9"
 
 # don't auto-upgrade the gotoolchain
 # https://github.com/docker-library/golang/issues/472
