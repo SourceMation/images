@@ -11,10 +11,13 @@ APP="activemq"
 # of the application
 echo "Checking the latest available version of the $APP"
 
-VERSION=$(git ls-remote --refs --tags https://github.com/apache/activemq.git | grep  -o 'activemq-6.[.0-9]*$' | sort --version-sort --reverse | tr -d 'activemq-' | head -n 1)
+VERSION=$(curl -s https://dlcdn.apache.org/activemq/ | grep -o 'href="6\.[0-9.]*/"' | sed 's/href="//;s/\/"//' | sort --version-sort --reverse | head -n 1)
 # Exit with an error if the returned version contains anything other
 # than digits and dots
-[[ ! $VERSION =~ ^[0-9.]+$ ]] && exit 1
+if [[ ! $VERSION =~ ^[0-9.]+$ ]]; then
+    echo "Could not find a valid ActiveMQ 6 version on dlcdn.apache.org, falling back to 6.2.4"
+    VERSION="6.2.4"
+fi
 echo "VERSION = $VERSION"
 
 # Replacing the version number in the Dockerfile

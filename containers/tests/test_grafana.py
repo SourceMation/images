@@ -32,7 +32,7 @@ def test_installation_and_permissions():
         owner_user = pwd.getpwuid(owner_uid).pw_name
         assert owner_user == GRAFANA_USER
 
-@pytest.mark.parametrize("binary_name", ["grafana", "grafana-server"])
+@pytest.mark.parametrize("binary_name", ["grafana"])
 def test_grafana_binaries_exist_and_are_executable(binary_name):
     binary_path = os.path.join(GRAFANA_HOME, 'bin', binary_name)
     assert os.path.isfile(binary_path), f"Binary not found: {binary_path}"

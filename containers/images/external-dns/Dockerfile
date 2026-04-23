@@ -1,4 +1,4 @@
-FROM sourcemation/golang-1.25 AS builder
+FROM sourcemation/golang-1.26 AS builder
 
 ARG VERSION=0.21.0
 ARG TARGETOS=linux
