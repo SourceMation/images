@@ -500,118 +500,63 @@ push_container_image(){
 
     # The TAG_BUILD should be always connected to TAG_VERSION
 
-    # Note the x86_64 MUST BE the first build
-    if [ "$BASE_ARCH" == "x86_64" ]; then
-        echo "Removing the latest tag for to setup multiarch - x86_64 must be the first build"
-        for container_registry in "docker.io" "quay.io"; do
-            echo "Removing latest manifest for ${container_registry} with amd64 ${container_registry} and $DOCKER_TAG_VERSION"
-            docker manifest rm "${container_registry}/sourcemation/$DOCKER_TAG_VERSION" || true
-            echo "Creating latest manifest for ${container_registry} with amd64 ${container_registry} and $DOCKER_TAG_VERSION"
-            docker manifest create "${container_registry}/sourcemation/$DOCKER_TAG_VERSION" --amend "${container_registry}/sourcemation/$DOCKER_TAG_BUILD"
-        done
-    elif [ "$BASE_ARCH" == "aarch64" ]; then
-        echo "Creating arm64 manifest for $DOCKER_TAG_VERSION"
-        # This may look stupid, I get that, but the thing is that in the
-        # previous pipeline, we had a single host that was pushing the
-        # manifests, so the x86_64 manifest was present before the arm64, and
-        # had host had the x86_64 image saved.
-        #        docker pull "sourcemation/$DOCKER_TAG_VERSION" || true
-        for container_registry in "docker.io" "quay.io"; do
-            echo "Creating latest manifest for ${container_registry} with arm64 and amd64"
-            docker manifest create "${container_registry}/sourcemation/$DOCKER_TAG_VERSION" --amend "${container_registry}/sourcemation/$DOCKER_TAG_BUILD" --amend "$(echo ${container_registry}/sourcemation/"$DOCKER_TAG_BUILD" | sed 's/-arm64/-amd64/g' )"
-        done
-    fi
-    docker manifest push "docker.io/sourcemation/$DOCKER_TAG_VERSION"
-    docker manifest push "quay.io/sourcemation/$DOCKER_TAG_VERSION"
+    for container_registry in "docker.io" "quay.io"; do
+        # 1. VERSION manifest
+        echo "Updating manifest ${container_registry}/sourcemation/$DOCKER_TAG_VERSION with $DOCKER_TAG_BUILD"
+        docker manifest rm "${container_registry}/sourcemation/$DOCKER_TAG_VERSION" || true
+        docker manifest create "${container_registry}/sourcemation/$DOCKER_TAG_VERSION" --amend "${container_registry}/sourcemation/$DOCKER_TAG_BUILD" || \
+        docker manifest create "${container_registry}/sourcemation/$DOCKER_TAG_VERSION" "${container_registry}/sourcemation/$DOCKER_TAG_BUILD"
+        docker manifest push "${container_registry}/sourcemation/$DOCKER_TAG_VERSION"
 
-    # DOCKER_TAG_BUILD_VER_NO_ARCH - it's useful for the HELM charts
+        # 2. BUILD_VER_NO_ARCH manifest
+        echo "Updating manifest ${container_registry}/sourcemation/$DOCKER_TAG_BUILD_VER_NO_ARCH with $DOCKER_TAG_BUILD"
+        docker manifest rm "${container_registry}/sourcemation/$DOCKER_TAG_BUILD_VER_NO_ARCH" || true
+        docker manifest create "${container_registry}/sourcemation/$DOCKER_TAG_BUILD_VER_NO_ARCH" --amend "${container_registry}/sourcemation/$DOCKER_TAG_BUILD" || \
+        docker manifest create "${container_registry}/sourcemation/$DOCKER_TAG_BUILD_VER_NO_ARCH" "${container_registry}/sourcemation/$DOCKER_TAG_BUILD"
+        docker manifest push "${container_registry}/sourcemation/$DOCKER_TAG_BUILD_VER_NO_ARCH"
 
-    if [ "$BASE_ARCH" == "x86_64" ]; then
-        for container_registry in "docker.io" "quay.io"; do
-            # there is no need to remove the tag as it should be always unique
-            echo "Creating latest manifest for ${container_registry} with amd64 ${container_registry} and $DOCKER_TAG_BUILD_VER_NO_ARCH"
-            docker manifest create "${container_registry}/sourcemation/$DOCKER_TAG_BUILD_VER_NO_ARCH" --amend "${container_registry}/sourcemation/$DOCKER_TAG_BUILD"
-        done
-    elif [ "$BASE_ARCH" == "aarch64" ]; then
-        echo "Creating arm64 manifest for $DOCKER_TAG_BUILD_VER_NO_ARCH"
-        # This may look stupid, I get that, but the thing is that in the
-        # previous pipeline, we had a single host that was pushing the
-        # manifests, so the x86_64 manifest was present before the arm64, and
-        # had host had the x86_64 image saved.
-        #        docker pull "sourcemation/$DOCKER_TAG_VERSION" || true
-        for container_registry in "docker.io" "quay.io"; do
-            echo "Creating $DOCKER_TAG_BUILD_VER_NO_ARCH manifest for ${container_registry} with arm64 and amd64"
-            docker manifest create "${container_registry}/sourcemation/$DOCKER_TAG_BUILD_VER_NO_ARCH" --amend "${container_registry}/sourcemation/$DOCKER_TAG_BUILD" --amend "$(echo ${container_registry}/sourcemation/"$DOCKER_TAG_BUILD" | sed 's/-arm64/-amd64/g' )"
-        done
-    fi
+        # 3. latest manifest (only if no suffix)
+        if [ "$DOCKER_TAG_SUFFIX" == "" ]; then
+            echo "Updating latest manifest for ${container_registry} with latest-${latest_arch}"
+            docker manifest rm "${container_registry}/sourcemation/${IMAGE_NAME}:latest" || true
+            docker manifest create "${container_registry}/sourcemation/${IMAGE_NAME}:latest" --amend "${container_registry}/sourcemation/${IMAGE_NAME}:latest-${latest_arch}" || \
+            docker manifest create "${container_registry}/sourcemation/${IMAGE_NAME}:latest" "${container_registry}/sourcemation/${IMAGE_NAME}:latest-${latest_arch}"
+            docker manifest push "${container_registry}/sourcemation/${IMAGE_NAME}:latest"
+        fi
+    done
+}
 
-    docker manifest push "docker.io/sourcemation/$DOCKER_TAG_BUILD_VER_NO_ARCH"
-    docker manifest push "quay.io/sourcemation/$DOCKER_TAG_BUILD_VER_NO_ARCH"
-
-
-
-    # The latest tag is special case, do absolutely nothing if there is suffix
+push_readme(){
+    # We do not push readme for suffixes
     if [ "$DOCKER_TAG_SUFFIX" != "" ]; then
         return 0
     fi
 
-    # Note the x86_64 MUST BE the first build
-    if [ "$BASE_ARCH" == "x86_64" ]; then
-        echo "Removing the latest tag for to setup multiarch - x86_64 must be the first build"
-        for container_registry in "docker.io" "quay.io"; do
-            echo "Removing latest manifest for ${container_registry} with amd64"
-            docker manifest rm "${container_registry}/sourcemation/${IMAGE_NAME}:latest" || true
-            echo "Creating latest manifest for ${container_registry}"
-            docker manifest create "${container_registry}/sourcemation/${IMAGE_NAME}:latest" --amend "${container_registry}/sourcemation/${IMAGE_NAME}:latest-${latest_arch}"
-        done
-    elif [ "$BASE_ARCH" == "aarch64" ]; then
-        echo "Creating arm64 manifest"
-        # This may look stupid, I get that, but the thing is that in the
-        # previous pipeline, we had a single host that was pushing the
-        # manifests, so the x86_64 manifest was present before the arm64, and
-        # had host had the x86_64 image saved.
-        docker pull "sourcemation/${IMAGE_NAME}:latest-amd64"
-        for container_registry in "docker.io" "quay.io"; do
-            echo "Creating latest manifest for ${container_registry} with arm64 and amd64"
-            docker manifest create "${container_registry}/sourcemation/${IMAGE_NAME}:latest" --amend "${container_registry}/sourcemation/${IMAGE_NAME}:latest-${latest_arch}" --amend "${container_registry}/sourcemation/${IMAGE_NAME}:latest-amd64"
-        done
+    # preapre the binary
+    if [ "$BASE_ARCH" == "x86_64" ];then
+        bin_arch="amd64"
+    else
+        # README.md is the same for all images; we do not need to push it for
+        # each architecture, it's eating precious compute time/cloud credits
+        return 0
     fi
-    docker manifest push "docker.io/sourcemation/${IMAGE_NAME}:latest"
-    docker manifest push "quay.io/sourcemation/${IMAGE_NAME}:latest"
-}
+    binary_url="https://github.com/christian-korneck/docker-pushrm/releases/download/v1.9.0/docker-pushrm_linux_${bin_arch}"
+    mkdir -p ~/.docker/cli-plugins
+    curl -L  "${binary_url}" -o ~/.docker/cli-plugins/docker-pushrm
+    chmod +x ~/.docker/cli-plugins/docker-pushrm
 
-push_readme(){
+    # push the README.md
+    pushd "$container_dir"
+    print_info "Pushing README.md to dockerhub"
+    docker pushrm "docker.io/sourcemation/${IMAGE_NAME}" || {
+        echo "Pushing README.md to docker.io failed -> Continuing anyway"
+    }
 
-# We do not push readme for suffixes
-if [ "$DOCKER_TAG_SUFFIX" != "" ]; then
-    return 0
-fi
-
-# preapre the binary
-if [ "$BASE_ARCH" == "x86_64" ];then
-    bin_arch="amd64"
-else
-    # README.md is the same for all images; we do not need to push it for
-    # each architecture, it's eating precious compute time/cloud credits
-    return 0
-fi
-binary_url="https://github.com/christian-korneck/docker-pushrm/releases/download/v1.9.0/docker-pushrm_linux_${bin_arch}"
-mkdir -p ~/.docker/cli-plugins
-curl -L  "${binary_url}" -o ~/.docker/cli-plugins/docker-pushrm
-chmod +x ~/.docker/cli-plugins/docker-pushrm
-
-# push the README.md
-pushd "$container_dir"
-print_info "Pushing README.md to dockerhub"
-docker pushrm "docker.io/sourcemation/${IMAGE_NAME}" || {
-    echo "Pushing README.md to docker.io failed -> Continuing anyway"
-}
-
-print_info "Pushing README.md to quay.io"
-docker pushrm "quay.io/sourcemation/${IMAGE_NAME}" || {
-    echo "Pushing README.md to quay.io failed -> Continuing anyway"
-}
-popd
+    print_info "Pushing README.md to quay.io"
+    docker pushrm "quay.io/sourcemation/${IMAGE_NAME}" || {
+        echo "Pushing README.md to quay.io failed -> Continuing anyway"
+    }
+    popd
 }
 
 
