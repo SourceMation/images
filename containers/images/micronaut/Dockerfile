@@ -36,4 +36,4 @@ RUN curl -s "https://get.sdkman.io" -o sdkman.sh &&\
     bash sdkman.sh && \
     . "/home/micronaut/.sdkman/bin/sdkman-init.sh" && \
     sdk install micronaut 4.10.12 && \
-    sdk install java 21.0.10-graal
+    sdk install java 21.0.11-graal
