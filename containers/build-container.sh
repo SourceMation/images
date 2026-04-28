@@ -581,37 +581,36 @@ push_container_image(){
 }
 
 push_readme(){
+    # We do not push readme for suffixes
+    if [ "$DOCKER_TAG_SUFFIX" != "" ]; then
+        return 0
+    fi
 
-# We do not push readme for suffixes
-if [ "$DOCKER_TAG_SUFFIX" != "" ]; then
-    return 0
-fi
+    # preapre the binary
+    if [ "$BASE_ARCH" == "x86_64" ];then
+        bin_arch="amd64"
+    else
+        # README.md is the same for all images; we do not need to push it for
+        # each architecture, it's eating precious compute time/cloud credits
+        return 0
+    fi
+    binary_url="https://github.com/christian-korneck/docker-pushrm/releases/download/v1.9.0/docker-pushrm_linux_${bin_arch}"
+    mkdir -p ~/.docker/cli-plugins
+    curl -L  "${binary_url}" -o ~/.docker/cli-plugins/docker-pushrm
+    chmod +x ~/.docker/cli-plugins/docker-pushrm
 
-# preapre the binary
-if [ "$BASE_ARCH" == "x86_64" ];then
-    bin_arch="amd64"
-else
-    # README.md is the same for all images; we do not need to push it for
-    # each architecture, it's eating precious compute time/cloud credits
-    return 0
-fi
-binary_url="https://github.com/christian-korneck/docker-pushrm/releases/download/v1.9.0/docker-pushrm_linux_${bin_arch}"
-mkdir -p ~/.docker/cli-plugins
-curl -L  "${binary_url}" -o ~/.docker/cli-plugins/docker-pushrm
-chmod +x ~/.docker/cli-plugins/docker-pushrm
+    # push the README.md
+    pushd "$container_dir"
+    print_info "Pushing README.md to dockerhub"
+    docker pushrm "docker.io/sourcemation/${IMAGE_NAME}" || {
+        echo "Pushing README.md to docker.io failed -> Continuing anyway"
+    }
 
-# push the README.md
-pushd "$container_dir"
-print_info "Pushing README.md to dockerhub"
-docker pushrm "docker.io/sourcemation/${IMAGE_NAME}" || {
-    echo "Pushing README.md to docker.io failed -> Continuing anyway"
-}
-
-print_info "Pushing README.md to quay.io"
-docker pushrm "quay.io/sourcemation/${IMAGE_NAME}" || {
-    echo "Pushing README.md to quay.io failed -> Continuing anyway"
-}
-popd
+    print_info "Pushing README.md to quay.io"
+    docker pushrm "quay.io/sourcemation/${IMAGE_NAME}" || {
+        echo "Pushing README.md to quay.io failed -> Continuing anyway"
+    }
+    popd
 }
 
 
