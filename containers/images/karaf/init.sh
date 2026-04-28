@@ -7,15 +7,18 @@ set -euo pipefail
 
 APP="karaf"
 
-# Fetch the latest version from Apache Karaf GitHub releases
-VERSION=$(git ls-remote --refs --tags https://github.com/apache/karaf.git | \
-  grep -o 'karaf-[0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*$' | \
-  sed 's/karaf-//g' | \
-  sort -V | \
-  tail -n 1)
+# Fetch the latest version from Apache Karaf CDN
+VERSION=$(curl -s https://dlcdn.apache.org/karaf/ | grep -o 'href="4\.[0-9.]*/"' | sed 's/href="//;s/\/"//' | sort --version-sort --reverse | head -n 1)
 
 # Exit with an error if the returned version contains anything other than digits and dots
-[[ ! $VERSION =~ ^[0-9.]+$ ]] && exit 1
+if [[ ! $VERSION =~ ^[0-9.]+$ ]]; then
+    echo "Could not find a valid Karaf 4 version on dlcdn.apache.org, falling back to git tags"
+    VERSION=$(git ls-remote --refs --tags https://github.com/apache/karaf.git | \
+      grep -o 'karaf-4\.[0-9][0-9]*\.[0-9][0-9]*$' | \
+      sed 's/karaf-//g' | \
+      sort -V | \
+      tail -n 1)
+fi
 
 echo "VERSION = $VERSION"
 
