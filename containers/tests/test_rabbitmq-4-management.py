@@ -38,7 +38,7 @@ def test_rabbitmq_send_message():
     channel = connection.channel()
 
     try:
-        channel.queue_declare(queue='test_queue')
+        channel.queue_declare(queue='test_queue', durable=True)
 
         message = 'Hello, RabbitMQ!'
         channel.basic_publish(exchange='', routing_key='test_queue', body=message)
@@ -60,7 +60,7 @@ def test_rabbitmq_receive_message():
     channel = connection.channel()
 
     try:
-        channel.queue_declare(queue='test_queue')
+        channel.queue_declare(queue='test_queue', durable=True)
 
         method_frame, header_frame, body = channel.basic_get(queue='test_queue', auto_ack=True)
         assert body is not None, "No message received from RabbitMQ."
@@ -81,7 +81,7 @@ def test_rabbitmq_delete_queue():
     channel = connection.channel()
 
     try:
-        channel.queue_declare(queue='test_queue')
+        channel.queue_declare(queue='test_queue', durable=True)
 
         channel.queue_delete(queue='test_queue')
 
@@ -103,9 +103,9 @@ def test_rabbitmq_redeclare_queue():
     channel = connection.channel()
 
     try:
-        channel.queue_declare(queue='test_queue')
+        channel.queue_declare(queue='test_queue', durable=True)
         with pytest.raises(pika.exceptions.ChannelClosedByBroker):
-            channel.queue_declare(queue='test_queue', durable=True)
+            channel.queue_declare(queue='test_queue', durable=False)
     finally:
         connection.close()
 
@@ -118,7 +118,7 @@ def test_rabbitmq_purge_queue():
     channel = connection.channel()
 
     try:
-        channel.queue_declare(queue='test_queue')
+        channel.queue_declare(queue='test_queue', durable=True)
         channel.basic_publish(exchange='', routing_key='test_queue', body='Message to purge')
         channel.queue_purge(queue='test_queue')
 

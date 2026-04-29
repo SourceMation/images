@@ -12,13 +12,19 @@ Run a temporary container with the RabbitMQ Management
 docker run --rm -it sourcemation/rabbitmq-4-management:latest
 ```
 
+## RabbitMQ Admin CLI
+
+As of April 28, 2026, this image includes the new **v2 version of `rabbitmqadmin`** (also known as `rabbitmqadmin-ng`), which is a standalone Rust-based binary. This version replaces the legacy Python script to align with official RabbitMQ 4.x distributions.
+
+Please review the [breaking and potentially breaking changes](https://github.com/rabbitmq/rabbitmqadmin-ng#breaking-or-potentially-breaking-changes) when migrating from the legacy Python-based version.
+
 ## Environment Vars, Ports, Volumes
 
 This image uses the following environment variables:
 
 ```
 APP_NAME="rabbitmq-4-management"
-APP_VERSION="4.2.5"
+APP_VERSION="4.3.0"
 HOME=/var/lib/rabbitmq
 RABBITMQ_DATA_DIR=/var/lib/rabbitmq
 RABBITMQ_HOME=/opt/rabbitmq
