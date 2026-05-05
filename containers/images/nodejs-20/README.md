@@ -1,5 +1,8 @@
 # NodeJS 20 with Yarn Classic packed by Sourcemation
 
+> [!WARNING]
+> **NodeJS 20 is deprecated.** We will be pushing newer versions as the base OS is updated. Please consider migrating to a newer version of NodeJS.
+
 Node.js is a powerful and adaptable JavaScript runtime that's used to build all
 sorts of applications, from simple command-line tools to complex conferencing
 systems. Its popularity comes from its vast collection of modules and
