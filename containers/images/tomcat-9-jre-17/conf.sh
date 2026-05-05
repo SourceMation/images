@@ -1,0 +1,1 @@
+DOCKER_TAG_SUFFIX="jre-17"
