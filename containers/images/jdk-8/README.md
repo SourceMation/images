@@ -189,4 +189,3 @@ analysis and compliance reports for our images are accessible through the
 
 The OpenJDK project is licensed under the GNU General Public License, version
 2, with the Classpath Exception.
-on.
