@@ -21,7 +21,7 @@ command:
 docker run -it --rm sourcemation/jdk-8
 ```
 
-This launches an interactive `jshell` inside a container with JDK 8 fully
+This launches an interactive `bash` shell inside a container with JDK 8 fully
 installed and ready for development.
 
 ## Advanced Usage Scenarios

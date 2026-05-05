@@ -133,8 +133,8 @@ on:
           - servicemix
           - thanos
           - tomcat-9
-          - tomcat-9-jdk-8
           - tomcat-9-jdk-25
+          - tomcat-9-jdk-8
           - tomcat-9-jre-8
           - tomcat-10
           - tomcat-10-jdk-25
