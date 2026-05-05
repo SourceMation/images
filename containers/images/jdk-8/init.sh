@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+# ---------------------------------------------------
+# Automated build process for the JDK 8 image
+# Author: Aleksander Baranowski
+# e-mail: aleksander.baranowski@linuxpolska.pl
+# ---------------------------------------------------
+
+set -euo pipefail
+
+APP="JDK 8"
+
+echo "Checking the latest version of $APP"
+
+JAVA_VERSION=$(git ls-remote --refs --tags https://github.com/adoptium/temurin8-binaries.git | grep -v beta | grep -o  'jdk8u[0-9]*-[b0-9]*' | sort --version-sort -r | head -1)
+
+# Exit with an error if the returned version contains anything other
+# than digits and dots and hyphens
+echo "Checking the latest version of $APP against the regex"
+echo "$JAVA_VERSION" | grep -q 'jdk8u[0-9]*-[b0-9]*' || exit 1
+
+echo "Latest version of $APP is $JAVA_VERSION"
+
+# We are using version as the label and also as docker tag docker tag cannot
+# contain + (not applicable for jdk8 tags usually, but good to keep)
+
+VERSION_WITH_PLUS_REPLACED=${JAVA_VERSION//+/-}
+
+sed -i "s/version=\"[^\"]*\"/version=\"$VERSION_WITH_PLUS_REPLACED\"/" Dockerfile || exit 1
+sed -i "s/JAVA_VERSION=\"[^\"]*\"/JAVA_VERSION=\"$JAVA_VERSION\"/" Dockerfile || exit 1
+
+
+echo "Init script completed successfully"

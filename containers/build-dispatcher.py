@@ -6,7 +6,7 @@ Reads the dependency JSON produced by docker-build-order_ad.py and dispatches
 container builds to GitHub Actions build slots in topological (dependency) order.
 
 Architecture:
-  - One worker thread per build slot (up to 8).
+  - One worker thread per build slot (up to 10).
   - A shared Queue feeds WorkItems (image + attempt number) to idle workers.
   - When a build succeeds its dependents are unlocked into the queue.
   - When a build exhausts all retries the image is failed and every downstream
@@ -447,10 +447,10 @@ def main() -> None:
     ap.add_argument(
         "--slots",
         type=int,
-        default=8,
-        choices=range(1, 9),
+        default=10,
+        choices=range(1, 11),
         metavar="N",
-        help="Number of build slots to use (1–8). Default: 8.",
+        help="Number of build slots to use (1–10). Default: 10.",
     )
     ap.add_argument(
         "--skip",

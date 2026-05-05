@@ -54,11 +54,13 @@ on:
           - jdk-25
           - jdk-21
           - jdk-17
+          - jdk-8
           - jenkins
           - jmx-exporter
           - jre-25
           - jre-21
           - jre-17
+          - jre-8
           - kafka
           - karaf
           - keycloak
@@ -131,7 +133,11 @@ on:
           - servicemix
           - thanos
           - tomcat-9
+          - tomcat-9-jdk-17
           - tomcat-9-jdk-25
+          - tomcat-9-jdk-8
+          - tomcat-9-jre-17
+          - tomcat-9-jre-8
           - tomcat-10
           - tomcat-10-jdk-25
           - tomcat-11

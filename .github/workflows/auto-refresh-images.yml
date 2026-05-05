@@ -87,4 +87,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           cd containers
-          ./build-dispatcher.py --slots 8  build-orders/build_order.json
+          ./build-dispatcher.py --slots 10  build-orders/build_order.json
