@@ -8,7 +8,7 @@
 set -euo pipefail
 
 APP="pgpool-II"
-URL="https://pgpool.net/mediawiki/images/"
+URL="https://pgpool.net/source/"
 
 # Fetch the HTML content and process it to find the latest version
 LATEST_VERSION=$(curl -s "$URL" | \

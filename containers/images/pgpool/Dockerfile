@@ -29,7 +29,8 @@ COPY start.sh ${PGPOOL_INSTALL_DIR}/bin/
 
 # Install Pgpool-II
 RUN set -eux \
-    && wget --progress=dot:giga -O /tmp/pgpool.tar.gz "https://pgpool.net/mediawiki/images/pgpool-II-${PGPOOL_VER}.tar.gz" \
+    && mkdir -p /tmp/pgpool \
+    && wget --progress=dot:giga -O /tmp/pgpool.tar.gz "https://pgpool.net/source/pgpool-II-${PGPOOL_VER}.tar.gz" \
     && tar -zxf /tmp/pgpool.tar.gz -C /tmp/pgpool --strip-components 1 \
     && cd /tmp/pgpool \
     && patch -p1 < fix_compile_error.patch \
