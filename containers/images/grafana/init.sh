@@ -5,7 +5,7 @@ APP=grafana
 echo "Checking the latest available version of the $APP"
 version=$(curl -Ls -o /dev/null -w %{url_effective} https://github.com/grafana/grafana/releases/latest | sed 's/.*\///')
 VERSION=${version#v}
-[[ ! $VERSION =~ ^[0-9.]+$ ]] && exit 1
+[[ ! $VERSION =~ ^[0-9.a-zA-Z+-]+$ ]] && exit 1
 
 BASE_ARCH=$(uname -m)
 if [ "$BASE_ARCH" == "x86_64" ]; then
@@ -25,5 +25,7 @@ curl https://dl.grafana.com/oss/release/grafana-$VERSION.linux-$ARCH.tar.gz -sLo
 mkdir grafana
 tar -xzf grafana.tar.gz -C grafana --strip-components=1
 
+SAFE_VERSION=${VERSION//+/-}
+
 echo "Setup version in $APP Dockerfile"
-sed -i "s/version=.*/version=\"$VERSION\" \\\\/" Dockerfile
+sed -i "s/version=.*/version=\"$SAFE_VERSION\" \\\\/" Dockerfile
