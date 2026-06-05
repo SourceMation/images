@@ -66,7 +66,7 @@ This image uses the following environment variables:
 
 ```bash
 APP_NAME="mariadb"
-APP_VERSION="12.2.2"
+APP_VERSION="12.3.2"
 
 MARIADB_ROOT_PASSWORD=<password>     # Set root password
 MARIADB_RANDOM_ROOT_PASSWORD=no
@@ -126,4 +126,4 @@ For more information, check out the [overview of MariaDB](https://mariadb.org/) 
 
 ### Licenses
 
-The base license for the solution (MariaDB) is the [GPLv2](https://github.com/MariaDB/server/blob/12.2/COPYING). The licenses for each component shipped as part of this image can be found on [the image's appropriate Sourcemation entry](https://sourcemation.com).
+The base license for the solution (MariaDB) is the [GPLv2](https://github.com/MariaDB/server/blob/12.3/COPYING). The licenses for each component shipped as part of this image can be found on [the image's appropriate Sourcemation entry](https://sourcemation.com).
