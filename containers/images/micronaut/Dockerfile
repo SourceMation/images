@@ -9,13 +9,13 @@ LABEL name="micronaut" \
       licenses="Apache-2.0" \
       created="$BUILD_DATE" \
       architecture="$TARGETARCH" \
-      summary="Micronaut CLI, Java-21 GraalVM and SDKMAN with GCC on EL9 Container" \
-      description="Provides Micronaut CLI, Java-21 GraalVM and SDKMAN with GCC Rocky Linux 9 Container" \
+      summary="Micronaut CLI, Java-25 GraalVM and SDKMAN with GCC on EL9 Container" \
+      description="Provides Micronaut CLI, Java-25 GraalVM and SDKMAN with GCC Rocky Linux 9 Container" \
       version="5.0.2" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
-      io.k8s.display-name="Micronaut CLI, Java-21 GraalVM and SDKMAN with GCC on EL9 Container" \
-      io.k8s.description="Provides Micronaut CLI, Java-21 GraalVM and SDKMAN with GCC on Rocky Linux 9 Container" \
-      io.openshift.tags="micronaut java-21 sdkman gcc rockylinux"
+      io.k8s.display-name="Micronaut CLI, Java-25 GraalVM and SDKMAN with GCC on EL9 Container" \
+      io.k8s.description="Provides Micronaut CLI, Java-25 GraalVM and SDKMAN with GCC on Rocky Linux 9 Container" \
+      io.openshift.tags="micronaut java-25 sdkman gcc rockylinux"
 
 # Install dependencies
 RUN dnf install -y zip unzip which gcc zlib-devel git glibc-devel && \
@@ -36,4 +36,4 @@ RUN curl -s "https://get.sdkman.io" -o sdkman.sh &&\
     bash sdkman.sh && \
     . "/home/micronaut/.sdkman/bin/sdkman-init.sh" && \
     sdk install micronaut 5.0.2 && \
-    sdk install java 21.0.11-graal
+    sdk install java 25.0.3-graal

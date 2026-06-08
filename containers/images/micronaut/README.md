@@ -1,6 +1,6 @@
 # Micronaut CLI packaged by Sourcemation
 
-This image contains the Micronaut CLI, Java-21 GraalVM, and SDKMAN on Rocky
+This image contains the Micronaut CLI, Java-25 GraalVM, and SDKMAN on Rocky
 Linux 9. This allows you to build and run Micronaut applications using GraalVM.
 Everything is installed with SDKMAN, so you can easily switch between different
 versions of Java.

@@ -6,7 +6,7 @@
 
 set -euo pipefail
 
-echo "Checking the latest versions for Micronaut and GraalVM 21"
+echo "Checking the latest versions for Micronaut and GraalVM 25"
 
 # Get latest sdkman.sh checksum
 SDKMAN_SUM=$(curl -s "https://get.sdkman.io" | sha256sum | awk '{print $1}')
@@ -14,18 +14,18 @@ SDKMAN_SUM=$(curl -s "https://get.sdkman.io" | sha256sum | awk '{print $1}')
 # Get latest micronaut version
 MICRONAUT_VER=$(curl -s https://api.sdkman.io/2/candidates/default/micronaut)
 
-# Get latest GraalVM 21 version
+# Get latest GraalVM 25 version
 # We use linuxx64 as a representative platform to get the version identifier
 # We prefer 'graal' over 'graalce' and sort to get the latest
-JAVA_VER=$(curl -s "https://api.sdkman.io/2/candidates/java/linuxx64/versions/list?installed=" | grep "21\..*-graal" | grep -v "graalce" | sort -V | tail -1 | awk -F'|' '{print $NF}' | tr -d ' ')
+JAVA_VER=$(curl -s "https://api.sdkman.io/2/candidates/java/linuxx64/versions/list?installed=" | grep "25\..*-graal" | grep -v "graalce" | sort -V | tail -1 | awk -F'|' '{print $NF}' | tr -d ' ')
 
 if [ -z "$JAVA_VER" ]; then
-    echo "Could not find Java 21 GraalVM version, falling back to 21.0.10-graal"
-    JAVA_VER="21.0.10-graal"
+    echo "Could not find Java 25 GraalVM version, falling back to 25.0.3-graal"
+    JAVA_VER="25.0.3-graal"
 fi
 
 echo "Latest Micronaut version: $MICRONAUT_VER"
-echo "Latest Java 21 GraalVM version: $JAVA_VER"
+echo "Latest Java 25 GraalVM version: $JAVA_VER"
 echo "SDKMAN checksum: $SDKMAN_SUM"
 
 # Update Dockerfile

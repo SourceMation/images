@@ -1,4 +1,4 @@
-FROM docker.io/sourcemation/golang-1.24 AS builder
+FROM docker.io/sourcemation/golang-1.25 AS builder
 
 ARG TARGETARCH
 ARG VERSION=v2.19.0
