@@ -26,7 +26,7 @@ jobs:
           application_private_key: ${{ secrets.APP_PRIVATE_KEY }}
 
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           token: ${{ steps.get_autocommit_app_token.outputs.token }}
           ref: ${{ github.head_ref }}
@@ -53,7 +53,7 @@ jobs:
     needs: update-dockerfiles-and-artifacts
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           ref: ${{ github.head_ref }}
           fetch-tags: true
@@ -64,7 +64,7 @@ jobs:
           ./docker-build-order.py images/
 
       - name: Upload build order
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: build_order
           path: containers/build-orders/build_order.json
@@ -74,10 +74,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v6
 
       - name: Download build order
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         with:
           name: build_order
           path: containers/build-orders/

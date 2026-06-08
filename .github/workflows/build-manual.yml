@@ -189,7 +189,7 @@ jobs:
       PUSH_README: ${{ inputs.push_readme }}
       APIKEY__QUAY_IO: ${{ secrets.QUAY_API }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           ref: ${{ github.ref }}
       - name: Install prerequisites - docker
@@ -226,7 +226,7 @@ jobs:
       PUSH_README: ${{ inputs.push_readme }}
       APIKEY__QUAY_IO: ${{ secrets.QUAY_API }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           ref: ${{ github.ref }}
       - name: Install prerequisites - docker
@@ -253,7 +253,7 @@ jobs:
     runs-on: ubuntu-latest
     if: always() && ${{ inputs.next_containers != '' }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           ref: ${{ github.ref }}
       - name: Build containers
