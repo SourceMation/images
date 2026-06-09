@@ -33,7 +33,7 @@ def test_default_user_is_root():
     except (subprocess.CalledProcessError, FileNotFoundError) as e:
         pytest.fail(f"Could not verify user with 'whoami': {e}")
 
-def test_dnf_package_manager_exists():
+def test_microdnf_package_manager_exists():
     assert shutil.which('microdnf') is not None, "microdnf command not found in PATH."
 
 def test_microdnf_can_make_cache():

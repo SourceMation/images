@@ -9,10 +9,10 @@
 set -euo pipefail
 
 cleanup() {
-    docker rm -f podman_build
+    docker rm -f podman_build >/dev/null 2>&1 || true
 }
 trap cleanup EXIT
 
-docker run --name podman_build -d --privileged -v /dev/shm:/dev/shm -it -v $(pwd):/tmp/code rockylinux/rockylinux:10
+docker run --name podman_build -d --privileged -v /dev/shm:/dev/shm -it -v "$(pwd)":/tmp/code rockylinux/rockylinux:10
 docker exec podman_build /bin/bash -c "cd /tmp/code && ./mk-image-podman.sh"
 docker cp podman_build:/tmp/base-image.tar.gz .
