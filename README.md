@@ -55,3 +55,22 @@ similar documentation that describes the image and how to use it.
   recreate the images without Jenkins, or you can use the Jenkinsfile to
   replicate the Jenkins pipeline in your own Jenkins instance.
 
+## Running actions from local terminal
+
+You can trigger GitHub Actions workflows directly from your local terminal using the GitHub CLI (`gh`). To run a specific workflow (for example, the manual container build), use the `gh workflow run` command. You can pass inputs using the `-f` (field) flag.
+
+```bash
+# List available workflows
+gh workflow list
+
+# Trigger the manual build workflow for a specific container (e.g. kyverno)
+gh workflow run build-manual.yml -f container_name=kyverno
+```
+
+You can view the progress of your triggered runs with:
+```bash
+gh run list
+gh run watch
+```
+
+**Also if you do not remember what should be input, you can use `gh` cli :). It should give you hints and required fields in interactive way.**
