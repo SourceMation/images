@@ -16,9 +16,8 @@ ARG TARGETARCH
 ENV GOOS=$TARGETOS
 ENV GOARCH=$TARGETARCH
 
-RUN go test -v ./cmd/kyverno-init/...
-
-RUN CGO_ENABLED=0 GO111MODULE=on go build -a -tags timetzdata -o kyvernopre ./cmd/kyverno-init
+RUN go test -v ./cmd/kyverno-init/... && \
+    CGO_ENABLED=0 GO111MODULE=on go build -a -tags timetzdata -o kyvernopre ./cmd/kyverno-init
 
 # Final image
 FROM docker.io/sourcemation/debian-13-slim:latest
