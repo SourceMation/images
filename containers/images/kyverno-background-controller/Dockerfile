@@ -16,9 +16,8 @@ ARG TARGETARCH
 ENV GOOS=$TARGETOS
 ENV GOARCH=$TARGETARCH
 
-RUN go test -v ./cmd/background-controller/...
-
-RUN CGO_ENABLED=0 GO111MODULE=on go build -a -tags timetzdata -o kyverno-background-controller ./cmd/background-controller
+RUN go test -v ./cmd/background-controller/... && \
+    CGO_ENABLED=0 GO111MODULE=on go build -a -tags timetzdata -o kyverno-background-controller ./cmd/background-controller
 
 # Final image
 FROM docker.io/sourcemation/debian-13-slim:latest
