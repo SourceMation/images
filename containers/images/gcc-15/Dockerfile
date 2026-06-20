@@ -15,13 +15,13 @@ LABEL name="gcc-15" \
       architecture="$TARGETARCH" \
       summary="GCC 15 on Debian 13 Slim Container" \
       description="Provides GCC 15 on Debian 13 Slim Container" \
-      version="15.2.0" \
+      version="15.3.0" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="GCC 15 on Debian 13 Slim Container" \
       io.k8s.description="Provides GCC 15 on Debian 13 Slim Container" \
       io.openshift.tags="gcc gcc-15 debian-13-slim"
 
-ENV GCC_VERSION="15.2.0"
+ENV GCC_VERSION="15.3.0"
 
 # abigail-tools - abidiff later to verify that it's not breaking the debian packages
 # Most of this packages are from buildpack-deps that is based on old Heroku stack,

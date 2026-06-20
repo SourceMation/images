@@ -11,13 +11,13 @@ LABEL name="nginx-mainline" \
       architecture="$TARGETARCH" \
       summary="Nginx Mainline on Debian 13 Slim Container" \
       description="Provides Nginx Mainline on Debian 13 Slim Container" \
-      version="1.31.1" \
+      version="1.31.2" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="Nginx Mainline on Debian 13 Slim Container" \
       io.k8s.description="Provides Nginx Mainline on Debian 13 Slim Container" \
       io.openshift.tags="nginx debian-13-slim"
 
-ENV NGINX_VERSION="1.31.1"
+ENV NGINX_VERSION="1.31.2"
 ENV PKG_RELEASE="1~trixie"
 ENV NJS_VERSION="0.9.9"
 ENV NJS_RELEASE="1~trixie"

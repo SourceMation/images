@@ -1,7 +1,7 @@
 FROM docker.io/sourcemation/golang-1.25 AS builder
 
 ARG TARGETARCH
-ARG VERSION=v2.19.0
+ARG VERSION=v2.19.1
 
 ADD https://github.com/kubernetes/kube-state-metrics/archive/refs/tags/${VERSION}.tar.gz .
 
@@ -31,7 +31,7 @@ LABEL name="kube-state-metrics" \
   architecture="${TARGETARCH}" \
   summary="${LONGNAME}" \
   description="Provides ${LONGNAME}" \
-  version="2.19.0" \
+  version="2.19.1" \
   io.k8s.display-name="${LONGNAME}" \
   io.k8s.description="Provides ${LONGNAME}" \
   io.openshift.tags="kube-state-metrics debian-13-slim"
