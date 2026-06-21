@@ -1,4 +1,4 @@
-FROM sourcemation/golang-1.25:latest AS builder
+FROM sourcemation/golang-1.26:latest AS builder
 
 ARG TARGETARCH
 ARG OAUTH2_PROXY_VERSION="v7.15.3"
