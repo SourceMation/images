@@ -65,6 +65,9 @@ gh workflow list
 
 # Trigger the manual build workflow for a specific container (e.g. kyverno)
 gh workflow run build-manual.yml -f container_name=kyverno
+
+# Trigger a build slot to run parallel jobs or target specific slots (e.g. slot 1 for prometheus-operator)
+gh workflow run container-build-slot-1.yml -f container_name=prometheus-operator
 ```
 
 You can view the progress of your triggered runs with:
