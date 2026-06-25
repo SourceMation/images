@@ -25,6 +25,7 @@ on:
           - camel-karavan
           - cassandra
           - cnpg-16
+          - cnpg-16-2-oneshot
           - cnpg-17
           - cnpg-18
           - debian-11-slim
@@ -88,6 +89,7 @@ on:
           - mosquitto
           - mysql
           - nats
+          - nginx-1-29-oneshot
           - nginx-ingress-controller
           - nginx-mainline
           - nginx-mainline-otel
@@ -107,6 +109,7 @@ on:
           - pgpool
           - phpmyadmin
           - postgres-16
+          - postgres-16-2-oneshot
           - postgres-17
           - postgres-18
           - postgres-exporter
@@ -128,6 +131,7 @@ on:
           - rabbitmq-default-user-credential-updater
           - rabbitmq-messaging-topology-operator
           - redis
+          - redis-7-0-oneshot
           - redis-exporter
           - redis-operator
           - redis-sentinel
