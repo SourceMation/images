@@ -2,6 +2,39 @@ import pytest
 import subprocess
 import psycopg2
 import locale
+import time
+import os
+
+
+def setup_module(module):
+    # Initialize and start postgresql if not already running
+    res = subprocess.run(['pg_isready'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    if res.returncode != 0:
+        # Create directories and fix permissions (tests run as root inside the container, so we have full privileges)
+        subprocess.run(['mkdir', '-p', '/var/run/postgresql', '/var/lib/postgresql/data'], check=True)
+        subprocess.run(['chown', '-R', 'postgres:postgres', '/var/run/postgresql', '/var/lib/postgresql'], check=True)
+
+        # Initialize PGDATA if empty
+        if not os.listdir('/var/lib/postgresql/data'):
+            subprocess.run([
+                'runuser', '-u', 'postgres', '--', 
+                'initdb', '-D', '/var/lib/postgresql/data', 
+                '--auth-host=trust', '--auth-local=trust', '--encoding=UTF8', '--locale=en_US.UTF-8'
+            ], check=True)
+
+        # Start PostgreSQL as postgres user (UID 26)
+        subprocess.run([
+            'runuser', '-u', 'postgres', '--', 
+            'pg_ctl', '-D', '/var/lib/postgresql/data', 
+            '-o', '-c listen_addresses=*', 'start'
+        ], check=True)
+
+        # Wait up to 10 seconds for PG to be ready
+        for _ in range(10):
+            res = subprocess.run(['pg_isready'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            if res.returncode == 0:
+                break
+            time.sleep(1)
 
 
 def test_postgresql_executables_in_path():
