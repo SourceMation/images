@@ -62,12 +62,12 @@ def test_barman_cloud_executables_in_path():
 def test_pgaudit_package_installed():
     """Checks if the pgaudit package is installed."""
     result = subprocess.run(
-        ["apt", "list", "--installed", "postgresql-17-pgaudit"],  # Adjust version if needed
+        ["apt", "list", "--installed", "postgresql-18-pgaudit"],  # Adjust version if needed
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
         text=True,
     )
-    assert "postgresql-17-pgaudit" in result.stdout, "pgaudit package is not installed"
+    assert "postgresql-18-pgaudit" in result.stdout, "pgaudit package is not installed"
 
 
 def test_locale_settings():
