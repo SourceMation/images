@@ -96,3 +96,9 @@ def test_postgresql_locale():
     finally:
         cursor.close()
         connection.close()
+
+
+def test_postgres_user_uid():
+    import pwd
+    user = pwd.getpwnam('postgres')
+    assert user.pw_uid == 26, f"postgres user UID is not 26, but {user.pw_uid}"
