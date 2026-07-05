@@ -11,8 +11,8 @@ ENV TOMCAT_NATIVE_LIBDIR=$CATALINA_HOME/native-jni-lib
 ENV LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}$TOMCAT_NATIVE_LIBDIR
 
 ENV TOMCAT_MAJOR=11
-ENV TOMCAT_VERSION=11.0.22
-ENV TOMCAT_SHA512=4ee77f604009daeab50d015835f221707f64a03756c6e5ac8736a6947cd60f6796315ceb255428765017038d79d466988582eb8b986dc48d3649bbc35bdd8bd7
+ENV TOMCAT_VERSION=11.0.23
+ENV TOMCAT_SHA512=f5acb7a1e5ad60dea682ffe16cf075596f0e7b62e460828eb176639714d125ab08c763753fb709e3626ce6f42712c281b4ccf54930354aa07325550d6e6cbdac
 
 RUN set -eux; \
     apt-get update; \
@@ -117,7 +117,7 @@ LABEL name="tomcat-11" \
       architecture="$TARGETARCH" \
       summary="Apache Tomcat 11 on JRE 25 Container" \
       description="Provides Apache Tomcat 11 on JRE 25 Container" \
-      version="11.0.22" \
+      version="11.0.23" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="Apache Tomcat 11 on JRE 25 Container" \
       io.k8s.description="Provides Apache Tomcat 11 on JRE 25 Container" \
@@ -126,7 +126,7 @@ LABEL name="tomcat-11" \
 ENV CATALINA_HOME=/usr/local/tomcat
 ENV PATH=$CATALINA_HOME/bin:$PATH
 WORKDIR $CATALINA_HOME
-ENV TOMCAT_VERSION=11.0.22
+ENV TOMCAT_VERSION=11.0.23
 
 # let "Tomcat Native" live somewhere isolated
 ENV TOMCAT_NATIVE_LIBDIR=$CATALINA_HOME/native-jni-lib

@@ -19,7 +19,7 @@ LABEL name="nginx-stable" \
 
 ENV NGINX_VERSION="1.30.3"
 ENV PKG_RELEASE="1~trixie"
-ENV NJS_VERSION="0.9.9"
+ENV NJS_VERSION="1.0.0"
 ENV NJS_RELEASE="1~trixie"
 ENV DYNPKG_RELEASE="1~trixie"
 
