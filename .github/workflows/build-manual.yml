@@ -79,6 +79,7 @@ on:
           - mariadb
           - matomo
           - maven
+          - maven-jdk-17
           - memcached
           - metrics-server
           - micronaut

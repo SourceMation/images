@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+# ---------------------------------------------------
+# Automated build process for the Maven 3.9 on OpenJDK 17 image
+# Author: Aleksander Baranowski
+# e-mail: aleksander.baranowski@linuxpolska.pl
+# ---------------------------------------------------
+
+set -euo pipefail
+
+APP="Maven 3.9"
+
+echo "Checking the latest version of $APP"
+
+MAVEN_VER=$(curl -sL https://dlcdn.apache.org/maven/maven-3/ | grep -o '3\.9\.[0-9.]*' | sort --version-sort -r | head -1)
+
+# Exit with an error if the returned version contains anything other
+# than digits and dots
+echo "Checking the latest version of $APP against the regex"
+echo "$MAVEN_VER" | grep -q '3\.9\.[0-9.]*' || exit 1
+
+echo "Latest version of $APP is $MAVEN_VER"
+
+VER_STR="${MAVEN_VER//maven-/}"
+
+LABEL_STR="${VER_STR}"
+
+sed -i "s/version=\"[^\"]*\"/version=\"$LABEL_STR\"/" Dockerfile || exit 1
+sed -i "s/MAVEN_VERSION=\"[^\"]*\"/MAVEN_VERSION=\"$VER_STR\"/" Dockerfile || exit 1
+
+BASE_URL17=https://raw.githubusercontent.com/carlossg/docker-maven/refs/heads/main/eclipse-temurin-17-noble/
+
+echo 'Downloading settings and entrypoint scripts'
+rm -fv settings-docker.xml mvn-entrypoint.sh
+wget $BASE_URL17/settings-docker.xml
+wget $BASE_URL17/mvn-entrypoint.sh
+chmod +x mvn-entrypoint.sh
+
+echo "Init script completed successfully"

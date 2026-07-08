@@ -60,8 +60,8 @@ DOCKER_TAG_SUFFIX="debian-11"
 
 In example above the `DOCKER_TAG_SUFFIX` is set to `debian-11`, so the image
 will be tagged as for example
-`sourcemation/my-super-image:version-date-arm64-debian11` and
-`sourcemation/my-super-image:version-date-amd64-debian11` and also with
+`sourcemation/my-super-image:version-debian-11-date-arm64` and
+`sourcemation/my-super-image:version-debian-11-date-amd64` and also with
 versions like `sourcemation/my-super-image:version-debian-11` that should point
 to the same image as latest images (it's manifest list. The manifest list will
 be overwritten with next build!).
