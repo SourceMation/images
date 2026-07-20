@@ -28,7 +28,7 @@ RUN set -ex; \
     apt-get update; \
     apt-get upgrade -y; \
     apt-get install -y --no-install-recommends gosu g++ make python3; \
-    npm install -g ghost-cli@latest pnpm; \
+    npm install -g ghost-cli@latest pnpm@11.13.1; \
     rm -rf /var/lib/apt/lists/*; \
     mkdir -p ${GHOST_INSTALL}; \
     chown -R node:node ${GHOST_INSTALL}
