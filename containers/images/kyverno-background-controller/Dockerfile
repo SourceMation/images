@@ -34,7 +34,7 @@ LABEL name="kyverno-background-controller" \
       architecture="$TARGETARCH" \
       summary="$LONGNAME" \
       description="Provides $LONGNAME" \
-      version="1.18.1" \
+      version="1.18.2" \
       io.k8s.display-name="$LONGNAME" \
       io.k8s.description="$LONGNAME" \
       io.openshift.tags="kyverno"
@@ -42,7 +42,7 @@ LABEL name="kyverno-background-controller" \
 COPY --from=builder /workspace/kyverno-background-controller /usr/local/bin/kyverno-background-controller
 
 ENV APP_NAME="kyverno-background-controller" \
-    APP_VERSION="1.18.1" \
+    APP_VERSION="1.18.2" \
     PATH=/usr/local/bin:$PATH
 
 USER 1000:1000

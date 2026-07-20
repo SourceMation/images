@@ -34,7 +34,7 @@ LABEL name="kyverno" \
       architecture="$TARGETARCH" \
       summary="$LONGNAME" \
       description="Provides $LONGNAME" \
-      version="1.18.1" \
+      version="1.18.2" \
       io.k8s.display-name="$LONGNAME" \
       io.k8s.description="Provides $LONGNAME" \
       io.openshift.tags="kyverno"
@@ -42,7 +42,7 @@ LABEL name="kyverno" \
 COPY --from=builder /workspace/kyverno /usr/local/bin/kyverno
 
 ENV APP_NAME="kyverno" \
-    APP_VERSION="1.18.1" \
+    APP_VERSION="1.18.2" \
     PATH=/usr/local/bin:$PATH
 
 USER 1000:1000

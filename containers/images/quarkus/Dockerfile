@@ -5,7 +5,7 @@ ARG BUILD_DATE
 ARG TARGETARCH
 
 # YOU MUST CHANGE IT MANUALLY HERE AND IN THE LABEL!
-ARG QUARKUS_VERSION=3.37.1
+ARG QUARKUS_VERSION=3.37.3
 
 LABEL name="quarkus" \
       vendor="Sourcemation" \
@@ -15,7 +15,7 @@ LABEL name="quarkus" \
       architecture="$TARGETARCH" \
       summary="Quarkus development container on RL9" \
       description="Provides Quarkus development container on Rocky Linux 9" \
-      version="3.37.1" \
+      version="3.37.3" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="Quarkus on EL9 Container" \
       io.k8s.description="Provides Quarkus on Rocky Linux 9" \
@@ -29,7 +29,7 @@ WORKDIR /home/quarkus
 # Install Quarkus with JBang - Bang bang!
 # install jbang
 RUN curl -sL https://sh.jbang.dev -o jbang.sh && \
-    sha256sum --check <( echo "9f77991218e6d7cefaab2cb48e494f6d3c20071f21dd093f42259f08f707c902 jbang.sh" ) && \
+    sha256sum --check <( echo "11ab5908e92c5308ae220d52163394e126c84d45357ee4e81a17177c6ced3b07 jbang.sh" ) && \
     cat jbang.sh | bash -s - app setup
 
 # modify the PATH to include jbang

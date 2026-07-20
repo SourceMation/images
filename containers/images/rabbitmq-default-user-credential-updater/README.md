@@ -22,7 +22,7 @@ This image uses the following environment variables:
 
 ```
 APP_NAME="rabbitmq-default-credential-updater"
-APP_VERSION="1.0.15"
+APP_VERSION="1.0.16"
 ```
 
 This image exposes the following ports: 

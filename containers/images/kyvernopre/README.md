@@ -2,7 +2,7 @@
 
 Provides the Kyverno Init Container built on top of Debian 13 Slim.
 
-<!-- APP_VERSION="1.18.1" -->
+<!-- APP_VERSION="1.18.2" -->
 
 ## Usage
 

@@ -1,6 +1,6 @@
 FROM sourcemation/golang-1.24 AS builder
 
-ARG VERSION=0.8.1
+ARG VERSION=0.9.0
 ARG TARGETOS=linux
 ARG TARGETARCH
 ARG CGO_ENABLED=0
@@ -39,7 +39,7 @@ LABEL name="metrics-server" \
       architecture="$TARGETARCH" \
       summary="Metrics Server on Debian 13 Slim Container" \
       description="Provides Metrics Server on Debian 13 Slim Container" \
-      version="0.8.1" \
+      version="0.9.0" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="Metrics Server on Debian 13 Slim Container" \
       io.k8s.description="Provides Metrics Server on Debian 13 Slim Container" \
