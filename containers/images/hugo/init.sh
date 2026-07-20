@@ -10,14 +10,26 @@ DART_SASS="dart-sass"
 
 # Updating repository metadata and downloading latest versions
 echo "Checking the latest available version of $DART_SASS"
-DART_SASS_VERSION=$(git ls-remote --refs --tags https://github.com/sass/dart-sass.git | grep  -Eo 'refs/tags/[0-9]+\.[0-9]+\.[0-9]+$' | sort --version-sort --reverse | tr -d 'refs/tags/' | head -n 1)
+DART_SASS_VERSION=""
+while read -r t; do
+    if curl -sI -f "https://github.com/sass/dart-sass/releases/download/${t}/dart-sass-${t}-linux-x64.tar.gz" >/dev/null 2>&1; then
+        DART_SASS_VERSION="${t}"
+        break
+    fi
+done < <(git ls-remote --refs --tags https://github.com/sass/dart-sass.git | grep  -Eo 'refs/tags/[0-9]+\.[0-9]+\.[0-9]+$' | sort --version-sort --reverse | tr -d 'refs/tags/')
 # Exit with an error if the returned version contains anything other
 # than digits and dots
 [[ ! $DART_SASS_VERSION =~ ^[0-9.]+$ ]] && exit 1
 echo "DART_SASS_VERSION = $DART_SASS_VERSION"
 
 echo "Checking the latest available version of $APP"
-HUGO_VERSION=$(git ls-remote --refs --tags https://github.com/gohugoio/hugo.git | grep  -Eo 'refs/tags/v[0-9]+\.[0-9]+\.[0-9]+$' | sort --version-sort --reverse | tr -d 'refs/tags/v' | head -n 1)
+HUGO_VERSION=""
+while read -r t; do
+    if curl -sI -f "https://github.com/gohugoio/hugo/releases/download/v${t}/hugo_extended_withdeploy_${t}_linux-amd64.deb" >/dev/null 2>&1; then
+        HUGO_VERSION="${t}"
+        break
+    fi
+done < <(git ls-remote --refs --tags https://github.com/gohugoio/hugo.git | grep  -Eo 'refs/tags/v[0-9]+\.[0-9]+\.[0-9]+$' | sort --version-sort --reverse | tr -d 'refs/tags/v')
 # Exit with an error if the returned version contains anything other
 # than digits and dots
 [[ ! $HUGO_VERSION =~ ^[0-9.]+$ ]] && exit 1
