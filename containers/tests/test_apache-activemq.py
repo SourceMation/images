@@ -6,7 +6,7 @@ from requests.auth import HTTPBasicAuth
 
 ACTIVEMQ_HOME = "/opt/apache-activemq"
 ACTIVEMQ_BIN = os.path.join(ACTIVEMQ_HOME, "bin", "activemq")
-ACTIVEMQ_URL = "http://localhost:8161"
+ACTIVEMQ_URL = "http://localhost:8161/admin/"
 USERNAME = "admin"
 PASSWORD = "admin"
 
