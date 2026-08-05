@@ -32,7 +32,7 @@ image:
 
 ```dockerfile
 FROM sourcemation/gcc-15
-Include your specific files
+#Include your specific files
 
 COPY . /app
 WORKDIR /app
