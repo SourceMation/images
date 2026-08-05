@@ -1,5 +1,13 @@
 # Apache ServiceMix packaged by Sourcemation
 
+> [!WARNING]
+> **Deprecated / Sunset Project Notice**
+>
+> Apache ServiceMix has been officially **retired** by the Apache Software Foundation as of **March 18, 2026** and moved to the Apache Attic. The project is no longer actively developed, supported, or patched for security issues by the upstream community - https://attic.apache.org/projects/servicemix.html
+>
+> **Sourcemation Image Lifecycle Policy:**
+> Although the upstream project is retired, Sourcemation will continue to build and maintain these container images for an undefined period to support existing deployments. However, please be aware that the underlying software itself is deprecated and unsupported.
+
 Apache ServiceMix is an Enterprise Service Bus (ESB), acting as an integration
 container that combines various components and functionalities, enabling
 organizations to build and manage service-oriented architecture (SOA)

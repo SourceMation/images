@@ -26,8 +26,8 @@ COPY KEYS /
 
 RUN dnf install -y --setopt=install_weak_deps=0 --setopt=tsflags=nodocs gpg hostname procps-ng java-1.8.0-openjdk-headless unzip && dnf clean all &&\
     gpg --import KEYS &&\
-    curl -L -o servicemix.zip "https://dlcdn.apache.org/servicemix/servicemix-${SERVICEMIX_RELEASE//.*}/${SERVICEMIX_RELEASE}/apache-servicemix-${SERVICEMIX_RELEASE}.zip" &&\
-    curl -L -o servicemix.zip.asc "https://www.apache.org/dist/servicemix/servicemix-${SERVICEMIX_RELEASE//.*}/${SERVICEMIX_RELEASE}/apache-servicemix-${SERVICEMIX_RELEASE}.zip.asc" &&\
+    curl -L -o servicemix.zip "https://archive.apache.org/dist/servicemix/servicemix-${SERVICEMIX_RELEASE//.*}/${SERVICEMIX_RELEASE}/apache-servicemix-${SERVICEMIX_RELEASE}.zip" &&\
+    curl -L -o servicemix.zip.asc "https://archive.apache.org/dist/servicemix/servicemix-${SERVICEMIX_RELEASE//.*}/${SERVICEMIX_RELEASE}/apache-servicemix-${SERVICEMIX_RELEASE}.zip.asc" &&\
     gpg --verify servicemix.zip.asc servicemix.zip &&\
     unzip servicemix.zip -d /opt/ &&\
     mv /opt/apache-servicemix-* /opt/servicemix
