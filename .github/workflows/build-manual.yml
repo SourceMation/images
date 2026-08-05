@@ -41,6 +41,7 @@ on:
           - gcc-14
           - gcc-15
           - gcc-16
+          - gcc-17
           - ghost
           - git
           - golang-1.23
