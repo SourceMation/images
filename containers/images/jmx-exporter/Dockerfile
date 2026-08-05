@@ -1,7 +1,7 @@
 FROM sourcemation/maven:latest AS builder
 
 ARG TARGETARCH
-ARG JMX_EXPORTER_VERSION="1.5.0"
+ARG JMX_EXPORTER_VERSION="1.6.0"
 
 WORKDIR /app
 
@@ -22,13 +22,13 @@ LABEL name="jmx-exporter" \
       architecture="$TARGETARCH" \
       summary="JMX Exporter on JRE 21 Container" \
       description="Provides JMX Exporter on JRE 21 Container" \
-      version="1.5.0" \
+      version="1.6.0" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="JMX Exporter on JRE 21 Container" \
       io.k8s.description="Provides JMX Exporter on JRE 21 Container" \
       io.openshift.tags="jmx-exporter jre-21"
 
-ENV JMX_EXPORTER_VERSION="1.5.0"
+ENV JMX_EXPORTER_VERSION="1.6.0"
 
 WORKDIR /opt/jmx_exporter
 
