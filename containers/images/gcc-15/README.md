@@ -83,7 +83,7 @@ GitHub repository.
 **Disclaimer:** The `sourcemation/gcc-15` image is not affiliated with the GNU
 Project. The respective companies and organisations own the trademarks
 mentioned in the offering. The sourcemation/gcc-15 image is a separate project
-and is maintained by Sourcemation.
+and is maintained by [Sourcemation](https://sourcemation.com).
 
 ## Extra notes
 
