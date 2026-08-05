@@ -6,7 +6,7 @@ ARG JMX_EXPORTER_VERSION="1.6.0"
 WORKDIR /app
 
 RUN git clone --depth 1 --branch ${JMX_EXPORTER_VERSION} https://github.com/prometheus/jmx_exporter.git . \
-    && mvn package -DskipTests
+    && mvn package -DskipTests -Dparamixel.skipTests
 
 FROM sourcemation/jre-21:latest
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
