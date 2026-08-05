@@ -15,13 +15,14 @@ LABEL name="gcc-16" \
       architecture="$TARGETARCH" \
       summary="GCC 16 on Debian 13 Slim Container" \
       description="Provides GCC 16 on Debian 13 Slim Container" \
-      version="16.1.0" \
+      version="20260801" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="GCC 16 on Debian 13 Slim Container" \
       io.k8s.description="Provides GCC 16 on Debian 13 Slim Container" \
       io.openshift.tags="gcc gcc-16 debian-13-slim"
 
-ENV GCC_VERSION="16.1.0"
+ENV GCC_VERSION="20260801"
+
 
 # abigail-tools - abidiff later to verify that it's not breaking the debian packages
 # Most of this packages are from buildpack-deps that is based on old Heroku stack,
@@ -93,15 +94,15 @@ RUN set -ex; \
     apt-get install -y --no-install-recommends flex gnupg; \
     rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/* ;\
     \
-    curl -fL "https://mirrors.kernel.org/gnu/gcc/gcc-$GCC_VERSION/gcc-$GCC_VERSION.tar.xz.sig" -o "gcc.tar.xz.sig"; \
-    curl -fL "https://mirrors.kernel.org/gnu/gcc/gcc-$GCC_VERSION/gcc-$GCC_VERSION.tar.xz" -o "gcc.tar.xz"; \
-    export GNUPGHOME="$(mktemp -d)"; \
-    for key in $GPG_KEYS; do \
-        gpg --batch --keyserver keyserver.ubuntu.com --recv-keys "$key"; \
-    done; \
-    gpg --batch --verify gcc.tar.xz.sig gcc.tar.xz; \
-    gpgconf --kill all; \
-    rm -rf "$GNUPGHOME"; \
+    curl -fL "https://ftp.gwdg.de/pub/misc/gcc/snapshots/LATEST-16/gcc-16-$GCC_VERSION.tar.xz" -o "gcc.tar.xz"; \
+    # THIS IS NOT THE OFFICIAL GCC RELEASE, IT'S A SNAPSHOT IT DOES NOT HAVE A SIGNATURE
+    #export GNUPGHOME="$(mktemp -d)"; \
+    #for key in $GPG_KEYS; do \
+        #gpg --batch --keyserver keyserver.ubuntu.com --recv-keys "$key"; \
+    #done; \
+    #gpg --batch --verify gcc.tar.xz.sig gcc.tar.xz; \
+    #gpgconf --kill all; \
+    #rm -rf "$GNUPGHOME"; \
     mkdir -p /usr/src/gcc; \
     tar -xf gcc.tar.xz -C /usr/src/gcc --strip-components=1; \
     rm gcc.tar.xz*; \

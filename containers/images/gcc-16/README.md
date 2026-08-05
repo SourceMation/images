@@ -1,22 +1,23 @@
-# GCC 16 packaged by Sourcemation
+# GCC 16 (Development Snapshot) packaged by Sourcemation
 
-This container image delivers the GNU Compiler Collection (GCC) version 16,
-supplying an immediate environment for compiling projects written in C, C++,
-GO, Fortran, and other supported programming languages.
+This container image delivers a development snapshot of the GNU Compiler
+Collection (GCC) version 16. It provides an immediate environment for compiling
+projects written in C, C++, GO, Fortran, and other supported programming
+languages. This version is under active development and built from the latest
+source snapshot.
 
 
 Built upon the foundation of the Sourcemation Debian 13 Slim image.
 
-
 ## Usage
 
-To start a container with GCC 16 and gain shell access:
+To initiate a container with GCC 16 and gain shell access:
 
 ```bash
 docker run -it sourcemation/gcc-16 /bin/bash
 ```
 
-For compiling your source code, you can link your project directory into the
+For compiling your source code, you can link your project directory to the
 container:
 
 ```bash
@@ -32,8 +33,8 @@ image:
 
 ```dockerfile
 FROM sourcemation/gcc-16
-#Include your specific files
 
+# Include your specific files
 COPY . /app
 WORKDIR /app
 RUN gcc main.c -o main
@@ -53,17 +54,22 @@ docker run -it my-gcc-app
 This image, in its standard configuration, does not define any particular
 environment variables, expose any network ports, or necessitate persistent
 volumes. Nevertheless, you retain the flexibility to mount volumes for sharing
-your project files and building artefacts.
+your project files and build artifacts.
 
 The following environment variables are defined within the image:
 
 ```bash
-GCC_VERSION="01012025" # This may vary based on the precise snapshot
-# A collection of keys for verifying the GPG signature of the GCC tarball - not used for snapshot
-GPG_KEYS="B215C1633BCA0477615F1B35A5B3A004745C015A (...)" ```
+GCC_VERSION="20260308" # This may vary based on the precise snapshot version
+GPG_KEYS="B215C1633BCA0477615F1B35A5B3A004745C015A (...)" # A collection of keys for verifying the GPG signature of the GCC tarball
+```
 
-Furthermore, this image employs dpkg-divert to rename the original gcc and g++
-executables. They are still present within the system.
+**Security considerations: The development snapshots do not provide
+cryptographic signatures, the GPG_KEYS is not used for checking the signature
+of the tarball.**
+
+
+Furthermore, this image employs `dpkg-divert` to rename the original `gcc` and
+`g++` executables. They are still present within the system.
 
 ```
 /usr/bin/gcc.orig
@@ -82,8 +88,8 @@ GitHub repository.
 
 **Disclaimer:** The `sourcemation/gcc-16` image is not affiliated with the GNU
 Project. The respective companies and organisations own the trademarks
-mentioned in the offering. The sourcemation/gcc-16 image is a separate project
-and is maintained by Sourcemation.
+mentioned in the offering. The `sourcemation/gcc-16` image is a separate
+project and is maintained by [Sourcemation](https://sourcemation.com).
 
 ## Extra notes
 
@@ -91,20 +97,18 @@ Since 11 March 2026, all builds are forced to use `--enable-checking=release`.
 This option performs internal consistency checks appropriate for a release version
 of the compiler, balancing safety and performance. You can find more info
 on the [official GCC configuration page](https://gcc.gnu.org/install/configure.html).
+The GCC snapshot version was also updated to 20260308.
 
-This GCC 16 image is built on a Debian 13 Slim base image, which is a minimal
-consistent compilation environment. This image is loosely based on the Docker
-official image for gcc and is built using a separate, independent Sourcemation
-images build chain.
-
+This GCC 16 development snapshot image is built on a Debian 13 Slim base image,
+a minimal consistent compilation environment. This image is loosely
+based on the Docker official image for `gcc` and is built using a separate,
+independent Sourcemation images build chain.
 ## Image and its components Risk Analysis report
 
-The Sourcemation platform provides a detailed risk analysis report of the
-images and their components. However, some images might not have them ready;
-you can always create an issue to request them.
+A detailed risk analysis report of the images and their components can be found
+on the [Sourcemation platform](https://www.sourcemation.com/).
 
-
-For more information about GCC, visit the [official GCC
+For more information about GCC, check out the [official GCC
 website](https://gcc.gnu.org/).
 
 ## Licenses
