@@ -48,6 +48,7 @@ on:
           - golang-1.24
           - golang-1.25
           - golang-1.26
+          - golang-1.27
           - grafana
           - helidon
           - hugo
@@ -101,6 +102,7 @@ on:
           - nodejs-20
           - nodejs-22
           - nodejs-24
+          - nodejs-26
           - node_exporter
           - oauth2-proxy
           - openapi-generator-cli
