@@ -2,6 +2,18 @@
 
 > The NGINX Ingress Controller for Kubernetes using NGINX as a reverse proxy and load balancer.
 
+## Important Note: NGINX Ingress Controller v1.15 is End-of-Life (EOL)
+
+This NGINX Ingress Controller distribution, version v1.15.1, is provided specifically for
+compatibility workflows that require this specific version. **The upstream `kubernetes/ingress-nginx`
+project officially reached End-of-Life in March 2026, and the repository was archived. It no longer
+receives security updates or bug fixes.**
+
+While the NGINX Ingress Controller application itself is EOL and archived, this Sourcemation image is
+built on our regularly updated and patched `sourcemation/debian-13-slim` base
+image. This ensures that the underlying system components are current, even
+though the application itself is deprecated.
+
 This distribution contains the binary from the community Kubernetes Ingress NGINX project, packaged with standard Debian NGINX.
 
 ## Usage

@@ -4,16 +4,22 @@ Go (Golang) is a statically typed, compiled programming language designed at
 Google. Its simplicity, efficiency, and concurrency support make it ideal for
 building scalable and high-performance applications.
 
-This Golang distribution is packed from fresh official Google builds by the
-Sourcemation automation team. The version is 1.24.X and it's regularly updated
-to the latest patch version. For user convenience, the `go` toolchain is
-pre-installed and ready to use.
+## Important Note: Golang 1.24 is End-of-Life (EOL)
 
-The base image is the latest, at the time of the build,
-`sourcemation/debian-13-slim` image. It's gives you fully independent and
-self-contained Golang environment, that is regularly updated and patched.
-Lastly the build process takes advantage of cryptographic signatures to ensure
-that the source code is not tampered with.
+This Golang distribution, version 1.24.X, is provided specifically for
+compatibility workflows that require an older Golang environment. **Golang 1.24 is
+no longer officially supported by the Go project and does not receive security
+updates.**
+
+While the Golang 1.24 environment itself is outdated, this Sourcemation image is
+built on our regularly updated and patched `sourcemation/debian-13-slim` base
+image. This ensures that the underlying system components are current, even
+though the Golang version itself is EOL.
+
+This distribution is compiled and packaged by the Sourcemation automation team.
+The `go` toolchain is pre-installed and ready to use, and the build process
+takes advantage of cryptographic signatures to ensure that the source code is
+not tampered with.
 
 ## Usage
 

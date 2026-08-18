@@ -4,6 +4,18 @@ Python is one of the most popular programming languages. Its simplicity,
 emphasis on readability and a dozen of modules make it the perfect choice for
 various work domains, ranging from web development to AI/ML.
 
+## Important Note: Python 3.9 is End-of-Life (EOL)
+
+This Python distribution, version 3.9.X, is provided specifically for
+compatibility workflows that require an older Python environment. **Python 3.9 is
+no longer officially supported by the Python Software Foundation and does not
+receive security updates.**
+
+While the Python 3.9 environment itself is outdated, this Sourcemation image is
+built on our regularly updated and patched `sourcemation/rocky-9` base
+image. This ensures that the underlying system components are current, even
+though the Python version itself is EOL.
+
 This Python distribution is provided by the downstream Rocky Linux 9
 packaging team in the version respective to that system (3.9.18). For
 user convenience, the pip package manager is shipped as well.

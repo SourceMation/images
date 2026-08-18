@@ -1,17 +1,24 @@
 # NodeJS 20 with Yarn Classic packed by Sourcemation
 
-> [!WARNING]
-> **NodeJS 20 is deprecated.** We will be pushing newer versions as the base OS is updated. Please consider migrating to a newer version of NodeJS.
-
 Node.js is a powerful and adaptable JavaScript runtime that's used to build all
 sorts of applications, from simple command-line tools to complex conferencing
 systems. Its popularity comes from its vast collection of modules and
 widespread use.
 
+## Important Note: NodeJS 20 is End-of-Life (EOL)
 
-This particular version of Node.js is built on the `sourcemation/debian-13-slim`
-base image. It includes Node.js version 20 and Yarn Classic (version 1.22.XX).
+This NodeJS distribution, version 20.X, is provided specifically for
+compatibility workflows that require an older NodeJS environment. **NodeJS 20 is
+no longer officially supported by the OpenJS Foundation and does not
+receive security updates.**
 
+While the NodeJS 20 environment itself is outdated, this Sourcemation image is
+built on our regularly updated and patched `sourcemation/debian-13-slim` base
+image. This ensures that the underlying system components are current, even
+though the NodeJS version itself is EOL.
+
+This particular version of Node.js includes Node.js version 20 and Yarn Classic
+(version 1.22.XX).
 
 **This image is optimized for build reproducibility and contains the packages
 needed to compile NodeJS, providing developers with all tools needed in more advanced
