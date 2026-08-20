@@ -1,7 +1,7 @@
-# Ruby 4.0 packaged by Sourcemation
+# Ruby 3.4 packaged by Sourcemation
 
 An open source purely object-oriented programming language with a focus on
-simplicity and readability. Ruby 4.0 introduces performance improvements, YJIT
+simplicity and readability. Ruby 3.4 introduces performance improvements, YJIT
 optimizations, and modernized language features.
 
 This Ruby distribution is built from official source distributions by the
@@ -14,7 +14,7 @@ Run a temporary container with the Ruby REPL (`irb`) (don't forget the
 `-it` argument).
 
 ```bash
-docker run --rm -it sourcemation/ruby-4.0:latest
+docker run --rm -it sourcemation/ruby-3.4:latest
 ```
 
 ### Advanced usage examples
@@ -22,7 +22,7 @@ docker run --rm -it sourcemation/ruby-4.0:latest
 Example: create a Gemfile for a Ruby project, in your current directory:
 
 ```bash
-docker run --rm -v "${PWD}:/your-project" -w "/your-project" sourcemation/ruby-4.0:latest bundle init
+docker run --rm -v "${PWD}:/your-project" -w "/your-project" sourcemation/ruby-3.4:latest bundle init
 ```
 
 ## Environment Vars, Ports, Volumes
@@ -33,8 +33,8 @@ This image uses the following environment variables:
 PATH="/usr/local/bundle/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 GEM_HOME="/usr/local/bundle"
 BUNDLE_APP_CONFIG="/usr/local/bundle"
-APP_VERSION="4.0.6"
-APP_NAME="ruby-4.0"
+APP_VERSION="3.4.10"
+APP_NAME="ruby-3.4"
 ```
 
 This image exposes no ports by default.
@@ -51,11 +51,11 @@ can do so via the Sourcemation GitHub repository for this image.
 - [Open a new issue (for feature requests, bug reports, or image requests)](https://github.com/Sourcemation/images/issues/new/choose)
 - [Submit a pull request](https://github.com/Sourcemation/images/compare)
 
-**Disclaimer:** The `sourcemation/ruby-4.0` image is not affiliated with
+**Disclaimer:** The `sourcemation/ruby-3.4` image is not affiliated with
 Yukihiro Matsumoto and the Ruby Community [the Ruby
 Community](https://www.ruby-lang.org/en/community/). The respective
 entities own the trademarks mentioned in the offering. The
-`sourcemation/ruby-4.0` image is a separate project and is maintained by
+`sourcemation/ruby-3.4` image is a separate project and is maintained by
 [Sourcemation](https://sourcemation.com).
 
 ## Extra notes
