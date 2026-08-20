@@ -31,7 +31,7 @@ echo "SDKMAN checksum: $SDKMAN_SUM"
 # Update Dockerfile
 sed -i "s/version=\"[^\"]*\"/version=\"$MICRONAUT_VER\"/" Dockerfile
 sed -i "s/sdk install micronaut [0-9.]*/sdk install micronaut $MICRONAUT_VER/" Dockerfile
-sed -i "s/sdk install java [0-9.a-z-]*/sdk install java $JAVA_VER/" Dockerfile
+sed -i "s/sdk install java [a-zA-Z0-9.+-]*/sdk install java $JAVA_VER/" Dockerfile
 sed -i "s/sha256sum --check <( echo \"[a-f0-9]* sdkman.sh\")/sha256sum --check <( echo \"$SDKMAN_SUM sdkman.sh\")/" Dockerfile
 
 # Update README.md
