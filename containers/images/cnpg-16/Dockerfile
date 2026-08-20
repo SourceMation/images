@@ -16,14 +16,14 @@ LABEL name="cnpg-16" \
       architecture="$TARGETARCH" \
       summary="PostgreSQL 16 for CNPG on Debian 13 Slim Container" \
       description="Provides PostgreSQL 16 for CNPG on Debian Slim Container" \
-      version="16.14.1" \
+      version="16.15.1" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="PostgreSQL 16 for CNPG on Debian 13 Slim Container" \
       io.k8s.description="Provides PostgreSQL 16 for CPNG on Debian 13 Slim Container" \
       io.openshift.tags="postgresql debian-13-slim cnpg"
 
 ENV PG_MAJOR="16"
-ENV PG_VERSION="16.14-1.pgdg13+1"
+ENV PG_VERSION="16.15-1.pgdg13+2"
 ENV PATH=$PATH:/usr/lib/postgresql/$PG_MAJOR/bin
 ENV BARMAN_VERSION="3.19.1"
 ENV PIP_BREAK_SYSTEM_PACKAGES=1

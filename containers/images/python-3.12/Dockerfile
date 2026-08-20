@@ -17,7 +17,7 @@ LABEL name="python-3.12" \
       architecture="$TARGETARCH" \
       summary="Python 3.12 on Debian 13 Slim Container" \
       description="Provides Python 3.12 on Debian 13 Slim Container" \
-      version="3.12.13" \
+      version="3.12.14" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="Python 3.12 on Debian 13 Slim Container" \
       io.k8s.description="Provides Python 3.12 on Debian 13 Slim Container" \
@@ -29,8 +29,8 @@ ENV PATH=/usr/local/bin:$PATH
 ENV LANG=C.UTF-8
 # Build vars
 ENV GPG_KEY="7169605F62C751356D054A26A821E680E5FA6305"
-ENV PYTHON_VERSION="3.12.13"
-ENV PYTHON_SHA256="c08bc65a81971c1dd5783182826503369466c7e67374d1646519adf05207b684"
+ENV PYTHON_VERSION="3.12.14"
+ENV PYTHON_SHA256="5c8462af5790baf43a321a1559dbe0db06d1be4300fb85fb53c40060668e548a"
 
 # runtime dependencies
 RUN set -eux; \

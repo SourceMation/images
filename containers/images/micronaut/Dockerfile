@@ -11,7 +11,7 @@ LABEL name="micronaut" \
       architecture="$TARGETARCH" \
       summary="Micronaut CLI, Java-25 GraalVM and SDKMAN with GCC on EL9 Container" \
       description="Provides Micronaut CLI, Java-25 GraalVM and SDKMAN with GCC Rocky Linux 9 Container" \
-      version="5.1.0" \
+      version="5.1.1" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="Micronaut CLI, Java-25 GraalVM and SDKMAN with GCC on EL9 Container" \
       io.k8s.description="Provides Micronaut CLI, Java-25 GraalVM and SDKMAN with GCC on Rocky Linux 9 Container" \
@@ -35,5 +35,5 @@ RUN curl -s "https://get.sdkman.io" -o sdkman.sh &&\
     sha256sum --check <( echo "b7bda3ce24f631d54d6b6b24f9ca32bc0a0e12dde12b2c3c73b1e28c5c36a364 sdkman.sh") && \
     bash sdkman.sh && \
     . "/home/micronaut/.sdkman/bin/sdkman-init.sh" && \
-    sdk install micronaut 5.1.0 && \
-    sdk install java 25.0.4-graal
+    sdk install micronaut 5.1.1 && \
+    sdk install java 25.1.3+r25-graal

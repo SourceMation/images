@@ -16,14 +16,14 @@ LABEL name="cnpg-18" \
       architecture="$TARGETARCH" \
       summary="PostgreSQL 18 for CNPG on Debian 13 Slim Container" \
       description="Provides PostgreSQL 18 for CNPG on Debian Slim Container" \
-      version="18.4.1" \
+      version="18.6.1" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="PostgreSQL 18 for CNPG on Debian 13 Slim Container" \
       io.k8s.description="Provides PostgreSQL 18 for CPNG on Debian 13 Slim Container" \
       io.openshift.tags="postgresql debian-13-slim cnpg"
 
 ENV PG_MAJOR="18"
-ENV PG_VERSION="18.4-1.pgdg13+1"
+ENV PG_VERSION="18.6-1.pgdg13+2"
 ENV PATH=$PATH:/usr/lib/postgresql/$PG_MAJOR/bin
 ENV BARMAN_VERSION="3.19.1"
 ENV PIP_BREAK_SYSTEM_PACKAGES=1
