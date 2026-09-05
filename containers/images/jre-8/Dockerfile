@@ -12,13 +12,13 @@ LABEL name="jre-8" \
       architecture="$TARGETARCH" \
       summary="JRE 8 on Debian 13 Slim Container" \
       description="Provides JRE 8 on Debian 13 Slim Container" \
-      version="jdk8u502-b07" \
+      version="jdk8u504-b01" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="JRE 8 on Debian 13 Slim Container" \
       io.k8s.description="Provides JRE 8 on Debian 13 Slim Container" \
       io.openshift.tags="jre jre-8 debian-13-slim"
 
-ENV JAVA_VERSION="jdk8u502-b07"
+ENV JAVA_VERSION="jdk8u504-b01"
 ENV JAVA_HOME=/opt/java/openjdk
 ENV PATH=$JAVA_HOME/bin:$PATH
 # Default to UTF-8 file.encoding

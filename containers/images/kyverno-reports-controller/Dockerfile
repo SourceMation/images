@@ -34,7 +34,7 @@ LABEL name="kyverno-reports-controller" \
       architecture="$TARGETARCH" \
       summary="$LONGNAME" \
       description="Provides $LONGNAME" \
-      version="1.18.2" \
+      version="1.19.0" \
       io.k8s.display-name="$LONGNAME" \
       io.k8s.description="$LONGNAME" \
       io.openshift.tags="kyverno"
@@ -42,7 +42,7 @@ LABEL name="kyverno-reports-controller" \
 COPY --from=builder /workspace/kyverno-reports-controller /usr/local/bin/kyverno-reports-controller
 
 ENV APP_NAME="kyverno-reports-controller" \
-    APP_VERSION="1.18.2" \
+    APP_VERSION="1.19.0" \
     PATH=/usr/local/bin:$PATH
 
 USER 1000:1000

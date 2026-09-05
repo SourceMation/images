@@ -34,7 +34,7 @@ LABEL name="kyverno-cleanup-controller" \
       architecture="$TARGETARCH" \
       summary="$LONGNAME" \
       description="Provides $LONGNAME" \
-      version="1.18.2" \
+      version="1.19.0" \
       io.k8s.display-name="$LONGNAME" \
       io.k8s.description="$LONGNAME" \
       io.openshift.tags="kyverno"
@@ -42,7 +42,7 @@ LABEL name="kyverno-cleanup-controller" \
 COPY --from=builder /workspace/kyverno-cleanup-controller /usr/local/bin/kyverno-cleanup-controller
 
 ENV APP_NAME="kyverno-cleanup-controller" \
-    APP_VERSION="1.18.2" \
+    APP_VERSION="1.19.0" \
     PATH=/usr/local/bin:$PATH
 
 USER 1000:1000

@@ -12,7 +12,7 @@ LABEL name="nodejs-26" \
       architecture="$TARGETARCH" \
       summary="NodeJS 26 on Debian 13 Slim Container" \
       description="Provides NodeJS 26 on Debian 13 Slim Container" \
-      version="26.7.0" \
+      version="26.8.1" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="NodeJS 26 on Debian 13 Slim Container" \
       io.k8s.description="Provides NodeJS 26 on Debian 13 Slim Container" \
@@ -22,7 +22,7 @@ LABEL name="nodejs-26" \
 RUN groupadd --gid 1000 node \
   && useradd --uid 1000 --gid node --shell /bin/bash --create-home node
 
-ENV NODE_VERSION="26.7.0"
+ENV NODE_VERSION="26.8.1"
 ENV YARN_VERSION="1.22.22"
 
 # Most of this packages are from buildpack-deps that is based on old Heroku

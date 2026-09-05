@@ -11,7 +11,7 @@ LABEL name="mariadb" \
       architecture="$TARGETARCH" \
       summary="mariadb on Debian 13 Slim Container" \
       description="Provides mariadb on Debian 13 Slim Container" \
-      version="12.3.2" \
+      version="12.3.3" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="mariadb on Debian 13 Slim Container" \
       io.k8s.description="Provides mariadb on Debian 13 Slim Container" \
@@ -59,7 +59,7 @@ RUN apt-get update \
     && chmod 1777 /var/run/mysqld
 
 ENV APP_NAME="mariadb" \
-    APP_VERSION="12.3.2"
+    APP_VERSION="12.3.3"
 
 COPY docker.cnf /etc/mysql/mariadb.conf.d/10-docker.cnf
 COPY docker-entrypoint.sh /usr/local/bin/

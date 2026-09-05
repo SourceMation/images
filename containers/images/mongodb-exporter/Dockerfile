@@ -1,7 +1,7 @@
 FROM sourcemation/golang-1.26:latest AS builder
 
 ARG TARGETARCH
-ARG MONGODB_EXPORTER_VERSION="v0.52.0"
+ARG MONGODB_EXPORTER_VERSION="v0.53.0"
 
 WORKDIR /app
 
@@ -30,13 +30,13 @@ LABEL name="mongodb-exporter" \
       architecture="$TARGETARCH" \
       summary="MongoDB Exporter on Debian 13 Slim Container" \
       description="Provides mongodb-exporter on Debian 13 Slim Container" \
-      version="v0.52.0" \
+      version="v0.53.0" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="MongoDB Exporter on Debian 13 Slim Container" \
       io.k8s.description="Provides mongodb-exporter on Debian 13 Slim Container" \
       io.openshift.tags="mongodb-exporter debian-13"
 
-ENV MONGODB_EXPORTER_VERSION="v0.52.0"
+ENV MONGODB_EXPORTER_VERSION="v0.53.0"
 
 RUN apt-get update && apt-get install --no-install-recommends -y ca-certificates && \
     apt-get clean && \

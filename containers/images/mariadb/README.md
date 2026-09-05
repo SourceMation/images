@@ -66,7 +66,7 @@ This image uses the following environment variables:
 
 ```bash
 APP_NAME="mariadb"
-APP_VERSION="12.3.2"
+APP_VERSION="12.3.3"
 
 MARIADB_ROOT_PASSWORD=<password>     # Set root password
 MARIADB_RANDOM_ROOT_PASSWORD=no
