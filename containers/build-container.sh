@@ -303,6 +303,7 @@ test_container(){
     if [ "${IMAGE_NAME}" == "kong" ]; then
         docker network create "${CONTAINER_NAME}-net"
         docker run -d --name "${CONTAINER_NAME}-db" --network "${CONTAINER_NAME}-net" -p 5432:5432 -e "POSTGRES_USER=kong" -e "POSTGRES_DB=kong" -e "POSTGRES_PASSWORD=kongpass" postgres:13
+        sleep 10
         docker run --rm --network "${CONTAINER_NAME}-net" -e "KONG_DATABASE=postgres" -e "KONG_PG_HOST=${CONTAINER_NAME}-db" -e "KONG_PG_PASSWORD=kongpass" -e "KONG_PASSWORD=test" "${CONTAINER_FULL_NAME}" kong migrations bootstrap
 
         docker run -d --name "$CONTAINER_NAME" \

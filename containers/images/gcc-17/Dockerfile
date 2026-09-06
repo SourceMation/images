@@ -133,6 +133,7 @@ RUN set -ex; \
         --disable-multilib \
         --enable-languages=c,c++,fortran,go \
         --enable-checking=release \
+        --disable-werror \
         $extraConfigureArgs \
     ; \
     make -j "$(nproc)"; \

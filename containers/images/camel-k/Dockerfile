@@ -1,5 +1,5 @@
 # Build stage
-FROM sourcemation/golang-1.25 AS builder
+FROM sourcemation/golang-1.26 AS builder
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 ENV CAMEL_K_VER="v2.11.0"

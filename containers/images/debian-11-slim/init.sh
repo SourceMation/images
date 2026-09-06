@@ -13,7 +13,7 @@ BASEDIR="$(dirname $(readlink -f "$0"))"
 git clone https://github.com/debuerreotype/debuerreotype.git
 
 pushd debuerreotype
-./docker-run.sh sh -euxc "debuerreotype-init rootfs bullseye $(date); debuerreotype-minimizing-config rootfs; debuerreotype-debian-sources-list rootfs bullseye; debuerreotype-slimify rootfs; debuerreotype-tar rootfs rootfs.tar.gz"
+./docker-run.sh sh -euxc "debuerreotype-init rootfs bullseye \$(date -u +\"%Y-%m-%dT%H:%M:%SZ\"); debuerreotype-minimizing-config rootfs; debuerreotype-debian-sources-list rootfs bullseye; debuerreotype-slimify rootfs; debuerreotype-tar rootfs rootfs.tar.gz"
 mv -f rootfs.tar.gz "$BASEDIR"
 popd
 sudo rm -rf "$BASEDIR/debuerreotype"
