@@ -1,5 +1,12 @@
 # Debian 11 Bullseye Slim Image by Sourcemation
 
+> [!WARNING]
+> **Deprecation Notice: Debian 11 (Bullseye)**
+>
+> Debian 11 (Bullseye) reached its End of Life (EOL) for security support on **August 31, 2024**, and LTS support ended in **July 2026**. 
+>
+> Please upgrade to **Debian 12 (Bookworm)** or newer.
+
 Debian stands as a highly regarded, purely community-driven Linux distribution.
 Known for its stability, security, and versatility, it serves as a robust
 operating system. The Debian project thrives on the contributions of a global
