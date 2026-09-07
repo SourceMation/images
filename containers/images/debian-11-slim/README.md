@@ -1,7 +1,7 @@
 # Debian 11 Bullseye Slim Image by Sourcemation
 
 > [!WARNING]
-> **Deprecation Notice: Debian 11 (Bullseye)**
+> Deprecation Notice: Debian 11 (Bullseye)
 >
 > Debian 11 (Bullseye) reached its End of Life (EOL) for security support on **August 31, 2024**, and LTS support ended in **July 2026**. 
 >
