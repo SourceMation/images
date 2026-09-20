@@ -1,5 +1,5 @@
 # Build the manager binary
-FROM --platform=$BUILDPLATFORM sourcemation/golang-1.26:latest AS builder
+FROM --platform=$BUILDPLATFORM sourcemation/golang-1.27:latest AS builder
 
 WORKDIR /workspace
 
