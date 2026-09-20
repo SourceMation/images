@@ -34,7 +34,7 @@ LABEL name="kyvernopre" \
       architecture="$TARGETARCH" \
       summary="$LONGNAME" \
       description="Provides $LONGNAME" \
-      version="1.19.0" \
+      version="1.19.1" \
       io.k8s.display-name="$LONGNAME" \
       io.k8s.description="Provides $LONGNAME" \
       io.openshift.tags="kyvernopre"
@@ -42,7 +42,7 @@ LABEL name="kyvernopre" \
 COPY --from=builder /workspace/kyvernopre /usr/local/bin/kyvernopre
 
 ENV APP_NAME="kyvernopre" \
-    APP_VERSION="1.19.0" \
+    APP_VERSION="1.19.1" \
     PATH=/usr/local/bin:$PATH
 
 USER 1000:1000
