@@ -12,7 +12,7 @@ LABEL name="helidon" \
       architecture="$TARGETARCH" \
       summary="Helidon with OpenJDK 21 and Maven 3.8 on EL9 Container" \
       description="Provides Helidon with OpenJDK 21 and Maven 3.8 on Rocky Linux 9 Container" \
-      version="4.1.6" \
+      version="4.5.4" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="Helidon with OpenJDK 21 and Maven 3.8 on EL9 Container" \
       io.k8s.description="Provides Helidon with OpenJDK 21 and Maven 3.8 on Rocky Linux 9 Container" \
@@ -34,8 +34,8 @@ ENV JAVA_HOME /usr/lib/jvm/java-21
 # Install helidon binary
 RUN curl -L -O https://helidon.io/cli/latest/linux/helidon && chmod +x helidon && mv helidon /usr/bin
 
-RUN version=$(helidon --version | grep 'default.helidon.version' | grep -oP '(\d+\.\d+\.\d+)') && \
-    echo "helidon: $version" >> /var/tmp/sourcemation.yml
+RUN version=$(curl -s https://helidon.io/cli-data/versions.xml | grep -E '<version order="[0-9]+">' | grep -oE '4\.[0-9.]+' | head -n 1) && \
+    echo "helidon: ${version:-4.5.4}" >> /var/tmp/sourcemation.yml
 
 # Add application user
 RUN useradd -ms /bin/bash helidon

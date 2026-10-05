@@ -3,7 +3,7 @@ FROM sourcemation/rocky-9:latest AS builder
 
 COPY ee10ba76e3be503a07b7550b09e4d19f8fd25848.asc /
 ENV KARAVAN_VERSION="4.22.1"
-RUN dnf module enable -y nodejs:22 && dnf install -y gpg maven-openjdk21 unzip npm wget && dnf clean all && rm -rf /var/cache/dnf
+RUN dnf module enable -y nodejs:22 && dnf install -y gpg maven-openjdk25 unzip npm wget && dnf clean all && rm -rf /var/cache/dnf
 RUN gpg --import ee10ba76e3be503a07b7550b09e4d19f8fd25848.asc &&\
       mkdir /build &&\
       cd /build &&\
@@ -12,12 +12,7 @@ RUN gpg --import ee10ba76e3be503a07b7550b09e4d19f8fd25848.asc &&\
       gpg --verify camel-karavan-${KARAVAN_VERSION}.zip.asc camel-karavan-${KARAVAN_VERSION}.zip &&\
       unzip camel-karavan-${KARAVAN_VERSION}.zip &&\
       cd /build/camel-karavan-${KARAVAN_VERSION} &&\
-      cp -r karavan-core / && \
       mvn clean compile exec:java -Dexec.mainClass="org.apache.camel.karavan.generator.KaravanGenerator" -f karavan-generator && \
-      cd karavan-core &&\
-      curl https://raw.githubusercontent.com/apache/camel-karavan/refs/heads/main/karavan-vscode/metadata/kamelets.yaml -o test/metadata/kamelets.yaml && \
-      npm install &&\
-      cd  .. &&\
       mvn clean package -f karavan-app -Dquarkus.profile=public
 
 RUN echo "Checking if there is proper jar" && ls -lh "/build/camel-karavan-${KARAVAN_VERSION}/karavan-app/target/karavan-${KARAVAN_VERSION}-runner.jar"
@@ -42,9 +37,9 @@ LABEL name="camel-karavan" \
       io.openshift.tags="camel karavan rockylinux"
 
 
-RUN dnf -y install java-21-openjdk-headless && dnf clean all && rm -rf /var/cache/dnf
+RUN dnf -y install java-25-openjdk-headless && dnf clean all && rm -rf /var/cache/dnf
 
-ENV JAVA_HOME="/usr/lib/jvm/jre-17-openjdk"
+ENV JAVA_HOME="/usr/lib/jvm/java-25-openjdk"
 ENV PATH $PATH:"$JAVA_HOME/bin"
 ENV JAVA_OPTS="-Dquarkus.http.host=0.0.0.0 -Djava.util.logging.manager=org.jboss.logmanager.LogManager -XX:-UseG1GC -XX:+UseZGC"
 ENV LANG="en_US.UTF-8"

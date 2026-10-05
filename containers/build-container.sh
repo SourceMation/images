@@ -433,6 +433,18 @@ test_container(){
             -e WORDPRESS_DB_PASSWORD=wordpress \
             -e WORDPRESS_DB_NAME=wordpress \
             "${CONTAINER_FULL_NAME}"
+    elif [ "${IMAGE_NAME}" == "camel-karavan" ]; then
+        docker network create "${CONTAINER_NAME}-net"
+
+        docker run -d --name "${CONTAINER_NAME}-db" \
+            --network "${CONTAINER_NAME}-net" \
+            -e POSTGRES_USER=karavan \
+            -e POSTGRES_DB=karavan \
+            -e POSTGRES_PASSWORD=K@r@v@n422 \
+            postgres:16
+
+        sleep 10
+        docker run -d -it --name "$CONTAINER_NAME" --network "${CONTAINER_NAME}-net" -e KARAVAN_DATASOURCE_URL="jdbc:postgresql://${CONTAINER_NAME}-db:5432/karavan" ${CONTAINER_RUN_PARAMETERS} "${CONTAINER_FULL_NAME}" ${CONTAINER_RUN_COMMAND}
     else
         print_info "Running Docker Container from Image: ${CONTAINER_FULL_NAME}"
         # shellcheck disable=SC2086
@@ -480,6 +492,10 @@ test_container(){
         docker rm "${CONTAINER_NAME}-db"
         docker network rm "${CONTAINER_NAME}-net"
     elif [ "${IMAGE_NAME}" == "wordpress" ]; then
+        docker stop "${CONTAINER_NAME}-db"
+        docker rm "${CONTAINER_NAME}-db"
+        docker network rm "${CONTAINER_NAME}-net"
+    elif [ "${IMAGE_NAME}" == "camel-karavan" ]; then
         docker stop "${CONTAINER_NAME}-db"
         docker rm "${CONTAINER_NAME}-db"
         docker network rm "${CONTAINER_NAME}-net"
