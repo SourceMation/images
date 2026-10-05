@@ -33,7 +33,7 @@ This image uses the following environment variables:
 PATH="/usr/local/bundle/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 GEM_HOME="/usr/local/bundle"
 BUNDLE_APP_CONFIG="/usr/local/bundle"
-APP_VERSION="3.4.10"
+APP_VERSION="3.4.11"
 APP_NAME="ruby-3.4"
 ```
 

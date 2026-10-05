@@ -25,7 +25,7 @@ LABEL name="cnpg-17" \
 ENV PG_MAJOR="17"
 ENV PG_VERSION="17.11-1.pgdg13+2"
 ENV PATH=$PATH:/usr/lib/postgresql/$PG_MAJOR/bin
-ENV BARMAN_VERSION="3.19.1"
+ENV BARMAN_VERSION="3.20.1"
 ENV PIP_BREAK_SYSTEM_PACKAGES=1
 
 # Install PostgreSQL 17 minimal, standard extensions, and system packages (including Barman)
