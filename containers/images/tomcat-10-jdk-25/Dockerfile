@@ -13,7 +13,7 @@ LABEL name="tomcat-10" \
       architecture="$TARGETARCH" \
       summary="Apache Tomcat 10 on JDK 25 Container" \
       description="Provides Apache Tomcat 10 on JDK 25 Container" \
-      version="10.1.60" \
+      version="10.1.61" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="Apache Tomcat 10 on JDK 25 Container" \
       io.k8s.description="Provides Apache Tomcat 10 on JDK 25 Container" \
@@ -29,8 +29,8 @@ ENV TOMCAT_NATIVE_LIBDIR=$CATALINA_HOME/native-jni-lib
 ENV LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}$TOMCAT_NATIVE_LIBDIR
 
 ENV TOMCAT_MAJOR=10
-ENV TOMCAT_VERSION=10.1.60
-ENV TOMCAT_SHA512=aa06508300ca137a023b74b8600f2c1b3248412eb85d4fc5e2f337c6c4d3776f4491e272f79856ac541cfab0fc35537111ae4f3cfcd0bbe702c0a3610a61bd04
+ENV TOMCAT_VERSION=10.1.61
+ENV TOMCAT_SHA512=35120a2b1182bac3d55438fbec0dc581d03b0f1c16ce692a930f3bb6a1097cf896b94b389152257071a87cb2928ac8c15f1bad08387c14acc7c17dbc1bb598fb
 
 RUN set -eux; \
     \

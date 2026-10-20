@@ -2,7 +2,7 @@ FROM sourcemation/rocky-9:latest AS jsa-builder
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # UPDATE init.sh to include new scripts
-ENV kafka_url=https://downloads.apache.org/kafka/4.3.1/kafka_2.13-4.3.1.tgz
+ENV kafka_url=https://downloads.apache.org/kafka/4.4.0/kafka_2.13-4.4.0.tgz
 
 COPY jsa_launch /etc/kafka/docker/jsa_launch
 
@@ -33,7 +33,7 @@ LABEL name="kafka" \
       architecture="$TARGETARCH" \
       summary="Apache Kafka on EL9 Container" \
       description="Provides Apache Kafka on Rocky Linux 9 Container" \
-      version="4.3.1" \
+      version="4.4.0" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="Apache Kafka on EL9 Container" \
       io.k8s.description="Provides Apache Kafka on Rocky Linux 9 Container" \
