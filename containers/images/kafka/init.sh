@@ -19,13 +19,13 @@ sed -i "s#blob/[0-9.]*/LICENSE-binary#blob/$KAFKA_VERSION/LICENSE-binary#" READM
 curl -L https://downloads.apache.org/kafka/KEYS -o KEYS
 
 mkdir -p common-scripts
-curl -L https://raw.githubusercontent.com/apache/kafka/$KAFKA_VERSION/docker/docker_official_images/3.7.0/jvm/resources/common-scripts/bash-config -o common-scripts/bash-config
-curl -L https://raw.githubusercontent.com/apache/kafka/$KAFKA_VERSION/docker/docker_official_images/3.7.0/jvm/resources/common-scripts/configure -o common-scripts/configure
-curl -L https://raw.githubusercontent.com/apache/kafka/$KAFKA_VERSION/docker/docker_official_images/3.7.0/jvm/resources/common-scripts/configureDefaults -o common-scripts/configureDefaults
-curl -L https://raw.githubusercontent.com/apache/kafka/$KAFKA_VERSION/docker/docker_official_images/3.7.0/jvm/resources/common-scripts/run -o common-scripts/run
+curl -L https://raw.githubusercontent.com/apache/kafka/trunk/docker/docker_official_images/3.7.0/jvm/resources/common-scripts/bash-config -o common-scripts/bash-config
+curl -L https://raw.githubusercontent.com/apache/kafka/trunk/docker/docker_official_images/3.7.0/jvm/resources/common-scripts/configure -o common-scripts/configure
+curl -L https://raw.githubusercontent.com/apache/kafka/trunk/docker/docker_official_images/3.7.0/jvm/resources/common-scripts/configureDefaults -o common-scripts/configureDefaults
+curl -L https://raw.githubusercontent.com/apache/kafka/trunk/docker/docker_official_images/3.7.0/jvm/resources/common-scripts/run -o common-scripts/run
 
-curl -LO https://raw.githubusercontent.com/apache/kafka/$KAFKA_VERSION/docker/docker_official_images/3.7.0/jvm/jsa_launch
-curl -LO https://raw.githubusercontent.com/apache/kafka/$KAFKA_VERSION/docker/docker_official_images/3.7.0/jvm/launch
+curl -LO https://raw.githubusercontent.com/apache/kafka/trunk/docker/docker_official_images/3.7.0/jvm/jsa_launch
+curl -LO https://raw.githubusercontent.com/apache/kafka/trunk/docker/docker_official_images/3.7.0/jvm/launch
 
 # Fix paths in jsa_launch for Kafka 4.x
 sed -i 's/config\/kraft\//config\//g' jsa_launch

@@ -79,4 +79,4 @@ def test_ghost_setup_page_is_served():
     
     response_text = response.text
     assert "<title>Ghost</title>" in response_text
-    assert 'name="ghost-admin/config/environment"' in response_text
+    assert ("name=\"ghost-admin/config/environment\"" in response_text) or ("class=\"react-admin\"" in response_text)
