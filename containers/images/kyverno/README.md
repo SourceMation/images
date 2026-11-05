@@ -2,7 +2,7 @@
 
 Provides the Kyverno Admission Controller built on top of Debian 13 Slim.
 
-<!-- APP_VERSION="1.19.1" -->
+<!-- APP_VERSION="1.19.2" -->
 
 ## Usage
 

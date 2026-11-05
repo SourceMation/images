@@ -4,7 +4,7 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ARG BUILD_DATE
 ARG TARGETARCH
 # Version is updated by init.sh
-ARG VERSION="13.2"
+ARG VERSION="13.3"
 
 LABEL name="pgbadger" \
       vendor="Sourcemation" \
@@ -14,7 +14,7 @@ LABEL name="pgbadger" \
       architecture="$TARGETARCH" \
       summary="pgBadger on Debian 13 Slim Container" \
       description="Provides pgBadger on Debian 13 Slim Container" \
-      version="13.2" \
+      version="13.3" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="pgBadger on Debian 13 Slim Container" \
       io.k8s.description="Provides pgBadger on Debian 13 Slim Container" \
