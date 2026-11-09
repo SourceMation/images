@@ -29,7 +29,7 @@ WORKDIR /home/quarkus
 # Install Quarkus with JBang - Bang bang!
 # install jbang
 RUN curl -sL https://sh.jbang.dev -o jbang.sh && \
-    sha256sum --check <( echo "11ab5908e92c5308ae220d52163394e126c84d45357ee4e81a17177c6ced3b07 jbang.sh" ) && \
+    sha256sum --check <( echo "f341d90cbe59342d77abb22aac56ee7d8e01eae1f68f886b9ca84fcce6d48838 jbang.sh" ) && \
     cat jbang.sh | bash -s - app setup
 
 # modify the PATH to include jbang

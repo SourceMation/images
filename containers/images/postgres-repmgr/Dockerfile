@@ -3,7 +3,7 @@ FROM sourcemation/postgres-18
 ARG BUILD_DATE
 ARG TARGETARCH
 
-ENV REPMGR_VER="5.5.0"
+ENV REPMGR_VER="5.5.1"
 ENV BINARY_URL="https://github.com/EnterpriseDB/repmgr/archive/v${REPMGR_VER}.tar.gz"
 
 LABEL name="postgres-repmgr" \
@@ -15,7 +15,7 @@ LABEL name="postgres-repmgr" \
   architecture="$TARGETARCH" \
   summary="Postgresql-repmgr on Debian 13 Slim Container" \
   description="Provides postgres-repmgr on Debian 13 Slim Container" \
-  version="5.5.0" \
+  version="5.5.1" \
   io.k8s.display-name="Postgresql-repmgr on Debian 13 Slim Container" \
   io.k8s.description="Provides postgres-repmgr on Debian 13 Slim Container" \
   io.openshift.tags="postgres repmgr debian"
