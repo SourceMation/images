@@ -1,4 +1,4 @@
-FROM sourcemation/golang-1.27 AS builder
+FROM sourcemation/golang-1.27:latest AS builder
 
 ARG VERSION=0.24.0
 ARG TARGETOS=linux
@@ -20,7 +20,7 @@ WORKDIR /workspace
 
 RUN git clone --depth 1 --branch v${VERSION} https://github.com/kubernetes-sigs/external-dns.git /workspace \
     && CGO_ENABLED=${CGO_ENABLED} GOOS=${TARGETOS} GOARCH=${TARGETARCH} \
-    go build -ldflags="-s -w -X sigs.k8s.io/external-dns/pkg/apis/externaldns.Version=${VERSION}" \
+    go build -ldflags="-s -w -X sigs.k8s.io/external-dns/pkg/version.Version=${VERSION}" \
     -o external-dns .
 
 
