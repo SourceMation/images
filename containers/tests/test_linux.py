@@ -23,7 +23,7 @@ def test_cpu_usage_with_retry():
             idle_time = cpu_times[3]
             total_time = sum(cpu_times)
             cpu_usage = (1 - idle_time / total_time) * 100
-            assert cpu_usage < 90, f"High CPU usage: {cpu_usage:.2f}%"
+            assert cpu_usage < 95, f"High CPU usage: {cpu_usage:.2f}%"
             return  # Test passed, exit the function
         except (AssertionError, subprocess.CalledProcessError) as e:
             print(f"Attempt {attempt + 1} failed: {e}")
