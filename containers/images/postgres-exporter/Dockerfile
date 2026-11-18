@@ -3,7 +3,7 @@ FROM sourcemation/postgres-17
 ARG BUILD_DATE
 ARG TARGETARCH
 
-ENV PGEXPORTER_VER="0.20.1"
+ENV PGEXPORTER_VER="0.21.0"
 ENV BINARY_URL="https://github.com/prometheus-community/postgres_exporter/releases/download/v${PGEXPORTER_VER}/postgres_exporter-${PGEXPORTER_VER}.linux-${TARGETARCH}.tar.gz"
 
 LABEL name="postgres-exporter" \
@@ -15,7 +15,7 @@ LABEL name="postgres-exporter" \
   architecture="$TARGETARCH" \
   summary="Postgresql-exporter on Debian 13 Slim Container" \
   description="Provides postgres-exporter on Debian 13 Slim Container" \
-  version="0.20.1" \
+  version="0.21.0" \
   io.k8s.display-name="Postgresql-exporter on Debian 13 Slim Container" \
   io.k8s.description="Provides postgres-exporter on Debian 13 Slim Container" \
   io.openshift.tags="postgres-exporter debian"
@@ -27,12 +27,13 @@ RUN set -eux; \
       tar \
       wget; \
     rm -rf /var/lib/apt/lists/*;
-RUN wget --progress=dot:giga -O /tmp/postgres-exporter.tar.gz ${BINARY_URL}; \
+RUN set -eux; \
+    wget --progress=dot:giga -O /tmp/postgres-exporter.tar.gz "${BINARY_URL}" && \
     tar --extract \
         --file /tmp/postgres-exporter.tar.gz \
         --directory "/bin" \
         --strip-components 1 \
-        --no-same-owner; \
+        --no-same-owner && \
     rm -f /tmp/postgres-exporter.tar.gz;
 
 RUN bash -c 'echo -e "auth_modules: \n\
