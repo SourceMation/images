@@ -16,7 +16,7 @@ LABEL name="ruby-4.0" \
       architecture="$TARGETARCH" \
       summary="Ruby 4.0 on Debian 13 Slim Container" \
       description="Provides Ruby 4.0 on Debian 13 Slim Container" \
-      version="4.0.9" \
+      version="4.0.10" \
       org.opencontainers.image.source="https://github.com/Sourcemation/images" \
       io.k8s.display-name="Ruby 4.0 on Debian 13 Slim Container" \
       io.k8s.description="Provides Ruby 4.0 on Debian 13 Slim Container" \
@@ -37,9 +37,9 @@ RUN set -eux; \
 ENV LANG C.UTF-8
 
 # https://www.ruby-lang.org/en/news/2026/07/14/ruby-4-0-6-released/
-ENV RUBY_VERSION 4.0.9
-ENV RUBY_DOWNLOAD_URL https://cache.ruby-lang.org/pub/ruby/4.0/ruby-4.0.9.tar.xz
-ENV RUBY_DOWNLOAD_SHA256 a8057adb39f51ad6dc3106237504c93dd792bb515837b4fe7817ae21ed7e51f4
+ENV RUBY_VERSION 4.0.10
+ENV RUBY_DOWNLOAD_URL https://cache.ruby-lang.org/pub/ruby/4.0/ruby-4.0.10.tar.xz
+ENV RUBY_DOWNLOAD_SHA256 1537f7a6003c436546ecab6b48b6e7725a9af2328f45a8af7f42f41c5df90ab8
 
 # some of ruby's build scripts are written in ruby
 #   we purge system ruby later to make sure our final image uses what we just built
