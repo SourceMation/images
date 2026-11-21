@@ -38,6 +38,8 @@ ENV PATH="/home/quarkus/.jbang/bin:/home/quarkus/.jbang/currentjdk/bin:${PATH}"
 # Trust the Quarkus Maven repo and Install Quarkus CLI
 RUN mkdir -p /home/quarkus/.local/bin && \
     cd /home/quarkus/.local/bin && \
+    jbang jdk install 21 && \
+    jbang jdk default 21 && \
     jbang trust add https://repo1.maven.org/maven2/io/quarkus/quarkus-cli/ && \
     jbang app install --name quarkus https://repo1.maven.org/maven2/io/quarkus/quarkus-cli/${QUARKUS_VERSION}/quarkus-cli-${QUARKUS_VERSION}-runner.jar
 

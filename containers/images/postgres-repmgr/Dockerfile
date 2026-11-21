@@ -41,7 +41,7 @@ RUN set -eux; \
       libxml2-dev \
       libxslt1-dev \
       libzstd-dev \
-      postgresql-server-dev-all \
+      postgresql-server-dev-18 \
       tar \
       wget \
       zlib1g-dev ; \
@@ -64,7 +64,7 @@ RUN set -eux; \
       libxslt1-dev \
       libxml2-dev \
       libedit-dev \
-      postgresql-server-dev-all \
+      postgresql-server-dev-18 \
       flex \
       libselinux1-dev libzstd-dev liblz4-dev libpam0g-dev libkrb5-dev zlib1g-dev libreadline-dev; \
     \

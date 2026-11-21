@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM docker.io/sourcemation/golang-1.26:latest AS builder
+FROM --platform=$BUILDPLATFORM docker.io/sourcemation/golang-1.27:latest AS builder
 
 WORKDIR /workspace
 
